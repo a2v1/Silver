@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Comman\ConnectionClass.cs" />
     <Compile Include="Comman\Conversion.cs" />
+    <Compile Include="Comman\GRIDVIEWCUSTOM1.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Company.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +56,7 @@
       <DependentUpon>Company.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\ItemOpening.cs" />
+    <Compile Include="Entity\KFEntity.cs" />
     <Compile Include="Entity\Metal.cs" />
     <Compile Include="Helper\CommanHelper.cs" />
     <Compile Include="Items.cs">
