@@ -40,6 +40,27 @@ namespace SilverGold.Helper
             grd.BackgroundColor = Color.White;
         }
 
+        public static decimal SumRow(DataGridView dgt, int col)
+        {
+            int count_row = 0;
+            decimal sum_col, col1;
+            sum_col = 0;
+            col1 = 0;
+            try
+            {
+                count_row = dgt.Rows.Count;
+                for (int i = 0; i < count_row - 1; i++)
+                {
+                    col1 = Conversion.ConToDec5(dgt.Rows[i].Cells[col].Value.ToString());
+                    sum_col = sum_col + col1;
+                }
+            }
+            catch (Exception ee)
+            {
+
+            }
+            return sum_col;
+        }
 
         public static List<Metal> GetMetalCate()
         {
