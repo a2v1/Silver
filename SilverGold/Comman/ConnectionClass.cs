@@ -17,6 +17,11 @@ namespace SilverGold.Comman
             return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + DSOURCE() + "\\" + DATABASE() + ".mdb;Jet OLEDB:Database Password=Hello@12345XZ435";
         }
 
+        public static string LoginConString(String DSOURCE, String DATABASE)
+        {
+            return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + DSOURCE + "\\" + DATABASE + ";Jet OLEDB:Database Password=Hello@12345XZ435";
+        }
+
         public string DSOURCE()
         {
             FileStream fs = new FileStream(System.Windows.Forms.Application.StartupPath + "\\DSOURCE.dll", FileMode.Open, FileAccess.Read);

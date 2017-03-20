@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilverGold.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace SilverGold
     public partial class Master : Form
     {
         private int childFormNumber = 0;
-
+        public static Master objMaster;
         public Master()
         {
             InitializeComponent();
@@ -26,10 +27,12 @@ namespace SilverGold
             childForm.Show();
         }
 
-       
+
         private void Master_Load(object sender, EventArgs e)
         {
-
+            objMaster = this;
+            CommanHelper.FormX = this.Width;
+            CommanHelper.FormY = this.Height;
         }
 
         private void Master_FormClosed(object sender, FormClosedEventArgs e)

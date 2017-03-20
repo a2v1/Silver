@@ -116,6 +116,19 @@ namespace SilverGold.Comman
                 return 0;
             }
         }
+        public static System.Decimal ConToDec6(string strvalue)
+        {
+            try
+            {
+                System.Decimal decVal = 0;
+                decVal = Convert.ToDecimal(strvalue.Trim());
+                return Math.Round(decVal, 6);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
 
 
         public static Boolean ChkToDec(string strvalue)

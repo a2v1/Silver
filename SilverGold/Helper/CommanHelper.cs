@@ -14,8 +14,18 @@ namespace SilverGold.Helper
     {
         public static int FormX = 0;
         public static int FormY = 0;
-       
+        public static string CompName = "";
+        public static string Com_DB_PATH = "";
+        public static string Com_DB_NAME = "";
+        
+        public static string FDate = "";
+        public static string TDate = "";
+        public static string _FinancialYear = "";
+        public static string UserId = "";
+        public static string Password = "";
 
+        public static List<CompanyLoginEntity> CompanyLogin = new List<CompanyLoginEntity>();
+        
         public static void ChangeGridFormate(DataGridView grd)
         {
 
