@@ -61,6 +61,7 @@
     <Compile Include="CompanyDetails.Designer.cs">
       <DependentUpon>CompanyDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entity\CompanyEntity.cs" />
     <Compile Include="Entity\CompanyLoginEntity.cs" />
     <Compile Include="Entity\ItemOpening.cs" />
     <Compile Include="Entity\KFEntity.cs" />

@@ -29,6 +29,7 @@ namespace SilverGold
 
         private void Login_Load(object sender, EventArgs e)
         {
+            CommanHelper.CompanyLogin.Clear();
             this.CancelButton = btnClose;
         }
 
@@ -37,6 +38,8 @@ namespace SilverGold
             var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
             var dirName = directoryInfo.GetDirectories();
 
+            CommanHelper.UserId = txtUserId.Text.Trim();
+            CommanHelper.Password = txtPassword.Text.Trim();
             for (int i = 0; i < dirName.Count(); i++)
             {
                 var mainDir = dirName[i].GetDirectories();
@@ -83,32 +86,34 @@ namespace SilverGold
         #region Helper
 
         private void ValidateLogin(String _DataPath, String _DataBase, String Uid, String Pwd)
-        {   using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(_DataPath, _DataBase)))
+        {
+            try
             {
-                string _list_FinYear = "";
-                con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select UserId,Pwd,UserType,Company,DateFrom,DateTo,CompanyName,FinancialYear,DatabasePath,DataBaseName from Users Left Outer Join Company On Users.Company = Company.CompanyName Where UserId = '" + Uid + "' and Pwd = '" + Pwd + "'", con);
-                OleDbDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(_DataPath, _DataBase)))
                 {
-                    CompanyLoginEntity oCompanyLoginEntity = new CompanyLoginEntity();
-                    oCompanyLoginEntity.UserId = dr["UserId"].ToString();
-                    oCompanyLoginEntity.Password = dr["Pwd"].ToString();
-                    oCompanyLoginEntity.CompanyName = dr["CompanyName"].ToString();
-                    oCompanyLoginEntity.DataBaseName = dr["DataBaseName"].ToString();
-                    oCompanyLoginEntity.DataBasePath = dr["DatabasePath"].ToString();
-                    oCompanyLoginEntity.DateFrom = dr["DateFrom"].ToString();
-                    oCompanyLoginEntity.DateTo = dr["DateTo"].ToString();
-                    oCompanyLoginEntity.FinancialYear = dr["FinancialYear"].ToString();
-                    CommanHelper.CompanyLogin.Add(oCompanyLoginEntity);
-
-                    //_list_FinYear = dr["FinancialYear"].ToString();
-                    // _list_FinYear = _list_FinYear.Substring(0, 4) + "-" + _list_FinYear.Substring(4, 4);
-                    // strCompany = dr["CompanyName"].ToString() + "  (" + _list_FinYear + ")".ToString();
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select UserId,Pwd,UserType,Company,DateFrom,DateTo,CompanyName,FinancialYear,DatabasePath,DataBaseName from Users Left Outer Join Company On Users.Company = Company.CompanyName Where UserId = '" + Uid + "' and Pwd = '" + Pwd + "'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        CompanyLoginEntity oCompanyLoginEntity = new CompanyLoginEntity();
+                        oCompanyLoginEntity.UserId = dr["UserId"].ToString();
+                        oCompanyLoginEntity.Password = dr["Pwd"].ToString();
+                        oCompanyLoginEntity.CompanyName = dr["CompanyName"].ToString();
+                        oCompanyLoginEntity.DataBaseName = dr["DataBaseName"].ToString();
+                        oCompanyLoginEntity.DataBasePath = dr["DatabasePath"].ToString();
+                        oCompanyLoginEntity.DateFrom = dr["DateFrom"].ToString();
+                        oCompanyLoginEntity.DateTo = dr["DateTo"].ToString();
+                        oCompanyLoginEntity.FinancialYear = dr["FinancialYear"].ToString();
+                        CommanHelper.CompanyLogin.Add(oCompanyLoginEntity);
+                    }
+                    con.Close();
                 }
-                con.Close();
             }
-           
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         #endregion

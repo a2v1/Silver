@@ -17,7 +17,7 @@ namespace SilverGold.Helper
         public static string CompName = "";
         public static string Com_DB_PATH = "";
         public static string Com_DB_NAME = "";
-        
+
         public static string FDate = "";
         public static string TDate = "";
         public static string _FinancialYear = "";
@@ -25,7 +25,7 @@ namespace SilverGold.Helper
         public static string Password = "";
 
         public static List<CompanyLoginEntity> CompanyLogin = new List<CompanyLoginEntity>();
-        
+
         public static void ChangeGridFormate(DataGridView grd)
         {
 
@@ -94,7 +94,7 @@ namespace SilverGold.Helper
                         MetalList.Add(oMetal);
                     }
                     con.Close();
-                   
+
                 }
             }
             catch (Exception ex)
@@ -106,28 +106,48 @@ namespace SilverGold.Helper
         public static Boolean CheckKF(String strMetalName)
         {
             Boolean _CheckKF = false;
-           ConnectionClass objCon = new ConnectionClass();
-           try
-           {
-               using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
-               {
-                   con.Open();
-                   OleDbCommand cmd = new OleDbCommand("Select KachchiFine From Metal Where MetalName='" + strMetalName + "'", con);
-                   OleDbDataReader dr = cmd.ExecuteReader();
-                   if (dr.Read())
-                   {
-                       if (dr["KachchiFine"].ToString().Trim() == "Y")
-                       {
-                           _CheckKF = true;
-                       }
-                   }
-               }
-           }
-           catch (Exception ex)
-           {
-               MessageBox.Show(ex.Message.ToString());
-           }
-           return _CheckKF;
+            ConnectionClass objCon = new ConnectionClass();
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select KachchiFine From Metal Where MetalName='" + strMetalName + "'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        if (dr["KachchiFine"].ToString().Trim() == "Y")
+                        {
+                            _CheckKF = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            return _CheckKF;
+        }
+
+        public static string FilterCompany(string str1, string str2)
+        {
+            string s1, s2;
+            s1 = "";
+            s2 = "";
+            int len = str1.Length;
+            int i;
+
+            for (i = 0; i < len; i++)
+            {
+                s1 = str1.Substring(i, 1);
+                if (s1 == str2)
+                {
+                    s2 = str1.Substring(0, i);
+                }
+            }
+            i = len + 1;
+            return s2;
         }
     }
 }
