@@ -72,9 +72,9 @@ namespace SilverGold.Helper
             return sum_col;
         }
 
-        public static List<Metal> GetMetalCate()
+        public static List<MetalEntity> GetMetalCate()
         {
-            List<Metal> MetalList = new List<Metal>();
+            List<MetalEntity> MetalList = new List<MetalEntity>();
             ConnectionClass objCon = new ConnectionClass();
             try
             {
@@ -85,7 +85,39 @@ namespace SilverGold.Helper
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        Metal oMetal = new Metal();
+                        MetalEntity oMetal = new MetalEntity();
+                        oMetal.MetalName = dr["MetalName"].ToString();
+                        oMetal.MetalCategory = dr["MetalCategory"].ToString();
+                        oMetal.WieghtType = dr["WieghtType"].ToString();
+                        oMetal.KachchiFine = dr["KachchiFine"].ToString();
+                        oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
+                        MetalList.Add(oMetal);
+                    }
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            } return MetalList;
+        }
+
+
+        public static List<MetalEntity> GetCompanyMetal()
+        {
+            List<MetalEntity> MetalList = new List<MetalEntity>();
+            
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno From Metal", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        MetalEntity oMetal = new MetalEntity();
                         oMetal.MetalName = dr["MetalName"].ToString();
                         oMetal.MetalCategory = dr["MetalCategory"].ToString();
                         oMetal.WieghtType = dr["WieghtType"].ToString();

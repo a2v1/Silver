@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SilverGold.Entity
 {
-    class Metal
+    class MetalEntity
     {
         public string MetalName { get; set; }
         public string MetalCategory { get; set; }

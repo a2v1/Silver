@@ -123,5 +123,21 @@ namespace SilverGold
         {
             Application.Exit();
         }
+
+        private void txtUserId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtPassword.Focus();                
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin.Focus();
+            }
+        }
     }
 }

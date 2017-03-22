@@ -65,7 +65,7 @@
     <Compile Include="Entity\CompanyLoginEntity.cs" />
     <Compile Include="Entity\ItemOpening.cs" />
     <Compile Include="Entity\KFEntity.cs" />
-    <Compile Include="Entity\Metal.cs" />
+    <Compile Include="Entity\MetalEntity.cs" />
     <Compile Include="Helper\CommanHelper.cs" />
     <Compile Include="Items.cs">
       <SubType>Form</SubType>
