@@ -58,29 +58,28 @@ namespace SilverGold
                 }
             }
 
-            if (CommanHelper.CompanyLogin.Count() == 0)
+
+
+            if (CheckCompanyDir == true)
             {
-                MessageBox.Show("Invalid Userid And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtUserId.Focus();
-                return;
+                if (CommanHelper.CompanyLogin.Count() == 0)
+                {
+                    MessageBox.Show("Invalid Userid And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtUserId.Focus();
+                    return;
+                }
+                CompanyDetails oCompanyDetails = new CompanyDetails();
+                oCompanyDetails.Show();
+                this.Hide();
             }
             else
             {
-                if (CheckCompanyDir == true)
-                {
-                    CompanyDetails oCompanyDetails = new CompanyDetails();
-                    oCompanyDetails.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    Master oMaster = new Master();
-                    oMaster.Show();
-                    this.Hide();
-                }
+                Master oMaster = new Master();
+                oMaster.Show();
+                this.Hide();
             }
 
-          
+
         }
 
         #region Helper

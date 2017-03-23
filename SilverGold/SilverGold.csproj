@@ -87,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Comman\GRIDVIEWCUSTOM1.resx">
+      <DependentUpon>GRIDVIEWCUSTOM1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Company.resx">
       <DependentUpon>Company.cs</DependentUpon>
     </EmbeddedResource>

@@ -72,6 +72,28 @@ namespace SilverGold.Helper
             return sum_col;
         }
 
+        public static decimal SumRowCustumDataGridView(GRIDVIEWCUSTOM1 dgt, int col)
+        {
+            int count_row = 0;
+            decimal sum_col, col1;
+            sum_col = 0;
+            col1 = 0;
+            try
+            {
+                count_row = dgt.Rows.Count;
+                for (int i = 0; i < count_row - 1; i++)
+                {
+                    col1 = Conversion.ConToDec5(dgt.Rows[i].Cells[col].Value.ToString());
+                    sum_col = sum_col + col1;
+                }
+            }
+            catch (Exception ee)
+            {
+
+            }
+            return sum_col;
+        }
+
         public static List<MetalEntity> GetMetalCate()
         {
             List<MetalEntity> MetalList = new List<MetalEntity>();
@@ -81,7 +103,7 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno From Metal", con);
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno,CompanyName,UserId From Metal", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -91,6 +113,8 @@ namespace SilverGold.Helper
                         oMetal.WieghtType = dr["WieghtType"].ToString();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString();
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
+                        oMetal.CompanyName = dr["CompanyName"].ToString();
+                        oMetal.UserId = dr["UserId"].ToString();
                         MetalList.Add(oMetal);
                     }
                     con.Close();
@@ -113,7 +137,7 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno From Metal", con);
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,[Metal.MetalName] AS MetalName,WieghtType,KachchiFine,Amount_Weight,DrCr,[CompanyOpening.CompanyName] AS CompanyName,[CompanyOpening.UserId] AS UserId,[Metal.Sno] AS Sno  from Metal LEFT OUTER JOIN CompanyOpening ON Metal.MetalName  = CompanyOpening.MetalName", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -122,7 +146,12 @@ namespace SilverGold.Helper
                         oMetal.MetalCategory = dr["MetalCategory"].ToString();
                         oMetal.WieghtType = dr["WieghtType"].ToString();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString();
+                        oMetal.DrCr = dr["DrCr"].ToString();
+                        oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString()); 
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
+                        oMetal.CompanyName = dr["CompanyName"].ToString();
+                        oMetal.UserId = dr["UserId"].ToString();
+                     
                         MetalList.Add(oMetal);
                     }
                     con.Close();
