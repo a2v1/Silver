@@ -164,6 +164,34 @@ namespace SilverGold.Helper
             } return MetalList;
         }
 
+
+
+
+        public static void ComboBoxItem(ComboBox cmb, string tabName, string columName)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                 
+                    OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " ", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    cmb.Items.Add("");
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString());
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception exrr)
+            {
+
+            }
+        }
         public static Boolean CheckKF(String strMetalName)
         {
             Boolean _CheckKF = false;

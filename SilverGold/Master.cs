@@ -53,5 +53,39 @@ namespace SilverGold
             oItems.MdiParent = this;
             oItems.Show();
         }
+
+        private void partyInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PartyInformation oPartyInformation = new PartyInformation();
+            oPartyInformation.MdiParent = this;
+            oPartyInformation.Show();
+        }
+
+        private void productDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labourRatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ghattakListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void introducerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupHeadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GroupHead oGroupHead = new GroupHead();
+            oGroupHead.MdiParent = this;
+            oGroupHead.Show();
+        }
     }
 }

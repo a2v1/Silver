@@ -6,9 +6,9 @@ using System.Text;
 namespace SilverGold.Entity
 {
     class MetalEntity
-    {
-        public string MetalName { get; set; }
+    {        
         public string MetalCategory { get; set; }
+        public string MetalName { get; set; }
         public string WieghtType { get; set; }
         public string KachchiFine { get; set; }
         public decimal AmountWeight { get; set; }
