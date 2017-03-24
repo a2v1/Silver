@@ -142,15 +142,15 @@ namespace SilverGold.Helper
                     while (dr.Read())
                     {
                         MetalEntity oMetal = new MetalEntity();
-                        oMetal.MetalName = dr["MetalName"].ToString();
-                        oMetal.MetalCategory = dr["MetalCategory"].ToString();
-                        oMetal.WieghtType = dr["WieghtType"].ToString();
-                        oMetal.KachchiFine = dr["KachchiFine"].ToString();
-                        oMetal.DrCr = dr["DrCr"].ToString();
+                        oMetal.MetalName = dr["MetalName"].ToString().Trim();
+                        oMetal.MetalCategory = dr["MetalCategory"].ToString().Trim();
+                        oMetal.WieghtType = dr["WieghtType"].ToString().Trim();
+                        oMetal.KachchiFine = dr["KachchiFine"].ToString().Trim();
+                        oMetal.DrCr = dr["DrCr"].ToString().Trim();
                         oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString()); 
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
-                        oMetal.CompanyName = dr["CompanyName"].ToString();
-                        oMetal.UserId = dr["UserId"].ToString();
+                        oMetal.CompanyName = dr["CompanyName"].ToString().Trim();
+                        oMetal.UserId = dr["UserId"].ToString().Trim();
                      
                         MetalList.Add(oMetal);
                     }
