@@ -78,10 +78,12 @@
     </Compile>
     <Compile Include="Entity\CompanyEntity.cs" />
     <Compile Include="Entity\CompanyLoginEntity.cs" />
+    <Compile Include="Entity\CreditLimitOpeningEntity.cs" />
     <Compile Include="Entity\GroupHeadEntity.cs" />
     <Compile Include="Entity\ItemOpening.cs" />
     <Compile Include="Entity\KFEntity.cs" />
     <Compile Include="Entity\MetalEntity.cs" />
+    <Compile Include="Entity\OpeningEntity.cs" />
     <Compile Include="GroupHead.cs">
       <SubType>Form</SubType>
     </Compile>

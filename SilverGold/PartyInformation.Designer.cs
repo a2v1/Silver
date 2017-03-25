@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -46,26 +46,26 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtbanklimit = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.cmbcategory = new System.Windows.Forms.ComboBox();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groBoxCreditPeriod = new System.Windows.Forms.GroupBox();
             this.rateupdate_radio_N = new System.Windows.Forms.RadioButton();
             this.rateupdate_radio = new System.Windows.Forms.RadioButton();
             this.label19 = new System.Windows.Forms.Label();
-            this.cmbdays = new System.Windows.Forms.ComboBox();
+            this.cmbDays = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.W_cr_lim_gr = new System.Windows.Forms.GroupBox();
-            this.W_cre_lim = new System.Windows.Forms.CheckBox();
+            this.grpBoxWithCreditLimit = new System.Windows.Forms.GroupBox();
+            this.chkWithCreditLimit = new System.Windows.Forms.CheckBox();
             this.cmbBullion = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.Panel_LotGenerate = new System.Windows.Forms.Panel();
             this.cmb_gen_type = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLotGenerateIn = new System.Windows.Forms.Label();
             this.plnlot = new System.Windows.Forms.Panel();
             this.cmbLot = new System.Windows.Forms.ComboBox();
             this.plncmbrs = new System.Windows.Forms.Panel();
             this.cmbrs = new System.Windows.Forms.ComboBox();
             this.cmbIntroducer = new System.Windows.Forms.ComboBox();
-            this.cmbshowtrail = new System.Windows.Forms.ComboBox();
+            this.cmbShowtrail = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblLot = new System.Windows.Forms.Label();
@@ -103,9 +103,9 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            this.W_cr_lim_gr.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.groBoxCreditPeriod.SuspendLayout();
+            this.grpBoxWithCreditLimit.SuspendLayout();
+            this.Panel_LotGenerate.SuspendLayout();
             this.plnlot.SuspendLayout();
             this.plncmbrs.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -127,17 +127,17 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtbanklimit);
             this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Controls.Add(this.cmbcategory);
+            this.groupBox1.Controls.Add(this.cmbCategory);
             this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.groupBox8);
-            this.groupBox1.Controls.Add(this.W_cr_lim_gr);
+            this.groupBox1.Controls.Add(this.groBoxCreditPeriod);
+            this.groupBox1.Controls.Add(this.grpBoxWithCreditLimit);
             this.groupBox1.Controls.Add(this.cmbBullion);
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.Panel_LotGenerate);
+            this.groupBox1.Controls.Add(this.lblLotGenerateIn);
             this.groupBox1.Controls.Add(this.plnlot);
             this.groupBox1.Controls.Add(this.plncmbrs);
             this.groupBox1.Controls.Add(this.cmbIntroducer);
-            this.groupBox1.Controls.Add(this.cmbshowtrail);
+            this.groupBox1.Controls.Add(this.cmbShowtrail);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.lblLot);
@@ -160,7 +160,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(693, 371);
+            this.groupBox1.Size = new System.Drawing.Size(693, 352);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PartyInformation";
@@ -173,35 +173,38 @@
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView2.Location = new System.Drawing.Point(514, 12);
             this.dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView2.Size = new System.Drawing.Size(172, 107);
             this.dataGridView2.TabIndex = 60;
+            this.dataGridView2.Visible = false;
+            this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
+            this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView2_EditingControlShowing);
             // 
             // dataGridView1
             // 
@@ -210,35 +213,36 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView1.Location = new System.Drawing.Point(296, 209);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.Size = new System.Drawing.Size(375, 155);
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridView1.Size = new System.Drawing.Size(375, 136);
             this.dataGridView1.TabIndex = 59;
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // dateTimePicker1
             // 
@@ -256,7 +260,6 @@
             this.txtopnarr.Name = "txtopnarr";
             this.txtopnarr.Size = new System.Drawing.Size(195, 20);
             this.txtopnarr.TabIndex = 56;
-            this.txtopnarr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtoprs
             // 
@@ -334,19 +337,21 @@
             this.label31.Text = "Bank Credit";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cmbcategory
+            // cmbCategory
             // 
-            this.cmbcategory.FormattingEnabled = true;
-            this.cmbcategory.Items.AddRange(new object[] {
+            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Items.AddRange(new object[] {
             "Gold",
             "Other",
             "Silver"});
-            this.cmbcategory.Location = new System.Drawing.Point(90, 98);
-            this.cmbcategory.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbcategory.Name = "cmbcategory";
-            this.cmbcategory.Size = new System.Drawing.Size(109, 21);
-            this.cmbcategory.Sorted = true;
-            this.cmbcategory.TabIndex = 6;
+            this.cmbCategory.Location = new System.Drawing.Point(90, 98);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(109, 21);
+            this.cmbCategory.Sorted = true;
+            this.cmbCategory.TabIndex = 6;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // label24
             // 
@@ -359,19 +364,19 @@
             this.label24.TabIndex = 41;
             this.label24.Text = "Category:";
             // 
-            // groupBox8
+            // groBoxCreditPeriod
             // 
-            this.groupBox8.Controls.Add(this.rateupdate_radio_N);
-            this.groupBox8.Controls.Add(this.rateupdate_radio);
-            this.groupBox8.Controls.Add(this.label19);
-            this.groupBox8.Controls.Add(this.cmbdays);
-            this.groupBox8.Controls.Add(this.label18);
-            this.groupBox8.Location = new System.Drawing.Point(171, 51);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(317, 40);
-            this.groupBox8.TabIndex = 5;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Visible = false;
+            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio_N);
+            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio);
+            this.groBoxCreditPeriod.Controls.Add(this.label19);
+            this.groBoxCreditPeriod.Controls.Add(this.cmbDays);
+            this.groBoxCreditPeriod.Controls.Add(this.label18);
+            this.groBoxCreditPeriod.Location = new System.Drawing.Point(171, 51);
+            this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
+            this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
+            this.groBoxCreditPeriod.TabIndex = 5;
+            this.groBoxCreditPeriod.TabStop = false;
+            this.groBoxCreditPeriod.Visible = false;
             // 
             // rateupdate_radio_N
             // 
@@ -409,14 +414,15 @@
             this.label19.Text = "Rate Update";
             this.label19.Visible = false;
             // 
-            // cmbdays
+            // cmbDays
             // 
-            this.cmbdays.FormattingEnabled = true;
-            this.cmbdays.Location = new System.Drawing.Point(89, 13);
-            this.cmbdays.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbdays.Name = "cmbdays";
-            this.cmbdays.Size = new System.Drawing.Size(57, 21);
-            this.cmbdays.TabIndex = 1;
+            this.cmbDays.FormattingEnabled = true;
+            this.cmbDays.Location = new System.Drawing.Point(89, 13);
+            this.cmbDays.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbDays.Name = "cmbDays";
+            this.cmbDays.Size = new System.Drawing.Size(57, 21);
+            this.cmbDays.TabIndex = 1;
+            this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -429,28 +435,30 @@
             this.label18.TabIndex = 23;
             this.label18.Text = "Credit  Period";
             // 
-            // W_cr_lim_gr
+            // grpBoxWithCreditLimit
             // 
-            this.W_cr_lim_gr.Controls.Add(this.W_cre_lim);
-            this.W_cr_lim_gr.Location = new System.Drawing.Point(30, 50);
-            this.W_cr_lim_gr.Name = "W_cr_lim_gr";
-            this.W_cr_lim_gr.Size = new System.Drawing.Size(135, 41);
-            this.W_cr_lim_gr.TabIndex = 4;
-            this.W_cr_lim_gr.TabStop = false;
-            this.W_cr_lim_gr.Visible = false;
+            this.grpBoxWithCreditLimit.Controls.Add(this.chkWithCreditLimit);
+            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(30, 50);
+            this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
+            this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
+            this.grpBoxWithCreditLimit.TabIndex = 4;
+            this.grpBoxWithCreditLimit.TabStop = false;
+            this.grpBoxWithCreditLimit.Visible = false;
             // 
-            // W_cre_lim
+            // chkWithCreditLimit
             // 
-            this.W_cre_lim.AutoSize = true;
-            this.W_cre_lim.Location = new System.Drawing.Point(6, 15);
-            this.W_cre_lim.Name = "W_cre_lim";
-            this.W_cre_lim.Size = new System.Drawing.Size(111, 17);
-            this.W_cre_lim.TabIndex = 0;
-            this.W_cre_lim.Text = "With Credit Period";
-            this.W_cre_lim.UseVisualStyleBackColor = true;
+            this.chkWithCreditLimit.AutoSize = true;
+            this.chkWithCreditLimit.Location = new System.Drawing.Point(6, 15);
+            this.chkWithCreditLimit.Name = "chkWithCreditLimit";
+            this.chkWithCreditLimit.Size = new System.Drawing.Size(111, 17);
+            this.chkWithCreditLimit.TabIndex = 0;
+            this.chkWithCreditLimit.Text = "With Credit Period";
+            this.chkWithCreditLimit.UseVisualStyleBackColor = true;
+            this.chkWithCreditLimit.CheckedChanged += new System.EventHandler(this.chkWithCreditLimit_CheckedChanged);
             // 
             // cmbBullion
             // 
+            this.cmbBullion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBullion.FormattingEnabled = true;
             this.cmbBullion.Items.AddRange(new object[] {
             "BULLION",
@@ -463,15 +471,16 @@
             this.cmbBullion.Sorted = true;
             this.cmbBullion.TabIndex = 8;
             this.cmbBullion.Visible = false;
+            this.cmbBullion.SelectedIndexChanged += new System.EventHandler(this.cmbBullion_SelectedIndexChanged);
             // 
-            // panel2
+            // Panel_LotGenerate
             // 
-            this.panel2.Controls.Add(this.cmb_gen_type);
-            this.panel2.Location = new System.Drawing.Point(329, 17);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(94, 28);
-            this.panel2.TabIndex = 3;
-            this.panel2.Visible = false;
+            this.Panel_LotGenerate.Controls.Add(this.cmb_gen_type);
+            this.Panel_LotGenerate.Location = new System.Drawing.Point(329, 17);
+            this.Panel_LotGenerate.Name = "Panel_LotGenerate";
+            this.Panel_LotGenerate.Size = new System.Drawing.Size(94, 28);
+            this.Panel_LotGenerate.TabIndex = 3;
+            this.Panel_LotGenerate.Visible = false;
             // 
             // cmb_gen_type
             // 
@@ -485,15 +494,15 @@
             this.cmb_gen_type.Size = new System.Drawing.Size(88, 21);
             this.cmb_gen_type.TabIndex = 0;
             // 
-            // label1
+            // lblLotGenerateIn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(253, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Lot Genrate in";
-            this.label1.Visible = false;
+            this.lblLotGenerateIn.AutoSize = true;
+            this.lblLotGenerateIn.Location = new System.Drawing.Point(253, 24);
+            this.lblLotGenerateIn.Name = "lblLotGenerateIn";
+            this.lblLotGenerateIn.Size = new System.Drawing.Size(74, 13);
+            this.lblLotGenerateIn.TabIndex = 40;
+            this.lblLotGenerateIn.Text = "Lot Genrate in";
+            this.lblLotGenerateIn.Visible = false;
             // 
             // plnlot
             // 
@@ -515,6 +524,7 @@
             this.cmbLot.Name = "cmbLot";
             this.cmbLot.Size = new System.Drawing.Size(56, 21);
             this.cmbLot.TabIndex = 1;
+            this.cmbLot.Visible = false;
             // 
             // plncmbrs
             // 
@@ -548,19 +558,19 @@
             this.cmbIntroducer.Sorted = true;
             this.cmbIntroducer.TabIndex = 17;
             // 
-            // cmbshowtrail
+            // cmbShowtrail
             // 
-            this.cmbshowtrail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbshowtrail.FormattingEnabled = true;
-            this.cmbshowtrail.Items.AddRange(new object[] {
+            this.cmbShowtrail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShowtrail.FormattingEnabled = true;
+            this.cmbShowtrail.Items.AddRange(new object[] {
             "NO",
             "YES"});
-            this.cmbshowtrail.Location = new System.Drawing.Point(441, 29);
-            this.cmbshowtrail.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbshowtrail.Name = "cmbshowtrail";
-            this.cmbshowtrail.Size = new System.Drawing.Size(66, 21);
-            this.cmbshowtrail.Sorted = true;
-            this.cmbshowtrail.TabIndex = 3;
+            this.cmbShowtrail.Location = new System.Drawing.Point(441, 29);
+            this.cmbShowtrail.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbShowtrail.Name = "cmbShowtrail";
+            this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
+            this.cmbShowtrail.Sorted = true;
+            this.cmbShowtrail.TabIndex = 3;
             // 
             // label20
             // 
@@ -592,6 +602,7 @@
             this.lblLot.Size = new System.Drawing.Size(25, 13);
             this.lblLot.TabIndex = 33;
             this.lblLot.Text = "Lot:";
+            this.lblLot.Visible = false;
             // 
             // cmbtype
             // 
@@ -953,11 +964,11 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.W_cr_lim_gr.ResumeLayout(false);
-            this.W_cr_lim_gr.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.groBoxCreditPeriod.ResumeLayout(false);
+            this.groBoxCreditPeriod.PerformLayout();
+            this.grpBoxWithCreditLimit.ResumeLayout(false);
+            this.grpBoxWithCreditLimit.PerformLayout();
+            this.Panel_LotGenerate.ResumeLayout(false);
             this.plnlot.ResumeLayout(false);
             this.plncmbrs.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
@@ -978,7 +989,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txtbanklimit;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.ComboBox cmbcategory;
+        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox txtcregold;
@@ -987,22 +998,22 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtcrecash;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox groBoxCreditPeriod;
         private System.Windows.Forms.RadioButton rateupdate_radio_N;
         private System.Windows.Forms.RadioButton rateupdate_radio;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox cmbdays;
+        private System.Windows.Forms.ComboBox cmbDays;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.GroupBox W_cr_lim_gr;
-        private System.Windows.Forms.CheckBox W_cre_lim;
+        private System.Windows.Forms.GroupBox grpBoxWithCreditLimit;
+        private System.Windows.Forms.CheckBox chkWithCreditLimit;
         private System.Windows.Forms.ComboBox cmbBullion;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel Panel_LotGenerate;
         private System.Windows.Forms.ComboBox cmb_gen_type;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLotGenerateIn;
         private System.Windows.Forms.Panel plnlot;
         private System.Windows.Forms.ComboBox cmbLot;
         private System.Windows.Forms.ComboBox cmbIntroducer;
-        private System.Windows.Forms.ComboBox cmbshowtrail;
+        private System.Windows.Forms.ComboBox cmbShowtrail;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel plncmbrs;

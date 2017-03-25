@@ -24,6 +24,7 @@ namespace SilverGold
         public GroupHead()
         {
             InitializeComponent();
+            CommanHelper.ChangeGridFormate(dataGridView1);
             BindColumn();
         }
 

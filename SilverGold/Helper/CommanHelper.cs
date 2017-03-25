@@ -165,6 +165,86 @@ namespace SilverGold.Helper
         }
 
 
+        public static List<OpeningEntity> BindMCXDefaultOpening()
+        {
+            List<OpeningEntity> OpeningList = new List<OpeningEntity>();
+            try
+            {
+                OpeningList.Clear();
+                OpeningList.Add(new OpeningEntity
+                {
+                    Name = "SILVER",
+                    Weight = 0,
+                    Closing = 0,
+                    DrCr = ""
+                });
+                OpeningList.Add(new OpeningEntity
+                {
+                    Name = "SILVERM",
+                    Weight = 0,
+                    Closing = 0,
+                    DrCr = ""
+                });
+                OpeningList.Add(new OpeningEntity
+                {
+                    Name = "GOLD",
+                    Weight = 0,
+                    Closing = 0,
+                    DrCr = ""
+                });
+                OpeningList.Add(new OpeningEntity
+                {
+                    Name = "GOLDM",
+                    Weight = 0,
+                    Closing = 0,
+                    DrCr = ""
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            return OpeningList;
+        }
+
+        public static void NumericCheck(object sender, KeyPressEventArgs e)
+        {
+            DataGridViewTextBoxEditingControl s = sender as DataGridViewTextBoxEditingControl;
+            if (s != null && (e.KeyChar == '.' || e.KeyChar == ','))
+            {
+                e.KeyChar = System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+                e.Handled = s.Text.Contains(e.KeyChar);
+            }
+            else
+                e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
+        public static void FillCreditLimitOpening(DataGridView gdv)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    gdv.Rows.Clear();
+                    int Sno = 0;
+                    while (dr.Read())
+                    {
+                        gdv.Rows.Add();
+                        gdv.Rows[Sno].Cells[0].Value = dr[0].ToString();
+                        Sno++;
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
 
 
         public static void ComboBoxItem(ComboBox cmb, string tabName, string columName)
@@ -192,6 +272,32 @@ namespace SilverGold.Helper
 
             }
         }
+
+        public static void BindPartyCategory(ComboBox cmb)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) From Metal Where MetalCategory <> 'CASH'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    cmb.Items.Add("Other");
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString());
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         public static Boolean CheckKF(String strMetalName)
         {
             Boolean _CheckKF = false;
