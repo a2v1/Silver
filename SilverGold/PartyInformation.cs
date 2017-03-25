@@ -21,7 +21,6 @@ namespace SilverGold
         #endregion
         public PartyInformation()
         {
-
             InitializeComponent();
         }
 
