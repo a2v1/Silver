@@ -165,34 +165,34 @@ namespace SilverGold.Helper
         }
 
 
-        public static List<OpeningEntity> BindMCXDefaultOpening()
+        public static List<OpeningMCXEntity> BindMCXDefaultOpening()
         {
-            List<OpeningEntity> OpeningList = new List<OpeningEntity>();
+            List<OpeningMCXEntity> OpeningMCXList = new List<OpeningMCXEntity>();
             try
             {
-                OpeningList.Clear();
-                OpeningList.Add(new OpeningEntity
+                OpeningMCXList.Clear();
+                OpeningMCXList.Add(new OpeningMCXEntity 
                 {
                     Name = "SILVER",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningList.Add(new OpeningEntity
+                OpeningMCXList.Add(new OpeningMCXEntity  
                 {
                     Name = "SILVERM",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningList.Add(new OpeningEntity
+                OpeningMCXList.Add(new OpeningMCXEntity 
                 {
                     Name = "GOLD",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningList.Add(new OpeningEntity
+                OpeningMCXList.Add(new OpeningMCXEntity 
                 {
                     Name = "GOLDM",
                     Weight = 0,
@@ -205,7 +205,7 @@ namespace SilverGold.Helper
                 throw ex;
 
             }
-            return OpeningList;
+            return OpeningMCXList;
         }
 
         public static void NumericCheck(object sender, KeyPressEventArgs e)
@@ -246,6 +246,34 @@ namespace SilverGold.Helper
             }
         }
 
+        public static List<OpeningOtherEntity> OpeningOther()
+        {
+            List<OpeningOtherEntity> OpeningOtherList = new List<OpeningOtherEntity>();
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal  Where MetalCategory <> 'CASH'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();                  
+                    while (dr.Read())
+                    {
+                        OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
+                        oOpeningOtherEntity.Name = dr[0].ToString();
+                        oOpeningOtherEntity.Amount = 0;
+                        oOpeningOtherEntity.DrCr = "";
+                        OpeningOtherList.Add(oOpeningOtherEntity);                        
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            return OpeningOtherList;
+        }
+
 
         public static void ComboBoxItem(ComboBox cmb, string tabName, string columName)
         {
@@ -259,6 +287,32 @@ namespace SilverGold.Helper
                     OleDbDataReader dr = cmd.ExecuteReader();
                     cmb.Items.Clear();
                     cmb.Items.Add("");
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString());
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception exrr)
+            {
+
+            }
+        }
+
+
+        public static void ComboBoxItem(ComboBox cmb, string tabName, string columName, string Fcolumn, string Fvalue)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                   String STRCOND = "  where iif(isnull(" + Fcolumn + "),''," + Fcolumn + ")='" + Fvalue + "' ";
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " " + STRCOND + "", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
                     while (dr.Read())
                     {
                         cmb.Items.Add(dr[0].ToString());
@@ -297,6 +351,55 @@ namespace SilverGold.Helper
             }
         }
 
+
+        public static void BindPartyName(ComboBox cmb)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(PartyName) From PartyDetails ORDER BY PartyName ASC", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString());
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        public static Boolean AlreadyExistParty(String strPartyName)
+        {
+            bool existingparty = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+
+                    OleDbCommand cmd = new OleDbCommand("Select * from PartyDetails where PartyName='" + strPartyName.Trim() + "'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();                    
+                    if (dr.Read())
+                    {
+                        existingparty = true;
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return existingparty;
+        }
 
         public static Boolean CheckKF(String strMetalName)
         {
@@ -343,6 +446,74 @@ namespace SilverGold.Helper
             }
             i = len + 1;
             return s2;
+        }
+
+       
+
+        public static List<OpeningMCXEntity> GetPartyOpeningMCX(String strPartyName)
+        {
+            List<OpeningMCXEntity> OpeningMCX = new List<OpeningMCXEntity>();
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,Amount_Weight,ClosingRate,DrCr From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    OpeningMCXEntity oOpeningMCXEntity = new OpeningMCXEntity();
+                    oOpeningMCXEntity.Name = dr["ItemName"].ToString();
+                    oOpeningMCXEntity.Weight = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
+                    oOpeningMCXEntity.Closing = Conversion.ConToDec(dr["ClosingRate"].ToString());
+                    oOpeningMCXEntity.DrCr = dr["DrCr"].ToString();
+                    OpeningMCX.Add(oOpeningMCXEntity);
+                }
+                con.Close();
+            }
+
+            return OpeningMCX;
+        }
+
+        public static List<OpeningOtherEntity> GetPartyOpening(String strPartyName)
+        {
+            List<OpeningOtherEntity> OpeningOther = new List<OpeningOtherEntity>();
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,Amount_Weight,DrCr From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
+                    oOpeningOtherEntity.Name = dr["ItemName"].ToString();
+                    oOpeningOtherEntity.Amount = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
+                    oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
+                    OpeningOther.Add(oOpeningOtherEntity);
+                }
+                con.Close();
+            }
+
+            return OpeningOther;
+        }
+
+        public static List<CreditLimitOpeningEntity> GetCreditLimit(String strPartyName)
+        {
+            List<CreditLimitOpeningEntity> CreditLimitOpening = new List<CreditLimitOpeningEntity>();
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,ItemLimit from CreditLimit Where PartyName = '" + strPartyName + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    CreditLimitOpeningEntity oCreditLimitOpeningEntity = new CreditLimitOpeningEntity();
+                    oCreditLimitOpeningEntity.Name = dr["ItemName"].ToString();
+                    oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString());
+                    CreditLimitOpening.Add(oCreditLimitOpeningEntity);
+                }
+                con.Close();
+            }
+
+            return CreditLimitOpening;
         }
     }
 }
