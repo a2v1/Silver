@@ -68,7 +68,11 @@ namespace SilverGold
             {
                 if (e.KeyChar == 13)
                 {
-                    ValidateCompany();
+                    if ((listBox1.SelectedItem??(object)"").ToString() != "")
+                    {
+
+                        ValidateCompany();
+                    }
                 }
             }
             catch (Exception ex)
@@ -81,7 +85,10 @@ namespace SilverGold
         {
             try
             {
-                ValidateCompany();
+                if ((listBox1.SelectedItem ?? (object)"").ToString() != "")
+                {
+                    ValidateCompany();
+                }
             }
             catch (Exception ex)
             {

@@ -66,7 +66,7 @@ namespace SilverGold
             Tran = null;
             txtGroupHead.Clear();
             dataGridView1.Rows.Clear();
-            CMBPOPUP.SelectedIndex = 0;
+            CMBPOPUP.SelectedIndex = -1;
             txtGroupHead.Focus();
         }
       

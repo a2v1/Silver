@@ -286,7 +286,16 @@ namespace SilverGold
                     }
                 }
 
-
+                if (cmbPopUp.Text.Trim() == "")
+                {
+                    if (CommanHelper.AlreadyExistParty(txtpartyname.Text.Trim()) == true)
+                    {
+                        MessageBox.Show("Party Already Exist.", "Party Details", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        txtpartyname.Focus();
+                        return;
+                    }
+                }
+                String _PartyName = "";
                 String strWithCreditLimit = "";
                 String rate_revised = "";
                 if (chkWithCreditLimit.Checked == true) { strWithCreditLimit = "YES"; }
@@ -294,16 +303,39 @@ namespace SilverGold
                 {
                     con.Close();
                 }
+
+                
+                if (cmbPopUp.Text.Trim() == "")
+                {
+                    _PartyName = txtpartyname.Text.Trim();
+                }
+                else
+                {
+                    _PartyName = cmbPopUp.Text.Trim();
+                }
+
                 con.Open();
                 Tran = con.BeginTransaction();
                 OleDbCommand cmd = new OleDbCommand("", con, Tran);
+
+                cmd.CommandText = "Delete From PartyDetails Where PartyName = '" + _PartyName + "'";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "Delete From PartyOpening Where PartyName = '" + _PartyName + "'";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "Delete From CreditLimit Where PartyName = '" + _PartyName + "'";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "Delete From PartyTran Where PartyName = '" + _PartyName + "' And TranType = 'O'";
+                cmd.ExecuteNonQuery();
+
+
+                #region Insert PartyDetails
 
                 cmd.CommandText = "INSERT INTO PartyDetails(Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,Company,UserId)VALUES" +
                     "(@Type,@Category,@PartyName,@PartyType,@Address,@Email,@ContactNo,@GroupHead,@SubGroup,@IntroducerName,@ShowInTrail,@WithCreditPeriod,@Lot,@LotGenerate,@Company,@UserId)";
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@Type", cmbtype.Text.Trim());
                 cmd.Parameters.AddWithValue("@Category", cmbCategory.Text.Trim());
-                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
+                cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
                 cmd.Parameters.AddWithValue("@PartyType", cmbBullion.Text.Trim());
                 cmd.Parameters.AddWithValue("@Address", txtaddress.Text.Trim());
                 cmd.Parameters.AddWithValue("@Email", txtemailid.Text.Trim());
@@ -319,11 +351,15 @@ namespace SilverGold
                 cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
                 cmd.ExecuteNonQuery();
 
+                #endregion
+
+                #region Insert Cash Opening
+
                 ///---------------Insert Cash Opening
                 cmd.Parameters.Clear();
                 cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
+                cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
                 cmd.Parameters.AddWithValue("@ItemName", "CASH");
                 cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()));
                 cmd.Parameters.AddWithValue("@DrCr", cmbrs.Text.ToString().Trim());
@@ -331,44 +367,62 @@ namespace SilverGold
                 cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
                 cmd.ExecuteNonQuery();
 
-                //--------Insert Credit Limit
-                if (chkWithCreditLimit.Checked == true)
+                #endregion
+
+
+                if (cmbtype.Text.Trim().ToUpper() == "PARTY")
                 {
-                    if (rateupdate_radio.Checked == true)
+                    #region Insert Credit Limit
+
+                    //--------Insert Credit Limit
+                    if (chkWithCreditLimit.Checked == true)
                     {
-                        rate_revised = "YES";
+                        if (rateupdate_radio.Checked == true)
+                        {
+                            rate_revised = "YES";
+                        }
+                        if (rateupdate_radio_N.Checked == true)
+                        {
+                            rate_revised = "NO";
+                        }
+                        foreach (DataGridViewRow dr in dataGridView2.Rows)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                            cmd.Parameters.AddWithValue("@CreditPeriod", cmbDays.Text.Trim());
+                            cmd.Parameters.AddWithValue("@RateUpdate", rate_revised.Trim());
+                            cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
+                            cmd.Parameters.AddWithValue("@ItemLimit", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
+                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
+                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
+                            cmd.ExecuteNonQuery();
+
+                        }
                     }
-                    if (rateupdate_radio_N.Checked == true)
-                    {
-                        rate_revised = "NO";
-                    }
-                    foreach (DataGridViewRow dr in dataGridView2.Rows)
-                    {
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                        cmd.Parameters.AddWithValue("@CreditPeriod", cmbDays.Text.Trim());
-                        cmd.Parameters.AddWithValue("@RateUpdate", rate_revised.Trim());
-                        cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
-                        cmd.Parameters.AddWithValue("@ItemLimit", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
-                        cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                        cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                        cmd.ExecuteNonQuery();
-                        
-                    }
+                    #endregion
                 }
+
+
+                #region Insert Party Opening
 
                 //----------Insert Party Opening
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
-                   
+
                     if (cmbBullion.Text.Trim().ToUpper() == "MCX" || cmbtype.Text.Trim().ToUpper() == "WORKER")
                     {
                         Decimal _Sell = 0;
-                        Decimal _Purchase= 0;
+                        Decimal _Purchase = 0;
                         Decimal _Weight = 0;
+                        String _MetalCategory = "";
+                        Decimal _MCXRate = 0;
+
+                        _MetalCategory = dr.Cells[0].Value.ToString().Trim();
+                        _MCXRate = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
+
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() == "SELL")
                         {
                             _Sell = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
@@ -383,7 +437,7 @@ namespace SilverGold
                         cmd.Parameters.Clear();
                         cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@ClosingRate,@DrCr,@Company,@UserId)";
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
                         cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
                         cmd.Parameters.AddWithValue("@Amount_Weight", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
                         cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()));
@@ -396,22 +450,7 @@ namespace SilverGold
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,MCXRate,TranType,ContCode,Narration,Company,UserId)VALUES(@TrDate,@Category,@PartyName,@MetalCategory,@MetalName,@Debit,@Credit,@Weight,@MCXRate,@TranType,@ContCode,@,Narration,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@TrDate", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@Category", cmbCategory.Text.Trim());
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@MetalCategory", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@MetalName", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@Debit", _Sell);
-                            cmd.Parameters.AddWithValue("@Credit", _Purchase);
-                            cmd.Parameters.AddWithValue("@Weight", _Weight);
-                            cmd.Parameters.AddWithValue("@MCXRate", Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()));
-                            cmd.Parameters.AddWithValue("@TranType", "O");
-                            cmd.Parameters.AddWithValue("@ContCode", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@Narration", "PARTY OPENING");
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
+                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,MCXRate,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + _PartyName.Trim() + "','" + _MetalCategory + "','" + _MetalCategory + "','" + _Sell + "','" + _Purchase + "','" + _Weight + "','" + _MCXRate + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -420,11 +459,11 @@ namespace SilverGold
                         Decimal _Debit = 0;
                         Decimal _Credit = 0;
 
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "SELL")
+                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "DEBIT")
                         {
                             _Debit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "PURCHASE")
+                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "CREDIT")
                         {
                             _Credit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
@@ -432,7 +471,7 @@ namespace SilverGold
                         cmd.Parameters.Clear();
                         cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
                         cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
                         cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
                         cmd.Parameters.AddWithValue("@DrCr", (dr.Cells[2].Value ?? (object)"").ToString().Trim());
@@ -443,29 +482,12 @@ namespace SilverGold
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() != "")
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,TranType,ContCode,Narration,Company,UserId)VALUES(@TrDate,@Category,@PartyName,@MetalCategory,@MetalName,@Debit,@Credit,@TranType,@ContCode,@,Narration,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@TrDate", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@Category", cmbCategory.Text.Trim());
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@MetalCategory", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@MetalName", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@Debit", _Debit);
-                            cmd.Parameters.AddWithValue("@Credit", _Credit);
-                            cmd.Parameters.AddWithValue("@TranType", "O");
-                            cmd.Parameters.AddWithValue("@ContCode", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@Narration", "PARTY OPENING");
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
+                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + _PartyName.Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + _Debit + "','" + _Credit + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
                             cmd.ExecuteNonQuery();
                         }
                     }
-
-                   
                 }
-
-              
+                #endregion
 
                 Tran.Commit();
                 con.Close();
@@ -558,6 +580,7 @@ namespace SilverGold
                     cmbLot.Visible = true;
                     lblLotGenerateIn.Visible = true;
                     Panel_LotGenerate.Visible = true;
+                    cmbgrouphead.Text = "LABOUR JOB";
                 }
             }
             catch (Exception ex)

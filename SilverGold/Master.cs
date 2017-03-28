@@ -63,7 +63,9 @@ namespace SilverGold
 
         private void productDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ProductDetails oProductDetails = new ProductDetails();
+            oProductDetails.MdiParent = this;
+            oProductDetails.Show();
         }
 
         private void labourRatesToolStripMenuItem_Click(object sender, EventArgs e)

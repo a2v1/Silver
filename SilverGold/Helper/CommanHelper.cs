@@ -286,7 +286,6 @@ namespace SilverGold.Helper
                     OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " ", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     cmb.Items.Clear();
-                    cmb.Items.Add("");
                     while (dr.Read())
                     {
                         cmb.Items.Add(dr[0].ToString());

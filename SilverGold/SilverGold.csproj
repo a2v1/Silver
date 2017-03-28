@@ -115,6 +115,12 @@
     <Compile Include="PartyInformation.Designer.cs">
       <DependentUpon>PartyInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.Designer.cs">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Comman\GRIDVIEWCUSTOM1.resx">
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartyInformation.resx">
       <DependentUpon>PartyInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDetails.resx">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
