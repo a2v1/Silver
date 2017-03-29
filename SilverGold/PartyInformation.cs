@@ -499,6 +499,7 @@ namespace SilverGold
             {
                 MessageBox.Show(ex.ToString());
                 Tran.Rollback();
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -511,7 +512,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -523,7 +524,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -535,7 +536,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -585,7 +586,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1156,7 +1157,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 

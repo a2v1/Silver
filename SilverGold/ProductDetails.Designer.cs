@@ -64,10 +64,9 @@
             this.cmbcategory = new System.Windows.Forms.ComboBox();
             this.cmbsubgroup = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRawDefineSave = new System.Windows.Forms.Button();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkSelective = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbPopUp = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -76,11 +75,19 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnsave = new System.Windows.Forms.Button();
+            this.chkAll = new System.Windows.Forms.CheckBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenu_Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Report = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Pop = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -227,6 +234,7 @@
             this.cmbgroup.Size = new System.Drawing.Size(169, 21);
             this.cmbgroup.Sorted = true;
             this.cmbgroup.TabIndex = 6;
+            this.cmbgroup.SelectedIndexChanged += new System.EventHandler(this.cmbgroup_SelectedIndexChanged);
             this.cmbgroup.Enter += new System.EventHandler(this.cmbgroup_Enter);
             this.cmbgroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgroup_KeyPress);
             this.cmbgroup.Leave += new System.EventHandler(this.cmbgroup_Leave);
@@ -493,54 +501,46 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.button2);
+            this.groupBox7.Controls.Add(this.btnRawDefineSave);
             this.groupBox7.Controls.Add(this.checkedListBox2);
-            this.groupBox7.Controls.Add(this.checkBox2);
-            this.groupBox7.Controls.Add(this.checkBox1);
+            this.groupBox7.Controls.Add(this.chkSelective);
+            this.groupBox7.Controls.Add(this.chkAll);
             this.groupBox7.Location = new System.Drawing.Point(667, 65);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(228, 268);
+            this.groupBox7.Size = new System.Drawing.Size(201, 288);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Raw Define";
             // 
-            // button2
+            // btnRawDefineSave
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(67, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(62, 25);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Save (F9)";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRawDefineSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRawDefineSave.Location = new System.Drawing.Point(67, 252);
+            this.btnRawDefineSave.Name = "btnRawDefineSave";
+            this.btnRawDefineSave.Size = new System.Drawing.Size(62, 25);
+            this.btnRawDefineSave.TabIndex = 3;
+            this.btnRawDefineSave.Text = "Save (F9)";
+            this.btnRawDefineSave.UseVisualStyleBackColor = true;
+            this.btnRawDefineSave.Click += new System.EventHandler(this.btnRawDefineSave_Click);
             // 
             // checkedListBox2
             // 
             this.checkedListBox2.FormattingEnabled = true;
             this.checkedListBox2.Location = new System.Drawing.Point(9, 45);
             this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(181, 184);
+            this.checkedListBox2.Size = new System.Drawing.Size(181, 199);
             this.checkedListBox2.TabIndex = 2;
             // 
-            // checkBox2
+            // chkSelective
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(49, 18);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "selective";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(37, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "All";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkSelective.AutoSize = true;
+            this.chkSelective.Location = new System.Drawing.Point(49, 18);
+            this.chkSelective.Name = "chkSelective";
+            this.chkSelective.Size = new System.Drawing.Size(70, 17);
+            this.chkSelective.TabIndex = 1;
+            this.chkSelective.Text = "Selective";
+            this.chkSelective.UseVisualStyleBackColor = true;
+            this.chkSelective.CheckedChanged += new System.EventHandler(this.chkSelective_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -634,16 +634,79 @@
             this.btnsave.UseVisualStyleBackColor = true;
             this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
+            // chkAll
+            // 
+            this.chkAll.AutoSize = true;
+            this.chkAll.Location = new System.Drawing.Point(6, 19);
+            this.chkAll.Name = "chkAll";
+            this.chkAll.Size = new System.Drawing.Size(37, 17);
+            this.chkAll.TabIndex = 0;
+            this.chkAll.Text = "All";
+            this.chkAll.UseVisualStyleBackColor = true;
+            this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenu_Save,
+            this.toolStripMenu_Refresh,
+            this.toolStripMenu_Delete,
+            this.toolStripMenu_Report,
+            this.toolStripMenu_Pop});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1035, 24);
+            this.menuStrip1.TabIndex = 21;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenu_Save
+            // 
+            this.toolStripMenu_Save.Name = "toolStripMenu_Save";
+            this.toolStripMenu_Save.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.toolStripMenu_Save.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenu_Save.Text = "   ";
+            // 
+            // toolStripMenu_Refresh
+            // 
+            this.toolStripMenu_Refresh.Name = "toolStripMenu_Refresh";
+            this.toolStripMenu_Refresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.toolStripMenu_Refresh.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenu_Refresh.Text = "  ";
+            // 
+            // toolStripMenu_Delete
+            // 
+            this.toolStripMenu_Delete.Name = "toolStripMenu_Delete";
+            this.toolStripMenu_Delete.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.toolStripMenu_Delete.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenu_Delete.Text = "  ";
+            // 
+            // toolStripMenu_Report
+            // 
+            this.toolStripMenu_Report.Name = "toolStripMenu_Report";
+            this.toolStripMenu_Report.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.toolStripMenu_Report.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenu_Report.Text = "  ";
+            // 
+            // toolStripMenu_Pop
+            // 
+            this.toolStripMenu_Pop.Name = "toolStripMenu_Pop";
+            this.toolStripMenu_Pop.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.toolStripMenu_Pop.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenu_Pop.Text = "  ";
+            this.toolStripMenu_Pop.Click += new System.EventHandler(this.toolStripMenu_Pop_Click);
+            // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 537);
+            this.ClientSize = new System.Drawing.Size(1035, 660);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "ProductDetails";
             this.Text = "ProductDetails";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -656,7 +719,10 @@
             this.groupBox7.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -694,10 +760,9 @@
         private System.Windows.Forms.ComboBox cmbcategory;
         private System.Windows.Forms.ComboBox cmbsubgroup;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRawDefineSave;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkSelective;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbPopUp;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -710,5 +775,12 @@
         private System.Windows.Forms.DateTimePicker dtpOpeningDate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtNarration;
+        private System.Windows.Forms.CheckBox chkAll;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Save;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Refresh;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Delete;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Report;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Pop;
     }
 }

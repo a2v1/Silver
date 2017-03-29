@@ -91,6 +91,7 @@
       <DependentUpon>GroupHead.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CommanHelper.cs" />
+    <Compile Include="Helper\ExceptionHelper.cs" />
     <Compile Include="Items.cs">
       <SubType>Form</SubType>
     </Compile>

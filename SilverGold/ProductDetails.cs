@@ -16,6 +16,7 @@ namespace SilverGold
     public partial class ProductDetails : Form
     {
         #region Declare Variable
+        int check_conn;
         OleDbConnection con;
         OleDbTransaction Tran = null;
         List<OpeningOtherEntity> oOpeningOtherEntity = new List<OpeningOtherEntity>();
@@ -37,6 +38,12 @@ namespace SilverGold
             con = new OleDbConnection();
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
 
+
+            this.toolStripMenu_Save.Click += new EventHandler(btnsave_Click);
+            this.toolStripMenu_Refresh.Click += new EventHandler(btnRefresh_Click);
+            this.toolStripMenu_Delete.Click += new EventHandler(btndelete_Click);
+            this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
+
             oOpeningOtherEntity = CommanHelper.OpeningOther();            
             cmbcategory.DataSource = oOpeningOtherEntity;
             cmbcategory.DisplayMember = "Name";
@@ -50,6 +57,10 @@ namespace SilverGold
         {
             try
             {
+               Decimal _Weight = Conversion.ConToDec6(txtopening.Text);
+               Decimal _Labouramount = Conversion.ConToDec6(Txtamount.Text);
+               Decimal _Labourrate = Conversion.ConToDec6(Txtlabour.Text);
+               Decimal _Fine = Conversion.ConToDec6(Txtfine.Text);
 
                 if (cmbcategory.Text.Trim() == "")
                 {
@@ -91,6 +102,9 @@ namespace SilverGold
                 cmd.CommandText = "Delete From ProductGroup Where ProductGroup ='" + cmbgroup.Text.Trim() + "' AND ProductSubGroup = '" + cmbsubgroup.Text.Trim() + "'";
                 cmd.ExecuteNonQuery();
 
+                cmd.CommandText = "Delete From PartyTran where Company='" + CommanHelper.CompName + "' and TranType='PO' and PartyName='" + CommanHelper.CompName + "' and MetalCategory = '" + cmbcategory.Text.Trim() + "' AND Product='" + _ProductName + "'";
+                cmd.ExecuteNonQuery();
+
                 cmd.Parameters.Clear();
                 cmd.CommandText = "INSERT INTO Product(Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId)VALUES(@Category,@Unit,@Weight_Packet,@ProductName,@SubGroup,@PGroup,@Opening,@Pcs,@Tunch,@Westage,@LabourRate,@Fine,@Amount,@RawDefine,@OpenDate,@Narration,@Company,@UserId)";                
                 cmd.CommandType = CommandType.Text;
@@ -123,6 +137,10 @@ namespace SilverGold
                 cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.Trim());
                 cmd.ExecuteNonQuery();
 
+                cmd.Parameters.Clear();
+                cmd.CommandText = "INSERT INTO PartyTran(TrDate,MetalCategory,Product,Weight,Debit,Credit,LaboursRate,LaboursAmount,Narration,TranType,PartyName,Company,UserId)VALUES('" + Conversion.GetDateStr(dtpOpeningDate.Text.Trim()) + "','" + cmbcategory.Text.Trim() + "','" + txtProductName.Text.Trim() + "','" + _Weight + "','0','" + _Fine + "','" + _Labourrate + "','" + _Labouramount + "','" + txtNarration.Text.Trim() + "','PO','" + CommanHelper.CompName + "','" + CommanHelper.CompName + "','" + CommanHelper.UserId + "')";
+                cmd.ExecuteNonQuery();
+
                 Tran.Commit();
                 con.Close();
                 MessageBox.Show("Data SuccessFully Updated", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,6 +151,7 @@ namespace SilverGold
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
             }
         }
@@ -145,13 +164,15 @@ namespace SilverGold
         {
             try
             {
+                check_conn = 1;
                 if (strProductNane.Trim() != "")
                 {
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();
                     }
-                    OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration From Product Where ProductName = '" + strProductNane + "'", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Round(Opening,3) AS Opening,Round(Pcs,3) AS Pcs,Round(Tunch,3) AS Tunch,Round(Westage,3) AS Westage,Round(LabourRate,3) AS LabourRate,Round(Fine,3) AS Fine,Round(Amount,3) AS Amount,RawDefine,OpenDate,Narration From Product Where ProductName = '" + strProductNane + "'", con);
+                    cmd.CommandTimeout = 1;
                     OleDbDataReader dr = cmd.ExecuteReader();
                     cmbcategory.SelectedIndex = -1;
                     txtProductName.Clear();
@@ -207,11 +228,12 @@ namespace SilverGold
                             Txtamount.Text = dr["Amount"].ToString();
                         }
                         cmbRawDefine.Text = dr["RawDefine"].ToString();
-                        // cmbcategory.Text = dr["OpenDate"].ToString();
+                        dtpOpeningDate.Text = dr["OpenDate"].ToString();
                         txtNarration.Text = dr["Narration"].ToString();
 
                     }
                     con.Close();
+                    check_conn = 0;
                 }
             }
             catch (Exception ex)
@@ -356,7 +378,7 @@ namespace SilverGold
             Txtfine.Clear();
             Txtamount.Clear();
             txtNarration.Clear();
-           // dtpOpeningDate.Text = DateTime.Now;
+           dtpOpeningDate.Text = DateTime.Now.ToString();
         }
 
         #endregion
@@ -370,7 +392,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -378,11 +400,51 @@ namespace SilverGold
         {
             try
             {
+                if (MessageBox.Show("Do You Want To Delete The Data", "Product Details", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Tran = null;
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
+                    Tran = con.BeginTransaction();
+                    OleDbCommand cmd = new OleDbCommand("select * From PartyTran Where Product ='" + txtProductName.Text + "' AND TranType <> 'PO' ", con, Tran);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    bool product_Vari = false;
+                    if (dr.Read())
+                    {
+                        product_Vari = true;
+                    }
+                    dr.Close();
+                    if (product_Vari == true)
+                    {
+                        MessageBox.Show("Data Can't Delete", "Product Detail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
+                    cmd.CommandText = "Delete From Product Where ProductName='" + txtProductName.Text + "'";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "Delete From ProductGroup where ProductSubGroup='" + cmbsubgroup.Text + "'";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "Delete From PartyTran where MetalCategory ='" + cmbcategory.Text.Trim() + "' And Product='" + txtProductName.Text + "'";
+                    cmd.ExecuteNonQuery();
+
+                    Tran.Commit();
+                    con.Close();
+
+                    MessageBox.Show("Data SuccessFully Deleted", "Product Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearControls();
+                }
             }
             catch (Exception ex)
             {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                Tran.Rollback();
                 MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -393,7 +455,14 @@ namespace SilverGold
 
         private void btnReport_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbcategory_Enter(object sender, EventArgs e)
@@ -655,8 +724,15 @@ namespace SilverGold
 
         private void cmbsubgroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbgroup.SelectedIndex = -1;
-            CommanHelper.ComboBoxItem(cmbgroup, "Product", "Distinct(PGroup)");
+            try
+            {
+                cmbgroup.SelectedIndex = -1;
+                CommanHelper.ComboBoxItem(cmbgroup, "Product", "Distinct(PGroup)");
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void txtopening_TextChanged(object sender, EventArgs e)
@@ -676,7 +752,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -712,7 +788,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -731,7 +807,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -750,7 +826,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -772,7 +848,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -781,6 +857,176 @@ namespace SilverGold
             if (e.KeyChar == 13)
             {
                 cmbcategory.Focus();
+            }
+        }
+
+        private void btnRawDefineSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string itemname = "";
+                string YN = "";
+                if (chkSelective.Checked == true || (chkSelective.Checked == false && chkAll.Checked == false))
+                {
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
+
+                    int rows_count = 0;
+                    int forcount = 0;
+                    rows_count = checkedListBox2.Items.Count;
+                    for (forcount = 0; forcount < rows_count; forcount++)
+                    {
+                        YN = "N";
+                        itemname = checkedListBox2.Items[forcount].ToString();
+                        if (checkedListBox2.GetItemChecked(forcount) == true)
+                        {
+                            YN = "Y";
+                        }
+                        OleDbCommand cmd1 = new OleDbCommand("Update Product Set RawDefine='" + YN + "' Where ProductName='" + itemname + "'", con);
+                        cmd1.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+                else
+                {
+                    con.Open();
+                    OleDbCommand cmd1 = new OleDbCommand("Update Productdetails Set Row='Y'", con);
+                    cmd1.ExecuteNonQuery();
+                    con.Close();
+                }
+                MessageBox.Show("Data SuccessFully Updated", "Product Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAll.Checked == true)
+                {
+                    checkedListBox2.Items.Clear();
+                    chkSelective.Checked = false;
+                    int i = 0;
+                    string raw = "";
+                    string pname1 = "";
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        pname1 = dr[0].ToString();
+                        checkedListBox2.Items.Add(pname1);
+                        raw = dr[1].ToString();
+                        checkedListBox2.SetItemCheckState(i, CheckState.Checked);
+                        i++;
+                    }
+                    con.Close();
+                }
+                else
+                {
+                    checkedListBox2.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void chkSelective_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                checkedListBox2.Items.Clear();
+                if (chkSelective.Checked == true)
+                {
+                    int i;
+                    string raw = "";
+                    string pname1 = "";
+                    chkAll.Checked = false;
+                    con.Open();
+                    OleDbDataAdapter da = new OleDbDataAdapter("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    for (i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        pname1 = ds.Tables[0].Rows[i][0].ToString();
+                        checkedListBox2.Items.Add(pname1);
+                        raw = ds.Tables[0].Rows[i][1].ToString();
+                        if (raw == "Y")
+                        {
+                            checkedListBox2.SetItemCheckState(i, CheckState.Checked);
+                        }
+                    }
+                    con.Close();
+                }
+                else
+                {
+                    checkedListBox2.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAll.Checked != true)
+                {
+                    int i;
+                    string raw = "";
+                    string pname1 = "";
+                    if (check_conn == 0)
+                    {
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+                        OleDbDataAdapter da = new OleDbDataAdapter("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                        DataSet ds = new DataSet();
+                        checkedListBox2.Items.Clear();
+                        da.Fill(ds);
+                        for (i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                            pname1 = ds.Tables[0].Rows[i][0].ToString();
+                            checkedListBox2.Items.Add(pname1);
+                            raw = ds.Tables[0].Rows[i][1].ToString();
+                            if (raw.Trim() == "Y")
+                            {
+                                checkedListBox2.SetItemCheckState(i, CheckState.Checked);
+                            }
+                        }
+                        con.Close();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void toolStripMenu_Pop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
