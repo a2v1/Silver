@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comman\CalendarColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Comman\ConnectionClass.cs" />
     <Compile Include="Comman\Conversion.cs" />
     <Compile Include="Comman\GRIDVIEWCUSTOM1.cs">
@@ -79,11 +82,13 @@
     <Compile Include="Entity\CompanyEntity.cs" />
     <Compile Include="Entity\CompanyLoginEntity.cs" />
     <Compile Include="Entity\CreditLimitOpeningEntity.cs" />
+    <Compile Include="Entity\CreditPeriodEntity.cs" />
     <Compile Include="Entity\GroupHeadEntity.cs" />
     <Compile Include="Entity\ItemOpening.cs" />
     <Compile Include="Entity\KFEntity.cs" />
     <Compile Include="Entity\MetalEntity.cs" />
     <Compile Include="Entity\OpeningEntity.cs" />
+    <Compile Include="Entity\Product.cs" />
     <Compile Include="GroupHead.cs">
       <SubType>Form</SubType>
     </Compile>

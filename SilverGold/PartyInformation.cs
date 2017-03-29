@@ -16,20 +16,33 @@ namespace SilverGold
     public partial class PartyInformation : Form
     {
         #region Declare Variable
-
+       
         OleDbConnection con;
         OleDbTransaction Tran = null;
         List<OpeningMCXEntity> OpeningMCXList = new List<OpeningMCXEntity>();
         List<OpeningOtherEntity> OpeningOtherList = new List<OpeningOtherEntity>();
         private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(CommanHelper.NumericCheck);
         DataGridViewColumn colLimit = new DataGridViewTextBoxColumn();
+
+        CalendarColumn dtpDateFrom_CreditPeriod = new CalendarColumn();
+        CalendarColumn dtpDateTo_CreditPeriod = new CalendarColumn();
+        DataGridViewComboBoxColumn col_RateRevise_CreditPeriod = new DataGridViewComboBoxColumn();
+        DataGridViewComboBoxColumn col_Matltype_CreditPeriod = new DataGridViewComboBoxColumn();
+        DataGridViewComboBoxColumn col_Product_CreditPeriod = new DataGridViewComboBoxColumn();
+        DataGridViewColumn col_Westage_CreditPeriod = new DataGridViewTextBoxColumn();
+        DataGridViewColumn col_Amount_CreditPeriod = new DataGridViewTextBoxColumn();
+        DataGridViewColumn col_Days_CreditPeriod = new DataGridViewTextBoxColumn();
+        DataGridViewComboBoxColumn col_TranType_CreditPeriod = new DataGridViewComboBoxColumn();
+
         #endregion
         public PartyInformation()
         {
             InitializeComponent();
             CommanHelper.ChangeGridFormate2(dataGridView1);
             CommanHelper.ChangeGridFormate2(dataGridView2);
+            CommanHelper.ChangeGridFormate(dataGridViewCreditPeriod);
             BindCreditLimitOpeningColumn();
+            BindCreditPeriod();
         }
 
         #region Helper
@@ -49,6 +62,65 @@ namespace SilverGold
             dataGridView2.Columns.Add(colLimit);
         }
 
+        private void BindCreditPeriod()
+        {
+            dtpDateFrom_CreditPeriod.DataPropertyName = "DateFrom";
+            dtpDateFrom_CreditPeriod.HeaderText = "DateFrom";
+            dtpDateFrom_CreditPeriod.Name = "DateFrom";
+            dataGridViewCreditPeriod.Columns.Add(dtpDateFrom_CreditPeriod);
+
+            dtpDateFrom_CreditPeriod.DataPropertyName = "DateTo";
+            dtpDateFrom_CreditPeriod.HeaderText = "DateTo";
+            dtpDateFrom_CreditPeriod.Name = "DateTo";
+            dataGridViewCreditPeriod.Columns.Add(dtpDateTo_CreditPeriod);
+
+            col_RateRevise_CreditPeriod.DataPropertyName = "RateRevised";
+            col_RateRevise_CreditPeriod.HeaderText = "Rate Revised";
+            col_RateRevise_CreditPeriod.Name = "RateRevised";
+            col_RateRevise_CreditPeriod.Items.Add("AMOUNT");
+            col_RateRevise_CreditPeriod.Items.Add("WESTAGE");
+            col_RateRevise_CreditPeriod.Items.Add("BOTH");
+            col_RateRevise_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dataGridViewCreditPeriod.Columns.Add(col_RateRevise_CreditPeriod);
+
+            col_Matltype_CreditPeriod.DataPropertyName = "Category";
+            col_Matltype_CreditPeriod.HeaderText = "Category";
+            col_Matltype_CreditPeriod.Name = "Category";
+            col_Matltype_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dataGridViewCreditPeriod.Columns.Add(col_Matltype_CreditPeriod);
+
+            col_Product_CreditPeriod.DataPropertyName = "Product";
+            col_Product_CreditPeriod.HeaderText = "Product";
+            col_Product_CreditPeriod.Name = "Product";
+            col_Product_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).ToList();
+            col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dataGridViewCreditPeriod.Columns.Add(col_Product_CreditPeriod);
+
+            col_Westage_CreditPeriod.DataPropertyName = "Westage";
+            col_Westage_CreditPeriod.HeaderText = "Westage";
+            col_Westage_CreditPeriod.Name = "Westage";
+            dataGridViewCreditPeriod.Columns.Add(col_Westage_CreditPeriod);
+
+            col_Amount_CreditPeriod.DataPropertyName = "AmountWeight";
+            col_Amount_CreditPeriod.HeaderText = "Amount";
+            col_Amount_CreditPeriod.Name = "AmountWeight";
+            dataGridViewCreditPeriod.Columns.Add(col_Amount_CreditPeriod);
+
+            col_TranType_CreditPeriod.DataPropertyName = "Tran_Type";
+            col_TranType_CreditPeriod.HeaderText = "TranType";
+            col_TranType_CreditPeriod.Name = "Tran_Type";
+            col_TranType_CreditPeriod.Items.Add("JAMA");
+            col_TranType_CreditPeriod.Items.Add("NAAM");
+            col_TranType_CreditPeriod.Items.Add("BOTH");
+            col_TranType_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dataGridViewCreditPeriod.Columns.Add(col_TranType_CreditPeriod);
+
+            col_Days_CreditPeriod.DataPropertyName = "Days";
+            col_Days_CreditPeriod.HeaderText = "Days";
+            col_Days_CreditPeriod.Name = "Days";
+            dataGridViewCreditPeriod.Columns.Add(col_Days_CreditPeriod);
+        }
+      
         private void BindOpeningMCXColumn()
         {
             dataGridView1.Columns.Clear();
@@ -1163,16 +1235,28 @@ namespace SilverGold
 
         private void cmbLot_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbLot.Text.Trim().ToUpper() == "NO")
+            try
             {
-                lblLotGenerateIn.Visible = false;
-                cmb_gen_type.Visible = false;
+                if (cmbLot.Text.Trim().ToUpper() == "NO")
+                {
+                    lblLotGenerateIn.Visible = false;
+                    cmb_gen_type.Visible = false;
+                }
+                else
+                {
+                    lblLotGenerateIn.Visible = true;
+                    cmb_gen_type.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblLotGenerateIn.Visible = true;
-                cmb_gen_type.Visible = true;
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
+        }
+
+        private void dataGridViewCreditPeriod_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
         }
 
       

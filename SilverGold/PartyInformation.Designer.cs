@@ -29,12 +29,12 @@ namespace SilverGold
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Panel_McxBullion = new System.Windows.Forms.Panel();
             this.cmbBullion = new System.Windows.Forms.ComboBox();
@@ -95,6 +95,7 @@ namespace SilverGold
             this.btnsave = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnrefresh = new System.Windows.Forms.Button();
+            this.dataGridViewCreditPeriod = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox1.SuspendLayout();
             this.Panel_McxBullion.SuspendLayout();
@@ -108,6 +109,7 @@ namespace SilverGold
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,7 +159,7 @@ namespace SilverGold
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(693, 352);
+            this.groupBox1.Size = new System.Drawing.Size(693, 334);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PartyInformation";
@@ -165,7 +167,7 @@ namespace SilverGold
             // Panel_McxBullion
             // 
             this.Panel_McxBullion.Controls.Add(this.cmbBullion);
-            this.Panel_McxBullion.Location = new System.Drawing.Point(286, 123);
+            this.Panel_McxBullion.Location = new System.Drawing.Point(286, 122);
             this.Panel_McxBullion.Name = "Panel_McxBullion";
             this.Panel_McxBullion.Size = new System.Drawing.Size(85, 27);
             this.Panel_McxBullion.TabIndex = 19;
@@ -225,33 +227,33 @@ namespace SilverGold
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Location = new System.Drawing.Point(514, 12);
             this.dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.Size = new System.Drawing.Size(172, 107);
             this.dataGridView2.TabIndex = 16;
             this.dataGridView2.Visible = false;
@@ -263,14 +265,14 @@ namespace SilverGold
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(90, 271);
+            this.dateTimePicker1.Location = new System.Drawing.Point(90, 258);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
             this.dateTimePicker1.TabIndex = 12;
             // 
             // txtopnarr
             // 
-            this.txtopnarr.Location = new System.Drawing.Point(90, 298);
+            this.txtopnarr.Location = new System.Drawing.Point(90, 283);
             this.txtopnarr.Margin = new System.Windows.Forms.Padding(4);
             this.txtopnarr.Name = "txtopnarr";
             this.txtopnarr.Size = new System.Drawing.Size(195, 20);
@@ -280,7 +282,7 @@ namespace SilverGold
             // 
             // txtoprs
             // 
-            this.txtoprs.Location = new System.Drawing.Point(440, 182);
+            this.txtoprs.Location = new System.Drawing.Point(440, 176);
             this.txtoprs.Margin = new System.Windows.Forms.Padding(4);
             this.txtoprs.Name = "txtoprs";
             this.txtoprs.Size = new System.Drawing.Size(87, 20);
@@ -294,7 +296,7 @@ namespace SilverGold
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(1, 300);
+            this.label33.Location = new System.Drawing.Point(1, 285);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(80, 15);
@@ -306,7 +308,7 @@ namespace SilverGold
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(364, 186);
+            this.label6.Location = new System.Drawing.Point(364, 180);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 15);
@@ -317,7 +319,7 @@ namespace SilverGold
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(27, 273);
+            this.label32.Location = new System.Drawing.Point(27, 260);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(55, 15);
@@ -329,7 +331,7 @@ namespace SilverGold
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(545, 184);
+            this.label9.Location = new System.Drawing.Point(545, 178);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 15);
@@ -338,7 +340,7 @@ namespace SilverGold
             // 
             // txtbanklimit
             // 
-            this.txtbanklimit.Location = new System.Drawing.Point(90, 325);
+            this.txtbanklimit.Location = new System.Drawing.Point(90, 309);
             this.txtbanklimit.Margin = new System.Windows.Forms.Padding(4);
             this.txtbanklimit.Name = "txtbanklimit";
             this.txtbanklimit.Size = new System.Drawing.Size(75, 20);
@@ -351,7 +353,7 @@ namespace SilverGold
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(8, 327);
+            this.label31.Location = new System.Drawing.Point(8, 311);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(71, 15);
@@ -377,7 +379,7 @@ namespace SilverGold
             this.groBoxCreditPeriod.Controls.Add(this.label19);
             this.groBoxCreditPeriod.Controls.Add(this.cmbDays);
             this.groBoxCreditPeriod.Controls.Add(this.label18);
-            this.groBoxCreditPeriod.Location = new System.Drawing.Point(171, 51);
+            this.groBoxCreditPeriod.Location = new System.Drawing.Point(171, 50);
             this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
             this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
             this.groBoxCreditPeriod.TabIndex = 5;
@@ -447,7 +449,7 @@ namespace SilverGold
             // grpBoxWithCreditLimit
             // 
             this.grpBoxWithCreditLimit.Controls.Add(this.chkWithCreditLimit);
-            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(30, 50);
+            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(30, 49);
             this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
             this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
             this.grpBoxWithCreditLimit.TabIndex = 4;
@@ -469,7 +471,7 @@ namespace SilverGold
             // Panel_LotGenerate
             // 
             this.Panel_LotGenerate.Controls.Add(this.cmb_gen_type);
-            this.Panel_LotGenerate.Location = new System.Drawing.Point(329, 17);
+            this.Panel_LotGenerate.Location = new System.Drawing.Point(329, 16);
             this.Panel_LotGenerate.Name = "Panel_LotGenerate";
             this.Panel_LotGenerate.Size = new System.Drawing.Size(94, 28);
             this.Panel_LotGenerate.TabIndex = 3;
@@ -493,7 +495,7 @@ namespace SilverGold
             // lblLotGenerateIn
             // 
             this.lblLotGenerateIn.AutoSize = true;
-            this.lblLotGenerateIn.Location = new System.Drawing.Point(253, 24);
+            this.lblLotGenerateIn.Location = new System.Drawing.Point(253, 23);
             this.lblLotGenerateIn.Name = "lblLotGenerateIn";
             this.lblLotGenerateIn.Size = new System.Drawing.Size(74, 13);
             this.lblLotGenerateIn.TabIndex = 1;
@@ -503,7 +505,7 @@ namespace SilverGold
             // plnlot
             // 
             this.plnlot.Controls.Add(this.cmbLot);
-            this.plnlot.Location = new System.Drawing.Point(183, 17);
+            this.plnlot.Location = new System.Drawing.Point(183, 16);
             this.plnlot.Name = "plnlot";
             this.plnlot.Size = new System.Drawing.Size(63, 28);
             this.plnlot.TabIndex = 2;
@@ -529,7 +531,7 @@ namespace SilverGold
             // plncmbrs
             // 
             this.plncmbrs.Controls.Add(this.cmbrs);
-            this.plncmbrs.Location = new System.Drawing.Point(586, 178);
+            this.plncmbrs.Location = new System.Drawing.Point(586, 172);
             this.plncmbrs.Name = "plncmbrs";
             this.plncmbrs.Size = new System.Drawing.Size(85, 27);
             this.plncmbrs.TabIndex = 13;
@@ -554,7 +556,7 @@ namespace SilverGold
             // cmbIntroducer
             // 
             this.cmbIntroducer.FormattingEnabled = true;
-            this.cmbIntroducer.Location = new System.Drawing.Point(90, 242);
+            this.cmbIntroducer.Location = new System.Drawing.Point(90, 231);
             this.cmbIntroducer.Margin = new System.Windows.Forms.Padding(4);
             this.cmbIntroducer.Name = "cmbIntroducer";
             this.cmbIntroducer.Size = new System.Drawing.Size(195, 21);
@@ -571,7 +573,7 @@ namespace SilverGold
             this.cmbShowtrail.Items.AddRange(new object[] {
             "NO",
             "YES"});
-            this.cmbShowtrail.Location = new System.Drawing.Point(441, 29);
+            this.cmbShowtrail.Location = new System.Drawing.Point(441, 28);
             this.cmbShowtrail.Margin = new System.Windows.Forms.Padding(4);
             this.cmbShowtrail.Name = "cmbShowtrail";
             this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
@@ -582,7 +584,7 @@ namespace SilverGold
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(14, 245);
+            this.label20.Location = new System.Drawing.Point(14, 234);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 15);
@@ -593,7 +595,7 @@ namespace SilverGold
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(433, 12);
+            this.label12.Location = new System.Drawing.Point(433, 11);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 15);
@@ -603,7 +605,7 @@ namespace SilverGold
             // lblLot
             // 
             this.lblLot.AutoSize = true;
-            this.lblLot.Location = new System.Drawing.Point(159, 25);
+            this.lblLot.Location = new System.Drawing.Point(159, 24);
             this.lblLot.Name = "lblLot";
             this.lblLot.Size = new System.Drawing.Size(25, 13);
             this.lblLot.TabIndex = 33;
@@ -616,7 +618,7 @@ namespace SilverGold
             this.cmbtype.Items.AddRange(new object[] {
             "PARTY",
             "WORKER"});
-            this.cmbtype.Location = new System.Drawing.Point(53, 21);
+            this.cmbtype.Location = new System.Drawing.Point(53, 20);
             this.cmbtype.Margin = new System.Windows.Forms.Padding(4);
             this.cmbtype.Name = "cmbtype";
             this.cmbtype.Size = new System.Drawing.Size(97, 21);
@@ -631,7 +633,7 @@ namespace SilverGold
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 126);
+            this.label2.Location = new System.Drawing.Point(38, 125);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 15);
@@ -642,7 +644,7 @@ namespace SilverGold
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(14, 27);
+            this.label13.Location = new System.Drawing.Point(14, 26);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 15);
@@ -653,7 +655,7 @@ namespace SilverGold
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(16, 215);
+            this.label16.Location = new System.Drawing.Point(16, 206);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 15);
@@ -662,7 +664,7 @@ namespace SilverGold
             // 
             // txtpartyname
             // 
-            this.txtpartyname.Location = new System.Drawing.Point(90, 126);
+            this.txtpartyname.Location = new System.Drawing.Point(90, 125);
             this.txtpartyname.Margin = new System.Windows.Forms.Padding(4);
             this.txtpartyname.Name = "txtpartyname";
             this.txtpartyname.Size = new System.Drawing.Size(195, 20);
@@ -673,7 +675,7 @@ namespace SilverGold
             // 
             // txtaddress
             // 
-            this.txtaddress.Location = new System.Drawing.Point(440, 126);
+            this.txtaddress.Location = new System.Drawing.Point(440, 124);
             this.txtaddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtaddress.Name = "txtaddress";
             this.txtaddress.Size = new System.Drawing.Size(231, 20);
@@ -686,7 +688,7 @@ namespace SilverGold
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(3, 185);
+            this.label15.Location = new System.Drawing.Point(3, 180);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 15);
@@ -697,7 +699,7 @@ namespace SilverGold
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(376, 157);
+            this.label5.Location = new System.Drawing.Point(376, 154);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 15);
@@ -708,7 +710,7 @@ namespace SilverGold
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 157);
+            this.label4.Location = new System.Drawing.Point(10, 154);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
@@ -718,7 +720,7 @@ namespace SilverGold
             // cmbgrouphead
             // 
             this.cmbgrouphead.FormattingEnabled = true;
-            this.cmbgrouphead.Location = new System.Drawing.Point(90, 182);
+            this.cmbgrouphead.Location = new System.Drawing.Point(90, 177);
             this.cmbgrouphead.Margin = new System.Windows.Forms.Padding(4);
             this.cmbgrouphead.Name = "cmbgrouphead";
             this.cmbgrouphead.Size = new System.Drawing.Size(195, 21);
@@ -731,7 +733,7 @@ namespace SilverGold
             // 
             // txtcontactno
             // 
-            this.txtcontactno.Location = new System.Drawing.Point(90, 154);
+            this.txtcontactno.Location = new System.Drawing.Point(90, 151);
             this.txtcontactno.Margin = new System.Windows.Forms.Padding(4);
             this.txtcontactno.MaxLength = 10;
             this.txtcontactno.Name = "txtcontactno";
@@ -745,7 +747,7 @@ namespace SilverGold
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(375, 130);
+            this.label3.Location = new System.Drawing.Point(375, 128);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 15);
@@ -754,7 +756,7 @@ namespace SilverGold
             // 
             // txtemailid
             // 
-            this.txtemailid.Location = new System.Drawing.Point(440, 153);
+            this.txtemailid.Location = new System.Drawing.Point(440, 150);
             this.txtemailid.Margin = new System.Windows.Forms.Padding(4);
             this.txtemailid.Name = "txtemailid";
             this.txtemailid.Size = new System.Drawing.Size(231, 20);
@@ -766,7 +768,7 @@ namespace SilverGold
             // cmbsubhead
             // 
             this.cmbsubhead.FormattingEnabled = true;
-            this.cmbsubhead.Location = new System.Drawing.Point(90, 213);
+            this.cmbsubhead.Location = new System.Drawing.Point(90, 204);
             this.cmbsubhead.Margin = new System.Windows.Forms.Padding(4);
             this.cmbsubhead.Name = "cmbsubhead";
             this.cmbsubhead.Size = new System.Drawing.Size(195, 21);
@@ -784,7 +786,7 @@ namespace SilverGold
             this.panel1.Controls.Add(this.label34);
             this.panel1.Location = new System.Drawing.Point(0, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1129, 34);
+            this.panel1.Size = new System.Drawing.Size(1274, 34);
             this.panel1.TabIndex = 18;
             // 
             // label34
@@ -802,7 +804,7 @@ namespace SilverGold
             // 
             this.groupBox3.Controls.Add(this.cmbPopUp);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(489, 396);
+            this.groupBox3.Location = new System.Drawing.Point(489, 379);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
@@ -833,7 +835,7 @@ namespace SilverGold
             this.groupBox2.Controls.Add(this.btndelete);
             this.groupBox2.Controls.Add(this.btnrefresh);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(32, 395);
+            this.groupBox2.Location = new System.Drawing.Point(32, 378);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -902,6 +904,16 @@ namespace SilverGold
             this.btnrefresh.UseVisualStyleBackColor = true;
             this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);
             // 
+            // dataGridViewCreditPeriod
+            // 
+            this.dataGridViewCreditPeriod.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCreditPeriod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCreditPeriod.Location = new System.Drawing.Point(8, 485);
+            this.dataGridViewCreditPeriod.Name = "dataGridViewCreditPeriod";
+            this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(717, 191);
+            this.dataGridViewCreditPeriod.TabIndex = 19;
+            this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -910,34 +922,34 @@ namespace SilverGold
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Location = new System.Drawing.Point(296, 209);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.Size = new System.Drawing.Size(375, 136);
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView1.Size = new System.Drawing.Size(375, 117);
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
@@ -946,7 +958,8 @@ namespace SilverGold
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 664);
+            this.ClientSize = new System.Drawing.Size(1275, 719);
+            this.Controls.Add(this.dataGridViewCreditPeriod);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
@@ -971,6 +984,7 @@ namespace SilverGold
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1039,5 +1053,6 @@ namespace SilverGold
         private System.Windows.Forms.Panel Panel_Category;
         private System.Windows.Forms.Panel Panel_McxBullion;
         private GRIDVIEWCUSTOM1 dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewCreditPeriod;
     }
 }
