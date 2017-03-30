@@ -35,50 +35,56 @@ namespace SilverGold
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
-            var dirName = directoryInfo.GetDirectories();
-
-            CommanHelper.UserId = txtUserId.Text.Trim();
-            CommanHelper.Password = txtPassword.Text.Trim();
-            for (int i = 0; i < dirName.Count(); i++)
+            try
             {
-                var mainDir = dirName[i].GetDirectories();
-                FileInfo[] Files;
-                foreach (var item in mainDir)
+                var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
+                var dirName = directoryInfo.GetDirectories();
+
+                CommanHelper.UserId = txtUserId.Text.Trim();
+                CommanHelper.Password = txtPassword.Text.Trim();
+                for (int i = 0; i < dirName.Count(); i++)
                 {
-                    DirectoryInfo d = new DirectoryInfo(item.FullName);
-                    Files = d.GetFiles("*.mdb");
-                    foreach (FileInfo file in Files)
+                    var mainDir = dirName[i].GetDirectories();
+                    FileInfo[] Files;
+                    foreach (var item in mainDir)
                     {
+                        DirectoryInfo d = new DirectoryInfo(item.FullName);
+                        Files = d.GetFiles("*.mdb");
+                        foreach (FileInfo file in Files)
+                        {
 
-                        CheckCompanyDir = true;
+                            CheckCompanyDir = true;
 
-                        ValidateLogin(item.FullName, file.Name, txtUserId.Text.Trim(), txtPassword.Text.Trim());
+                            ValidateLogin(item.FullName, file.Name, txtUserId.Text.Trim(), txtPassword.Text.Trim());
+                        }
                     }
                 }
-            }
 
 
 
-            if (CheckCompanyDir == true)
-            {
-                if (CommanHelper.CompanyLogin.Count() == 0)
+                if (CheckCompanyDir == true)
                 {
-                    MessageBox.Show("Invalid Userid And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    txtUserId.Focus();
-                    return;
+                    if (CommanHelper.CompanyLogin.Count() == 0)
+                    {
+                        MessageBox.Show("Invalid Userid And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        txtUserId.Focus();
+                        return;
+                    }
+                    CompanyDetails oCompanyDetails = new CompanyDetails();
+                    oCompanyDetails.Show();
+                    this.Hide();
                 }
-                CompanyDetails oCompanyDetails = new CompanyDetails();
-                oCompanyDetails.Show();
-                this.Hide();
+                else
+                {
+                    Master oMaster = new Master();
+                    oMaster.Show();
+                    this.Hide();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Master oMaster = new Master();
-                oMaster.Show();
-                this.Hide();
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
-
 
         }
 
@@ -137,6 +143,16 @@ namespace SilverGold
             {
                 btnLogin.Focus();
             }
+        }
+
+        private void txtUserId_Enter(object sender, EventArgs e)
+        {
+            txtUserId.SelectAll();
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword.SelectAll();
         }
     }
 }

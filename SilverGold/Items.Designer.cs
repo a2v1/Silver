@@ -98,8 +98,8 @@
             this.cmbKF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKF.FormattingEnabled = true;
             this.cmbKF.Items.AddRange(new object[] {
-            "N",
-            "Y"});
+            "NO",
+            "YES"});
             this.cmbKF.Location = new System.Drawing.Point(122, 106);
             this.cmbKF.Name = "cmbKF";
             this.cmbKF.Size = new System.Drawing.Size(45, 23);
@@ -140,6 +140,7 @@
             this.txtMetalName.Name = "txtMetalName";
             this.txtMetalName.Size = new System.Drawing.Size(202, 21);
             this.txtMetalName.TabIndex = 1;
+            this.txtMetalName.Enter += new System.EventHandler(this.txtMetalName_Enter);
             this.txtMetalName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMetalName_KeyPress);
             // 
             // label2
@@ -158,7 +159,9 @@
             this.cmbMetalCat.Name = "cmbMetalCat";
             this.cmbMetalCat.Size = new System.Drawing.Size(203, 23);
             this.cmbMetalCat.TabIndex = 0;
+            this.cmbMetalCat.Enter += new System.EventHandler(this.cmbMetalCat_Enter);
             this.cmbMetalCat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMetalCat_KeyPress);
+            this.cmbMetalCat.Leave += new System.EventHandler(this.cmbMetalCat_Leave);
             // 
             // label1
             // 

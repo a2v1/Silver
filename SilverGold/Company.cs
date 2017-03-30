@@ -90,8 +90,8 @@ namespace SilverGold
             col_KF.DataPropertyName = "KachchiFine";
             col_KF.HeaderText = "KF";
             col_KF.Name = "KachchiFine";
-            col_KF.Items.Add("N");
-            col_KF.Items.Add("Y");
+            col_KF.Items.Add("NO");
+            col_KF.Items.Add("YES");
             col_KF.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col_KF);
 
@@ -109,7 +109,7 @@ namespace SilverGold
                 col_DrCr.HeaderText = "DrCr";
                 col_DrCr.Name = "DrCr";
                 col_DrCr.Items.Add("CREDIT");
-                col_DrCr.Items.Add("DEBIT");
+                col_DrCr.Items.Add("DEBIT");                
                 col_DrCr.FlatStyle = FlatStyle.Popup; 
                 dataGridView1.Columns.Add(col_DrCr);
             }
@@ -396,14 +396,14 @@ namespace SilverGold
                         String WeightType = "";
                         String KF = "";
                         Decimal Amt_Weight = 0;
-                      
+
                         String DrCr = "";
                         Decimal _Credit = 0;
                         Decimal _Debit = 0;
                         MetalCat = (dataGridView1.Rows[i].Cells[0].Value ?? (object)"").ToString();
                         MetalName = (dataGridView1.Rows[i].Cells[1].Value ?? (object)"").ToString();
                         WeightType = (dataGridView1.Rows[i].Cells[2].Value ?? (object)"").ToString();
-                        KF = (dataGridView1.Rows[i].Cells[3].Value ?? (object)"").ToString(); 
+                        KF = (dataGridView1.Rows[i].Cells[3].Value ?? (object)"").ToString();
 
                         if (dataGridView1.Rows[i].Cells[4].Value != null)
                         {
@@ -467,10 +467,10 @@ namespace SilverGold
                         Decimal Fine = 0;
 
                         strPaatNo = (dataGridView2.Rows[k].Cells[0].Value ?? (object)"").ToString();
-                        weight = Conversion.ConToDec6( (dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
-                        Tunch1 = Conversion.ConToDec6( (dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
-                        Tunch2 = Conversion.ConToDec6( (dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
-                        Fine = Conversion.ConToDec6( (dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
+                        weight = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
+                        Tunch1 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
+                        Tunch2 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
+                        Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
                         if (weight > 0)
                         {
                             cmd.CommandText = "INSERT INTO KfDetails(MetalCategory,MetalName,PaatNo,Weight,Tunch1,Tunch2,Fine,TranType,Company,UserId)VALUES('" + lblKFCate.Text.Trim() + "','" + lblKFName.Text.Trim() + "','" + strPaatNo + "','" + weight + "','" + Tunch1 + "','" + Tunch2 + "','" + Fine + "','CKF','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
@@ -494,10 +494,8 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
-              
-
             }
         }
 
@@ -643,7 +641,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
             }
         }
@@ -658,7 +656,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -725,7 +723,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -747,7 +745,7 @@ namespace SilverGold
                 {
                     con.Close();
                 }
-                MessageBox.Show(ex.Message);
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -777,7 +775,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -825,7 +823,7 @@ namespace SilverGold
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 }
             }
         }
@@ -872,7 +870,7 @@ namespace SilverGold
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 }
             }
         }
@@ -921,7 +919,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1011,124 +1009,129 @@ namespace SilverGold
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-             try
-             {
-                 //-------------Metal Category
+            try
+            {
+                //-------------Metal Category
 
-                 if (dataGridView1.CurrentCellAddress.X == col_MCate.DisplayIndex)
-                 {
-                     if (!col_MCate.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
-                     {
-                         if (!MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString().Trim()).Any())
-                         {
-                             var max = 0;
-                             if (MetalList.Count > 0)
-                             {
-                                 max = MetalList.Max(x => x.Sno) + 1;
-                             }
-                             MetalEntity oMetal = new MetalEntity();
-                             oMetal.MetalCategory = e.FormattedValue.ToString();
-                             oMetal.MetalName = "";
-                             oMetal.WieghtType = "";
-                             oMetal.Sno = max;
-                             oMetal.CompanyName = txtCompanyName.Text.Trim();
-                             MetalList.Add(oMetal);
-                         }
-                     }
-                    
-                     _MetalCateCellValue = e.FormattedValue.ToString();
-                     DataGridViewComboBoxCell t1 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[0];
-                     t1.DataSource = MetalList.Select(r => r.MetalCategory).Distinct().ToList();
-                     dataGridView1.CurrentRow.Cells[0].Value = e.FormattedValue.ToString();
-                 }
+                if (dataGridView1.CurrentCellAddress.X == col_MCate.DisplayIndex)
+                {
+                    if (!col_MCate.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
+                    {
+                        if (!MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString().Trim()).Any())
+                        {
+                            var max = 0;
+                            if (MetalList.Count > 0)
+                            {
+                                max = MetalList.Max(x => x.Sno) + 1;
+                            }
+                            MetalEntity oMetal = new MetalEntity();
+                            oMetal.MetalCategory = e.FormattedValue.ToString();
+                            oMetal.MetalName = "";
+                            oMetal.WieghtType = "";
+                            oMetal.Sno = max;
+                            oMetal.CompanyName = txtCompanyName.Text.Trim();
+                            MetalList.Add(oMetal);
+                        }
+                    }
 
-                 //-------------Metal Name
-                 if (dataGridView1.CurrentCellAddress.X == col_MNane.DisplayIndex)
-                 {
-                     if (!col_MNane.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
-                     {
-                         if (dataGridView1.CurrentRow.Cells[0].Value != null)
-                         {
-                             var result = (from r in MetalList where r.MetalCategory == _MetalCateCellValue.Trim() select r).ToList();
-                             foreach (var item in result)
-                             {
-                                 if (!MetalList.Where(x => x.MetalCategory == _MetalCateCellValue.Trim() && x.MetalName == e.FormattedValue.ToString()).Any())
-                                 {
-                                     var max = 0;
-                                     if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
-                                     MetalEntity oMetal = new MetalEntity();
-                                     oMetal.MetalCategory = _MetalCateCellValue;
-                                     oMetal.MetalName= e.FormattedValue.ToString();
-                                     oMetal.WieghtType = "";
-                                     oMetal.Sno = max;
-                                     oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
-                                 }
-                                 else
-                                 {
-                                     if (item.MetalName == "")
-                                     {
-                                         var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
-                                         update.MetalName = e.FormattedValue.ToString();
-                                         update.KachchiFine = "N";
-                                     }
-                                 }
-                             }
+                    _MetalCateCellValue = e.FormattedValue.ToString();
+                    DataGridViewComboBoxCell t1 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[0];
+                    t1.DataSource = MetalList.Select(r => r.MetalCategory).Distinct().ToList();
+                    dataGridView1.CurrentRow.Cells[0].Value = e.FormattedValue.ToString();
+                }
 
-                             _MetalNameCellValue = e.FormattedValue.ToString();
-                             DataGridViewComboBoxCell t2 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[1];
-                             t2.DataSource = MetalList.Where(x => x.MetalCategory == _MetalCateCellValue).Select(r => r.MetalName).Distinct().ToList();
-                             dataGridView1.CurrentRow.Cells[1].Value = e.FormattedValue.ToString();
-                         }
-                     }
+                //-------------Metal Name
+                if (dataGridView1.CurrentCellAddress.X == col_MNane.DisplayIndex)
+                {
+                    if (!col_MNane.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
+                    {
+                        if (dataGridView1.CurrentRow.Cells[0].Value != null)
+                        {
+                            var result = (from r in MetalList where r.MetalCategory == _MetalCateCellValue.Trim() select r).ToList();
+                            foreach (var item in result)
+                            {
+                                if (!MetalList.Where(x => x.MetalCategory == _MetalCateCellValue.Trim() && x.MetalName == e.FormattedValue.ToString()).Any())
+                                {
+                                    var max = 0;
+                                    if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
+                                    MetalEntity oMetal = new MetalEntity();
+                                    oMetal.MetalCategory = _MetalCateCellValue;
+                                    oMetal.MetalName = e.FormattedValue.ToString();
+                                    oMetal.WieghtType = "";
+                                    oMetal.Sno = max;
+                                    oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
+                                }
+                                else
+                                {
+                                    if (item.MetalName == "")
+                                    {
+                                        var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
+                                        update.MetalName = e.FormattedValue.ToString();
+                                        update.KachchiFine = "N";
+                                    }
+                                }
+                            }
 
-                 }
+                            _MetalNameCellValue = e.FormattedValue.ToString();
+                            DataGridViewComboBoxCell t2 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[1];
+                            t2.DataSource = MetalList.Where(x => x.MetalCategory == _MetalCateCellValue).Select(r => r.MetalName).Distinct().ToList();
+                            dataGridView1.CurrentRow.Cells[1].Value = e.FormattedValue.ToString();
+                        }
+                    }
 
-                 //-------------Metal Weight Type
-                 if (dataGridView1.CurrentCellAddress.X == col_Weight.DisplayIndex)
-                 {
-                     if (!col_Weight.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
-                     {
-                         if (dataGridView1.CurrentRow.Cells[1].Value != null)
-                         {
-                             var result = (from r in MetalList where r.MetalName == _MetalNameCellValue.Trim() select r).ToList();
-                             foreach (var item in result)
-                             {
-                                 if (!MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WieghtType == e.FormattedValue.ToString()).Any())
-                                 {
-                                     var max = 0;
-                                     if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
-                                     MetalEntity oMetal = new MetalEntity();
-                                     oMetal.MetalCategory = "";
-                                     oMetal.MetalName = _MetalNameCellValue;
-                                     oMetal.WieghtType = e.FormattedValue.ToString();
-                                     oMetal.Sno = max;
-                                     oMetal.CompanyName = txtCompanyName.Text.Trim();
-                                     MetalList.Add(oMetal);
-                                 }
-                                 else
-                                 {
-                                     if (item.WieghtType == "")
-                                     {
-                                         var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
-                                         update.WieghtType = e.FormattedValue.ToString();
-                                         update.KachchiFine= "N";
-                                     }
-                                 }
-                             }
+                }
 
-                             _MetalNameCellValue = e.FormattedValue.ToString();
-                             DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
-                             tWeight.DataSource = MetalList.Select(r => r.WieghtType).Distinct().ToList();
-                             dataGridView1.CurrentRow.Cells[2].Value = e.FormattedValue.ToString();
-                         }
-                     }
+                //-------------Metal Weight Type
+                if (dataGridView1.CurrentCellAddress.X == col_Weight.DisplayIndex)
+                {
+                    if (!col_Weight.Items.Contains(e.FormattedValue) && e.FormattedValue.ToString() != "")
+                    {
+                        if (dataGridView1.CurrentRow.Cells[1].Value != null)
+                        {
+                            var result = (from r in MetalList where r.MetalName == _MetalNameCellValue.Trim() select r).ToList();
+                            foreach (var item in result)
+                            {
+                                if (!MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WieghtType == e.FormattedValue.ToString()).Any())
+                                {
+                                    var max = 0;
+                                    if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
+                                    MetalEntity oMetal = new MetalEntity();
+                                    oMetal.MetalCategory = "";
+                                    oMetal.MetalName = _MetalNameCellValue;
+                                    oMetal.WieghtType = e.FormattedValue.ToString();
+                                    oMetal.Sno = max;
+                                    oMetal.CompanyName = txtCompanyName.Text.Trim();
+                                    MetalList.Add(oMetal);
+                                }
+                                else
+                                {
+                                    if (item.WieghtType == "")
+                                    {
+                                        var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
+                                        update.WieghtType = e.FormattedValue.ToString();
+                                        update.KachchiFine = "N";
+                                    }
+                                }
+                            }
 
-                 }
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("CellValidating");
-             }
+                            _MetalNameCellValue = e.FormattedValue.ToString();
+                            DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
+                            tWeight.DataSource = MetalList.Select(r => r.WieghtType).Distinct().ToList();
+                            dataGridView1.CurrentRow.Cells[2].Value = e.FormattedValue.ToString();
+                        }
+                    }
+
+                }
+                if (dataGridView1.CurrentRow.Cells[5].Value == null)
+                {
+                    dataGridView1.CurrentRow.Cells[5].Value = "CREDIT";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("CellValidating");
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -1199,6 +1202,7 @@ namespace SilverGold
             catch (Exception ex)
             {
                 MessageBox.Show("Cell Enter");
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 

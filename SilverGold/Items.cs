@@ -108,7 +108,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
             }
         }
@@ -120,6 +120,7 @@ namespace SilverGold
             cmbKF.Text = "";
             
             txtMetalName.Clear();
+            cmbWeightType.SelectedIndex = -1;
             cmbWeightType.Text = "";
             _Sno = 0;
             if (CommanHelper.CompName != "" && CommanHelper.Com_DB_PATH != "" && CommanHelper.Com_DB_NAME != "")
@@ -218,7 +219,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -231,7 +232,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -256,7 +257,7 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -298,6 +299,21 @@ namespace SilverGold
             {
                 btnSave.Focus();
             }
+        }
+
+        private void cmbMetalCat_Enter(object sender, EventArgs e)
+        {
+            cmbMetalCat.BackColor = Color.Cyan;
+        }
+
+        private void cmbMetalCat_Leave(object sender, EventArgs e)
+        {
+            cmbMetalCat.BackColor = Color.White;
+        }
+
+        private void txtMetalName_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
