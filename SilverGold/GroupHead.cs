@@ -19,12 +19,13 @@ namespace SilverGold
         OleDbConnection con;
         OleDbTransaction Tran = null;
         List<GroupHeadEntity> GroupHeadList = new List<GroupHeadEntity>();
-
+        String _GroupName = "";
         #endregion
         public GroupHead()
         {
             InitializeComponent();
             CommanHelper.ChangeGridFormate(dataGridView1);
+            CommanHelper.ChangeGridFormate2(dataGridView2);
             BindColumn();
         }
 
@@ -40,6 +41,7 @@ namespace SilverGold
             con = new OleDbConnection();
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
             CommanHelper.ComboBoxItem(CMBPOPUP, "GroupHead", "Distinct(GroupHead)");
+            GetAllGroupHeads();
         }
 
         #region Helper
@@ -62,12 +64,22 @@ namespace SilverGold
 
         private void ClearControl()
         {
+            GetAllGroupHeads();
             CommanHelper.ComboBoxItem(CMBPOPUP, "GroupHead", "Distinct(GroupHead)");
             Tran = null;
             txtGroupHead.Clear();
             dataGridView1.Rows.Clear();
             CMBPOPUP.SelectedIndex = -1;
+            CMBPOPUP.Text = "";
             txtGroupHead.Focus();
+        }
+
+        private void GetAllGroupHeads()
+        {
+            OleDbDataAdapter da = new OleDbDataAdapter("Select GroupHead,SubGroup from GroupHead Order By GroupHead ASC", con);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.DataSource = ds.Tables[0];            
         }
       
         #endregion
@@ -76,6 +88,15 @@ namespace SilverGold
         {
             try
             {
+                _GroupName = "";
+                if (CMBPOPUP.Text.Trim() != "")
+                {
+                    _GroupName = CMBPOPUP.Text.Trim();
+                }
+                else
+                {
+                    _GroupName = txtGroupHead.Text.Trim();
+                }
                 if (txtGroupHead.Text.Trim() == "")
                 {
                     txtGroupHead.Focus();
@@ -89,7 +110,7 @@ namespace SilverGold
                 con.Open();
                 Tran = con.BeginTransaction();
 
-                OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead = '" + txtGroupHead.Text.Trim() + "' And Company = '" + CommanHelper.CompName.Trim() + "'", con, Tran);
+                OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead = '" + _GroupName + "' And Company = '" + CommanHelper.CompName.Trim() + "'", con, Tran);
                 cmd.ExecuteNonQuery();
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
@@ -100,14 +121,13 @@ namespace SilverGold
                         cmd.ExecuteNonQuery();
                     }
                 }
-                Tran.Commit();
-                ClearControl();
-
+                Tran.Commit();               
                 MessageBox.Show("Data Successfully Inserted..", "Group Head", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearControl();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
             }
         }
@@ -116,6 +136,12 @@ namespace SilverGold
         {
             try
             {
+                _GroupName = "";
+                if (CMBPOPUP.Text.Trim() == "")
+                {
+                    CMBPOPUP.Focus();
+                    return;
+                }
                 if (MessageBox.Show("Do You Want To Delete The Data", "Group Head", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (con.State == ConnectionState.Open)
@@ -124,16 +150,15 @@ namespace SilverGold
                     }
                     con.Open();
                     Tran = con.BeginTransaction();
-                    OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead='" + CommanHelper.CompName.Trim() + "'", con, Tran);
+                    OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead='" + CMBPOPUP.Text.Trim() + "'", con, Tran);
                     cmd.ExecuteNonQuery();
                     Tran.Commit();
                     ClearControl();
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
             }
         }
@@ -199,13 +224,94 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void toolStripMenu_PopUp_Click(object sender, EventArgs e)
         {
             CMBPOPUP.Focus();
+        }
+
+        private void txtGroupHead_Enter(object sender, EventArgs e)
+        {
+            txtGroupHead.BackColor = Color.Cyan;
+        }
+
+        private void txtGroupHead_Leave(object sender, EventArgs e)
+        {
+            txtGroupHead.BackColor = Color.White;
+        }
+
+        private void txtGroupHead_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    dataGridView1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                   // btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void CMBPOPUP_Enter(object sender, EventArgs e)
+        {
+            CMBPOPUP.BackColor = Color.Cyan;
+        }
+
+        private void CMBPOPUP_Leave(object sender, EventArgs e)
+        {
+            CMBPOPUP.BackColor = Color.White;
+        }
+
+        private void CMBPOPUP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtGroupHead.Focus();
+            }
+        }
+
+        private static void Control_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string str = e.KeyChar.ToString().ToUpper();
+            char[] ch = str.ToCharArray();
+            e.KeyChar = ch[0];
+
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.CurrentCell.ColumnIndex.Equals(0))
+                {
+                    e.Control.KeyPress += Control_KeyPress; 
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
     }
 }

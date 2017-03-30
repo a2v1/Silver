@@ -16,6 +16,7 @@ namespace SilverGold
     public partial class ProductDetails : Form
     {
         #region Declare Variable
+        String _Query = "";
         int check_conn;
         OleDbConnection con;
         OleDbTransaction Tran = null;
@@ -49,8 +50,10 @@ namespace SilverGold
             cmbcategory.DisplayMember = "Name";
             cmbcategory.SelectedIndex = -1;
 
-            CommanHelper.ComboBoxItem(cmbsubgroup, "Product", "Distinct(SubGroup)");
             CommanHelper.ComboBoxItem(cmbPopUp, "Product", "Distinct(ProductName)");
+            CommanHelper.ComboBoxItem(cmbsubgroup, "Product", "Distinct(SubGroup)");
+            CommanHelper.ComboBoxItem(cmbgroup, "Product", "Distinct(PGroup)");
+            CommanHelper.ComboBoxItem(cmbGroupRawDefine, "Product", "Distinct(PGroup)");
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -96,7 +99,7 @@ namespace SilverGold
 
                 OleDbCommand cmd = new OleDbCommand("", con, Tran);
 
-                cmd.CommandText = "Delete From Product Where ProductName ='" + txtProductName.Text.Trim() + "'";
+                cmd.CommandText = "Delete From Product Where ProductName ='" + _ProductName + "'";
                 cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "Delete From ProductGroup Where ProductGroup ='" + cmbgroup.Text.Trim() + "' AND ProductSubGroup = '" + cmbsubgroup.Text.Trim() + "'";
@@ -352,7 +355,7 @@ namespace SilverGold
                     Txtamount.Text = Amount.ToString();
                 }
             }
-        }       
+        }
 
         private void ClearControls()
         {
@@ -365,9 +368,11 @@ namespace SilverGold
             cmbunit.SelectedIndex = -1;
             cmbsubgroup.SelectedIndex = -1;
             cmbgroup.SelectedIndex = -1;
+            cmbGroupRawDefine.SelectedIndex = -1;
             cmbsubgroup.Text = "";
             cmbgroup.Text = "";
             cmbRawDefine.SelectedIndex = -1;
+            txtwpkt.Enabled = false;
             txtwpkt.Clear();
             txtProductName.Clear();
             txtopening.Clear();
@@ -378,7 +383,8 @@ namespace SilverGold
             Txtfine.Clear();
             Txtamount.Clear();
             txtNarration.Clear();
-           dtpOpeningDate.Text = DateTime.Now.ToString();
+            dtpOpeningDate.Text = DateTime.Now.ToString();
+            cmbcategory.Focus();
         }
 
         #endregion
@@ -400,6 +406,17 @@ namespace SilverGold
         {
             try
             {
+                if (cmbPopUp.Text.Trim() == "")
+                {
+                    cmbPopUp.Focus();
+                    return;
+                }
+                if (txtProductName.Text.Trim() == "")
+                {
+                    txtProductName.Focus();
+                    return;
+                }
+
                 if (MessageBox.Show("Do You Want To Delete The Data", "Product Details", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Tran = null;
@@ -482,7 +499,51 @@ namespace SilverGold
 
         private void cmbcategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (chkAll.Checked == false)
+                {
+                    int i;
+                    string raw = "";
+                    string pname1 = "";
+                    _Query = "";
+                    if (check_conn == 0)
+                    {
+                        if (cmbGroupRawDefine.Text.Trim() == "")
+                        {
+                            _Query = "Select ProductName,RawDefine From Product Where Category ='" + cmbcategory.Text.Trim() + "'";
+                        }
+                        else
+                        {
+                            _Query = "Select ProductName,RawDefine From Product Where Category ='" + cmbcategory.Text.Trim() + "' AND PGroup = '" + cmbGroupRawDefine.Text.Trim() + "'";
+                        }
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+                        OleDbDataAdapter da = new OleDbDataAdapter(_Query, con);
+                        DataSet ds = new DataSet();
+                        checkedListBox2.Items.Clear();
+                        da.Fill(ds);
+                        for (i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                            pname1 = ds.Tables[0].Rows[i][0].ToString();
+                            checkedListBox2.Items.Add(pname1);
+                            raw = ds.Tables[0].Rows[i][1].ToString();
+                            if (raw.Trim() == "Y")
+                            {
+                                checkedListBox2.SetItemCheckState(i, CheckState.Checked);
+                            }
+                        }
+                        con.Close();
 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbunit_Enter(object sender, EventArgs e)
@@ -492,7 +553,23 @@ namespace SilverGold
 
         private void cmbunit_Leave(object sender, EventArgs e)
         {
-            cmbunit.BackColor = Color.White;
+             try
+             {
+                 cmbunit.BackColor = Color.White;
+           
+                if (cmbunit.Text.Trim().ToUpper() == "WEIGHT")
+                {
+                    txtwpkt.Enabled = false;
+                }
+                else
+                {
+                    txtwpkt.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbunit_KeyPress(object sender, KeyPressEventArgs e)
@@ -891,12 +968,16 @@ namespace SilverGold
                 }
                 else
                 {
-                    con.Open();
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
                     OleDbCommand cmd1 = new OleDbCommand("Update Productdetails Set Row='Y'", con);
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }
                 MessageBox.Show("Data SuccessFully Updated", "Product Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearControls();
 
             }
             catch (Exception ex)
@@ -982,18 +1063,70 @@ namespace SilverGold
         {
             try
             {
-                if (chkAll.Checked != true)
+               
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void toolStripMenu_Pop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbunit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbunit.Text.Trim().ToUpper() == "WEIGHT")
+                {
+                    txtwpkt.Enabled = false;
+                }
+                else
+                {
+                    txtwpkt.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbGroupRawDefine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAll.Checked == false)
                 {
                     int i;
                     string raw = "";
                     string pname1 = "";
+                    _Query = "";
                     if (check_conn == 0)
                     {
+                        if (cmbcategory.Text.Trim() == "")
+                        {
+                            _Query = "Select ProductName,RawDefine From Product Where PGroup ='" + cmbGroupRawDefine.Text.Trim() + "'";
+                        }
+                        else
+                        {
+                            _Query = "Select ProductName,RawDefine From Product Where Category ='" + cmbcategory.Text.Trim() + "' AND PGroup = '" + cmbGroupRawDefine.Text.Trim() + "'";
+                        }
                         if (con.State == ConnectionState.Closed)
                         {
                             con.Open();
                         }
-                        OleDbDataAdapter da = new OleDbDataAdapter("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                        OleDbDataAdapter da = new OleDbDataAdapter(_Query, con);
                         DataSet ds = new DataSet();
                         checkedListBox2.Items.Clear();
                         da.Fill(ds);
@@ -1018,16 +1151,14 @@ namespace SilverGold
             }
         }
 
-        private void toolStripMenu_Pop_Click(object sender, EventArgs e)
+        private void cmbGroupRawDefine_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                cmbPopUp.Focus();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
+            cmbGroupRawDefine.BackColor = Color.Cyan;
+        }
+
+        private void cmbGroupRawDefine_Leave(object sender, EventArgs e)
+        {
+            cmbGroupRawDefine.BackColor = Color.White;
         }
 
 

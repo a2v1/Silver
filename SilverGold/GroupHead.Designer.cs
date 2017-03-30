@@ -44,10 +44,14 @@
             this.toolStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu_PopUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -69,6 +73,9 @@
             this.CMBPOPUP.Sorted = true;
             this.CMBPOPUP.TabIndex = 9;
             this.CMBPOPUP.SelectedIndexChanged += new System.EventHandler(this.CMBPOPUP_SelectedIndexChanged);
+            this.CMBPOPUP.Enter += new System.EventHandler(this.CMBPOPUP_Enter);
+            this.CMBPOPUP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBPOPUP_KeyPress);
+            this.CMBPOPUP.Leave += new System.EventHandler(this.CMBPOPUP_Leave);
             // 
             // txtGroupHead
             // 
@@ -77,6 +84,9 @@
             this.txtGroupHead.Name = "txtGroupHead";
             this.txtGroupHead.Size = new System.Drawing.Size(307, 20);
             this.txtGroupHead.TabIndex = 11;
+            this.txtGroupHead.Enter += new System.EventHandler(this.txtGroupHead_Enter);
+            this.txtGroupHead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGroupHead_KeyPress);
+            this.txtGroupHead.Leave += new System.EventHandler(this.txtGroupHead_Leave);
             // 
             // dataGridView1
             // 
@@ -89,7 +99,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(307, 202);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             // 
             // btnExit
             // 
@@ -141,9 +153,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(66, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Group Head";
+            this.label1.Text = "Add Group Head";
             // 
             // panel2
             // 
@@ -153,7 +165,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(1, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(783, 34);
+            this.panel2.Size = new System.Drawing.Size(1182, 34);
             this.panel2.TabIndex = 19;
             // 
             // label4
@@ -176,7 +188,7 @@
             this.toolStripMenu_PopUp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(786, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1185, 24);
             this.menuStrip1.TabIndex = 20;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -209,11 +221,41 @@
             this.toolStripMenu_PopUp.Text = "  ";
             this.toolStripMenu_PopUp.Click += new System.EventHandler(this.toolStripMenu_PopUp_Click);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 19);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(460, 439);
+            this.dataGridView2.TabIndex = 21;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.dataGridView2);
+            this.groupBox2.Location = new System.Drawing.Point(479, 70);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(481, 473);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Group Head Details";
+            // 
             // GroupHead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 520);
+            this.ClientSize = new System.Drawing.Size(1185, 555);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
@@ -235,6 +277,8 @@
             this.panel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +302,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Delete;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Refresh;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenu_PopUp;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

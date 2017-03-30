@@ -95,7 +95,7 @@ namespace SilverGold
             this.btnsave = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnrefresh = new System.Windows.Forms.Button();
-            this.dataGridViewCreditPeriod = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCreditPeriod = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox1.SuspendLayout();
             this.Panel_McxBullion.SuspendLayout();

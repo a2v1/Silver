@@ -57,6 +57,7 @@ namespace SilverGold
                 cmbMetalCat.DataSource = CommanHelper.GetMetalCate().Select(x => x.MetalCategory).Distinct().ToList();
                 cmbWeightType.DataSource = CommanHelper.GetMetalCate().OrderBy(r => r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
             }
+            cmbMetalCat.SelectedIndex = -1;
             BindMetal();
 
         }
@@ -117,7 +118,7 @@ namespace SilverGold
         private void ClearControl()
         {
             cmbKF.Text = "";
-            cmbMetalCat.Text = "";
+            
             txtMetalName.Clear();
             cmbWeightType.Text = "";
             _Sno = 0;
@@ -131,6 +132,7 @@ namespace SilverGold
                 cmbMetalCat.DataSource = CommanHelper.GetMetalCate().Select(x => x.MetalCategory).Distinct().ToList();
                 cmbWeightType.DataSource = CommanHelper.GetMetalCate().OrderBy(r => r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
             }
+            cmbMetalCat.SelectedIndex = -1;
         }
 
         private void Bind()

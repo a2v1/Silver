@@ -69,9 +69,9 @@ namespace SilverGold
             dtpDateFrom_CreditPeriod.Name = "DateFrom";
             dataGridViewCreditPeriod.Columns.Add(dtpDateFrom_CreditPeriod);
 
-            dtpDateFrom_CreditPeriod.DataPropertyName = "DateTo";
-            dtpDateFrom_CreditPeriod.HeaderText = "DateTo";
-            dtpDateFrom_CreditPeriod.Name = "DateTo";
+            dtpDateTo_CreditPeriod.DataPropertyName = "DateTo";
+            dtpDateTo_CreditPeriod.HeaderText = "DateTo";
+            dtpDateTo_CreditPeriod.Name = "DateTo";
             dataGridViewCreditPeriod.Columns.Add(dtpDateTo_CreditPeriod);
 
             col_RateRevise_CreditPeriod.DataPropertyName = "RateRevised";
@@ -120,7 +120,22 @@ namespace SilverGold
             col_Days_CreditPeriod.Name = "Days";
             dataGridViewCreditPeriod.Columns.Add(col_Days_CreditPeriod);
         }
-      
+
+        private void SetCreditLimitGridView_ColumnWith()
+        {
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateTo"].Width = 100;
+            dataGridViewCreditPeriod.Columns["RateRevised"].Width = 100;
+            dataGridViewCreditPeriod.Columns["Product"].Width = 150;
+            dataGridViewCreditPeriod.Columns["Westage"].Width = 70;
+            dataGridViewCreditPeriod.Columns["Westage"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+        }
+
         private void BindOpeningMCXColumn()
         {
             dataGridView1.Columns.Clear();
