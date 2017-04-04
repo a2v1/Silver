@@ -31,6 +31,7 @@ namespace SilverGold
         List<MetalEntity> MetalList = new List<MetalEntity>();
         DataGridViewComboBoxColumn col_MCate = new DataGridViewComboBoxColumn();
         DataGridViewComboBoxColumn col_MNane = new DataGridViewComboBoxColumn();
+        DataGridViewComboBoxColumn col_KF = new DataGridViewComboBoxColumn();
         DataGridViewColumn col_Amt = new DataGridViewTextBoxColumn();
         DataGridViewComboBoxColumn col_Weight = new DataGridViewComboBoxColumn();
         
@@ -79,14 +80,14 @@ namespace SilverGold
             dataGridView1.Columns.Add(col_MNane);
 
 
-            col_Weight.DataPropertyName = "WieghtType";
+            col_Weight.DataPropertyName = "WeightType";
             col_Weight.HeaderText = "Wt/Type";
-            col_Weight.Name = "WieghtType";
+            col_Weight.Name = "WeightType";
             col_Weight.MaxDropDownItems = 4;
             col_Weight.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col_Weight);
 
-            DataGridViewComboBoxColumn col_KF = new DataGridViewComboBoxColumn();
+            
             col_KF.DataPropertyName = "KachchiFine";
             col_KF.HeaderText = "KF";
             col_KF.Name = "KachchiFine";
@@ -252,8 +253,8 @@ namespace SilverGold
 
                 DataGridViewComboBoxCell cmbWeigth = (DataGridViewComboBoxCell)dataGridView1.Rows[Snu].Cells[2];
                 cmbWeigth.Dispose();
-                cmbWeigth.DataSource = MetalList.Where(x => x.MetalCategory == Convert.ToString(item.MetalCategory).Trim() && x.MetalName == Convert.ToString(item.MetalName)).Select(r => r.WieghtType).Distinct().ToList();
-                dataGridView1.Rows[Snu].Cells[2].Value = Convert.ToString(item.WieghtType);
+                cmbWeigth.DataSource = MetalList.Where(x => x.MetalCategory == Convert.ToString(item.MetalCategory).Trim() && x.MetalName == Convert.ToString(item.MetalName)).Select(r => r.WeightType).Distinct().ToList();
+                dataGridView1.Rows[Snu].Cells[2].Value = Convert.ToString(item.WeightType);
 
                 dataGridView1.Rows[Snu].Cells[3].Value = Convert.ToString(item.KachchiFine);
                 dataGridView1.Rows[Snu].Cells[4].Value = Convert.ToString(item.AmountWeight);
@@ -284,17 +285,19 @@ namespace SilverGold
             dataGridView1.Focus();
             
         }
+
+
         #endregion
 
 
-       
+
 
         private void Company_Load(object sender, EventArgs e)
         {
             this.toolStripMenu_Create.Click += new EventHandler(btnCreate_Click);
             this.toolStripMenu_Update.Click += new EventHandler(btnupdate_Click);
             this.toolStripMenuI_Refresh.Click += new EventHandler(btnrefresh_Click);
-            this.toolStripMenu_OK.Click += new EventHandler(btnOK_Click);          
+            this.toolStripMenu_OK.Click += new EventHandler(btnOK_Click);
 
             lblKFCate.Text = "";
             lblKFName.Text = "";
@@ -311,8 +314,8 @@ namespace SilverGold
             BindKFColumn();
 
             MetalList = CommanHelper.GetMetalCate().ToList();
-           
 
+            this.dataGridView1.Columns["AmountWeight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -433,7 +436,7 @@ namespace SilverGold
                         if (MetalCat != "" && MetalName != "" && WeightType != "" && KF != "")
                         {
                             Boolean CheckMetalExist = false;
-                            cmd.CommandText = "Select * From Metal  Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WieghtType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
+                            cmd.CommandText = "Select * From Metal  Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WeightType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
                             OleDbDataReader dr = cmd.ExecuteReader();
                             if (dr.Read())
                             {
@@ -443,12 +446,12 @@ namespace SilverGold
 
                             if (CheckMetalExist == false)
                             {
-                                cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WieghtType,KachchiFine,CompanyName,UserId)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
+                                cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WeightType,KachchiFine,CompanyName,UserId)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
                                 cmd.ExecuteNonQuery();
                             }
                             else
                             {
-                                cmd.CommandText = "UPDATE Metal SET CompanyName = '" + CommanHelper.CompName + "',UserId = '" + txtUserId.Text.Trim() + "', MetalCategory='" + MetalCat + "' , MetalName = '" + MetalName + "' , WieghtType = '" + WeightType + "' , KachchiFine = '" + KF + "' Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WieghtType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
+                                cmd.CommandText = "UPDATE Metal SET CompanyName = '" + CommanHelper.CompName + "',UserId = '" + txtUserId.Text.Trim() + "', MetalCategory='" + MetalCat + "' , MetalName = '" + MetalName + "' , WeightType = '" + WeightType + "' , KachchiFine = '" + KF + "' Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WeightType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
                                 cmd.ExecuteNonQuery();
                             }
                         }
@@ -577,7 +580,7 @@ namespace SilverGold
 
                     MetalCat = (item.MetalCategory ?? (object)"").ToString();
                     MetalName = (item.MetalName ?? (object)"").ToString();
-                    WeightType = (item.WieghtType ?? (object)"").ToString();
+                    WeightType = (item.WeightType ?? (object)"").ToString();
                     KF = (item.KachchiFine ?? (object)"").ToString();
 
                     Amt_Weight = Conversion.ConToDec6(item.AmountWeight.ToString());
@@ -604,7 +607,7 @@ namespace SilverGold
                     //---------Insert Data Metal
                     if (MetalCat != "" && MetalName != "" && KF != "")
                     {
-                        cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WieghtType,KachchiFine,CompanyName)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + (item.CompanyName ?? (object)"").ToString() + "')";
+                        cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WeightType,KachchiFine,CompanyName)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + (item.CompanyName ?? (object)"").ToString() + "')";
                         cmd.ExecuteNonQuery();
 
                     }
@@ -668,40 +671,54 @@ namespace SilverGold
 
         private void txtCompanyName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (txtCompanyName.Text.Trim() != "")
+                if (e.KeyChar == 13)
                 {
-                    txtFinancialYear.Focus();
+                    if (txtCompanyName.Text.Trim() != "")
+                    {
+                        txtFinancialYear.Focus();
+                    }
+                    else
+                    {
+                        txtCompanyName.Focus();
+                        return;
+                    }
                 }
-                else
-                {
-                    txtCompanyName.Focus();
-                    return;
-                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void txtFinancialYear_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57 || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
+            try
             {
-                e.Handled = false;
-                if (e.KeyChar == 13)
+                if ((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57 || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
                 {
-                    if (txtFinancialYear.Text.Length == 4)
+                    e.Handled = false;
+                    if (e.KeyChar == 13)
                     {
-                        int _FY = 0;
-                        _FY = Convert.ToInt32(txtFinancialYear.Text);
-                        _FY = _FY + 1;
-                        txtFinancialYear.Text = txtFinancialYear.Text + _FY.ToString();
+                        if (txtFinancialYear.Text.Length == 4)
+                        {
+                            int _FY = 0;
+                            _FY = Convert.ToInt32(txtFinancialYear.Text);
+                            _FY = _FY + 1;
+                            txtFinancialYear.Text = txtFinancialYear.Text + _FY.ToString();
+                        }
+                        dataGridView1.Focus();
                     }
-                    dataGridView1.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -754,7 +771,7 @@ namespace SilverGold
         private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
+            {               
                 lblKFCate.Visible = false;
                 lblKFName.Visible = false;
                 if (dataGridView1.Rows.Count - 1 == dataGridView1.CurrentCell.RowIndex && e.ColumnIndex == 1)
@@ -841,12 +858,13 @@ namespace SilverGold
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             int_keyvalue = e.KeyValue;
+            
             if (e.KeyCode == Keys.Delete)
             {
                 try
                 {
                     //----------Check KF Exist Than Delete Opening Data From KF Table
-                    if (MetalList.Where(x => x.MetalName == dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim() && x.KachchiFine == "Y").Any())
+                    if (MetalList.Where(x => x.MetalName == dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim() && x.KachchiFine == "YES").Any())
                     {
                         if (con.State == ConnectionState.Closed)
                         {
@@ -859,12 +877,12 @@ namespace SilverGold
                     }
 
                     //--------Delete Data from Metal List
-                    var result = (from r in MetalList
-                                  where r.MetalCategory == (dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString() &&
-                                      r.MetalName == (dataGridView1.CurrentRow.Cells[1].Value ?? (object)"").ToString()
-                                  select r).SingleOrDefault();
-                    if (result != null)
-                        MetalList.Remove(result);
+                    //var result = (from r in MetalList
+                    //              where r.MetalCategory == (dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString() &&
+                    //                  r.MetalName == (dataGridView1.CurrentRow.Cells[1].Value ?? (object)"").ToString()
+                    //              select r).SingleOrDefault();
+                    //if (result != null)
+                    //    MetalList.Remove(result);
 
                   
                 }
@@ -903,14 +921,7 @@ namespace SilverGold
                         if (dataGridView1.CurrentCell.Value != null)
                         {
                             DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
-                            tWeight.DataSource = MetalList.Where(r => r.MetalName == _MetalNameCellValue.Trim()).OrderBy(z => z.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
-
-                            if (MetalList.Where(r => r.MetalName == _MetalNameCellValue.Trim() && r.KachchiFine == "Y").Select(x => x.KachchiFine).Distinct().Any())
-                            {
-                                DataGridViewComboBoxCell tKF = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[3];
-                                tKF.DataSource = MetalList.Where(r => r.MetalName == _MetalNameCellValue.Trim()).Select(x => x.KachchiFine).Distinct().ToList();
-                              //  tKF.Value = 0;                       
-                            }
+                            tWeight.DataSource = MetalList.Where(r => r.MetalName == _MetalNameCellValue.Trim()).OrderBy(z => z.WeightType).Select(x => x.WeightType).Distinct().ToList();
                         }
                     }
                    
@@ -957,24 +968,30 @@ namespace SilverGold
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView1.CurrentCell.ColumnIndex == col_Amt.Index)
+            try
             {
-                e.Control.KeyPress -= NumericCheckHandler;
-                e.Control.KeyPress += NumericCheckHandler;
-            }
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(0) || dataGridView1.CurrentCell.ColumnIndex.Equals(1) || dataGridView1.CurrentCell.ColumnIndex.Equals(2))
-            {
-                e.Control.KeyPress += Control_KeyPress; // Depending on your requirement you can register any key event for this.
-            }
-            if (dataGridView1.CurrentCellAddress.X == col_MCate.DisplayIndex || dataGridView1.CurrentCellAddress.X == col_MNane.DisplayIndex || dataGridView1.CurrentCellAddress.X == col_Weight.DisplayIndex)
-            {
-                ComboBox cb = e.Control as ComboBox;
-                if (cb != null)
-                {                    
-                    cb.DropDownStyle = ComboBoxStyle.DropDown;
+                if (dataGridView1.CurrentCell.ColumnIndex == col_Amt.Index)
+                {
+                    e.Control.KeyPress -= NumericCheckHandler;
+                    e.Control.KeyPress += NumericCheckHandler;
+                }
+                if (dataGridView1.CurrentCell.ColumnIndex.Equals(0) || dataGridView1.CurrentCell.ColumnIndex.Equals(1) || dataGridView1.CurrentCell.ColumnIndex.Equals(2))
+                {
+                    e.Control.KeyPress += Control_KeyPress; // Depending on your requirement you can register any key event for this.
+                }
+                if (dataGridView1.CurrentCellAddress.X == col_MCate.DisplayIndex || dataGridView1.CurrentCellAddress.X == col_MNane.DisplayIndex || dataGridView1.CurrentCellAddress.X == col_Weight.DisplayIndex)
+                {
+                    ComboBox cb = e.Control as ComboBox;
+                    if (cb != null)
+                    {
+                        cb.DropDownStyle = ComboBoxStyle.DropDown;
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private static void Control_KeyPress(object sender, KeyPressEventArgs e)
@@ -998,19 +1015,37 @@ namespace SilverGold
 
         private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView2.CurrentCell.ColumnIndex == col2.Index || dataGridView2.CurrentCell.ColumnIndex == col3.Index ||
-                dataGridView2.CurrentCell.ColumnIndex == col4.Index || dataGridView2.CurrentCell.ColumnIndex == col5.Index || 
-                dataGridView2.CurrentCell.ColumnIndex == col6.Index)
+            try
             {
-                e.Control.KeyPress -= NumericCheckHandler;
-                e.Control.KeyPress += NumericCheckHandler;
+                if (dataGridView2.CurrentCell.ColumnIndex == col2.Index || dataGridView2.CurrentCell.ColumnIndex == col3.Index ||
+                    dataGridView2.CurrentCell.ColumnIndex == col4.Index || dataGridView2.CurrentCell.ColumnIndex == col5.Index ||
+                    dataGridView2.CurrentCell.ColumnIndex == col6.Index)
+                {
+                    e.Control.KeyPress -= NumericCheckHandler;
+                    e.Control.KeyPress += NumericCheckHandler;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
+      
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             try
             {
+                if (e.ColumnIndex == 1)
+                {
+                    for (int row = 0; row < dataGridView1.Rows.Count - 1; row++)
+                    {
+                        if (dataGridView1.Rows[row].Cells[1].Value != null && row != e.RowIndex && dataGridView1.Rows[row].Cells[1].Value.Equals(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value))
+                        {
+                            MessageBox.Show("Value: " + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value + " already in the grid!");
+                        }
+                    }
+                }
                 //-------------Metal Category
 
                 if (dataGridView1.CurrentCellAddress.X == col_MCate.DisplayIndex)
@@ -1027,7 +1062,7 @@ namespace SilverGold
                             MetalEntity oMetal = new MetalEntity();
                             oMetal.MetalCategory = e.FormattedValue.ToString();
                             oMetal.MetalName = "";
-                            oMetal.WieghtType = "";
+                            oMetal.WeightType = "";
                             oMetal.Sno = max;
                             oMetal.CompanyName = txtCompanyName.Text.Trim();
                             MetalList.Add(oMetal);
@@ -1037,7 +1072,17 @@ namespace SilverGold
                     _MetalCateCellValue = e.FormattedValue.ToString();
                     DataGridViewComboBoxCell t1 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[0];
                     t1.DataSource = MetalList.Select(r => r.MetalCategory).Distinct().ToList();
-                    dataGridView1.CurrentRow.Cells[0].Value = e.FormattedValue.ToString();
+                    dataGridView1.CurrentRow.Cells[0].Value = e.FormattedValue.ToString().Trim();
+
+                    if (e.FormattedValue.ToString().ToUpper() != "CASH" && e.FormattedValue.ToString().Trim() != "")
+                    {
+                        DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
+                        tWeight.DataSource = MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().ToList();
+                        dataGridView1.CurrentRow.Cells[2].Value = MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().ToList()[0].ToString();
+
+                        dataGridView1.CurrentRow.Cells[3].Value = "NO";
+                     
+                    }
                 }
 
                 //-------------Metal Name
@@ -1057,7 +1102,7 @@ namespace SilverGold
                                     MetalEntity oMetal = new MetalEntity();
                                     oMetal.MetalCategory = _MetalCateCellValue;
                                     oMetal.MetalName = e.FormattedValue.ToString();
-                                    oMetal.WieghtType = "";
+                                    oMetal.WeightType = "";
                                     oMetal.Sno = max;
                                     oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
                                 }
@@ -1067,7 +1112,7 @@ namespace SilverGold
                                     {
                                         var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
                                         update.MetalName = e.FormattedValue.ToString();
-                                        update.KachchiFine = "N";
+                                        update.KachchiFine = "NO";
                                     }
                                 }
                             }
@@ -1076,6 +1121,12 @@ namespace SilverGold
                             DataGridViewComboBoxCell t2 = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[1];
                             t2.DataSource = MetalList.Where(x => x.MetalCategory == _MetalCateCellValue).Select(r => r.MetalName).Distinct().ToList();
                             dataGridView1.CurrentRow.Cells[1].Value = e.FormattedValue.ToString();
+
+                            var _KF = MetalList.Where(x => x.MetalCategory == _MetalCateCellValue && x.MetalName == e.FormattedValue.ToString()).Select(r => r.KachchiFine).Distinct().FirstOrDefault();
+                            if (e.FormattedValue.ToString().ToUpper() != "CASH" && e.FormattedValue.ToString().Trim() != "")
+                            {
+                                dataGridView1.CurrentRow.Cells[3].Value = _KF.ToString();
+                            }
                         }
                     }
 
@@ -1091,36 +1142,35 @@ namespace SilverGold
                             var result = (from r in MetalList where r.MetalName == _MetalNameCellValue.Trim() select r).ToList();
                             foreach (var item in result)
                             {
-                                if (!MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WieghtType == e.FormattedValue.ToString()).Any())
+                                if (!MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WeightType == e.FormattedValue.ToString()).Any())
                                 {
                                     var max = 0;
                                     if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
                                     MetalEntity oMetal = new MetalEntity();
                                     oMetal.MetalCategory = "";
                                     oMetal.MetalName = _MetalNameCellValue;
-                                    oMetal.WieghtType = e.FormattedValue.ToString();
+                                    oMetal.WeightType = e.FormattedValue.ToString();
                                     oMetal.Sno = max;
                                     oMetal.CompanyName = txtCompanyName.Text.Trim();
                                     MetalList.Add(oMetal);
                                 }
                                 else
                                 {
-                                    if (item.WieghtType == "")
+                                    if (item.WeightType == "")
                                     {
                                         var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
-                                        update.WieghtType = e.FormattedValue.ToString();
-                                        update.KachchiFine = "N";
+                                        update.WeightType = e.FormattedValue.ToString();
+                                        update.KachchiFine = "NO";
                                     }
                                 }
                             }
 
                             _MetalNameCellValue = e.FormattedValue.ToString();
                             DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
-                            tWeight.DataSource = MetalList.Select(r => r.WieghtType).Distinct().ToList();
+                            tWeight.DataSource = MetalList.Select(r => r.WeightType).Distinct().ToList();
                             dataGridView1.CurrentRow.Cells[2].Value = e.FormattedValue.ToString();
                         }
                     }
-
                 }
                 if (dataGridView1.CurrentRow.Cells[5].Value == null)
                 {
@@ -1140,7 +1190,7 @@ namespace SilverGold
             {
                 if (dataGridView1.CurrentRow.Cells[1].Value != null)
                 {
-                    if ((MetalList.Where(x => x.MetalName == dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim() && x.KachchiFine == "Y").Any()) && e.ColumnIndex == 4)
+                    if ((MetalList.Where(x => x.MetalName == dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim() && x.KachchiFine == "YES").Any()) && e.ColumnIndex == 4)
                     {
                         lblKFCate.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString().Trim();
                         lblKFName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim();
@@ -1167,9 +1217,10 @@ namespace SilverGold
                         dataGridView2.Focus();
                     }
                 }
-                if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString().ToUpper() == "CASH" && e.ColumnIndex == 2)
+                if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString().ToUpper() == "CASH" )
                 {
-                    dataGridView1.CurrentCell.ReadOnly = true;
+                    if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+                        dataGridView1.CurrentCell.ReadOnly = true;
                 }
                 if (e.ColumnIndex == 1)
                 {
@@ -1188,13 +1239,13 @@ namespace SilverGold
                         _MetalNameCellValue = dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim();
                         DataGridViewComboBoxCell cmbWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
                         cmbWeight.Dispose();                     
-                        if (MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WieghtType != "").Select(r => r.WieghtType).Distinct().Any())
+                        if (MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WeightType != "").Select(r => r.WeightType).Distinct().Any())
                         {
-                            cmbWeight.DataSource = MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim()).Select(r => r.WieghtType).Distinct().ToList();
+                            cmbWeight.DataSource = MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim()).Select(r => r.WeightType).Distinct().ToList();
                         }
                         else
                         {
-                            cmbWeight.DataSource = MetalList.OrderBy(z => z.WieghtType).Select(r => r.WieghtType).Distinct().ToList();
+                            cmbWeight.DataSource = MetalList.OrderBy(z => z.WeightType).Select(r => r.WeightType).Distinct().ToList();
                         }
                     }
                 }
@@ -1222,25 +1273,39 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void dataGridView3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (CommanHelper.CompName.Trim().ToString() == dataGridView3.CurrentRow.Cells[0].Value.ToString().Trim())
+                if (e.KeyChar == 13)
                 {
-                    _CompName = dataGridView3.CurrentRow.Cells[0].Value.ToString();
-                    BindCompany();
+                    if (CommanHelper.CompName.Trim().ToString() == (dataGridView3.CurrentRow.Cells[0].Value ?? (object)"").ToString().Trim())
+                    {
+                        _CompName = dataGridView3.CurrentRow.Cells[0].Value.ToString();
+                        BindCompany();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void dataGridView2_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            Total();
+            try
+            {
+                Total();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void toolStripMenu_CompanyDetails_Click(object sender, EventArgs e)
@@ -1248,5 +1313,29 @@ namespace SilverGold
             dataGridView3.Focus();
         }
 
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    for (int row = 0; row < dataGridView1.Rows.Count - 1; row++)
+                    {
+                        if (dataGridView1.Rows[row].Cells[1].Value != null && row != e.RowIndex && dataGridView1.Rows[row].Cells[1].Value.Equals(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value))
+                        {
+                            MessageBox.Show("Value: " + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value + " already in the grid!");
+                           
+                        }
+                    }
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+       
     }
 }

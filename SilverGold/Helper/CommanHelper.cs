@@ -103,14 +103,14 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno,CompanyName,UserId From Metal", con);
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WeightType,KachchiFine,Sno,CompanyName,UserId From Metal ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         MetalEntity oMetal = new MetalEntity();
                         oMetal.MetalName = dr["MetalName"].ToString();
                         oMetal.MetalCategory = dr["MetalCategory"].ToString();
-                        oMetal.WieghtType = dr["WieghtType"].ToString();
+                        oMetal.WeightType = dr["WeightType"].ToString();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString();
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
                         oMetal.CompanyName = dr["CompanyName"].ToString();
@@ -128,6 +128,57 @@ namespace SilverGold.Helper
         }
 
 
+        public static void GetMetalCate_Account(ComboBox cmb)
+        {            
+            ConnectionClass objCon = new ConnectionClass();
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) From Metal", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString().Trim());
+                    }
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        public static void GetWeightType_Account(ComboBox cmb)
+        {
+
+            ConnectionClass objCon = new ConnectionClass();
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(WeightType) from Metal Where WeightType <> ''", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString().Trim());
+                    }
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
         public static List<MetalEntity> GetCompanyMetal()
         {
             List<MetalEntity> MetalList = new List<MetalEntity>();
@@ -137,14 +188,14 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,[Metal.MetalName] AS MetalName,WieghtType,KachchiFine,Amount_Weight,DrCr,[CompanyOpening.CompanyName] AS CompanyName,[CompanyOpening.UserId] AS UserId,[Metal.Sno] AS Sno  from Metal LEFT OUTER JOIN CompanyOpening ON Metal.MetalName  = CompanyOpening.MetalName", con);
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,[Metal.MetalName] AS MetalName,WeightType,KachchiFine,Amount_Weight,DrCr,[CompanyOpening.CompanyName] AS CompanyName,[CompanyOpening.UserId] AS UserId,[Metal.Sno] AS Sno  from Metal LEFT OUTER JOIN CompanyOpening ON Metal.MetalName  = CompanyOpening.MetalName ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         MetalEntity oMetal = new MetalEntity();
                         oMetal.MetalName = dr["MetalName"].ToString().Trim();
                         oMetal.MetalCategory = dr["MetalCategory"].ToString().Trim();
-                        oMetal.WieghtType = dr["WieghtType"].ToString().Trim();
+                        oMetal.WeightType = dr["WeightType"].ToString().Trim();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString().Trim();
                         oMetal.DrCr = dr["DrCr"].ToString().Trim();
                         oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString()); 
@@ -163,6 +214,58 @@ namespace SilverGold.Helper
                 MessageBox.Show(ex.Message.ToString());
             } return MetalList;
         }
+
+        public static void GetMetalCategory(ComboBox cmb)
+        {
+            
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString().Trim());
+                    }
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            } 
+        }
+
+
+        public static void GetWeightType(ComboBox cmb)
+        {
+
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(WeightType) from Metal Where WeightType <> ''", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString().Trim());
+                    }
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
 
 
         public static List<OpeningMCXEntity> BindMCXDefaultOpening()
@@ -532,5 +635,35 @@ namespace SilverGold.Helper
             }
             return ProductList;
         }
+
+        public static Boolean CheckMetalName(String strValue, DataGridView dgrd)
+        {
+            Boolean _CheckValue = false;
+
+            //foreach (DataGridViewRow drow in dgrd.Rows)
+            //{
+            //    if (strValue.Trim() == (drow.Cells[1].Value ?? (object)"").ToString().Trim())
+            //    {
+            //        _CheckValue = true;
+            //    }
+            //}
+
+
+            for (int row = 0; row < dgrd.Rows.Count; row++)
+            {
+
+                if (dgrd.Rows[row].Cells[1].Value != null &&
+                  dgrd.Rows[row].Cells[1].Value.Equals(strValue.Trim()))
+                {
+                    _CheckValue = true;
+                }
+                else
+                {
+                    //Add To datagridview
+                }
+            }
+            return _CheckValue;
+        }
+
     }
 }

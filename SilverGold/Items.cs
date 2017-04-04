@@ -37,6 +37,9 @@ namespace SilverGold
             this.Height = CommanHelper.FormY;
             con = new OleDbConnection();
             objCon = new ConnectionClass();
+            this.toolStripMenu_Save.Click += new EventHandler(btnSave_Click);
+            this.toolStripMenu_Refresh.Click += new EventHandler(btnRefresh_Click);
+            this.toolStripMenu_Delete.Click += new EventHandler(btnDelete_Click);
             if (CommanHelper.CompName != "" && CommanHelper.Com_DB_PATH != "" && CommanHelper.Com_DB_NAME != "")
             {
                 con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
@@ -49,13 +52,13 @@ namespace SilverGold
             cmbKF.SelectedIndex = 0;
             if (CommanHelper.CompName != "" && CommanHelper.Com_DB_PATH != "" && CommanHelper.Com_DB_NAME != "")
             {
-                cmbMetalCat.DataSource = CommanHelper.GetCompanyMetal().Select(x => x.MetalCategory).Distinct().ToList();
-                cmbWeightType.DataSource = CommanHelper.GetCompanyMetal().OrderBy(r=>r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
+                CommanHelper.GetMetalCategory(cmbMetalCat);
+                CommanHelper.GetWeightType(cmbWeightType);
             }
             else
             {
-                cmbMetalCat.DataSource = CommanHelper.GetMetalCate().Select(x => x.MetalCategory).Distinct().ToList();
-                cmbWeightType.DataSource = CommanHelper.GetMetalCate().OrderBy(r => r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
+                CommanHelper.GetMetalCate_Account(cmbMetalCat);
+                CommanHelper.GetWeightType_Account(cmbWeightType);
             }
             cmbMetalCat.SelectedIndex = -1;
             BindMetal();
@@ -72,16 +75,21 @@ namespace SilverGold
                     cmbMetalCat.Focus();
                     return;
                 }
-                if (txtMetalName.Text.Trim() == "")
-                {
-                    txtMetalName.Focus();
-                    return;
-                }
-
+               
                 if (cmbKF.Text.Trim() == "")
                 {
                     cmbKF.Focus();
                     return;
+                }
+
+                if (_Sno == 0)
+                {
+                    if (CheckItemExist(cmbMetalCat.Text.Trim(), txtMetalName.Text.Trim()) == true)
+                    {
+                        MessageBox.Show("Already Exist Metal.", "Metal", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        txtMetalName.Focus();
+                        return;
+                    }
                 }
 
                 if (con.State == ConnectionState.Closed)
@@ -92,12 +100,12 @@ namespace SilverGold
                 OleDbCommand cmd = new OleDbCommand("", con, Tran);
                 if (_Sno > 0)
                 {
-                    cmd.CommandText = "UPDATE Metal SET MetalCategory='" + cmbMetalCat.Text.Trim() + "',MetalName='" + txtMetalName.Text.Trim() + "',WieghtType='" + cmbWeightType.Text.Trim() + "',KachchiFine='" + cmbKF.Text.Trim() + "' WHERE Sno = " + _Sno + "";
+                    cmd.CommandText = "UPDATE Metal SET MetalCategory='" + cmbMetalCat.Text.Trim() + "',MetalName='" + txtMetalName.Text.Trim() + "',WeightType='" + cmbWeightType.Text.Trim() + "',KachchiFine='" + cmbKF.Text.Trim() + "' WHERE Sno = " + _Sno + "";
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WieghtType,KachchiFine,CompanyName,UserId)VALUES('" + cmbMetalCat.Text.Trim() + "','" + txtMetalName.Text.Trim() + "','" + cmbWeightType.Text.Trim() + "','" + cmbKF.Text.Trim() + "','" + CommanHelper.CompName + "','" + CommanHelper.UserId + "')";
+                    cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WeightType,KachchiFine,CompanyName,UserId)VALUES('" + cmbMetalCat.Text.Trim() + "','" + txtMetalName.Text.Trim() + "','" + cmbWeightType.Text.Trim() + "','" + cmbKF.Text.Trim() + "','" + CommanHelper.CompName + "','" + CommanHelper.UserId + "')";
                     cmd.ExecuteNonQuery();
                 }
                 Tran.Commit();
@@ -115,25 +123,44 @@ namespace SilverGold
 
         #region Helper
 
+        private Boolean CheckItemExist(String _MetalCategory, String _MetalName)
+        {
+            Boolean _Check = false;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            OleDbCommand cmd = new OleDbCommand("Select * from Metal Where MetalCategory = '" + _MetalCategory + "' and MetalName = '" + _MetalName + "'", con);
+            OleDbDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                _Check = true;
+            }
+            con.Close();
+
+            return _Check;
+        }
+
         private void ClearControl()
         {
+
+            if (CommanHelper.CompName != "" && CommanHelper.Com_DB_PATH != "" && CommanHelper.Com_DB_NAME != "")
+            {
+                CommanHelper.GetMetalCategory(cmbMetalCat);
+                CommanHelper.GetWeightType(cmbWeightType);
+            }
+            else
+            {
+                CommanHelper.GetMetalCate_Account(cmbMetalCat);
+                CommanHelper.GetWeightType_Account(cmbWeightType);
+            }
+            cmbMetalCat.SelectedIndex = -1;
             cmbKF.Text = "";
-            
+            cmbMetalCat.Text = "";
             txtMetalName.Clear();
             cmbWeightType.SelectedIndex = -1;
             cmbWeightType.Text = "";
             _Sno = 0;
-            if (CommanHelper.CompName != "" && CommanHelper.Com_DB_PATH != "" && CommanHelper.Com_DB_NAME != "")
-            {
-                cmbMetalCat.DataSource = CommanHelper.GetCompanyMetal().Select(x => x.MetalCategory).Distinct().ToList();
-                cmbWeightType.DataSource = CommanHelper.GetCompanyMetal().OrderBy(r => r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
-            }
-            else
-            {
-                cmbMetalCat.DataSource = CommanHelper.GetMetalCate().Select(x => x.MetalCategory).Distinct().ToList();
-                cmbWeightType.DataSource = CommanHelper.GetMetalCate().OrderBy(r => r.WieghtType).Select(x => x.WieghtType).Distinct().ToList();
-            }
-            cmbMetalCat.SelectedIndex = -1;
         }
 
         private void Bind()
@@ -151,9 +178,9 @@ namespace SilverGold
             dataGridView1.Columns.Add(col2);
 
             DataGridViewColumn col3 = new DataGridViewTextBoxColumn();
-            col3.DataPropertyName = "WieghtType";
-            col3.HeaderText = "WieghtType";
-            col3.Name = "WieghtType";
+            col3.DataPropertyName = "WeightType";
+            col3.HeaderText = "WeightType";
+            col3.Name = "WeightType";
             dataGridView1.Columns.Add(col3);
 
             DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
@@ -179,19 +206,19 @@ namespace SilverGold
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WieghtType,KachchiFine,Sno From Metal", con);
+            OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WeightType,KachchiFine,Sno From Metal Order By MetalCategory ASC", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 MetalEntity oMetal = new MetalEntity();
                 oMetal.MetalCategory = dr["MetalCategory"].ToString();
                 oMetal.MetalName = dr["MetalName"].ToString();              
-                oMetal.WieghtType = dr["WieghtType"].ToString();
+                oMetal.WeightType = dr["WeightType"].ToString();
                 oMetal.KachchiFine = dr["KachchiFine"].ToString();
                 oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
                 MetalList.Add(oMetal);
             }
-            dataGridView1.DataSource = MetalList.Select(x => new { x.MetalCategory, x.MetalName, x.WieghtType, x.KachchiFine, x.Sno }).ToList();
+            dataGridView1.DataSource = MetalList.Select(x => new { x.MetalCategory, x.MetalName, x.WeightType, x.KachchiFine, x.Sno }).ToList();
             con.Close();
         }
 
@@ -313,7 +340,32 @@ namespace SilverGold
 
         private void txtMetalName_Enter(object sender, EventArgs e)
         {
+            txtMetalName.BackColor = Color.Cyan;
+        }
 
+        private void txtMetalName_Leave(object sender, EventArgs e)
+        {
+            txtMetalName.BackColor = Color.White;
+        }
+
+        private void cmbWeightType_Enter(object sender, EventArgs e)
+        {
+            cmbWeightType.BackColor = Color.Cyan;
+        }
+
+        private void cmbWeightType_Leave(object sender, EventArgs e)
+        {
+            cmbWeightType.BackColor = Color.White;
+        }
+
+        private void cmbKF_Enter(object sender, EventArgs e)
+        {
+            cmbKF.BackColor = Color.Cyan;
+        }
+
+        private void cmbKF_Leave(object sender, EventArgs e)
+        {
+            cmbKF.BackColor = Color.White;
         }
     }
 }
