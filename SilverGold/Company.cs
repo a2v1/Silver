@@ -44,7 +44,7 @@ namespace SilverGold
         DataGridViewColumn col6 = new DataGridViewTextBoxColumn();
 
         DataGridView.HitTestInfo hti;
-        private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(NumericCheck);
+        private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(CommanHelper.NumericCheck);
 
 
         #endregion
@@ -1001,18 +1001,7 @@ namespace SilverGold
             e.KeyChar = ch[0];
 
         }
-        private static void NumericCheck(object sender, KeyPressEventArgs e)
-        {
-            DataGridViewTextBoxEditingControl s = sender as DataGridViewTextBoxEditingControl;
-            if (s != null && (e.KeyChar == '.' || e.KeyChar == ','))
-            {
-                e.KeyChar = System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
-                e.Handled = s.Text.Contains(e.KeyChar);
-            }
-            else
-                e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
-        }
-
+       
         private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

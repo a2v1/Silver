@@ -623,37 +623,47 @@ namespace SilverGold.Helper
             List<Product> ProductList = new List<Product>();
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
-                 con.Open();
-                 OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId From Product", con);
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId From Product", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     Product oProduct = new Product(dr["Category"].ToString(), dr["Unit"].ToString(), Conversion.ConToDec6(dr["Weight_Packet"].ToString()), dr["ProductName"].ToString(), dr["SubGroup"].ToString(), dr["PGroup"].ToString(), Conversion.ConToDec6(dr["Opening"].ToString()), Conversion.ConToDec6(dr["Pcs"].ToString()), Conversion.ConToDec6(dr["Tunch"].ToString()), Conversion.ConToDec6(dr["Westage"].ToString()), Conversion.ConToDec6(dr["LabourRate"].ToString()), Conversion.ConToDec6(dr["Fine"].ToString()), Conversion.ConToDec6(dr["Amount"].ToString()), dr["RawDefine"].ToString(), Conversion.ConToDT(dr["OpenDate"].ToString()), dr["Narration"].ToString(), dr["Company"].ToString(), dr["UserId"].ToString());
                     ProductList.Add(oProduct);
                 }
+                Product _Product = new Product("","",0, "ALL PRODUCT","","",0,0,0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
+                ProductList.Insert(0,_Product);
+                
                 con.Close();
             }
             return ProductList;
         }
 
+
+        public static void GetProduct(DataGridViewComboBoxColumn cmb)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                cmb.Items.Add("ALL PRODUCT");
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }               
+                con.Close();
+            }
+        }
+
         public static Boolean CheckMetalName(String strValue, DataGridView dgrd)
         {
             Boolean _CheckValue = false;
-
-            //foreach (DataGridViewRow drow in dgrd.Rows)
-            //{
-            //    if (strValue.Trim() == (drow.Cells[1].Value ?? (object)"").ToString().Trim())
-            //    {
-            //        _CheckValue = true;
-            //    }
-            //}
-
-
             for (int row = 0; row < dgrd.Rows.Count; row++)
             {
 
-                if (dgrd.Rows[row].Cells[1].Value != null &&
-                  dgrd.Rows[row].Cells[1].Value.Equals(strValue.Trim()))
+                if (dgrd.Rows[row].Cells[1].Value != null && dgrd.Rows[row].Cells[1].Value.Equals(strValue.Trim()))
                 {
                     _CheckValue = true;
                 }

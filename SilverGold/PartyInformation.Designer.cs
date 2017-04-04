@@ -36,6 +36,8 @@ namespace SilverGold
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel_ShowInTrail = new System.Windows.Forms.Panel();
+            this.cmbShowtrail = new System.Windows.Forms.ComboBox();
             this.Panel_McxBullion = new System.Windows.Forms.Panel();
             this.cmbBullion = new System.Windows.Forms.ComboBox();
             this.Panel_Category = new System.Windows.Forms.Panel();
@@ -44,6 +46,14 @@ namespace SilverGold
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtopnarr = new System.Windows.Forms.TextBox();
             this.txtoprs = new System.Windows.Forms.TextBox();
+            this.grpBoxWithCreditLimit = new System.Windows.Forms.GroupBox();
+            this.chkWithCreditLimit = new System.Windows.Forms.CheckBox();
+            this.groBoxCreditPeriod = new System.Windows.Forms.GroupBox();
+            this.rateupdate_radio_N = new System.Windows.Forms.RadioButton();
+            this.rateupdate_radio = new System.Windows.Forms.RadioButton();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbDays = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
@@ -51,14 +61,6 @@ namespace SilverGold
             this.txtbanklimit = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.groBoxCreditPeriod = new System.Windows.Forms.GroupBox();
-            this.rateupdate_radio_N = new System.Windows.Forms.RadioButton();
-            this.rateupdate_radio = new System.Windows.Forms.RadioButton();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cmbDays = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.grpBoxWithCreditLimit = new System.Windows.Forms.GroupBox();
-            this.chkWithCreditLimit = new System.Windows.Forms.CheckBox();
             this.Panel_LotGenerate = new System.Windows.Forms.Panel();
             this.cmb_gen_type = new System.Windows.Forms.ComboBox();
             this.lblLotGenerateIn = new System.Windows.Forms.Label();
@@ -67,7 +69,6 @@ namespace SilverGold
             this.plncmbrs = new System.Windows.Forms.Panel();
             this.cmbrs = new System.Windows.Forms.ComboBox();
             this.cmbIntroducer = new System.Windows.Forms.ComboBox();
-            this.cmbShowtrail = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblLot = new System.Windows.Forms.Label();
@@ -95,22 +96,28 @@ namespace SilverGold
             this.btnsave = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnrefresh = new System.Windows.Forms.Button();
-            this.panel_ShowInTrail = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenu_Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Refersh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenu_Report = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewCreditPeriod = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox1.SuspendLayout();
+            this.panel_ShowInTrail.SuspendLayout();
             this.Panel_McxBullion.SuspendLayout();
             this.Panel_Category.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groBoxCreditPeriod.SuspendLayout();
             this.grpBoxWithCreditLimit.SuspendLayout();
+            this.groBoxCreditPeriod.SuspendLayout();
             this.Panel_LotGenerate.SuspendLayout();
             this.plnlot.SuspendLayout();
             this.plncmbrs.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel_ShowInTrail.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -165,6 +172,31 @@ namespace SilverGold
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PartyInformation";
+            // 
+            // panel_ShowInTrail
+            // 
+            this.panel_ShowInTrail.Controls.Add(this.cmbShowtrail);
+            this.panel_ShowInTrail.Location = new System.Drawing.Point(240, 18);
+            this.panel_ShowInTrail.Name = "panel_ShowInTrail";
+            this.panel_ShowInTrail.Size = new System.Drawing.Size(73, 28);
+            this.panel_ShowInTrail.TabIndex = 58;
+            // 
+            // cmbShowtrail
+            // 
+            this.cmbShowtrail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShowtrail.FormattingEnabled = true;
+            this.cmbShowtrail.Items.AddRange(new object[] {
+            "NO",
+            "YES"});
+            this.cmbShowtrail.Location = new System.Drawing.Point(4, 3);
+            this.cmbShowtrail.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbShowtrail.Name = "cmbShowtrail";
+            this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
+            this.cmbShowtrail.Sorted = true;
+            this.cmbShowtrail.TabIndex = 1;
+            this.cmbShowtrail.Enter += new System.EventHandler(this.cmbShowtrail_Enter);
+            this.cmbShowtrail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShowtrail_KeyPress);
+            this.cmbShowtrail.Leave += new System.EventHandler(this.cmbShowtrail_Leave);
             // 
             // Panel_McxBullion
             // 
@@ -294,6 +326,102 @@ namespace SilverGold
             this.txtoprs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtoprs_KeyPress);
             this.txtoprs.Leave += new System.EventHandler(this.txtoprs_Leave);
             // 
+            // grpBoxWithCreditLimit
+            // 
+            this.grpBoxWithCreditLimit.Controls.Add(this.chkWithCreditLimit);
+            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(7, 281);
+            this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
+            this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
+            this.grpBoxWithCreditLimit.TabIndex = 15;
+            this.grpBoxWithCreditLimit.TabStop = false;
+            this.grpBoxWithCreditLimit.Visible = false;
+            // 
+            // chkWithCreditLimit
+            // 
+            this.chkWithCreditLimit.AutoSize = true;
+            this.chkWithCreditLimit.Location = new System.Drawing.Point(6, 15);
+            this.chkWithCreditLimit.Name = "chkWithCreditLimit";
+            this.chkWithCreditLimit.Size = new System.Drawing.Size(111, 17);
+            this.chkWithCreditLimit.TabIndex = 0;
+            this.chkWithCreditLimit.Text = "With Credit Period";
+            this.chkWithCreditLimit.UseVisualStyleBackColor = true;
+            this.chkWithCreditLimit.CheckedChanged += new System.EventHandler(this.chkWithCreditLimit_CheckedChanged);
+            this.chkWithCreditLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chkWithCreditLimit_KeyPress);
+            // 
+            // groBoxCreditPeriod
+            // 
+            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio_N);
+            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio);
+            this.groBoxCreditPeriod.Controls.Add(this.label19);
+            this.groBoxCreditPeriod.Controls.Add(this.cmbDays);
+            this.groBoxCreditPeriod.Controls.Add(this.label18);
+            this.groBoxCreditPeriod.Location = new System.Drawing.Point(148, 282);
+            this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
+            this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
+            this.groBoxCreditPeriod.TabIndex = 16;
+            this.groBoxCreditPeriod.TabStop = false;
+            this.groBoxCreditPeriod.Visible = false;
+            // 
+            // rateupdate_radio_N
+            // 
+            this.rateupdate_radio_N.AutoSize = true;
+            this.rateupdate_radio_N.Location = new System.Drawing.Point(269, 15);
+            this.rateupdate_radio_N.Name = "rateupdate_radio_N";
+            this.rateupdate_radio_N.Size = new System.Drawing.Size(39, 17);
+            this.rateupdate_radio_N.TabIndex = 4;
+            this.rateupdate_radio_N.TabStop = true;
+            this.rateupdate_radio_N.Text = "No";
+            this.rateupdate_radio_N.UseVisualStyleBackColor = true;
+            this.rateupdate_radio_N.Visible = false;
+            // 
+            // rateupdate_radio
+            // 
+            this.rateupdate_radio.AutoSize = true;
+            this.rateupdate_radio.Location = new System.Drawing.Point(225, 15);
+            this.rateupdate_radio.Name = "rateupdate_radio";
+            this.rateupdate_radio.Size = new System.Drawing.Size(43, 17);
+            this.rateupdate_radio.TabIndex = 3;
+            this.rateupdate_radio.TabStop = true;
+            this.rateupdate_radio.Text = "Yes";
+            this.rateupdate_radio.UseVisualStyleBackColor = true;
+            this.rateupdate_radio.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(149, 18);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 15);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Rate Update";
+            this.label19.Visible = false;
+            // 
+            // cmbDays
+            // 
+            this.cmbDays.FormattingEnabled = true;
+            this.cmbDays.Location = new System.Drawing.Point(89, 13);
+            this.cmbDays.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbDays.Name = "cmbDays";
+            this.cmbDays.Size = new System.Drawing.Size(57, 21);
+            this.cmbDays.TabIndex = 1;
+            this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
+            this.cmbDays.Enter += new System.EventHandler(this.cmbDays_Enter);
+            this.cmbDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDays_KeyPress);
+            this.cmbDays.Leave += new System.EventHandler(this.cmbDays_Leave);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(5, 18);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 15);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Credit  Period";
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
@@ -373,102 +501,6 @@ namespace SilverGold
             this.label24.Size = new System.Drawing.Size(59, 15);
             this.label24.TabIndex = 19;
             this.label24.Text = "Category:";
-            // 
-            // groBoxCreditPeriod
-            // 
-            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio_N);
-            this.groBoxCreditPeriod.Controls.Add(this.rateupdate_radio);
-            this.groBoxCreditPeriod.Controls.Add(this.label19);
-            this.groBoxCreditPeriod.Controls.Add(this.cmbDays);
-            this.groBoxCreditPeriod.Controls.Add(this.label18);
-            this.groBoxCreditPeriod.Location = new System.Drawing.Point(148, 282);
-            this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
-            this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
-            this.groBoxCreditPeriod.TabIndex = 16;
-            this.groBoxCreditPeriod.TabStop = false;
-            this.groBoxCreditPeriod.Visible = false;
-            // 
-            // rateupdate_radio_N
-            // 
-            this.rateupdate_radio_N.AutoSize = true;
-            this.rateupdate_radio_N.Location = new System.Drawing.Point(269, 15);
-            this.rateupdate_radio_N.Name = "rateupdate_radio_N";
-            this.rateupdate_radio_N.Size = new System.Drawing.Size(39, 17);
-            this.rateupdate_radio_N.TabIndex = 4;
-            this.rateupdate_radio_N.TabStop = true;
-            this.rateupdate_radio_N.Text = "No";
-            this.rateupdate_radio_N.UseVisualStyleBackColor = true;
-            this.rateupdate_radio_N.Visible = false;
-            // 
-            // rateupdate_radio
-            // 
-            this.rateupdate_radio.AutoSize = true;
-            this.rateupdate_radio.Location = new System.Drawing.Point(225, 15);
-            this.rateupdate_radio.Name = "rateupdate_radio";
-            this.rateupdate_radio.Size = new System.Drawing.Size(43, 17);
-            this.rateupdate_radio.TabIndex = 3;
-            this.rateupdate_radio.TabStop = true;
-            this.rateupdate_radio.Text = "Yes";
-            this.rateupdate_radio.UseVisualStyleBackColor = true;
-            this.rateupdate_radio.Visible = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(149, 18);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 15);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "Rate Update";
-            this.label19.Visible = false;
-            // 
-            // cmbDays
-            // 
-            this.cmbDays.FormattingEnabled = true;
-            this.cmbDays.Location = new System.Drawing.Point(89, 13);
-            this.cmbDays.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbDays.Name = "cmbDays";
-            this.cmbDays.Size = new System.Drawing.Size(57, 21);
-            this.cmbDays.TabIndex = 1;
-            this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
-            this.cmbDays.Enter += new System.EventHandler(this.cmbDays_Enter);
-            this.cmbDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDays_KeyPress);
-            this.cmbDays.Leave += new System.EventHandler(this.cmbDays_Leave);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(5, 18);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(82, 15);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Credit  Period";
-            // 
-            // grpBoxWithCreditLimit
-            // 
-            this.grpBoxWithCreditLimit.Controls.Add(this.chkWithCreditLimit);
-            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(7, 281);
-            this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
-            this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
-            this.grpBoxWithCreditLimit.TabIndex = 15;
-            this.grpBoxWithCreditLimit.TabStop = false;
-            this.grpBoxWithCreditLimit.Visible = false;
-            // 
-            // chkWithCreditLimit
-            // 
-            this.chkWithCreditLimit.AutoSize = true;
-            this.chkWithCreditLimit.Location = new System.Drawing.Point(6, 15);
-            this.chkWithCreditLimit.Name = "chkWithCreditLimit";
-            this.chkWithCreditLimit.Size = new System.Drawing.Size(111, 17);
-            this.chkWithCreditLimit.TabIndex = 0;
-            this.chkWithCreditLimit.Text = "With Credit Period";
-            this.chkWithCreditLimit.UseVisualStyleBackColor = true;
-            this.chkWithCreditLimit.CheckedChanged += new System.EventHandler(this.chkWithCreditLimit_CheckedChanged);
-            this.chkWithCreditLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chkWithCreditLimit_KeyPress);
             // 
             // Panel_LotGenerate
             // 
@@ -567,23 +599,6 @@ namespace SilverGold
             this.cmbIntroducer.Enter += new System.EventHandler(this.cmbIntroducer_Enter);
             this.cmbIntroducer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbIntroducer_KeyPress);
             this.cmbIntroducer.Leave += new System.EventHandler(this.cmbIntroducer_Leave);
-            // 
-            // cmbShowtrail
-            // 
-            this.cmbShowtrail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbShowtrail.FormattingEnabled = true;
-            this.cmbShowtrail.Items.AddRange(new object[] {
-            "NO",
-            "YES"});
-            this.cmbShowtrail.Location = new System.Drawing.Point(4, 3);
-            this.cmbShowtrail.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbShowtrail.Name = "cmbShowtrail";
-            this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
-            this.cmbShowtrail.Sorted = true;
-            this.cmbShowtrail.TabIndex = 1;
-            this.cmbShowtrail.Enter += new System.EventHandler(this.cmbShowtrail_Enter);
-            this.cmbShowtrail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShowtrail_KeyPress);
-            this.cmbShowtrail.Leave += new System.EventHandler(this.cmbShowtrail_Leave);
             // 
             // label20
             // 
@@ -789,7 +804,7 @@ namespace SilverGold
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel1.Controls.Add(this.label34);
-            this.panel1.Location = new System.Drawing.Point(0, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1274, 34);
             this.panel1.TabIndex = 18;
@@ -909,23 +924,68 @@ namespace SilverGold
             this.btnrefresh.UseVisualStyleBackColor = true;
             this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);
             // 
-            // panel_ShowInTrail
+            // menuStrip1
             // 
-            this.panel_ShowInTrail.Controls.Add(this.cmbShowtrail);
-            this.panel_ShowInTrail.Location = new System.Drawing.Point(240, 18);
-            this.panel_ShowInTrail.Name = "panel_ShowInTrail";
-            this.panel_ShowInTrail.Size = new System.Drawing.Size(73, 28);
-            this.panel_ShowInTrail.TabIndex = 58;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenu_Save,
+            this.toolStripMenu_Delete,
+            this.toolStripMenu_Refersh,
+            this.toolStripMenu_Report,
+            this.toolStripMenuItem5});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1275, 24);
+            this.menuStrip1.TabIndex = 20;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenu_Save
+            // 
+            this.toolStripMenu_Save.Name = "toolStripMenu_Save";
+            this.toolStripMenu_Save.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.toolStripMenu_Save.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenu_Save.Text = "   ";
+            // 
+            // toolStripMenu_Delete
+            // 
+            this.toolStripMenu_Delete.Name = "toolStripMenu_Delete";
+            this.toolStripMenu_Delete.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.toolStripMenu_Delete.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenu_Delete.Text = "   ";
+            // 
+            // toolStripMenu_Refersh
+            // 
+            this.toolStripMenu_Refersh.Name = "toolStripMenu_Refersh";
+            this.toolStripMenu_Refersh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.toolStripMenu_Refersh.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenu_Refersh.Text = "   ";
+            // 
+            // toolStripMenu_Report
+            // 
+            this.toolStripMenu_Report.Name = "toolStripMenu_Report";
+            this.toolStripMenu_Report.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.toolStripMenu_Report.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenu_Report.Text = "  ";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenuItem5.Text = "   ";
             // 
             // dataGridViewCreditPeriod
             // 
+            this.dataGridViewCreditPeriod.AllowUserToOrderColumns = true;
+            this.dataGridViewCreditPeriod.AllowUserToResizeColumns = false;
+            this.dataGridViewCreditPeriod.AllowUserToResizeRows = false;
             this.dataGridViewCreditPeriod.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCreditPeriod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCreditPeriod.Location = new System.Drawing.Point(8, 485);
             this.dataGridViewCreditPeriod.Name = "dataGridViewCreditPeriod";
             this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(717, 191);
             this.dataGridViewCreditPeriod.TabIndex = 19;
+            this.dataGridViewCreditPeriod.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCreditPeriod_CellValidating);
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
+            this.dataGridViewCreditPeriod.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewCreditPeriod_EditingControlShowing);
             this.dataGridViewCreditPeriod.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewCreditPeriod_RowsAdded);
             // 
             // dataGridView1
@@ -978,19 +1038,22 @@ namespace SilverGold
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "PartyInformation";
             this.Text = "PartyInformation";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PartyInformation_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel_ShowInTrail.ResumeLayout(false);
             this.Panel_McxBullion.ResumeLayout(false);
             this.Panel_Category.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groBoxCreditPeriod.ResumeLayout(false);
-            this.groBoxCreditPeriod.PerformLayout();
             this.grpBoxWithCreditLimit.ResumeLayout(false);
             this.grpBoxWithCreditLimit.PerformLayout();
+            this.groBoxCreditPeriod.ResumeLayout(false);
+            this.groBoxCreditPeriod.PerformLayout();
             this.Panel_LotGenerate.ResumeLayout(false);
             this.plnlot.ResumeLayout(false);
             this.plncmbrs.ResumeLayout(false);
@@ -998,10 +1061,12 @@ namespace SilverGold
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.panel_ShowInTrail.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1070,5 +1135,11 @@ namespace SilverGold
         private GRIDVIEWCUSTOM1 dataGridView1;
         private GRIDVIEWCUSTOM1 dataGridViewCreditPeriod;
         private System.Windows.Forms.Panel panel_ShowInTrail;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Save;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Delete;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Refersh;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenu_Report;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
     }
 }

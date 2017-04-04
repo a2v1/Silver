@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -37,9 +38,10 @@ namespace SilverGold.Comman
 
         public CalendarCell()
             : base()
-        {
+        {            
             // Use the short date format.
-            this.Style.Format = "d";
+         //   this.Style.Format = "d";
+            this.Style.Format = "dd/MM/yyyy";
         }
 
         public override void InitializeEditingControl(int rowIndex, object
@@ -98,7 +100,7 @@ namespace SilverGold.Comman
 
         public CalendarEditingControl()
         {
-            this.Format = DateTimePickerFormat.Short;
+            this.Format = DateTimePickerFormat.Custom;
         }
 
         // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 

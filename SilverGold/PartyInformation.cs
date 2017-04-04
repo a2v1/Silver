@@ -66,7 +66,7 @@ namespace SilverGold
         {
             dtpDateFrom_CreditPeriod.DataPropertyName = "DateFrom";
             dtpDateFrom_CreditPeriod.HeaderText = "DateFrom";
-            dtpDateFrom_CreditPeriod.Name = "DateFrom";
+            dtpDateFrom_CreditPeriod.Name = "DateFrom";            
             dataGridViewCreditPeriod.Columns.Add(dtpDateFrom_CreditPeriod);
 
             dtpDateTo_CreditPeriod.DataPropertyName = "DateTo";
@@ -86,14 +86,15 @@ namespace SilverGold
             col_Matltype_CreditPeriod.DataPropertyName = "Category";
             col_Matltype_CreditPeriod.HeaderText = "Category";
             col_Matltype_CreditPeriod.Name = "Category";
+            col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
             col_Matltype_CreditPeriod.FlatStyle = FlatStyle.Popup;
             dataGridViewCreditPeriod.Columns.Add(col_Matltype_CreditPeriod);
 
             col_Product_CreditPeriod.DataPropertyName = "Product";
             col_Product_CreditPeriod.HeaderText = "Product";
             col_Product_CreditPeriod.Name = "Product";
-            col_Product_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).ToList();
-            col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            CommanHelper.GetProduct(col_Product_CreditPeriod);
+            col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;            
             dataGridViewCreditPeriod.Columns.Add(col_Product_CreditPeriod);
 
             col_Westage_CreditPeriod.DataPropertyName = "Westage";
@@ -123,17 +124,15 @@ namespace SilverGold
 
         private void SetCreditLimitGridView_ColumnWith()
         {
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateTo"].Width = 100;
-            dataGridViewCreditPeriod.Columns["RateRevised"].Width = 100;
-            dataGridViewCreditPeriod.Columns["Product"].Width = 150;
-            dataGridViewCreditPeriod.Columns["Westage"].Width = 70;
-            dataGridViewCreditPeriod.Columns["Westage"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
-            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 100;
+            dataGridViewCreditPeriod.Columns["DateFrom"].Width = 80;
+            dataGridViewCreditPeriod.Columns["DateTo"].Width = 80;
+            dataGridViewCreditPeriod.Columns["RateRevised"].Width = 90;
+            dataGridViewCreditPeriod.Columns["Category"].Width = 100;
+            dataGridViewCreditPeriod.Columns["Product"].Width = 130;
+            dataGridViewCreditPeriod.Columns["Westage"].Width = 60;
+            dataGridViewCreditPeriod.Columns["AmountWeight"].Width = 60;
+            dataGridViewCreditPeriod.Columns["Tran_Type"].Width = 80;
+            dataGridViewCreditPeriod.Columns["Days"].Width = 50;
         }
 
         private void BindOpeningMCXColumn()
@@ -203,7 +202,9 @@ namespace SilverGold
             cmbPopUp.SelectedIndex = -1;
             CommanHelper.BindPartyName(cmbPopUp);
             cmbtype.SelectedIndex = -1;
+            cmbtype.Text = "";
             cmbCategory.SelectedIndex = -1;
+            cmbCategory.Text = "";
             txtpartyname.Clear();
             cmbBullion.SelectedIndex = -1;
             txtaddress.Clear();
@@ -315,8 +316,12 @@ namespace SilverGold
             this.CancelButton = btnexit;
             this.Width = CommanHelper.FormX;
             this.Height = CommanHelper.FormY;
-            con = new OleDbConnection();
+            this.toolStripMenu_Save.Click += new EventHandler(btnsave_Click);
+            this.toolStripMenu_Delete.Click += new EventHandler(btndelete_Click);
+            this.toolStripMenu_Refersh.Click += new EventHandler(btnrefresh_Click);
+            this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
 
+            con = new OleDbConnection();
             BindOpeningOtherColumn();
 
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
@@ -332,7 +337,7 @@ namespace SilverGold
             }
 
             CommanHelper.ComboBoxItem(cmbgrouphead, "GroupHead", "Distinct(GroupHead)");
-            cmbtype.Focus();
+            SetCreditLimitGridView_ColumnWith(); cmbtype.Focus();
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -414,6 +419,8 @@ namespace SilverGold
                 cmd.ExecuteNonQuery();
                 cmd.CommandText = "Delete From PartyTran Where PartyName = '" + _PartyName + "' And TranType = 'O'";
                 cmd.ExecuteNonQuery();
+                cmd.CommandText = "Delete From CreditPeriod Where PartyName = '" + _PartyName + "'";
+                cmd.ExecuteNonQuery();
 
 
                 #region Insert PartyDetails
@@ -482,11 +489,54 @@ namespace SilverGold
                             cmd.Parameters.AddWithValue("@CreditPeriod", cmbDays.Text.Trim());
                             cmd.Parameters.AddWithValue("@RateUpdate", rate_revised.Trim());
                             cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@ItemLimit", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
+                            cmd.Parameters.AddWithValue("@ItemLimit", Conversion.ConToDec6((dr.Cells[1].Value??(object)"").ToString().Trim()));
                             cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
                             cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
                             cmd.ExecuteNonQuery();
 
+                        }
+
+                        foreach (DataGridViewRow dr in dataGridViewCreditPeriod.Rows)
+                        {
+                            DateTime _DateFrom = DateTime.Now;
+                            DateTime _DateTo = DateTime.Now;
+                            String _RateRevised = "";
+                            String _Category = "";
+                            String _Product = "";
+                            Decimal _Westage = 0;
+                            Decimal _Amount = 0;
+                            String _Tran_Type = "";
+                            Int32 _Days = 0;
+
+                            _DateFrom = Conversion.ConToDT(dr.Cells[0].Value.ToString().Trim());
+                            _DateTo = Conversion.ConToDT(dr.Cells[1].Value.ToString().Trim());
+                            _RateRevised = dr.Cells[2].Value.ToString().Trim();
+                            _Category = dr.Cells[3].Value.ToString().Trim();
+                            _Product = dr.Cells[4].Value.ToString().Trim();
+                            _Westage = Conversion.ConToDec6(dr.Cells[5].Value.ToString().Trim());
+                            _Amount = Conversion.ConToDec6(dr.Cells[6].Value.ToString().Trim());
+                            _Tran_Type = dr.Cells[7].Value.ToString().Trim();
+                            _Days = Conversion.ConToInt(dr.Cells[8].Value.ToString().Trim());
+
+                            if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
+                            {
+                                cmd.Parameters.Clear();
+                                cmd.CommandText = "INSERT INTO CreditPeriod((PartyName,DateFrom,DateTo,RateRevised,Category,Product,Westage,Amount,Tran_Type,Days,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@RateRevised,@Category,@Product,@Westage,@Amount,@Tran_Type,@Days,@Company,@UserId)";
+                                cmd.CommandType = CommandType.Text;
+                                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
+                                cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
+                                cmd.Parameters.AddWithValue("@DateTo", _DateTo);
+                                cmd.Parameters.AddWithValue("@RateRevised", _RateRevised);
+                                cmd.Parameters.AddWithValue("@Category", _Category);
+                                cmd.Parameters.AddWithValue("@Product", _Product);
+                                cmd.Parameters.AddWithValue("@Westage", _Westage);
+                                cmd.Parameters.AddWithValue("@Amount", _Amount);
+                                cmd.Parameters.AddWithValue("@Tran_Type", _Tran_Type);
+                                cmd.Parameters.AddWithValue("@Days", _Days);
+                                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
+                                cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
+                                cmd.ExecuteNonQuery();
+                            }
                         }
                     }
                     #endregion
@@ -1414,8 +1464,37 @@ namespace SilverGold
         {
             try
             {
-                DateTime _DateFrom = Conversion.ConToDT(CommanHelper.FDate);
-                dataGridViewCreditPeriod.CurrentRow.Cells[0].Value = _DateFrom;
+                dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = Conversion.ConToDT(CommanHelper.FDate);
+                dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+            }
+            catch (Exception ex)
+            {
+               // ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridViewCreditPeriod_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridViewCreditPeriod_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Westage_CreditPeriod.Index ||
+                    dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Amount_CreditPeriod.Index || 
+                    dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Days_CreditPeriod.Index)
+                {
+                    e.Control.KeyPress -= NumericCheckHandler;
+                    e.Control.KeyPress += NumericCheckHandler;
+                }
             }
             catch (Exception ex)
             {
