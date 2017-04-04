@@ -95,6 +95,7 @@ namespace SilverGold
             this.btnsave = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnrefresh = new System.Windows.Forms.Button();
+            this.panel_ShowInTrail = new System.Windows.Forms.Panel();
             this.dataGridViewCreditPeriod = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox1.SuspendLayout();
@@ -109,12 +110,14 @@ namespace SilverGold
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel_ShowInTrail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel_ShowInTrail);
             this.groupBox1.Controls.Add(this.Panel_McxBullion);
             this.groupBox1.Controls.Add(this.Panel_Category);
             this.groupBox1.Controls.Add(this.dataGridView2);
@@ -122,6 +125,8 @@ namespace SilverGold
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.txtopnarr);
             this.groupBox1.Controls.Add(this.txtoprs);
+            this.groupBox1.Controls.Add(this.grpBoxWithCreditLimit);
+            this.groupBox1.Controls.Add(this.groBoxCreditPeriod);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label32);
@@ -129,14 +134,11 @@ namespace SilverGold
             this.groupBox1.Controls.Add(this.txtbanklimit);
             this.groupBox1.Controls.Add(this.label31);
             this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.groBoxCreditPeriod);
-            this.groupBox1.Controls.Add(this.grpBoxWithCreditLimit);
             this.groupBox1.Controls.Add(this.Panel_LotGenerate);
             this.groupBox1.Controls.Add(this.lblLotGenerateIn);
             this.groupBox1.Controls.Add(this.plnlot);
             this.groupBox1.Controls.Add(this.plncmbrs);
             this.groupBox1.Controls.Add(this.cmbIntroducer);
-            this.groupBox1.Controls.Add(this.cmbShowtrail);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.lblLot);
@@ -167,7 +169,7 @@ namespace SilverGold
             // Panel_McxBullion
             // 
             this.Panel_McxBullion.Controls.Add(this.cmbBullion);
-            this.Panel_McxBullion.Location = new System.Drawing.Point(286, 122);
+            this.Panel_McxBullion.Location = new System.Drawing.Point(286, 73);
             this.Panel_McxBullion.Name = "Panel_McxBullion";
             this.Panel_McxBullion.Size = new System.Drawing.Size(85, 27);
             this.Panel_McxBullion.TabIndex = 19;
@@ -195,7 +197,7 @@ namespace SilverGold
             // Panel_Category
             // 
             this.Panel_Category.Controls.Add(this.cmbCategory);
-            this.Panel_Category.Location = new System.Drawing.Point(90, 95);
+            this.Panel_Category.Location = new System.Drawing.Point(90, 46);
             this.Panel_Category.Name = "Panel_Category";
             this.Panel_Category.Size = new System.Drawing.Size(117, 26);
             this.Panel_Category.TabIndex = 19;
@@ -213,7 +215,7 @@ namespace SilverGold
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(109, 21);
             this.cmbCategory.Sorted = true;
-            this.cmbCategory.TabIndex = 2;
+            this.cmbCategory.TabIndex = 0;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
             this.cmbCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCategory_KeyPress);
@@ -244,7 +246,7 @@ namespace SilverGold
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.Location = new System.Drawing.Point(514, 12);
+            this.dataGridView2.Location = new System.Drawing.Point(471, 249);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -254,8 +256,8 @@ namespace SilverGold
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView2.Size = new System.Drawing.Size(172, 107);
-            this.dataGridView2.TabIndex = 16;
+            this.dataGridView2.Size = new System.Drawing.Size(200, 80);
+            this.dataGridView2.TabIndex = 17;
             this.dataGridView2.Visible = false;
             this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
             this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView2_EditingControlShowing);
@@ -265,28 +267,28 @@ namespace SilverGold
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(90, 258);
+            this.dateTimePicker1.Location = new System.Drawing.Point(90, 209);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dateTimePicker1.TabIndex = 10;
             // 
             // txtopnarr
             // 
-            this.txtopnarr.Location = new System.Drawing.Point(90, 283);
+            this.txtopnarr.Location = new System.Drawing.Point(90, 234);
             this.txtopnarr.Margin = new System.Windows.Forms.Padding(4);
             this.txtopnarr.Name = "txtopnarr";
             this.txtopnarr.Size = new System.Drawing.Size(195, 20);
-            this.txtopnarr.TabIndex = 13;
+            this.txtopnarr.TabIndex = 11;
             this.txtopnarr.Enter += new System.EventHandler(this.txtopnarr_Enter);
             this.txtopnarr.Leave += new System.EventHandler(this.txtopnarr_Leave);
             // 
             // txtoprs
             // 
-            this.txtoprs.Location = new System.Drawing.Point(440, 176);
+            this.txtoprs.Location = new System.Drawing.Point(440, 106);
             this.txtoprs.Margin = new System.Windows.Forms.Padding(4);
             this.txtoprs.Name = "txtoprs";
             this.txtoprs.Size = new System.Drawing.Size(87, 20);
-            this.txtoprs.TabIndex = 8;
+            this.txtoprs.TabIndex = 13;
             this.txtoprs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtoprs.Enter += new System.EventHandler(this.txtoprs_Enter);
             this.txtoprs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtoprs_KeyPress);
@@ -296,7 +298,7 @@ namespace SilverGold
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(1, 285);
+            this.label33.Location = new System.Drawing.Point(1, 236);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(80, 15);
@@ -308,7 +310,7 @@ namespace SilverGold
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(364, 180);
+            this.label6.Location = new System.Drawing.Point(364, 110);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 15);
@@ -319,7 +321,7 @@ namespace SilverGold
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(27, 260);
+            this.label32.Location = new System.Drawing.Point(27, 211);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(55, 15);
@@ -331,7 +333,7 @@ namespace SilverGold
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(545, 178);
+            this.label9.Location = new System.Drawing.Point(545, 108);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 15);
@@ -340,11 +342,11 @@ namespace SilverGold
             // 
             // txtbanklimit
             // 
-            this.txtbanklimit.Location = new System.Drawing.Point(90, 309);
+            this.txtbanklimit.Location = new System.Drawing.Point(90, 260);
             this.txtbanklimit.Margin = new System.Windows.Forms.Padding(4);
             this.txtbanklimit.Name = "txtbanklimit";
             this.txtbanklimit.Size = new System.Drawing.Size(75, 20);
-            this.txtbanklimit.TabIndex = 14;
+            this.txtbanklimit.TabIndex = 12;
             this.txtbanklimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtbanklimit.Enter += new System.EventHandler(this.txtbanklimit_Enter);
             this.txtbanklimit.Leave += new System.EventHandler(this.txtbanklimit_Leave);
@@ -353,7 +355,7 @@ namespace SilverGold
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(8, 311);
+            this.label31.Location = new System.Drawing.Point(8, 262);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(71, 15);
@@ -365,11 +367,11 @@ namespace SilverGold
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(22, 101);
+            this.label24.Location = new System.Drawing.Point(22, 52);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(59, 15);
-            this.label24.TabIndex = 41;
+            this.label24.TabIndex = 19;
             this.label24.Text = "Category:";
             // 
             // groBoxCreditPeriod
@@ -379,10 +381,10 @@ namespace SilverGold
             this.groBoxCreditPeriod.Controls.Add(this.label19);
             this.groBoxCreditPeriod.Controls.Add(this.cmbDays);
             this.groBoxCreditPeriod.Controls.Add(this.label18);
-            this.groBoxCreditPeriod.Location = new System.Drawing.Point(171, 50);
+            this.groBoxCreditPeriod.Location = new System.Drawing.Point(148, 282);
             this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
             this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
-            this.groBoxCreditPeriod.TabIndex = 5;
+            this.groBoxCreditPeriod.TabIndex = 16;
             this.groBoxCreditPeriod.TabStop = false;
             this.groBoxCreditPeriod.Visible = false;
             // 
@@ -392,7 +394,7 @@ namespace SilverGold
             this.rateupdate_radio_N.Location = new System.Drawing.Point(269, 15);
             this.rateupdate_radio_N.Name = "rateupdate_radio_N";
             this.rateupdate_radio_N.Size = new System.Drawing.Size(39, 17);
-            this.rateupdate_radio_N.TabIndex = 1;
+            this.rateupdate_radio_N.TabIndex = 4;
             this.rateupdate_radio_N.TabStop = true;
             this.rateupdate_radio_N.Text = "No";
             this.rateupdate_radio_N.UseVisualStyleBackColor = true;
@@ -404,7 +406,7 @@ namespace SilverGold
             this.rateupdate_radio.Location = new System.Drawing.Point(225, 15);
             this.rateupdate_radio.Name = "rateupdate_radio";
             this.rateupdate_radio.Size = new System.Drawing.Size(43, 17);
-            this.rateupdate_radio.TabIndex = 2;
+            this.rateupdate_radio.TabIndex = 3;
             this.rateupdate_radio.TabStop = true;
             this.rateupdate_radio.Text = "Yes";
             this.rateupdate_radio.UseVisualStyleBackColor = true;
@@ -418,7 +420,7 @@ namespace SilverGold
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(76, 15);
-            this.label19.TabIndex = 24;
+            this.label19.TabIndex = 2;
             this.label19.Text = "Rate Update";
             this.label19.Visible = false;
             // 
@@ -429,7 +431,7 @@ namespace SilverGold
             this.cmbDays.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDays.Name = "cmbDays";
             this.cmbDays.Size = new System.Drawing.Size(57, 21);
-            this.cmbDays.TabIndex = 0;
+            this.cmbDays.TabIndex = 1;
             this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
             this.cmbDays.Enter += new System.EventHandler(this.cmbDays_Enter);
             this.cmbDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDays_KeyPress);
@@ -443,16 +445,16 @@ namespace SilverGold
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(82, 15);
-            this.label18.TabIndex = 23;
+            this.label18.TabIndex = 0;
             this.label18.Text = "Credit  Period";
             // 
             // grpBoxWithCreditLimit
             // 
             this.grpBoxWithCreditLimit.Controls.Add(this.chkWithCreditLimit);
-            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(30, 49);
+            this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(7, 281);
             this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
             this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
-            this.grpBoxWithCreditLimit.TabIndex = 4;
+            this.grpBoxWithCreditLimit.TabIndex = 15;
             this.grpBoxWithCreditLimit.TabStop = false;
             this.grpBoxWithCreditLimit.Visible = false;
             // 
@@ -471,7 +473,7 @@ namespace SilverGold
             // Panel_LotGenerate
             // 
             this.Panel_LotGenerate.Controls.Add(this.cmb_gen_type);
-            this.Panel_LotGenerate.Location = new System.Drawing.Point(329, 16);
+            this.Panel_LotGenerate.Location = new System.Drawing.Point(498, 20);
             this.Panel_LotGenerate.Name = "Panel_LotGenerate";
             this.Panel_LotGenerate.Size = new System.Drawing.Size(94, 28);
             this.Panel_LotGenerate.TabIndex = 3;
@@ -495,7 +497,7 @@ namespace SilverGold
             // lblLotGenerateIn
             // 
             this.lblLotGenerateIn.AutoSize = true;
-            this.lblLotGenerateIn.Location = new System.Drawing.Point(253, 23);
+            this.lblLotGenerateIn.Location = new System.Drawing.Point(422, 27);
             this.lblLotGenerateIn.Name = "lblLotGenerateIn";
             this.lblLotGenerateIn.Size = new System.Drawing.Size(74, 13);
             this.lblLotGenerateIn.TabIndex = 1;
@@ -505,7 +507,7 @@ namespace SilverGold
             // plnlot
             // 
             this.plnlot.Controls.Add(this.cmbLot);
-            this.plnlot.Location = new System.Drawing.Point(183, 16);
+            this.plnlot.Location = new System.Drawing.Point(352, 20);
             this.plnlot.Name = "plnlot";
             this.plnlot.Size = new System.Drawing.Size(63, 28);
             this.plnlot.TabIndex = 2;
@@ -531,7 +533,7 @@ namespace SilverGold
             // plncmbrs
             // 
             this.plncmbrs.Controls.Add(this.cmbrs);
-            this.plncmbrs.Location = new System.Drawing.Point(586, 172);
+            this.plncmbrs.Location = new System.Drawing.Point(586, 102);
             this.plncmbrs.Name = "plncmbrs";
             this.plncmbrs.Size = new System.Drawing.Size(85, 27);
             this.plncmbrs.TabIndex = 13;
@@ -556,12 +558,12 @@ namespace SilverGold
             // cmbIntroducer
             // 
             this.cmbIntroducer.FormattingEnabled = true;
-            this.cmbIntroducer.Location = new System.Drawing.Point(90, 231);
+            this.cmbIntroducer.Location = new System.Drawing.Point(90, 182);
             this.cmbIntroducer.Margin = new System.Windows.Forms.Padding(4);
             this.cmbIntroducer.Name = "cmbIntroducer";
             this.cmbIntroducer.Size = new System.Drawing.Size(195, 21);
             this.cmbIntroducer.Sorted = true;
-            this.cmbIntroducer.TabIndex = 11;
+            this.cmbIntroducer.TabIndex = 9;
             this.cmbIntroducer.Enter += new System.EventHandler(this.cmbIntroducer_Enter);
             this.cmbIntroducer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbIntroducer_KeyPress);
             this.cmbIntroducer.Leave += new System.EventHandler(this.cmbIntroducer_Leave);
@@ -573,18 +575,21 @@ namespace SilverGold
             this.cmbShowtrail.Items.AddRange(new object[] {
             "NO",
             "YES"});
-            this.cmbShowtrail.Location = new System.Drawing.Point(441, 28);
+            this.cmbShowtrail.Location = new System.Drawing.Point(4, 3);
             this.cmbShowtrail.Margin = new System.Windows.Forms.Padding(4);
             this.cmbShowtrail.Name = "cmbShowtrail";
             this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
             this.cmbShowtrail.Sorted = true;
             this.cmbShowtrail.TabIndex = 1;
+            this.cmbShowtrail.Enter += new System.EventHandler(this.cmbShowtrail_Enter);
+            this.cmbShowtrail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShowtrail_KeyPress);
+            this.cmbShowtrail.Leave += new System.EventHandler(this.cmbShowtrail_Leave);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(14, 234);
+            this.label20.Location = new System.Drawing.Point(14, 185);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 15);
@@ -595,7 +600,7 @@ namespace SilverGold
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(433, 11);
+            this.label12.Location = new System.Drawing.Point(158, 22);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 15);
@@ -605,7 +610,7 @@ namespace SilverGold
             // lblLot
             // 
             this.lblLot.AutoSize = true;
-            this.lblLot.Location = new System.Drawing.Point(159, 24);
+            this.lblLot.Location = new System.Drawing.Point(328, 28);
             this.lblLot.Name = "lblLot";
             this.lblLot.Size = new System.Drawing.Size(25, 13);
             this.lblLot.TabIndex = 33;
@@ -633,11 +638,11 @@ namespace SilverGold
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 125);
+            this.label2.Location = new System.Drawing.Point(38, 76);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 15);
-            this.label2.TabIndex = 21;
+            this.label2.TabIndex = 20;
             this.label2.Text = "Name:";
             // 
             // label13
@@ -648,14 +653,14 @@ namespace SilverGold
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 15);
-            this.label13.TabIndex = 20;
+            this.label13.TabIndex = 18;
             this.label13.Text = "Type:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(16, 206);
+            this.label16.Location = new System.Drawing.Point(16, 157);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 15);
@@ -664,7 +669,7 @@ namespace SilverGold
             // 
             // txtpartyname
             // 
-            this.txtpartyname.Location = new System.Drawing.Point(90, 125);
+            this.txtpartyname.Location = new System.Drawing.Point(90, 76);
             this.txtpartyname.Margin = new System.Windows.Forms.Padding(4);
             this.txtpartyname.Name = "txtpartyname";
             this.txtpartyname.Size = new System.Drawing.Size(195, 20);
@@ -675,11 +680,11 @@ namespace SilverGold
             // 
             // txtaddress
             // 
-            this.txtaddress.Location = new System.Drawing.Point(440, 124);
+            this.txtaddress.Location = new System.Drawing.Point(440, 54);
             this.txtaddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtaddress.Name = "txtaddress";
             this.txtaddress.Size = new System.Drawing.Size(231, 20);
-            this.txtaddress.TabIndex = 5;
+            this.txtaddress.TabIndex = 4;
             this.txtaddress.Enter += new System.EventHandler(this.txtaddress_Enter);
             this.txtaddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtaddress_KeyPress);
             this.txtaddress.Leave += new System.EventHandler(this.txtaddress_Leave);
@@ -688,18 +693,18 @@ namespace SilverGold
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(3, 180);
+            this.label15.Location = new System.Drawing.Point(3, 131);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 15);
-            this.label15.TabIndex = 23;
+            this.label15.TabIndex = 21;
             this.label15.Text = "Group Head:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(376, 154);
+            this.label5.Location = new System.Drawing.Point(376, 84);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 15);
@@ -710,7 +715,7 @@ namespace SilverGold
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 154);
+            this.label4.Location = new System.Drawing.Point(10, 105);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
@@ -720,12 +725,12 @@ namespace SilverGold
             // cmbgrouphead
             // 
             this.cmbgrouphead.FormattingEnabled = true;
-            this.cmbgrouphead.Location = new System.Drawing.Point(90, 177);
+            this.cmbgrouphead.Location = new System.Drawing.Point(90, 128);
             this.cmbgrouphead.Margin = new System.Windows.Forms.Padding(4);
             this.cmbgrouphead.Name = "cmbgrouphead";
             this.cmbgrouphead.Size = new System.Drawing.Size(195, 21);
             this.cmbgrouphead.Sorted = true;
-            this.cmbgrouphead.TabIndex = 9;
+            this.cmbgrouphead.TabIndex = 7;
             this.cmbgrouphead.SelectedIndexChanged += new System.EventHandler(this.cmbgrouphead_SelectedIndexChanged);
             this.cmbgrouphead.Enter += new System.EventHandler(this.cmbgrouphead_Enter);
             this.cmbgrouphead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrouphead_KeyPress);
@@ -733,12 +738,12 @@ namespace SilverGold
             // 
             // txtcontactno
             // 
-            this.txtcontactno.Location = new System.Drawing.Point(90, 151);
+            this.txtcontactno.Location = new System.Drawing.Point(90, 102);
             this.txtcontactno.Margin = new System.Windows.Forms.Padding(4);
             this.txtcontactno.MaxLength = 10;
             this.txtcontactno.Name = "txtcontactno";
             this.txtcontactno.Size = new System.Drawing.Size(195, 20);
-            this.txtcontactno.TabIndex = 6;
+            this.txtcontactno.TabIndex = 5;
             this.txtcontactno.Enter += new System.EventHandler(this.txtcontactno_Enter);
             this.txtcontactno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcontactno_KeyPress);
             this.txtcontactno.Leave += new System.EventHandler(this.txtcontactno_Leave);
@@ -747,7 +752,7 @@ namespace SilverGold
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(375, 128);
+            this.label3.Location = new System.Drawing.Point(375, 58);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 15);
@@ -756,11 +761,11 @@ namespace SilverGold
             // 
             // txtemailid
             // 
-            this.txtemailid.Location = new System.Drawing.Point(440, 150);
+            this.txtemailid.Location = new System.Drawing.Point(440, 80);
             this.txtemailid.Margin = new System.Windows.Forms.Padding(4);
             this.txtemailid.Name = "txtemailid";
             this.txtemailid.Size = new System.Drawing.Size(231, 20);
-            this.txtemailid.TabIndex = 7;
+            this.txtemailid.TabIndex = 6;
             this.txtemailid.Enter += new System.EventHandler(this.txtemailid_Enter);
             this.txtemailid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtemailid_KeyPress);
             this.txtemailid.Leave += new System.EventHandler(this.txtemailid_Leave);
@@ -768,12 +773,12 @@ namespace SilverGold
             // cmbsubhead
             // 
             this.cmbsubhead.FormattingEnabled = true;
-            this.cmbsubhead.Location = new System.Drawing.Point(90, 204);
+            this.cmbsubhead.Location = new System.Drawing.Point(90, 155);
             this.cmbsubhead.Margin = new System.Windows.Forms.Padding(4);
             this.cmbsubhead.Name = "cmbsubhead";
             this.cmbsubhead.Size = new System.Drawing.Size(195, 21);
             this.cmbsubhead.Sorted = true;
-            this.cmbsubhead.TabIndex = 10;
+            this.cmbsubhead.TabIndex = 8;
             this.cmbsubhead.Enter += new System.EventHandler(this.cmbsubhead_Enter);
             this.cmbsubhead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbsubhead_KeyPress);
             this.cmbsubhead.Leave += new System.EventHandler(this.cmbsubhead_Leave);
@@ -809,7 +814,7 @@ namespace SilverGold
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(224, 48);
-            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PopUp(F1)";
             // 
@@ -904,6 +909,14 @@ namespace SilverGold
             this.btnrefresh.UseVisualStyleBackColor = true;
             this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);
             // 
+            // panel_ShowInTrail
+            // 
+            this.panel_ShowInTrail.Controls.Add(this.cmbShowtrail);
+            this.panel_ShowInTrail.Location = new System.Drawing.Point(240, 18);
+            this.panel_ShowInTrail.Name = "panel_ShowInTrail";
+            this.panel_ShowInTrail.Size = new System.Drawing.Size(73, 28);
+            this.panel_ShowInTrail.TabIndex = 58;
+            // 
             // dataGridViewCreditPeriod
             // 
             this.dataGridViewCreditPeriod.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -913,6 +926,7 @@ namespace SilverGold
             this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(717, 191);
             this.dataGridViewCreditPeriod.TabIndex = 19;
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
+            this.dataGridViewCreditPeriod.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewCreditPeriod_RowsAdded);
             // 
             // dataGridView1
             // 
@@ -939,7 +953,7 @@ namespace SilverGold
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.Location = new System.Drawing.Point(296, 209);
+            this.dataGridView1.Location = new System.Drawing.Point(296, 133);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
@@ -949,8 +963,8 @@ namespace SilverGold
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.Size = new System.Drawing.Size(375, 117);
-            this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.Size = new System.Drawing.Size(375, 113);
+            this.dataGridView1.TabIndex = 14;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             // 
@@ -984,6 +998,7 @@ namespace SilverGold
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.panel_ShowInTrail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -1053,6 +1068,7 @@ namespace SilverGold
         private System.Windows.Forms.Panel Panel_Category;
         private System.Windows.Forms.Panel Panel_McxBullion;
         private GRIDVIEWCUSTOM1 dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridViewCreditPeriod;
+        private GRIDVIEWCUSTOM1 dataGridViewCreditPeriod;
+        private System.Windows.Forms.Panel panel_ShowInTrail;
     }
 }

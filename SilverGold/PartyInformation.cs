@@ -16,7 +16,7 @@ namespace SilverGold
     public partial class PartyInformation : Form
     {
         #region Declare Variable
-       
+
         OleDbConnection con;
         OleDbTransaction Tran = null;
         List<OpeningMCXEntity> OpeningMCXList = new List<OpeningMCXEntity>();
@@ -195,11 +195,11 @@ namespace SilverGold
         }
 
         private void ClearControl()
-        { 
+        {
             dataGridView1.DataSource = null;
             dataGridView1.Rows.Clear();
             BindOpeningOtherColumn();
-                
+
             cmbPopUp.SelectedIndex = -1;
             CommanHelper.BindPartyName(cmbPopUp);
             cmbtype.SelectedIndex = -1;
@@ -263,7 +263,7 @@ namespace SilverGold
                     }
                     cmbLot.Text = dr["Lot"].ToString();
                     cmb_gen_type.Text = dr["LotGenerate"].ToString();
-                    
+
                 }
                 dr.Close();
 
@@ -323,7 +323,7 @@ namespace SilverGold
             CommanHelper.BindPartyName(cmbPopUp);
             CommanHelper.BindPartyName(cmbIntroducer);
 
-            
+
             CommanHelper.FillCreditLimitOpening(dataGridView2);
             CommanHelper.BindPartyCategory(cmbCategory);
             for (int i = 0; i <= 365; i++)
@@ -332,6 +332,7 @@ namespace SilverGold
             }
 
             CommanHelper.ComboBoxItem(cmbgrouphead, "GroupHead", "Distinct(GroupHead)");
+            cmbtype.Focus();
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -391,7 +392,7 @@ namespace SilverGold
                     con.Close();
                 }
 
-                
+
                 if (cmbPopUp.Text.Trim() == "")
                 {
                     _PartyName = txtpartyname.Text.Trim();
@@ -422,7 +423,7 @@ namespace SilverGold
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@Type", cmbtype.Text.Trim());
                 cmd.Parameters.AddWithValue("@Category", cmbCategory.Text.Trim());
-                cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
                 cmd.Parameters.AddWithValue("@PartyType", cmbBullion.Text.Trim());
                 cmd.Parameters.AddWithValue("@Address", txtaddress.Text.Trim());
                 cmd.Parameters.AddWithValue("@Email", txtemailid.Text.Trim());
@@ -446,7 +447,7 @@ namespace SilverGold
                 cmd.Parameters.Clear();
                 cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
                 cmd.Parameters.AddWithValue("@ItemName", "CASH");
                 cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()));
                 cmd.Parameters.AddWithValue("@DrCr", cmbrs.Text.ToString().Trim());
@@ -477,7 +478,7 @@ namespace SilverGold
                             cmd.Parameters.Clear();
                             cmd.CommandText = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
                             cmd.Parameters.AddWithValue("@CreditPeriod", cmbDays.Text.Trim());
                             cmd.Parameters.AddWithValue("@RateUpdate", rate_revised.Trim());
                             cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
@@ -524,7 +525,7 @@ namespace SilverGold
                         cmd.Parameters.Clear();
                         cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@ClosingRate,@DrCr,@Company,@UserId)";
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
                         cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
                         cmd.Parameters.AddWithValue("@Amount_Weight", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
                         cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()));
@@ -537,7 +538,7 @@ namespace SilverGold
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,MCXRate,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + _PartyName.Trim() + "','" + _MetalCategory + "','" + _MetalCategory + "','" + _Sell + "','" + _Purchase + "','" + _Weight + "','" + _MCXRate + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
+                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,MCXRate,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + txtpartyname.Text.Trim() + "','" + _MetalCategory + "','" + _MetalCategory + "','" + _Sell + "','" + _Purchase + "','" + _Weight + "','" + _MCXRate + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -558,7 +559,7 @@ namespace SilverGold
                         cmd.Parameters.Clear();
                         cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", _PartyName.Trim());
+                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
                         cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
                         cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
                         cmd.Parameters.AddWithValue("@DrCr", (dr.Cells[2].Value ?? (object)"").ToString().Trim());
@@ -569,7 +570,7 @@ namespace SilverGold
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() != "")
                         {
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + _PartyName.Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + _Debit + "','" + _Credit + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
+                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + txtpartyname.Text.Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + _Debit + "','" + _Credit + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -584,13 +585,12 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 Tran.Rollback();
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
-       
+
         private void btndelete_Click(object sender, EventArgs e)
         {
             try
@@ -637,7 +637,7 @@ namespace SilverGold
             try
             {
                 dataGridView1.DataSource = null;
-                dataGridView1.Rows.Clear();                
+                dataGridView1.Rows.Clear();
                 if (cmbtype.Text.Trim() == "PARTY")
                 {
                     BindOpeningOtherColumn();
@@ -649,12 +649,12 @@ namespace SilverGold
                     cmbLot.Enabled = false;
                     cmbLot.Visible = false;
                     lblLot.Visible = false;
-                    lblLotGenerateIn.Visible = false;
-                    Panel_LotGenerate.Visible = false;
+                    //lblLotGenerateIn.Visible = false;
+                    //Panel_LotGenerate.Visible = false;
                 }
                 else
                 {
-                    BindOpeningMCXColumn(); 
+                    BindOpeningMCXColumn();
                     OpeningOtherList = CommanHelper.OpeningOther();
                     dataGridView1.DataSource = CommanHelper.BindMCXDefaultOpening().ToList();
                     chkWithCreditLimit.Checked = false;
@@ -666,8 +666,8 @@ namespace SilverGold
                     lblLot.Visible = true;
                     cmbLot.Enabled = true;
                     cmbLot.Visible = true;
-                    lblLotGenerateIn.Visible = true;
-                    Panel_LotGenerate.Visible = true;
+                    //lblLotGenerateIn.Visible = true;
+                    //Panel_LotGenerate.Visible = true;
                     cmbgrouphead.Text = "LABOUR JOB";
                 }
             }
@@ -926,50 +926,57 @@ namespace SilverGold
 
             if (e.KeyChar == 13)
             {
-                if (cmbtype.Text == "WORKER")
-                {
-                    cmbLot.Focus();
-                }
-                else
-                {
-                    chkWithCreditLimit.Focus();
-                }
+                cmbShowtrail.Focus();
             }
         }
 
         private void cmbLot_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if ((cmbLot.Text.Trim().ToUpper() == "YES") && (cmb_gen_type.Enabled == true))
+                if (e.KeyChar == 13)
                 {
-
-                    cmb_gen_type.Focus();
-                    if (cmbPopUp.Text.Trim() == "")
+                    if ((cmbLot.Text.Trim().ToUpper() == "YES") && (cmb_gen_type.Enabled == true))
                     {
-                        cmb_gen_type.SelectedIndex = -1;
-                    }
 
+                        cmb_gen_type.Focus();
+                        if (cmbPopUp.Text.Trim() == "")
+                        {
+                            cmb_gen_type.SelectedIndex = -1;
+                        }
+
+                    }
+                    else
+                    {
+                        txtpartyname.Focus();
+                    }
                 }
-                else
-                {
-                    txtpartyname.Focus();
-                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmb_gen_type_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (cmb_gen_type.Text.Trim() != "")
+                if (e.KeyChar == 13)
                 {
-                    cmbCategory.Focus();
+                    if (cmb_gen_type.Text.Trim() != "")
+                    {
+                        cmbCategory.Focus();
+                    }
+                    else
+                    {
+                        cmb_gen_type.Focus();
+                    }
                 }
-                else
-                {
-                    cmb_gen_type.Focus();
-                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -983,64 +990,78 @@ namespace SilverGold
 
         private void txtpartyname_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (cmbPopUp.Text.Trim() == "")
+                if (e.KeyChar == 13)
                 {
-                    if (CommanHelper.AlreadyExistParty(txtpartyname.Text.Trim()) == true)
+                    if (cmbPopUp.Text.Trim() == "")
                     {
-                        MessageBox.Show("Party Already Exist.", "Party Details", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        txtpartyname.Focus();
-                        return;
+                        if (CommanHelper.AlreadyExistParty(txtpartyname.Text.Trim()) == true)
+                        {
+                            MessageBox.Show("Party Already Exist.", "Party Details", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            txtpartyname.Focus();
+                            return;
+                        }
                     }
-                }
-                if (cmbPopUp.Text != "")
-                {
-                    if (cmbtype.Text.Trim() == "WORKER")
+                    if (cmbPopUp.Text != "")
                     {
-                        //GR_WE.Visible = true;
-                        //c1TrueDBGrid1.Visible = true;
-                        //c1TrueDBGrid1.Focus();
-                        //c1TrueDBGrid1.Row = 0;
-                        //c1TrueDBGrid1.Col = 0;
-                        //GR_WE.Visible = true;
+                        if (cmbtype.Text.Trim() == "WORKER")
+                        {
+                            //GR_WE.Visible = true;
+                            //c1TrueDBGrid1.Visible = true;
+                            //c1TrueDBGrid1.Focus();
+                            //c1TrueDBGrid1.Row = 0;
+                            //c1TrueDBGrid1.Col = 0;
+                            //GR_WE.Visible = true;
+                        }
+                        else
+                        {
+                            cmbBullion.Focus();
+                        }
                     }
                     else
                     {
-                        cmbBullion.Focus();
+                        if (cmbtype.Text.Trim() == "WORKER")
+                        {
+                            //c1TrueDBGrid1.Visible = true;
+                            //c1TrueDBGrid1.Focus();
+                            //c1TrueDBGrid1.Row = 0;
+                            //c1TrueDBGrid1.Col = 0;
+                            //GR_WE.Visible = true;
+                        }
+                        else
+                        {
+                            cmbBullion.Focus();
+                        }
                     }
                 }
-                else
-                {
-                    if (cmbtype.Text.Trim() == "WORKER")
-                    {
-                        //c1TrueDBGrid1.Visible = true;
-                        //c1TrueDBGrid1.Focus();
-                        //c1TrueDBGrid1.Row = 0;
-                        //c1TrueDBGrid1.Col = 0;
-                        //GR_WE.Visible = true;
-                    }
-                    else
-                    {
-                        cmbBullion.Focus();
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbBullion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (cmbBullion.Text.Trim().ToUpper() == "MCX")
+                if (e.KeyChar == 13)
                 {
-                    //mcxbrokbox.Visible = true;
-                    //c1TrueDBGrid5.Focus();
+                    if (cmbBullion.Text.Trim().ToUpper() == "MCX")
+                    {
+                        //mcxbrokbox.Visible = true;
+                        //c1TrueDBGrid5.Focus();
+                    }
+                    else
+                    {
+                        txtaddress.Focus();
+                    }
                 }
-                else
-                {
-                    txtaddress.Focus();
-                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1054,109 +1075,167 @@ namespace SilverGold
 
         private void txtcontactno_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57 || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
+            try
             {
-                e.Handled = false;
-                if (e.KeyChar == 13)
+                if ((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57 || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
                 {
-                    txtemailid.Focus();
+                    e.Handled = false;
+                    if (e.KeyChar == 13)
+                    {
+                        txtemailid.Focus();
+                    }
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void txtemailid_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                cmbgrouphead.Focus();
+                if (e.KeyChar == 13)
+                {
+                    cmbgrouphead.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbgrouphead_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                cmbsubhead.Focus();
+                if (e.KeyChar == 13)
+                {
+                    cmbsubhead.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbsubhead_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                cmbIntroducer.Focus();
+                if (e.KeyChar == 13)
+                {
+                    cmbIntroducer.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbIntroducer_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                if (cmbIntroducer.Text != "")
+                if (e.KeyChar == 13)
                 {
-                    //if (ds_Introducer1.Tables[0].Rows.Count != 0)
-                    //{
-                    //    Panel1.Visible = true;
-                    //}
-                    //else
-                    //{
-                    //    Panel1.Visible = true;
-                    //    c1TrueDBGrid4.Visible = true;
-                    //    ds_Introducer1.Clear();
-                    //    oleDbDataAdapter8.SelectCommand.CommandText = "select * from introducer where client_code='" + txtpartyname.Text.Trim() + "'";
-                    //    oleDbDataAdapter8.Fill(ds_Introducer1);
-                    //}
-                    //c1TrueDBGrid4.Focus();
-                    //c1TrueDBGrid4.Row = 0;
-                    //c1TrueDBGrid4.Col = 0;
-                }
-                else
-                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        //if (ds_Introducer1.Tables[0].Rows.Count != 0)
+                        //{
+                        //    Panel1.Visible = true;
+                        //}
+                        //else
+                        //{
+                        //    Panel1.Visible = true;
+                        //    c1TrueDBGrid4.Visible = true;
+                        //    ds_Introducer1.Clear();
+                        //    oleDbDataAdapter8.SelectCommand.CommandText = "select * from introducer where client_code='" + txtpartyname.Text.Trim() + "'";
+                        //    oleDbDataAdapter8.Fill(ds_Introducer1);
+                        //}
+                        //c1TrueDBGrid4.Focus();
+                        //c1TrueDBGrid4.Row = 0;
+                        //c1TrueDBGrid4.Col = 0;
+                    }
+                    else
+                    {
 
-                    txtoprs.Focus();
-                }
+                        txtoprs.Focus();
+                    }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void txtoprs_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57) || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
+            try
             {
-                e.Handled = false;
-                if (e.KeyChar == 13)
+                if (((int)(e.KeyChar) >= 48 && (int)(e.KeyChar) <= 57) || (int)(e.KeyChar) == 8 || (int)(e.KeyChar) == 13)
                 {
-                    cmbrs.Focus();
+                    e.Handled = false;
+                    if (e.KeyChar == 13)
+                    {
+                        cmbrs.Focus();
+                    }
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbrs_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                dataGridView1.Focus();
+                if (e.KeyChar == 13)
+                {
+                    dataGridView1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
             if (e.KeyChar == 13)
             {
                 btnsave.Focus();
+            }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void chkWithCreditLimit_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
             if (e.KeyChar == 13)
             {
                 if (chkWithCreditLimit.Checked == true)
@@ -1168,10 +1247,17 @@ namespace SilverGold
                     cmbCategory.Focus();
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbDays_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
             if (e.KeyChar == 13)
             {
                 if (rateupdate_radio.Checked == true)
@@ -1187,14 +1273,25 @@ namespace SilverGold
                     rateupdate_radio.Focus();
                 }
             }
-
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void dataGridView2_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
             if (e.KeyChar == 13)
             {
                 cmbCategory.Focus();
+            }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1210,9 +1307,16 @@ namespace SilverGold
 
         private void cmbPopUp_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
             if (e.KeyChar == 13)
             {
                 cmbtype.Focus();
+            }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1274,6 +1378,49 @@ namespace SilverGold
 
         }
 
-      
+        private void cmbShowtrail_Enter(object sender, EventArgs e)
+        {
+            panel_ShowInTrail.BackColor = Color.Red;
+        }
+
+        private void cmbShowtrail_Leave(object sender, EventArgs e)
+        {
+            panel_ShowInTrail.BackColor = Color.Transparent;
+        }
+
+        private void cmbShowtrail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+            if (e.KeyChar == 13)
+            {
+                if (cmbtype.Text == "WORKER")
+                {
+                    cmbLot.Focus();
+                }
+                else
+                {
+                    txtpartyname.Focus();
+                }
+            }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridViewCreditPeriod_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                DateTime _DateFrom = Conversion.ConToDT(CommanHelper.FDate);
+                dataGridViewCreditPeriod.CurrentRow.Cells[0].Value = _DateFrom;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
     }
 }

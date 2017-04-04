@@ -436,14 +436,14 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) From Metal Where MetalCategory <> 'CASH'", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) From Metal Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
-                    cmb.Items.Clear();
-                    cmb.Items.Add("Other");
+                    cmb.Items.Clear();                   
                     while (dr.Read())
                     {
                         cmb.Items.Add(dr[0].ToString());
                     }
+                    cmb.Items.Add("OTHER");
                     con.Close();
                 }
             }
