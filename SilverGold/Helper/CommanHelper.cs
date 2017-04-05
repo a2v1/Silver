@@ -640,7 +640,7 @@ namespace SilverGold.Helper
         }
 
 
-        public static void GetProduct(DataGridViewComboBoxColumn cmb)
+        public static void GetProduct(DataGridViewComboBoxCell cmb)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
@@ -652,7 +652,24 @@ namespace SilverGold.Helper
                 while (dr.Read())
                 {
                     cmb.Items.Add(dr["ProductName"].ToString().Trim());
-                }               
+                }     
+                
+                con.Close();
+            }
+        }
+
+        public static void GetProductCategoryWise(DataGridViewComboBoxCell cmb,String _Category)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
                 con.Close();
             }
         }
@@ -675,5 +692,25 @@ namespace SilverGold.Helper
             return _CheckValue;
         }
 
+
+        public static List<CreditPeriodEntity> GetCreditPeriod(String _PartyName)
+        {
+            List<CreditPeriodEntity> CreditPeriodList = new List<CreditPeriodEntity>();
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select PartyName,DateFrom,DateTo,RateRevised,Category,Product,Westage,Amount,Tran_Type,Days,Company,UserId From CreditPeriod Where PartyName = '" + _PartyName + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    CreditPeriodEntity oCreditPeriodEntity = new CreditPeriodEntity(dr["PartyName"].ToString(), Conversion.ConToDT(dr["DateFrom"].ToString()), Conversion.ConToDT(dr["DateTo"].ToString()),
+                        dr["RateRevised"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec6(dr["Westage"].ToString()),
+                        Conversion.ConToDec6(dr["Amount"].ToString()), dr["Tran_Type"].ToString(), Conversion.ConToInt(dr["Days"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
+                    CreditPeriodList.Add(oCreditPeriodEntity); 
+                }
+                con.Close();
+            }
+            return CreditPeriodList;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace SilverGold.Entity
         public string PartyName { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-        public Decimal RateRevised { get; set; }
+        public string RateRevised { get; set; }
         public string Category { get; set; }
         public string Product { get; set; }
         public Decimal Westage { get; set; }
@@ -20,7 +20,7 @@ namespace SilverGold.Entity
         public string Company { get; set; }
         public string UserId { get; set; }
 
-        public CreditPeriodEntity(String _PartyName, DateTime _DateFrom, DateTime _DateTo, Decimal _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)  
+        public CreditPeriodEntity(String _PartyName, DateTime _DateFrom, DateTime _DateTo, string _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)  
         {
             PartyName = _PartyName;
             DateFrom = _DateFrom;
