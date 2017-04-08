@@ -125,7 +125,7 @@ namespace SilverGold
                 cmd.Parameters.AddWithValue("@Fine", Conversion.ConToDec6(Txtfine.Text.Trim()));
                 cmd.Parameters.AddWithValue("@Amount", Conversion.ConToDec6(Txtamount.Text.Trim()));
                 cmd.Parameters.AddWithValue("@RawDefine", cmbRawDefine.Text.Trim());
-                cmd.Parameters.AddWithValue("@OpenDate", Conversion.GetDateStr(dtpOpeningDate.Text.Trim()));
+                cmd.Parameters.AddWithValue("@OpenDate", Conversion.ConToDT(dtpOpeningDate.Text.Trim()));
                 cmd.Parameters.AddWithValue("@Narration", txtNarration.Text.Trim());
                 cmd.Parameters.AddWithValue("@Company",CommanHelper.CompName.Trim());
                 cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.Trim());
@@ -141,7 +141,7 @@ namespace SilverGold
                 cmd.ExecuteNonQuery();
 
                 cmd.Parameters.Clear();
-                cmd.CommandText = "INSERT INTO PartyTran(TrDate,MetalCategory,Product,Weight,Debit,Credit,LaboursRate,LaboursAmount,Narration,TranType,PartyName,Company,UserId)VALUES('" + Conversion.GetDateStr(dtpOpeningDate.Text.Trim()) + "','" + cmbcategory.Text.Trim() + "','" + txtProductName.Text.Trim() + "','" + _Weight + "','0','" + _Fine + "','" + _Labourrate + "','" + _Labouramount + "','" + txtNarration.Text.Trim() + "','PO','" + CommanHelper.CompName + "','" + CommanHelper.CompName + "','" + CommanHelper.UserId + "')";
+                cmd.CommandText = "INSERT INTO PartyTran(TrDate,MetalCategory,Product,Weight,Debit,Credit,LaboursRate,LaboursAmount,Narration,TranType,PartyName,Company,UserId)VALUES('" + Conversion.ConToDT(dtpOpeningDate.Text.Trim()) + "','" + cmbcategory.Text.Trim() + "','" + txtProductName.Text.Trim() + "','" + _Weight + "','0','" + _Fine + "','" + _Labourrate + "','" + _Labouramount + "','" + txtNarration.Text.Trim() + "','PO','" + CommanHelper.CompName + "','" + CommanHelper.CompName + "','" + CommanHelper.UserId + "')";
                 cmd.ExecuteNonQuery();
 
                 Tran.Commit();
@@ -998,7 +998,7 @@ namespace SilverGold
                     string raw = "";
                     string pname1 = "";
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                    OleDbCommand cmd = new OleDbCommand("Select ProductName,RawDefine From Product Where Category ='" + cmbcategory.Text.Trim() + "'", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -1033,7 +1033,7 @@ namespace SilverGold
                     string pname1 = "";
                     chkAll.Checked = false;
                     con.Open();
-                    OleDbDataAdapter da = new OleDbDataAdapter("Select ProductName,RawDefine From Product Where PGroup ='" + cmbgroup.Text.Trim() + "'", con);
+                    OleDbDataAdapter da = new OleDbDataAdapter("Select ProductName,RawDefine From Product Where Category ='" + cmbcategory.Text.Trim() + "'", con);
                     DataSet ds = new DataSet();
                     da.Fill(ds);
                     for (i = 0; i < ds.Tables[0].Rows.Count; i++)

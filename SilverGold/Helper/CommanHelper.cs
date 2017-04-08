@@ -647,6 +647,7 @@ namespace SilverGold.Helper
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select ProductName From Product", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
                 cmb.Items.Clear();
                 cmb.Items.Add("ALL PRODUCT");
                 while (dr.Read())
@@ -665,6 +666,7 @@ namespace SilverGold.Helper
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
                 cmb.Items.Clear();
                 while (dr.Read())
                 {
