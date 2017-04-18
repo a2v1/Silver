@@ -676,6 +676,55 @@ namespace SilverGold.Helper
             }
         }
 
+        public static void GetProductCategoryWise(ComboBox cmb, String _Category )
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetProductCategory_GroupWise(ComboBox cmb, String _Category,String _Group)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "' And PGroup = '" + _Group + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                cmb.Text = "";
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetParty(ComboBox cmb,String _Type)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where Type = '" + _Type + "' ORDER BY PartyName ASC", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["PartyName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
         public static Boolean CheckMetalName(String strValue, DataGridView dgrd)
         {
             Boolean _CheckValue = false;
@@ -693,6 +742,24 @@ namespace SilverGold.Helper
             }
             return _CheckValue;
         }
+
+        public static String GetProductValue(String _ColName , String _ProductName)
+        {
+            String _Str = "";
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select " + _ColName + " From Product Where ProductName = '" + _ProductName + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                if(dr.Read())
+                {
+                    _Str = dr[0].ToString();
+                }
+                con.Close();
+            }
+            return _Str;
+        }
+
 
 
         public static List<CreditPeriodEntity> GetCreditPeriod(String _PartyName)
@@ -714,5 +781,31 @@ namespace SilverGold.Helper
             }
             return CreditPeriodList;
         }
+
+
+        public static Boolean CheckGram_Metal(String _Str)
+        {
+            Boolean CheckGrams_MG = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd_CheckGrams = new OleDbCommand("Select * from Metal where MetalName = '" + _Str + "' AND WeightType='GRMS'", con);
+                    OleDbDataReader dr_CheckGrams = cmd_CheckGrams.ExecuteReader();
+                    if (dr_CheckGrams.Read())
+                    {
+                        CheckGrams_MG = true;
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return CheckGrams_MG;
+        }
+
     }
 }

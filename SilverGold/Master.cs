@@ -1,4 +1,5 @@
 ﻿using SilverGold.Helper;
+using SilverGold.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,5 +90,14 @@ namespace SilverGold
             oGroupHead.MdiParent = this;
             oGroupHead.Show();
         }
+
+        private void jamaRecievingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Jama oJama = new Jama();
+            oJama.MdiParent = this;
+            oJama.Show();
+        }
+
+    
     }
 }

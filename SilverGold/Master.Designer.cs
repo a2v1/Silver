@@ -41,6 +41,17 @@
             this.introducerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.groupHeadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jamaRecievingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.naamGivingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashPurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.journalVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.recieptVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paymentVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.labourProccessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +59,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.masterToolStripMenuItem,
-            this.masterInfoToolStripMenuItem});
+            this.masterInfoToolStripMenuItem,
+            this.transactionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(632, 24);
@@ -62,7 +74,7 @@
             this.createItemsToolStripMenuItem});
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.masterToolStripMenuItem.Text = "Company";
+            this.masterToolStripMenuItem.Text = "&Company";
             // 
             // createCompToolStripMenuItem
             // 
@@ -90,7 +102,7 @@
             this.groupHeadToolStripMenuItem});
             this.masterInfoToolStripMenuItem.Name = "masterInfoToolStripMenuItem";
             this.masterInfoToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.masterInfoToolStripMenuItem.Text = "Master Info";
+            this.masterInfoToolStripMenuItem.Text = "&Master Info";
             // 
             // partyInformationToolStripMenuItem
             // 
@@ -142,6 +154,88 @@
             this.groupHeadToolStripMenuItem.Text = "Group Head";
             this.groupHeadToolStripMenuItem.Click += new System.EventHandler(this.groupHeadToolStripMenuItem_Click);
             // 
+            // transactionToolStripMenuItem
+            // 
+            this.transactionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jamaRecievingToolStripMenuItem,
+            this.naamGivingToolStripMenuItem,
+            this.cashPurchaseToolStripMenuItem,
+            this.cashSaleToolStripMenuItem,
+            this.journalVoucherToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.recieptVoucherToolStripMenuItem,
+            this.paymentVoucherToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.labourProccessingToolStripMenuItem});
+            this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
+            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.transactionToolStripMenuItem.Text = "&Transaction";
+            // 
+            // jamaRecievingToolStripMenuItem
+            // 
+            this.jamaRecievingToolStripMenuItem.Name = "jamaRecievingToolStripMenuItem";
+            this.jamaRecievingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.jamaRecievingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.jamaRecievingToolStripMenuItem.Text = "Jama(Recieving)";
+            this.jamaRecievingToolStripMenuItem.Click += new System.EventHandler(this.jamaRecievingToolStripMenuItem_Click);
+            // 
+            // naamGivingToolStripMenuItem
+            // 
+            this.naamGivingToolStripMenuItem.Name = "naamGivingToolStripMenuItem";
+            this.naamGivingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.naamGivingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.naamGivingToolStripMenuItem.Text = "Naam (Giving)";
+            // 
+            // cashPurchaseToolStripMenuItem
+            // 
+            this.cashPurchaseToolStripMenuItem.Name = "cashPurchaseToolStripMenuItem";
+            this.cashPurchaseToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.cashPurchaseToolStripMenuItem.Text = "Cash (Purchase)";
+            // 
+            // cashSaleToolStripMenuItem
+            // 
+            this.cashSaleToolStripMenuItem.Name = "cashSaleToolStripMenuItem";
+            this.cashSaleToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.cashSaleToolStripMenuItem.Text = "Cash (Sale)";
+            // 
+            // journalVoucherToolStripMenuItem
+            // 
+            this.journalVoucherToolStripMenuItem.Name = "journalVoucherToolStripMenuItem";
+            this.journalVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.journalVoucherToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.journalVoucherToolStripMenuItem.Text = "Journal Voucher";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            // 
+            // recieptVoucherToolStripMenuItem
+            // 
+            this.recieptVoucherToolStripMenuItem.Name = "recieptVoucherToolStripMenuItem";
+            this.recieptVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.recieptVoucherToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.recieptVoucherToolStripMenuItem.Text = "Reciept Voucher";
+            // 
+            // paymentVoucherToolStripMenuItem
+            // 
+            this.paymentVoucherToolStripMenuItem.Name = "paymentVoucherToolStripMenuItem";
+            this.paymentVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.paymentVoucherToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.paymentVoucherToolStripMenuItem.Text = "Payment Voucher";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(196, 6);
+            // 
+            // labourProccessingToolStripMenuItem
+            // 
+            this.labourProccessingToolStripMenuItem.Name = "labourProccessingToolStripMenuItem";
+            this.labourProccessingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.labourProccessingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.labourProccessingToolStripMenuItem.Text = "Labour  Proccessing";
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +269,17 @@
         private System.Windows.Forms.ToolStripMenuItem introducerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem groupHeadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jamaRecievingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem naamGivingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cashPurchaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cashSaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem journalVoucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem recieptVoucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paymentVoucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem labourProccessingToolStripMenuItem;
 
     }
 }
