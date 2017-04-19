@@ -28,7 +28,7 @@ namespace SilverGold.Transaction
         public Jama()
         {
             InitializeComponent();
-            CommanHelper.ChangeGridFormate(dataGridView1); 
+            CommanHelper.ChangeGridFormate(dataGridView1);
             BindGridColumn();
         }
 
@@ -67,13 +67,13 @@ namespace SilverGold.Transaction
             col_Tunch1.HeaderText = "Tunch";
             col_Tunch1.Name = "Tunch1";
             dataGridView1.Columns.Add(col_Tunch1);
-            
+
             DataGridViewColumn col_Tunch2 = new DataGridViewTextBoxColumn();
             col_Tunch2.DataPropertyName = "Tunch2";
             col_Tunch2.HeaderText = "Tunch2";
             col_Tunch2.Name = "Tunch2";
             dataGridView1.Columns.Add(col_Tunch2);
-            
+
             DataGridViewColumn col_Westage = new DataGridViewTextBoxColumn();
             col_Westage.DataPropertyName = "Westage";
             col_Westage.HeaderText = "Westage";
@@ -93,9 +93,9 @@ namespace SilverGold.Transaction
             dataGridView1.Columns.Add(col_Fine);
 
             DataGridViewColumn col_Amount = new DataGridViewTextBoxColumn();
-            col_Amount.DataPropertyName = "LaboursAmount";
+            col_Amount.DataPropertyName = "Amount";
             col_Amount.HeaderText = "Amount";
-            col_Amount.Name = "LaboursAmount";
+            col_Amount.Name = "Amount";
             dataGridView1.Columns.Add(col_Amount);
 
             DataGridViewColumn col_Narration = new DataGridViewTextBoxColumn();
@@ -123,7 +123,7 @@ namespace SilverGold.Transaction
             dataGridView1.Columns["Westage"].Width = 55;
             dataGridView1.Columns["LaboursRate"].Width = 60;
             dataGridView1.Columns["Fine"].Width = 60;
-            dataGridView1.Columns["LaboursAmount"].Width = 65;
+            dataGridView1.Columns["Amount"].Width = 65;
 
             this.dataGridView1.Columns["Weight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridView1.Columns["Pcs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -132,7 +132,7 @@ namespace SilverGold.Transaction
             this.dataGridView1.Columns["Westage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridView1.Columns["LaboursRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridView1.Columns["Fine"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            this.dataGridView1.Columns["LaboursAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridView1.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
 
@@ -167,14 +167,14 @@ namespace SilverGold.Transaction
         private void Cal_Fine()
         {
             Decimal Weight, Tunch1, Tunch2, Fine, Westage, mTunch;
-            Weight =0;
+            Weight = 0;
             Tunch1 = 0;
             Tunch2 = 0;
             Westage = 0;
             mTunch = 0;
-            Weight = Conversion.ConToDec6(txtweight.Text) ;
-            Tunch1 = Conversion.ConToDec6(txttunch1.Text) ;
-            Tunch2 = Conversion.ConToDec6(txttunch2.Text) ;
+            Weight = Conversion.ConToDec6(txtweight.Text);
+            Tunch1 = Conversion.ConToDec6(txttunch1.Text);
+            Tunch2 = Conversion.ConToDec6(txttunch2.Text);
             Westage = Conversion.ConToDec6(txtwestage.Text);
             if (Tunch1 > 0)
             {
@@ -207,6 +207,81 @@ namespace SilverGold.Transaction
             }
         }
 
+        public void AutoCode(string str1, string str2)
+        {
+            txtbillno.Text = str1 + CommanHelper.Pro_AutoCode("PartyTran", "BillNo", "TranType", str2);
+        }
+
+        private void ClearControl()
+        {
+            _Clear();
+            CommanHelper.ComboBoxItem(cmbPopUp, "PartyTran", "Distinct(BillNo)", "TranType", "GR");
+            JamaNaamList.Clear();
+            AutoCode("J", "GR");
+            dtp1.Text = DateTime.Now.ToString();
+            cmbCategory.SelectedIndex = -1;
+            Cmbparty.SelectedIndex = -1;
+            dataGridView1.DataSource = JamaNaamList.ToList();
+            Row_No = -1;
+            cmbGroup.SelectedIndex = -1;
+            cmbGroup.Text = "";
+            cmbproduct.Items.Clear();
+            cmbproduct.Text = "";
+            txtweight.Clear();
+            txtpcs.Clear();
+            txttunch1.Clear();
+            txttunch2.Clear();
+            txtwestage.Clear();
+            txtlabourrs.Clear();
+            txtfine.Clear();
+            txtamount.Clear();
+            txtdescription.Clear();
+        }
+
+        private void Total()
+        {
+            if (CommanHelper.SumRow1(dataGridView1, 9) > 0)
+            {
+                lblTotalAmount.Text = CommanHelper.SumRow1(dataGridView1, 9).ToString();
+            }
+            else
+            {
+                lblTotalAmount.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 8) > 0)
+            {
+                lblTotalFine.Text = CommanHelper.SumRow1(dataGridView1, 8).ToString();
+            }
+            else
+            {
+                lblTotalFine.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 2) > 0)
+            {
+                lblTotalWeight.Text = CommanHelper.SumRow1(dataGridView1, 2).ToString();
+            }
+            else
+            {
+                lblTotalWeight.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 3) > 0)
+            {
+                lblTotalPcs.Text = CommanHelper.SumRow1(dataGridView1, 3).ToString();
+            }
+            else
+            {
+                lblTotalPcs.Text = "";
+            }
+
+        }
+        private void _Clear()
+        {
+            lblTotalAmount.Text = "";
+            lblTotalFine.Text = "";
+            lblTotalWeight.Text = "";
+            lblTotalPcs.Text = "";
+        }
+
         #endregion
 
         private void Jama_Load(object sender, EventArgs e)
@@ -219,13 +294,14 @@ namespace SilverGold.Transaction
             con = new OleDbConnection();
             objCon = new ConnectionClass();
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
-
+            _Clear();
             oOpeningOtherEntity = CommanHelper.OpeningOther();
             cmbCategory.DataSource = oOpeningOtherEntity;
             cmbCategory.DisplayMember = "Name";
             cmbCategory.SelectedIndex = -1;
 
             CommanHelper.ComboBoxItem(cmbGroup, "Product", "Distinct(PGroup)");
+            CommanHelper.ComboBoxItem(cmbPopUp, "PartyTran", "Distinct(BillNo)", "TranType", "GR");
             CommanHelper.GetParty(Cmbparty, "PARTY");
         }
 
@@ -287,7 +363,30 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (Row_No != 0)
+
+                if (CommanHelper.VarifiedValue("PartyDetails", "PartyName", "Type", "Party", Cmbparty.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter valid Party", "JAMA RECIEVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cmbparty.Focus();
+                    return;
+                }
+
+
+                if (CommanHelper.VarifiedValue("Product", "PGroup", cmbGroup.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter Valid Product Category", "JAMA RECIEVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbGroup.Focus();
+                    return;
+                }
+
+                if (CommanHelper.VarifiedValue("Product", "ProductName", cmbproduct.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter valid Product", "JAMA RECIEVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbproduct.Focus();
+                    return;
+                }
+
+                if (Row_No != -1)
                 {
                     var result = (from r in JamaNaamList where r.Sno == Row_No select r).SingleOrDefault();
                     result.PGroup = cmbGroup.Text.Trim();
@@ -299,11 +398,18 @@ namespace SilverGold.Transaction
                     result.Westage = Conversion.ConToDec(txtwestage.Text.Trim());
                     result.LaboursRate = Conversion.ConToDec(txtlabourrs.Text.Trim());
                     result.Fine = Conversion.ConToDec(txtfine.Text.Trim());
-                    result.LaboursAmount = Conversion.ConToDec6(txtamount.Text.Trim());
+                    result.Amount = Conversion.ConToDec6(txtamount.Text.Trim());
                     result.Narration = txtdescription.Text.Trim();
                 }
                 else
                 {
+                    if (cmbPopUp.Text.Trim() == "")
+                    {
+                        if (txtbillno.Text == "")
+                        {
+                            txtbillno.Text = 'J' + CommanHelper.Pro_AutoCode("PartyTran", "BillNo", "TranType", "GR");
+                        }
+                    }
                     var max = 0;
                     if (JamaNaamList.Count > 0)
                     {
@@ -320,13 +426,14 @@ namespace SilverGold.Transaction
                     oJamaNaamEntity.Westage = Conversion.ConToDec(txtwestage.Text.Trim());
                     oJamaNaamEntity.LaboursRate = Conversion.ConToDec(txtlabourrs.Text.Trim());
                     oJamaNaamEntity.Fine = Conversion.ConToDec(txtfine.Text.Trim());
-                    oJamaNaamEntity.LaboursAmount = Conversion.ConToDec6(txtamount.Text.Trim());
+                    oJamaNaamEntity.Amount = Conversion.ConToDec6(txtamount.Text.Trim());
                     oJamaNaamEntity.Narration = txtdescription.Text.Trim();
+                    oJamaNaamEntity.Sno= max;
                     JamaNaamList.Add(oJamaNaamEntity);
                 }
                 dataGridView1.DataSource = JamaNaamList.ToList();
 
-
+                Total();
                 Row_No = -1;
                 cmbGroup.SelectedIndex = -1;
                 cmbGroup.Text = "";
@@ -336,11 +443,12 @@ namespace SilverGold.Transaction
                 txtpcs.Clear();
                 txttunch1.Clear();
                 txttunch2.Clear();
-                txtwestage.Clear(); 
+                txtwestage.Clear();
                 txtlabourrs.Clear();
-                txtfine.Clear(); 
+                txtfine.Clear();
                 txtamount.Clear();
                 txtdescription.Clear();
+                cmbGroup.Focus();
             }
             catch (Exception ex)
             {
@@ -351,24 +459,100 @@ namespace SilverGold.Transaction
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
-            {
+            {                
+                String _Category = "";
+                String _PartyName = "";
 
+                _Category = cmbCategory.Text;
+                _PartyName = Cmbparty.Text.Trim();
+                JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+                Tran = con.BeginTransaction();
+
+                OleDbCommand cmd = new OleDbCommand("Delete From PartyTran Where BillNo = '" + txtbillno.Text.Trim() + "'", con, Tran);
+                cmd.ExecuteNonQuery();
+
+                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                {
+                    String _PGroup = "";
+                    String _Product = "";
+                    Decimal _Weight = 0;
+                    Decimal _Pcs = 0;
+                    Decimal _Tunch1 = 0;
+                    Decimal _Tunch2 = 0;
+                    Decimal _Westage = 0;
+                    Decimal _LabourFine = 0;
+                    Decimal _Fine = 0;
+                    Decimal _Amount = 0;
+                    String _Narration = "";
+
+                    _PGroup = dr.Cells[0].Value.ToString();
+                    _Product = dr.Cells[1].Value.ToString();
+                    _Weight = Conversion.ConToDec6(dr.Cells[2].Value.ToString());
+                    _Pcs = Conversion.ConToDec6(dr.Cells[3].Value.ToString());
+                    _Tunch1 = Conversion.ConToDec6(dr.Cells[4].Value.ToString());
+                    _Tunch2 = Conversion.ConToDec6(dr.Cells[5].Value.ToString());
+                    _Westage = Conversion.ConToDec6(dr.Cells[6].Value.ToString());
+                    _LabourFine = Conversion.ConToDec6(dr.Cells[7].Value.ToString());
+                    _Fine = Conversion.ConToDec6(dr.Cells[8].Value.ToString());
+                    _Amount = Conversion.ConToDec6(dr.Cells[9].Value.ToString());
+                    _Narration = dr.Cells[10].Value.ToString();
+
+
+                    oJamaNaamEntity.InsertJamaNaam(txtbillno.Text.Trim(), Conversion.ConToDT(dtp1.Text), _Category, _PartyName, _PGroup, _Product, _Weight, _Pcs, _Tunch1, _Tunch2, _Westage, _LabourFine, 0, _Fine, _Amount, _Narration, "GR", this.FindForm().Name, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+
+                }
+
+
+                Tran.Commit();
+                con.Close();
+                MessageBox.Show("Data Successfull Saved.....", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearControl();
             }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+                Tran.Rollback();
+                con.Close();
             }
         }
+
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                if (Cmbparty.Text.ToString() != "")
+                {
+                    if (MessageBox.Show("Do You Want To Delete Data", "JAMA", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Tran = null;
+                        if (con.State == ConnectionState.Open)
+                        {
+                            con.Close();
+                        }
+                        con.Open();
+                        Tran = con.BeginTransaction();
+                        OleDbCommand cmd = new OleDbCommand("Delete From PartyTran Where BillNo = '" + txtbillno.Text.Trim() + "'", con, Tran);
+                        cmd.ExecuteNonQuery();
 
+                        Tran.Commit();
+                        con.Close();
+                        MessageBox.Show("Data SuccessFully Deleted", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearControl();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+                Tran.Rollback();
+                con.Close();
             }
         }
 
@@ -376,7 +560,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-
+                ClearControl();
             }
             catch (Exception ex)
             {
@@ -412,11 +596,51 @@ namespace SilverGold.Transaction
         {
             try
             {
-
+                GetDetails(cmbPopUp.Text.Trim());
+                Total();
             }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void GetDetails(String _BillNo)
+        {
+            if (_BillNo != "")
+            {
+                if (con.State == ConnectionState.Closed)
+                { 
+                con.Open();
+                }
+                OleDbCommand cmd = new OleDbCommand("Select BillNo,TrDate,MetalCategory,PartyName,PGroup, Product, Weight, Pcs, Tunch1, Tunch2, Westage, LaboursRate,Credit, Amount, Narration,Sno From PartyTran Where TranType = 'GR' And BillNo = '" + _BillNo + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+
+                JamaNaamList.Clear();
+               
+                while(dr.Read())
+                {
+                    txtbillno.Text = dr["BillNo"].ToString();
+                    dtp1.Text = dr["TrDate"].ToString();
+                    cmbCategory.Text = dr["MetalCategory"].ToString();
+                    Cmbparty.Text = dr["PartyName"].ToString();
+
+                    JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
+                    oJamaNaamEntity.PGroup = dr["PGroup"].ToString();
+                    oJamaNaamEntity.Product = dr["Product"].ToString();
+                    oJamaNaamEntity.Weight = Conversion.ConToDec(dr["Weight"].ToString());
+                    oJamaNaamEntity.Pcs = Conversion.ConToDec(dr["Pcs"].ToString());
+                    oJamaNaamEntity.Tunch1 = Conversion.ConToDec(dr["Tunch1"].ToString());
+                    oJamaNaamEntity.Tunch2 = Conversion.ConToDec(dr["Tunch2"].ToString());
+                    oJamaNaamEntity.Westage = Conversion.ConToDec(dr["Westage"].ToString());
+                    oJamaNaamEntity.LaboursRate = Conversion.ConToDec(dr["LaboursRate"].ToString());
+                    oJamaNaamEntity.Fine = Conversion.ConToDec(dr["Credit"].ToString());
+                    oJamaNaamEntity.Amount = Conversion.ConToDec6(dr["Amount"].ToString());
+                    oJamaNaamEntity.Narration = dr["Narration"].ToString();
+                    oJamaNaamEntity.Sno = Conversion.ConToInt(dr["Sno"].ToString()); 
+                    JamaNaamList.Add(oJamaNaamEntity);
+                }
+                dataGridView1.DataSource = JamaNaamList.ToList();
             }
         }
 
@@ -486,7 +710,14 @@ namespace SilverGold.Transaction
             {
                 if (e.KeyChar == 13)
                 {
-                 txtweight.Focus();
+                    if (cmbproduct.Text.Trim() == "")
+                    {
+                        btnSave.Focus();
+                    }
+                    else
+                    {
+                        txtweight.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -499,6 +730,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txtpcs.Focus();
@@ -514,6 +752,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txttunch1.Focus();
@@ -529,6 +774,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txttunch2.Focus();
@@ -544,6 +796,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txtwestage.Focus();
@@ -559,6 +818,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txtlabourrs.Focus();
@@ -574,6 +840,13 @@ namespace SilverGold.Transaction
         {
             try
             {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
+                {
+                }
+                else
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
                 if (e.KeyChar == 13)
                 {
                     txtdescription.Focus();
@@ -703,16 +976,577 @@ namespace SilverGold.Transaction
                 {
                     cmbGroup.Text = dataGridView1.Rows[hti.RowIndex].Cells[0].Value.ToString();
                     cmbproduct.Text = dataGridView1.Rows[hti.RowIndex].Cells[1].Value.ToString();
-                    txtweight.Text = dataGridView1.Rows[hti.RowIndex].Cells[3].Value.ToString();
-                    txtpcs.Text = dataGridView1.Rows[hti.RowIndex].Cells[4].Value.ToString();
-                    txttunch1.Text = dataGridView1.Rows[hti.RowIndex].Cells[5].Value.ToString();
-                    txttunch2.Text = dataGridView1.Rows[hti.RowIndex].Cells[6].Value.ToString();
-                    txtwestage.Text = dataGridView1.Rows[hti.RowIndex].Cells[7].Value.ToString();
+                    txtweight.Text = dataGridView1.Rows[hti.RowIndex].Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.Rows[hti.RowIndex].Cells[3].Value.ToString();
+                    txttunch1.Text = dataGridView1.Rows[hti.RowIndex].Cells[4].Value.ToString();
+                    txttunch2.Text = dataGridView1.Rows[hti.RowIndex].Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.Rows[hti.RowIndex].Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.Rows[hti.RowIndex].Cells[7].Value.ToString();
                     txtfine.Text = dataGridView1.Rows[hti.RowIndex].Cells[8].Value.ToString();
                     txtamount.Text = dataGridView1.Rows[hti.RowIndex].Cells[9].Value.ToString();
                     txtdescription.Text = dataGridView1.Rows[hti.RowIndex].Cells[10].Value.ToString();
                     Row_No = Convert.ToInt32(dataGridView1.Rows[hti.RowIndex].Cells[11].Value.ToString());
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    cmbGroup.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmbproduct.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    txtweight.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    txttunch1.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    txttunch2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+                    txtfine.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
+                    txtamount.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
+                    txtdescription.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+                    Row_No = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+
+                    cmbGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.Aqua;
+                panel9.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.White;
+                panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Cmbparty_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Cmbparty.BackColor = Color.Aqua;
+                panel10.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Cmbparty_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Cmbparty.BackColor = Color.White;
+                panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroup.BackColor = Color.Aqua;
+                Grpanel.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Grpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
+                cmbGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbproduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbproduct.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbproduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbproduct.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtweight_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtpcs.TabStop = true;
+                txttunch1.TabStop = true;
+                txttunch2.TabStop = true;
+
+                txtwestage.TabStop = true;
+                txtlabourrs.TabStop = true;
+                txtdescription.TabStop = true;
+                txtweight.BackColor = Color.Aqua;
+                this.txtweight.SelectAll();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtweight_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtweight.BackColor = Color.White;
+                if (txtweight.Text == "")
+                {
+                    txtweight.TabStop = false;
+                }
+                else
+                {
+                    txtweight.TabStop = true;
+                }
+                if (txtweight.Text != "")
+                {
+                    if (CommanHelper.CheckGram_Metal(cmbproduct.Text.Trim()) == true)
+                    {
+                        decimal finep = Conversion.ConToDec6(txtweight.Text);
+                        txtweight.Text = String.Format("{0:0.000000}", finep);
+                    }
+                    else
+                    {
+                        decimal finep = Conversion.ConToDec6(txtweight.Text);
+                        txtweight.Text = String.Format("{0:0.000}", finep);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtpcs_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txttunch1.TabStop = true;
+                txttunch2.TabStop = true;
+                txtwestage.TabStop = true;
+                txtlabourrs.TabStop = true;
+                txtdescription.TabStop = true;
+                txtpcs.BackColor = Color.Aqua;
+                this.txtpcs.SelectAll();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtpcs_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtpcs.BackColor = Color.White;
+                if (txtpcs.Text == "")
+                {
+                    txtpcs.TabStop = false;
+                }
+                else
+                {
+                    txtpcs.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txttunch1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txttunch1.BackColor = Color.Aqua;
+                this.txttunch1.SelectAll();
+                txttunch2.TabStop = true;
+                txtwestage.TabStop = true;
+                txtlabourrs.TabStop = true;
+                txtdescription.TabStop = true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txttunch1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txttunch1.BackColor = Color.White;
+                if (txttunch1.Text == "")
+                {
+                    txttunch1.TabStop = false;
+                }
+                else
+                {
+                    txttunch1.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txttunch2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txttunch2.BackColor = Color.Aqua;
+                this.txttunch2.SelectAll();
+                txtwestage.TabStop = true;
+                txtlabourrs.TabStop = true;
+                txtdescription.TabStop = true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txttunch2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txttunch2.BackColor = Color.White;
+                if (txttunch2.Text == "")
+                {
+                    txttunch2.TabStop = false;
+                }
+                else
+                {
+                    txttunch2.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtwestage_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtwestage.BackColor = Color.Aqua;
+                this.txtwestage.SelectAll();
+                txtwestage.TabStop = true;
+                txtlabourrs.TabStop = true;
+                txtdescription.TabStop = true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtwestage_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtwestage.BackColor = Color.White;
+                if (txtwestage.Text == "")
+                {
+                    txtwestage.TabStop = false;
+                }
+                else
+                {
+                    txtwestage.TabStop = true;
+
+                }
+                if (txtwestage.Text != "")
+                {
+                    if (CommanHelper.CheckGram_Metal(cmbproduct.Text.Trim()) == true)
+                    {
+                        decimal finep = Conversion.ConToDec6(txtwestage.Text);
+                        txtwestage.Text = String.Format("{0:0.000000}", finep);
+                    }
+                    else
+                    {
+                        decimal finep = Conversion.ConToDec6(txtwestage.Text);
+                        txtwestage.Text = String.Format("{0:0.000}", finep);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtlabourrs_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtlabourrs.BackColor = Color.Aqua;
+                this.txtlabourrs.SelectAll();
+                txtdescription.TabStop = true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtlabourrs_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtlabourrs.BackColor = Color.White;
+                txtfine.BackColor = Color.White;
+                txtamount.BackColor = Color.White;
+                if (txtlabourrs.Text == "")
+                {
+                    txtlabourrs.TabStop = false;
+                }
+                else
+                {
+                    txtlabourrs.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdescription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdescription.BackColor = Color.Aqua;
+                txtdescription.SelectAll();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdescription_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdescription.BackColor = Color.White;
+                if (txtdescription.Text == "")
+                {
+                    txtdescription.TabStop = false;
+                }
+                else
+                {
+                    txtdescription.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.BackColor = Color.Aqua;
+                pnlpopup.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.BackColor = Color.White;
+                pnlpopup.BackColor = Color.RosyBrown;
+                pnlpopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    dataGridView1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    int SNo = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+                    var result = (from r in JamaNaamList where r.Sno == SNo select r).SingleOrDefault();
+                    if (result != null)
+                        JamaNaamList.Remove(result);
+
+                    dataGridView1.DataSource = JamaNaamList.ToList();
+                    Total();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_CloseUp(object sender, EventArgs e)
+        {
+            try
+            {
+                listBox1.Visible = true;
+                listBox1.Focus();
+                listBox1.Items.Clear();
+               
+                new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.ConToDT(dateTimePicker1.Text), "GR", con);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+
+                    ClearControl();
+                    listBox1.Visible = true;
+                    listBox1.Focus();
+                    listBox1.Items.Clear();
+                    new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.ConToDT(dateTimePicker1.Text), "GR", con);
+
+                    listBox1.Focus();
+                    if (listBox1.Items.Count > 0)
+                    {
+                        listBox1.SelectedIndex = 0;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void listBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    string _Billno = "";
+                    _Billno = listBox1.SelectedItem.ToString().Substring(0, 5);
+                    cmbPopUp.Text = _Billno;
+                    GetDetails(_Billno);
+                    Total();
+                    dataGridView1.Focus();
+                }
+                listBox1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                string _Billno = "";
+
+                _Billno = listBox1.SelectedItem.ToString().Substring(0, 5);
+                cmbPopUp.Text = _Billno;
+                GetDetails(_Billno);
+                Total();
+
+                listBox1.Visible = false;
+                cmbproduct.Focus();
             }
             catch (Exception ex)
             {

@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtp1 = new System.Windows.Forms.DateTimePicker();
             this.panel9 = new System.Windows.Forms.Panel();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.Cmbparty = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtbillno = new System.Windows.Forms.TextBox();
             this.pGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.billNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,6 +151,10 @@
             this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotalWeight = new System.Windows.Forms.Label();
+            this.lblTotalPcs = new System.Windows.Forms.Label();
+            this.lblTotalFine = new System.Windows.Forms.Label();
+            this.lblTotalAmount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -183,22 +188,22 @@
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.dateTimePicker2);
+            this.panel11.Controls.Add(this.dtp1);
             this.panel11.Location = new System.Drawing.Point(100, 44);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(107, 27);
             this.panel11.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // dtp1
             // 
-            this.dateTimePicker2.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(3, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(101, 20);
-            this.dateTimePicker2.TabIndex = 0;
-            this.dateTimePicker2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker2_KeyPress);
+            this.dtp1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dtp1.CustomFormat = "dd/MM/yyyy";
+            this.dtp1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp1.Location = new System.Drawing.Point(3, 3);
+            this.dtp1.Name = "dtp1";
+            this.dtp1.Size = new System.Drawing.Size(101, 20);
+            this.dtp1.TabIndex = 0;
+            this.dtp1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker2_KeyPress);
             // 
             // panel9
             // 
@@ -217,7 +222,9 @@
             this.cmbCategory.Size = new System.Drawing.Size(101, 21);
             this.cmbCategory.TabIndex = 0;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
+            this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
             this.cmbCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCategory_KeyPress);
+            this.cmbCategory.Leave += new System.EventHandler(this.cmbCategory_Leave);
             // 
             // label5
             // 
@@ -256,7 +263,9 @@
             this.cmbGroup.Size = new System.Drawing.Size(50, 21);
             this.cmbGroup.TabIndex = 0;
             this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
+            this.cmbGroup.Enter += new System.EventHandler(this.cmbGroup_Enter);
             this.cmbGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbGroup_KeyPress);
+            this.cmbGroup.Leave += new System.EventHandler(this.cmbGroup_Leave);
             // 
             // txtdescription
             // 
@@ -264,7 +273,9 @@
             this.txtdescription.Name = "txtdescription";
             this.txtdescription.Size = new System.Drawing.Size(101, 20);
             this.txtdescription.TabIndex = 13;
+            this.txtdescription.Enter += new System.EventHandler(this.txtdescription_Enter);
             this.txtdescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescription_KeyPress);
+            this.txtdescription.Leave += new System.EventHandler(this.txtdescription_Leave);
             // 
             // cmbproduct
             // 
@@ -276,7 +287,9 @@
             this.cmbproduct.Sorted = true;
             this.cmbproduct.TabIndex = 4;
             this.cmbproduct.SelectedIndexChanged += new System.EventHandler(this.cmbproduct_SelectedIndexChanged);
+            this.cmbproduct.Enter += new System.EventHandler(this.cmbproduct_Enter);
             this.cmbproduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbproduct_KeyPress);
+            this.cmbproduct.Leave += new System.EventHandler(this.cmbproduct_Leave);
             // 
             // btnOk
             // 
@@ -320,7 +333,9 @@
             this.txtlabourrs.TabIndex = 10;
             this.txtlabourrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtlabourrs.TextChanged += new System.EventHandler(this.txtlabourrs_TextChanged);
+            this.txtlabourrs.Enter += new System.EventHandler(this.txtlabourrs_Enter);
             this.txtlabourrs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtlabourrs_KeyPress);
+            this.txtlabourrs.Leave += new System.EventHandler(this.txtlabourrs_Leave);
             // 
             // txtwestage
             // 
@@ -330,7 +345,9 @@
             this.txtwestage.TabIndex = 9;
             this.txtwestage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtwestage.TextChanged += new System.EventHandler(this.txtwestage_TextChanged);
+            this.txtwestage.Enter += new System.EventHandler(this.txtwestage_Enter);
             this.txtwestage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtwestage_KeyPress);
+            this.txtwestage.Leave += new System.EventHandler(this.txtwestage_Leave);
             // 
             // txttunch2
             // 
@@ -340,7 +357,9 @@
             this.txttunch2.TabIndex = 8;
             this.txttunch2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttunch2.TextChanged += new System.EventHandler(this.txttunch2_TextChanged);
+            this.txttunch2.Enter += new System.EventHandler(this.txttunch2_Enter);
             this.txttunch2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttunch2_KeyPress);
+            this.txttunch2.Leave += new System.EventHandler(this.txttunch2_Leave);
             // 
             // txttunch1
             // 
@@ -350,7 +369,9 @@
             this.txttunch1.TabIndex = 7;
             this.txttunch1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttunch1.TextChanged += new System.EventHandler(this.txttunch1_TextChanged);
+            this.txttunch1.Enter += new System.EventHandler(this.txttunch1_Enter);
             this.txttunch1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttunch1_KeyPress);
+            this.txttunch1.Leave += new System.EventHandler(this.txttunch1_Leave);
             // 
             // txtpcs
             // 
@@ -360,7 +381,9 @@
             this.txtpcs.TabIndex = 6;
             this.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtpcs.TextChanged += new System.EventHandler(this.txtpcs_TextChanged);
+            this.txtpcs.Enter += new System.EventHandler(this.txtpcs_Enter);
             this.txtpcs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpcs_KeyPress);
+            this.txtpcs.Leave += new System.EventHandler(this.txtpcs_Leave);
             // 
             // txtweight
             // 
@@ -370,7 +393,9 @@
             this.txtweight.TabIndex = 5;
             this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtweight.TextChanged += new System.EventHandler(this.txtweight_TextChanged);
+            this.txtweight.Enter += new System.EventHandler(this.txtweight_Enter);
             this.txtweight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtweight_KeyPress);
+            this.txtweight.Leave += new System.EventHandler(this.txtweight_Leave);
             // 
             // dataGridView1
             // 
@@ -385,6 +410,8 @@
             this.dataGridView1.Size = new System.Drawing.Size(733, 174);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // pnlpopup
@@ -406,6 +433,9 @@
             this.cmbPopUp.Sorted = true;
             this.cmbPopUp.TabIndex = 0;
             this.cmbPopUp.SelectedIndexChanged += new System.EventHandler(this.cmbPopUp_SelectedIndexChanged);
+            this.cmbPopUp.Enter += new System.EventHandler(this.cmbPopUp_Enter);
+            this.cmbPopUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPopUp_KeyPress);
+            this.cmbPopUp.Leave += new System.EventHandler(this.cmbPopUp_Leave);
             // 
             // dateTimePicker1
             // 
@@ -415,6 +445,8 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 21;
+            this.dateTimePicker1.CloseUp += new System.EventHandler(this.dateTimePicker1_CloseUp);
+            this.dateTimePicker1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker1_KeyPress);
             // 
             // btnClose
             // 
@@ -485,6 +517,8 @@
             this.listBox1.Size = new System.Drawing.Size(191, 147);
             this.listBox1.TabIndex = 22;
             this.listBox1.Visible = false;
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.listBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBox1_KeyPress);
             // 
             // panel10
             // 
@@ -504,7 +538,9 @@
             this.Cmbparty.Sorted = true;
             this.Cmbparty.TabIndex = 0;
             this.Cmbparty.SelectedIndexChanged += new System.EventHandler(this.Cmbparty_SelectedIndexChanged);
+            this.Cmbparty.Enter += new System.EventHandler(this.Cmbparty_Enter);
             this.Cmbparty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmbparty_KeyPress);
+            this.Cmbparty.Leave += new System.EventHandler(this.Cmbparty_Leave);
             // 
             // label2
             // 
@@ -515,6 +551,17 @@
             this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 27;
             this.label2.Text = "Party:";
+            // 
+            // txtbillno
+            // 
+            this.txtbillno.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtbillno.Enabled = false;
+            this.txtbillno.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbillno.Location = new System.Drawing.Point(294, 41);
+            this.txtbillno.Name = "txtbillno";
+            this.txtbillno.ReadOnly = true;
+            this.txtbillno.Size = new System.Drawing.Size(124, 22);
+            this.txtbillno.TabIndex = 28;
             // 
             // pGroupDataGridViewTextBoxColumn
             // 
@@ -1220,12 +1267,57 @@
             this.dataGridViewTextBoxColumn44.ReadOnly = true;
             this.dataGridViewTextBoxColumn44.Visible = false;
             // 
+            // lblTotalWeight
+            // 
+            this.lblTotalWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalWeight.Location = new System.Drawing.Point(205, 315);
+            this.lblTotalWeight.Name = "lblTotalWeight";
+            this.lblTotalWeight.Size = new System.Drawing.Size(58, 18);
+            this.lblTotalWeight.TabIndex = 29;
+            this.lblTotalWeight.Text = "label1";
+            this.lblTotalWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalPcs
+            // 
+            this.lblTotalPcs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPcs.Location = new System.Drawing.Point(265, 316);
+            this.lblTotalPcs.Name = "lblTotalPcs";
+            this.lblTotalPcs.Size = new System.Drawing.Size(47, 16);
+            this.lblTotalPcs.TabIndex = 30;
+            this.lblTotalPcs.Text = "label1";
+            this.lblTotalPcs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalFine
+            // 
+            this.lblTotalFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFine.Location = new System.Drawing.Point(529, 317);
+            this.lblTotalFine.Name = "lblTotalFine";
+            this.lblTotalFine.Size = new System.Drawing.Size(56, 16);
+            this.lblTotalFine.TabIndex = 31;
+            this.lblTotalFine.Text = "label1";
+            this.lblTotalFine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalAmount
+            // 
+            this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmount.Location = new System.Drawing.Point(598, 317);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(54, 18);
+            this.lblTotalAmount.TabIndex = 32;
+            this.lblTotalAmount.Text = "label1";
+            this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Jama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
             this.ClientSize = new System.Drawing.Size(1210, 532);
+            this.Controls.Add(this.lblTotalWeight);
+            this.Controls.Add(this.lblTotalPcs);
+            this.Controls.Add(this.lblTotalFine);
+            this.Controls.Add(this.lblTotalAmount);
+            this.Controls.Add(this.txtbillno);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlpopup);
@@ -1276,7 +1368,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtp1;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label5;
@@ -1395,5 +1487,10 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.ComboBox Cmbparty;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TextBox txtbillno;
+        private System.Windows.Forms.Label lblTotalWeight;
+        private System.Windows.Forms.Label lblTotalPcs;
+        private System.Windows.Forms.Label lblTotalFine;
+        private System.Windows.Forms.Label lblTotalAmount;
     }
 }

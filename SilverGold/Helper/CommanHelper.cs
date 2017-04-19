@@ -72,6 +72,29 @@ namespace SilverGold.Helper
             return sum_col;
         }
 
+
+        public static decimal SumRow1(DataGridView dgt, int col)
+        {
+            int count_row = 0;
+            decimal sum_col, col1;
+            sum_col = 0;
+            col1 = 0;
+            try
+            {
+                count_row = dgt.Rows.Count;
+                for (int i = 0; i < count_row ; i++)
+                {
+                    col1 = Conversion.ConToDec(dgt.Rows[i].Cells[col].Value.ToString());
+                    sum_col = sum_col + col1;
+                }
+            }
+            catch (Exception ee)
+            {
+
+            }
+            return sum_col;
+        }
+
         public static decimal SumRowCustumDataGridView(GRIDVIEWCUSTOM1 dgt, int col)
         {
             int count_row = 0;
@@ -384,8 +407,7 @@ namespace SilverGold.Helper
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
-                    con.Open();
-                 
+                    con.Open();                 
                     OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " ", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     cmb.Items.Clear();
@@ -805,6 +827,107 @@ namespace SilverGold.Helper
                 MessageBox.Show(ex.ToString());
             }
             return CheckGrams_MG;
+        }
+
+
+        public static Boolean VarifiedValue(String _TabName, String _ColumName, String _Fcolumn, String _Fvalue, string _Curvalue)
+        {
+            Boolean _Varified = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    string _StrWhere = "";
+                    if (_Fvalue.Trim() != "")
+                    {
+                        _StrWhere = "  Where iif(isnull(" + _Fcolumn + "),''," + _Fcolumn + ")='" + _Fvalue + "'";
+                    }
+
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select " + _ColumName + " from " + _TabName + " " + _StrWhere + "", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        if (_Curvalue == dr[0].ToString().Trim())
+                        {
+                            _Varified = true;
+                        }                       
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return _Varified;
+        }
+
+
+     
+
+        public static Boolean VarifiedValue(String _TabName, String _ColumName, String _curtext)
+        {
+            bool _Varified = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    string _StrWhere = "";
+                    if (_curtext.Trim() != "")
+                    {
+                        _StrWhere = "  Where iif(isnull(" + _ColumName + "),''," + _ColumName + ")='" + _curtext + "'";
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("select * from " + _TabName + " " + _StrWhere + "", con);
+                        OleDbDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            _Varified = true;
+                        }
+                        dr.Close();
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return _Varified;
+        }
+
+
+        public static String Pro_AutoCode(string tabName, string colName, string Fcolumn, string Fvalue)
+        {
+            string str = "";
+            string strwhere = "";
+            if (Fcolumn.Trim().Length > 0)
+            {
+                strwhere = "  where  " + Fcolumn + "='" + Fvalue + "'";
+            }
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("select iif(isnull(max(cint( right(" + colName + ",len(" + colName + ")-1)))),0,max(cint( right(" + colName + ",len(" + colName + ")-1))))+1 from " + tabName + "  " + strwhere + " and " + colName + "<> null", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                str = dr[0].ToString();
+                con.Close();
+                if (str.Length == 1)
+                {
+                    str = "000" + str;
+                }
+                if (str.Length == 2)
+                {
+                    str = "00" + str;
+                }
+                if (str.Length == 3)
+                {
+                    str = "0" + str;
+                }
+            }
+            return str;
+
         }
 
     }
