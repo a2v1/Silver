@@ -64,7 +64,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(632, 24);
-            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // masterToolStripMenuItem
@@ -183,45 +183,45 @@
             // 
             this.naamGivingToolStripMenuItem.Name = "naamGivingToolStripMenuItem";
             this.naamGivingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.naamGivingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.naamGivingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.naamGivingToolStripMenuItem.Text = "Naam (Giving)";
             // 
             // cashPurchaseToolStripMenuItem
             // 
             this.cashPurchaseToolStripMenuItem.Name = "cashPurchaseToolStripMenuItem";
-            this.cashPurchaseToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.cashPurchaseToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.cashPurchaseToolStripMenuItem.Text = "Cash (Purchase)";
             // 
             // cashSaleToolStripMenuItem
             // 
             this.cashSaleToolStripMenuItem.Name = "cashSaleToolStripMenuItem";
-            this.cashSaleToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.cashSaleToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.cashSaleToolStripMenuItem.Text = "Cash (Sale)";
             // 
             // journalVoucherToolStripMenuItem
             // 
             this.journalVoucherToolStripMenuItem.Name = "journalVoucherToolStripMenuItem";
             this.journalVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.journalVoucherToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.journalVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.journalVoucherToolStripMenuItem.Text = "Journal Voucher";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(196, 6);
             // 
             // recieptVoucherToolStripMenuItem
             // 
             this.recieptVoucherToolStripMenuItem.Name = "recieptVoucherToolStripMenuItem";
             this.recieptVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.recieptVoucherToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.recieptVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.recieptVoucherToolStripMenuItem.Text = "Reciept Voucher";
             // 
             // paymentVoucherToolStripMenuItem
             // 
             this.paymentVoucherToolStripMenuItem.Name = "paymentVoucherToolStripMenuItem";
             this.paymentVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.paymentVoucherToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.paymentVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.paymentVoucherToolStripMenuItem.Text = "Payment Voucher";
             // 
             // toolStripSeparator3

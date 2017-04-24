@@ -21,15 +21,33 @@ namespace SilverGold.Entity
         public decimal Fine { get; set; }
         public decimal Amount { get; set; }
         public string Narration { get; set; }
+        public int TunchSno { get; set; }
         public int Sno { get; set; }
 
 
-        public void InsertJamaNaam(String _BillNo, DateTime _TrDate, String _MetalCategory, String _PartyName, String _PGroup, string _Product, Decimal _Weight, Decimal _Pcs, Decimal _Tunch1, Decimal _Tunch2, Decimal _Westage, Decimal _LaboursRate, Decimal _Debit, Decimal _Credit, Decimal _Amount, string _Narration, String _TranType, String _EntryFrom, String _Company, String _UserId, OleDbConnection _Con, OleDbTransaction _Tran)
+        public void AddJamaNaam(String _PGroup, String _Product, Decimal _Weight, Decimal _Pcs, Decimal _Tunch1, Decimal _Tunch2, Decimal _Westage, Decimal _LaboursRate, Decimal _Fine, Decimal _Amount, String _Narration, int _TunchSno, int _Sno)
+        {
+            PGroup = _PGroup;
+            Product = _Product;
+            Weight = _Weight;
+            Pcs = _Pcs;
+            Tunch1 = _Tunch1;
+            Tunch2 = _Tunch2;
+            Westage = _Westage;
+            LaboursRate = _LaboursRate;
+            Fine = _Fine;
+            Amount = _Amount;
+            Narration = _Narration;
+            TunchSno = _TunchSno;
+            Sno = _Sno;
+        }
+
+        public void InsertJamaNaam(String _BillNo, DateTime _TrDate, String _MetalCategory, String _Category, String _PartyName, String _PGroup, String _Product, Decimal _Weight, Decimal _Pcs, Decimal _Tunch1, Decimal _Tunch2, Decimal _Westage, Decimal _LaboursRate, Decimal _Debit, Decimal _Credit, Decimal _Amount, string _Narration, String _TranType, String _EntryFrom, int _TunchSno, String _Company, String _UserId, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
 
-            strInsert = "INSERT into PartyTran( BillNo,TrDate,MetalCategory,PartyName,PGroup, Product, Weight, Pcs, Tunch1, Tunch2, Westage, LaboursRate,Debit, Credit, Amount, Narration,TranType,EntryFrom,Company,UserId ) Values ( @BillNo,@TrDate,@MetalCategory,@PartyName,@PGroup, @Product, @Weight, @Pcs, @Tunch1, @Tunch2, @Westage, @LaboursRate,@Debit, @Credit, @Amount, @Narration,@TranType,@EntryFrom,@Company,@UserId )";
+            strInsert = "INSERT into PartyTran( BillNo,TrDate,MetalCategory,Category,PartyName,PGroup, Product, Weight, Pcs, Tunch1, Tunch2, Westage, LaboursRate,Debit, Credit, Amount, Narration,TranType,EntryFrom,TunchSno,Company,UserId ) Values ( @BillNo,@TrDate,@MetalCategory,@Category,@PartyName,@PGroup, @Product, @Weight, @Pcs, @Tunch1, @Tunch2, @Westage, @LaboursRate,@Debit, @Credit, @Amount, @Narration,@TranType,@EntryFrom,@TunchSno,@Company,@UserId )";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -39,6 +57,7 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@BillNo", _BillNo);
             cmdInsert.Parameters.AddWithValue("@TrDate", _TrDate);
             cmdInsert.Parameters.AddWithValue("@MetalCategory", _MetalCategory);
+            cmdInsert.Parameters.AddWithValue("@Category", _Category);
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
             cmdInsert.Parameters.AddWithValue("@PGroup", _PGroup);
             cmdInsert.Parameters.AddWithValue("@Product", _Product);
@@ -54,6 +73,7 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@Narration", _Narration);
             cmdInsert.Parameters.AddWithValue("@TranType", _TranType);
             cmdInsert.Parameters.AddWithValue("@EntryFrom", _EntryFrom);
+            cmdInsert.Parameters.AddWithValue("@TunchSno", _TunchSno);
             cmdInsert.Parameters.AddWithValue("@Company", _Company);
             cmdInsert.Parameters.AddWithValue("@UserId", _UserId);
             cmdInsert.ExecuteNonQuery();

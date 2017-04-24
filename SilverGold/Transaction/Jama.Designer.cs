@@ -49,7 +49,6 @@
             this.txttunch1 = new System.Windows.Forms.TextBox();
             this.txtpcs = new System.Windows.Forms.TextBox();
             this.txtweight = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pnlpopup = new System.Windows.Forms.Panel();
             this.cmbPopUp = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -63,6 +62,31 @@
             this.Cmbparty = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtbillno = new System.Windows.Forms.TextBox();
+            this.lblTotalWeight = new System.Windows.Forms.Label();
+            this.lblTotalPcs = new System.Windows.Forms.Label();
+            this.lblTotalFine = new System.Windows.Forms.Label();
+            this.lblTotalAmount = new System.Windows.Forms.Label();
+            this.grpPriceList = new System.Windows.Forms.GroupBox();
+            this.btnClose_PriceList = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.cmbProduct_PriceList = new System.Windows.Forms.ComboBox();
+            this.cmbPartyName_PriseList = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem_Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Print = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_PriceList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_PopUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTunchPending = new System.Windows.Forms.Label();
+            this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.pGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.billNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,17 +175,16 @@
             this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTotalWeight = new System.Windows.Forms.Label();
-            this.lblTotalPcs = new System.Windows.Forms.Label();
-            this.lblTotalFine = new System.Windows.Forms.Label();
-            this.lblTotalAmount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.Grpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlpopup.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.grpPriceList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -170,9 +193,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel1.Controls.Add(this.label34);
-            this.panel1.Location = new System.Drawing.Point(-2, -1);
+            this.panel1.Location = new System.Drawing.Point(-2, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1213, 34);
+            this.panel1.Size = new System.Drawing.Size(1264, 34);
             this.panel1.TabIndex = 23;
             // 
             // label34
@@ -256,11 +279,11 @@
             // 
             // cmbGroup
             // 
-            this.cmbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Location = new System.Drawing.Point(3, 3);
             this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(50, 21);
+            this.cmbGroup.Size = new System.Drawing.Size(50, 23);
             this.cmbGroup.TabIndex = 0;
             this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
             this.cmbGroup.Enter += new System.EventHandler(this.cmbGroup_Enter);
@@ -269,9 +292,10 @@
             // 
             // txtdescription
             // 
+            this.txtdescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdescription.Location = new System.Drawing.Point(650, 115);
             this.txtdescription.Name = "txtdescription";
-            this.txtdescription.Size = new System.Drawing.Size(101, 20);
+            this.txtdescription.Size = new System.Drawing.Size(101, 21);
             this.txtdescription.TabIndex = 13;
             this.txtdescription.Enter += new System.EventHandler(this.txtdescription_Enter);
             this.txtdescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescription_KeyPress);
@@ -279,11 +303,11 @@
             // 
             // cmbproduct
             // 
-            this.cmbproduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbproduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbproduct.FormattingEnabled = true;
             this.cmbproduct.Location = new System.Drawing.Point(72, 115);
             this.cmbproduct.Name = "cmbproduct";
-            this.cmbproduct.Size = new System.Drawing.Size(136, 21);
+            this.cmbproduct.Size = new System.Drawing.Size(136, 23);
             this.cmbproduct.Sorted = true;
             this.cmbproduct.TabIndex = 4;
             this.cmbproduct.SelectedIndexChanged += new System.EventHandler(this.cmbproduct_SelectedIndexChanged);
@@ -307,29 +331,32 @@
             // 
             // txtamount
             // 
+            this.txtamount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtamount.Location = new System.Drawing.Point(584, 115);
             this.txtamount.Name = "txtamount";
             this.txtamount.ReadOnly = true;
-            this.txtamount.Size = new System.Drawing.Size(66, 20);
+            this.txtamount.Size = new System.Drawing.Size(66, 21);
             this.txtamount.TabIndex = 12;
             this.txtamount.TabStop = false;
             this.txtamount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtfine
             // 
+            this.txtfine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtfine.Location = new System.Drawing.Point(525, 115);
             this.txtfine.Name = "txtfine";
             this.txtfine.ReadOnly = true;
-            this.txtfine.Size = new System.Drawing.Size(60, 20);
+            this.txtfine.Size = new System.Drawing.Size(60, 21);
             this.txtfine.TabIndex = 11;
             this.txtfine.TabStop = false;
             this.txtfine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtlabourrs
             // 
+            this.txtlabourrs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtlabourrs.Location = new System.Drawing.Point(465, 115);
             this.txtlabourrs.Name = "txtlabourrs";
-            this.txtlabourrs.Size = new System.Drawing.Size(60, 20);
+            this.txtlabourrs.Size = new System.Drawing.Size(60, 21);
             this.txtlabourrs.TabIndex = 10;
             this.txtlabourrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtlabourrs.TextChanged += new System.EventHandler(this.txtlabourrs_TextChanged);
@@ -339,9 +366,10 @@
             // 
             // txtwestage
             // 
+            this.txtwestage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtwestage.Location = new System.Drawing.Point(408, 115);
             this.txtwestage.Name = "txtwestage";
-            this.txtwestage.Size = new System.Drawing.Size(58, 20);
+            this.txtwestage.Size = new System.Drawing.Size(58, 21);
             this.txtwestage.TabIndex = 9;
             this.txtwestage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtwestage.TextChanged += new System.EventHandler(this.txtwestage_TextChanged);
@@ -351,9 +379,10 @@
             // 
             // txttunch2
             // 
+            this.txttunch2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txttunch2.Location = new System.Drawing.Point(360, 115);
             this.txttunch2.Name = "txttunch2";
-            this.txttunch2.Size = new System.Drawing.Size(48, 20);
+            this.txttunch2.Size = new System.Drawing.Size(48, 21);
             this.txttunch2.TabIndex = 8;
             this.txttunch2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttunch2.TextChanged += new System.EventHandler(this.txttunch2_TextChanged);
@@ -363,9 +392,10 @@
             // 
             // txttunch1
             // 
+            this.txttunch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txttunch1.Location = new System.Drawing.Point(314, 115);
             this.txttunch1.Name = "txttunch1";
-            this.txttunch1.Size = new System.Drawing.Size(46, 20);
+            this.txttunch1.Size = new System.Drawing.Size(46, 21);
             this.txttunch1.TabIndex = 7;
             this.txttunch1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttunch1.TextChanged += new System.EventHandler(this.txttunch1_TextChanged);
@@ -375,9 +405,10 @@
             // 
             // txtpcs
             // 
+            this.txtpcs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpcs.Location = new System.Drawing.Point(266, 115);
             this.txtpcs.Name = "txtpcs";
-            this.txtpcs.Size = new System.Drawing.Size(48, 20);
+            this.txtpcs.Size = new System.Drawing.Size(48, 21);
             this.txtpcs.TabIndex = 6;
             this.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtpcs.TextChanged += new System.EventHandler(this.txtpcs_TextChanged);
@@ -387,32 +418,16 @@
             // 
             // txtweight
             // 
+            this.txtweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtweight.Location = new System.Drawing.Point(208, 115);
             this.txtweight.Name = "txtweight";
-            this.txtweight.Size = new System.Drawing.Size(58, 20);
+            this.txtweight.Size = new System.Drawing.Size(58, 21);
             this.txtweight.TabIndex = 5;
             this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtweight.TextChanged += new System.EventHandler(this.txtweight_TextChanged);
             this.txtweight.Enter += new System.EventHandler(this.txtweight_Enter);
             this.txtweight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtweight_KeyPress);
             this.txtweight.Leave += new System.EventHandler(this.txtweight_Leave);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 141);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(733, 174);
-            this.dataGridView1.TabIndex = 26;
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
-            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
-            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
-            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // pnlpopup
             // 
@@ -557,11 +572,276 @@
             this.txtbillno.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtbillno.Enabled = false;
             this.txtbillno.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbillno.Location = new System.Drawing.Point(294, 41);
+            this.txtbillno.Location = new System.Drawing.Point(242, 38);
             this.txtbillno.Name = "txtbillno";
             this.txtbillno.ReadOnly = true;
             this.txtbillno.Size = new System.Drawing.Size(124, 22);
             this.txtbillno.TabIndex = 28;
+            // 
+            // lblTotalWeight
+            // 
+            this.lblTotalWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalWeight.Location = new System.Drawing.Point(205, 315);
+            this.lblTotalWeight.Name = "lblTotalWeight";
+            this.lblTotalWeight.Size = new System.Drawing.Size(58, 18);
+            this.lblTotalWeight.TabIndex = 29;
+            this.lblTotalWeight.Text = "label1";
+            this.lblTotalWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalPcs
+            // 
+            this.lblTotalPcs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPcs.Location = new System.Drawing.Point(265, 316);
+            this.lblTotalPcs.Name = "lblTotalPcs";
+            this.lblTotalPcs.Size = new System.Drawing.Size(47, 16);
+            this.lblTotalPcs.TabIndex = 30;
+            this.lblTotalPcs.Text = "label1";
+            this.lblTotalPcs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalFine
+            // 
+            this.lblTotalFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFine.Location = new System.Drawing.Point(529, 317);
+            this.lblTotalFine.Name = "lblTotalFine";
+            this.lblTotalFine.Size = new System.Drawing.Size(56, 16);
+            this.lblTotalFine.TabIndex = 31;
+            this.lblTotalFine.Text = "label1";
+            this.lblTotalFine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotalAmount
+            // 
+            this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmount.Location = new System.Drawing.Point(598, 317);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(54, 18);
+            this.lblTotalAmount.TabIndex = 32;
+            this.lblTotalAmount.Text = "label1";
+            this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // grpPriceList
+            // 
+            this.grpPriceList.Controls.Add(this.btnClose_PriceList);
+            this.grpPriceList.Controls.Add(this.dataGridView2);
+            this.grpPriceList.Controls.Add(this.label8);
+            this.grpPriceList.Controls.Add(this.label7);
+            this.grpPriceList.Controls.Add(this.label6);
+            this.grpPriceList.Controls.Add(this.label4);
+            this.grpPriceList.Controls.Add(this.label1);
+            this.grpPriceList.Controls.Add(this.dtpTo);
+            this.grpPriceList.Controls.Add(this.dtpFrom);
+            this.grpPriceList.Controls.Add(this.cmbProduct_PriceList);
+            this.grpPriceList.Controls.Add(this.cmbPartyName_PriseList);
+            this.grpPriceList.Location = new System.Drawing.Point(946, 309);
+            this.grpPriceList.Name = "grpPriceList";
+            this.grpPriceList.Size = new System.Drawing.Size(306, 349);
+            this.grpPriceList.TabIndex = 33;
+            this.grpPriceList.TabStop = false;
+            this.grpPriceList.Text = "Price List";
+            this.grpPriceList.Visible = false;
+            // 
+            // btnClose_PriceList
+            // 
+            this.btnClose_PriceList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose_PriceList.Location = new System.Drawing.Point(225, 317);
+            this.btnClose_PriceList.Name = "btnClose_PriceList";
+            this.btnClose_PriceList.Size = new System.Drawing.Size(75, 23);
+            this.btnClose_PriceList.TabIndex = 4;
+            this.btnClose_PriceList.Text = "Close";
+            this.btnClose_PriceList.UseVisualStyleBackColor = true;
+            this.btnClose_PriceList.Click += new System.EventHandler(this.btnClose_PriceList_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(21, 124);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(279, 187);
+            this.dataGridView2.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(170, 98);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 13);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "To:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(18, 98);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "From:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Date Range:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Product Name:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Party Name:";
+            // 
+            // dtpTo
+            // 
+            this.dtpTo.CustomFormat = "dd/MM/yyyy";
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(213, 95);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Size = new System.Drawing.Size(87, 20);
+            this.dtpTo.TabIndex = 3;
+            this.dtpTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpTo_KeyPress);
+            // 
+            // dtpFrom
+            // 
+            this.dtpFrom.CustomFormat = "dd/MM/yyyy";
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(63, 95);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(88, 20);
+            this.dtpFrom.TabIndex = 2;
+            this.dtpFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpFrom_KeyPress);
+            // 
+            // cmbProduct_PriceList
+            // 
+            this.cmbProduct_PriceList.FormattingEnabled = true;
+            this.cmbProduct_PriceList.Location = new System.Drawing.Point(113, 44);
+            this.cmbProduct_PriceList.Name = "cmbProduct_PriceList";
+            this.cmbProduct_PriceList.Size = new System.Drawing.Size(187, 21);
+            this.cmbProduct_PriceList.TabIndex = 1;
+            this.cmbProduct_PriceList.Enter += new System.EventHandler(this.cmbProduct_PriceList_Enter);
+            this.cmbProduct_PriceList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProduct_PriceList_KeyPress);
+            this.cmbProduct_PriceList.Leave += new System.EventHandler(this.cmbProduct_PriceList_Leave);
+            // 
+            // cmbPartyName_PriseList
+            // 
+            this.cmbPartyName_PriseList.FormattingEnabled = true;
+            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(113, 20);
+            this.cmbPartyName_PriseList.Name = "cmbPartyName_PriseList";
+            this.cmbPartyName_PriseList.Size = new System.Drawing.Size(187, 21);
+            this.cmbPartyName_PriseList.TabIndex = 0;
+            this.cmbPartyName_PriseList.Enter += new System.EventHandler(this.cmbPartyName_PriseList_Enter);
+            this.cmbPartyName_PriseList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPartyName_PriseList_KeyPress);
+            this.cmbPartyName_PriseList.Leave += new System.EventHandler(this.cmbPartyName_PriseList_Leave);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_Save,
+            this.toolStripMenuItem_Delete,
+            this.toolStripMenuItem_Refresh,
+            this.toolStripMenuItem_Print,
+            this.toolStripMenuItem_PriceList,
+            this.toolStripMenuItem_PopUp});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1261, 24);
+            this.menuStrip1.TabIndex = 34;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem_Save
+            // 
+            this.toolStripMenuItem_Save.Name = "toolStripMenuItem_Save";
+            this.toolStripMenuItem_Save.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.toolStripMenuItem_Save.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenuItem_Save.Text = "  ";
+            // 
+            // toolStripMenuItem_Delete
+            // 
+            this.toolStripMenuItem_Delete.Name = "toolStripMenuItem_Delete";
+            this.toolStripMenuItem_Delete.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.toolStripMenuItem_Delete.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenuItem_Delete.Text = "   ";
+            // 
+            // toolStripMenuItem_Refresh
+            // 
+            this.toolStripMenuItem_Refresh.Name = "toolStripMenuItem_Refresh";
+            this.toolStripMenuItem_Refresh.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.toolStripMenuItem_Refresh.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenuItem_Refresh.Text = "   ";
+            // 
+            // toolStripMenuItem_Print
+            // 
+            this.toolStripMenuItem_Print.Name = "toolStripMenuItem_Print";
+            this.toolStripMenuItem_Print.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.toolStripMenuItem_Print.Size = new System.Drawing.Size(28, 20);
+            this.toolStripMenuItem_Print.Text = "   ";
+            // 
+            // toolStripMenuItem_PriceList
+            // 
+            this.toolStripMenuItem_PriceList.Name = "toolStripMenuItem_PriceList";
+            this.toolStripMenuItem_PriceList.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            this.toolStripMenuItem_PriceList.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenuItem_PriceList.Text = "  ";
+            this.toolStripMenuItem_PriceList.Click += new System.EventHandler(this.toolStripMenuItem_PriceList_Click);
+            // 
+            // toolStripMenuItem_PopUp
+            // 
+            this.toolStripMenuItem_PopUp.Name = "toolStripMenuItem_PopUp";
+            this.toolStripMenuItem_PopUp.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.toolStripMenuItem_PopUp.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenuItem_PopUp.Text = "  ";
+            this.toolStripMenuItem_PopUp.Click += new System.EventHandler(this.toolStripMenuItem_PopUp_Click);
+            // 
+            // lblTunchPending
+            // 
+            this.lblTunchPending.AutoSize = true;
+            this.lblTunchPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTunchPending.ForeColor = System.Drawing.Color.Blue;
+            this.lblTunchPending.Location = new System.Drawing.Point(936, 89);
+            this.lblTunchPending.Name = "lblTunchPending";
+            this.lblTunchPending.Size = new System.Drawing.Size(115, 15);
+            this.lblTunchPending.TabIndex = 61;
+            this.lblTunchPending.Text = "lblTunchPending";
+            this.lblTunchPending.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lblTunchPending_MouseDoubleClick);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gray;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(4, 141);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 60;
+            this.dataGridView1.Size = new System.Drawing.Size(747, 174);
+            this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.TabStop = false;
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // pGroupDataGridViewTextBoxColumn
             // 
@@ -1267,52 +1547,14 @@
             this.dataGridViewTextBoxColumn44.ReadOnly = true;
             this.dataGridViewTextBoxColumn44.Visible = false;
             // 
-            // lblTotalWeight
-            // 
-            this.lblTotalWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalWeight.Location = new System.Drawing.Point(205, 315);
-            this.lblTotalWeight.Name = "lblTotalWeight";
-            this.lblTotalWeight.Size = new System.Drawing.Size(58, 18);
-            this.lblTotalWeight.TabIndex = 29;
-            this.lblTotalWeight.Text = "label1";
-            this.lblTotalWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTotalPcs
-            // 
-            this.lblTotalPcs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPcs.Location = new System.Drawing.Point(265, 316);
-            this.lblTotalPcs.Name = "lblTotalPcs";
-            this.lblTotalPcs.Size = new System.Drawing.Size(47, 16);
-            this.lblTotalPcs.TabIndex = 30;
-            this.lblTotalPcs.Text = "label1";
-            this.lblTotalPcs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTotalFine
-            // 
-            this.lblTotalFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFine.Location = new System.Drawing.Point(529, 317);
-            this.lblTotalFine.Name = "lblTotalFine";
-            this.lblTotalFine.Size = new System.Drawing.Size(56, 16);
-            this.lblTotalFine.TabIndex = 31;
-            this.lblTotalFine.Text = "label1";
-            this.lblTotalFine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTotalAmount
-            // 
-            this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmount.Location = new System.Drawing.Point(598, 317);
-            this.lblTotalAmount.Name = "lblTotalAmount";
-            this.lblTotalAmount.Size = new System.Drawing.Size(54, 18);
-            this.lblTotalAmount.TabIndex = 32;
-            this.lblTotalAmount.Text = "label1";
-            this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // Jama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
-            this.ClientSize = new System.Drawing.Size(1210, 532);
+            this.ClientSize = new System.Drawing.Size(1261, 664);
+            this.Controls.Add(this.lblTunchPending);
+            this.Controls.Add(this.grpPriceList);
             this.Controls.Add(this.lblTotalWeight);
             this.Controls.Add(this.lblTotalPcs);
             this.Controls.Add(this.lblTotalFine);
@@ -1346,6 +1588,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Jama";
             this.Text = "Jama";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1355,9 +1599,14 @@
             this.panel11.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.Grpanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlpopup.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.grpPriceList.ResumeLayout(false);
+            this.grpPriceList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1474,7 +1723,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn44;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel pnlpopup;
         private System.Windows.Forms.ComboBox cmbPopUp;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -1492,5 +1740,26 @@
         private System.Windows.Forms.Label lblTotalPcs;
         private System.Windows.Forms.Label lblTotalFine;
         private System.Windows.Forms.Label lblTotalAmount;
+        private System.Windows.Forms.GroupBox grpPriceList;
+        private System.Windows.Forms.Button btnClose_PriceList;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
+        private System.Windows.Forms.ComboBox cmbProduct_PriceList;
+        private System.Windows.Forms.ComboBox cmbPartyName_PriseList;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Save;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Delete;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Refresh;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Print;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_PriceList;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_PopUp;
+        private Comman.GRIDVIEWCUSTOM1 dataGridView1;
+        private System.Windows.Forms.Label lblTunchPending;
     }
 }

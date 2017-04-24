@@ -82,7 +82,7 @@ namespace SilverGold.Helper
             try
             {
                 count_row = dgt.Rows.Count;
-                for (int i = 0; i < count_row ; i++)
+                for (int i = 0; i < count_row; i++)
                 {
                     col1 = Conversion.ConToDec(dgt.Rows[i].Cells[col].Value.ToString());
                     sum_col = sum_col + col1;
@@ -152,7 +152,7 @@ namespace SilverGold.Helper
 
 
         public static void GetMetalCate_Account(ComboBox cmb)
-        {            
+        {
             ConnectionClass objCon = new ConnectionClass();
             try
             {
@@ -205,7 +205,7 @@ namespace SilverGold.Helper
         public static List<MetalEntity> GetCompanyMetal()
         {
             List<MetalEntity> MetalList = new List<MetalEntity>();
-            
+
             try
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
@@ -221,11 +221,11 @@ namespace SilverGold.Helper
                         oMetal.WeightType = dr["WeightType"].ToString().Trim();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString().Trim();
                         oMetal.DrCr = dr["DrCr"].ToString().Trim();
-                        oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString()); 
+                        oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
                         oMetal.CompanyName = dr["CompanyName"].ToString().Trim();
                         oMetal.UserId = dr["UserId"].ToString().Trim();
-                     
+
                         MetalList.Add(oMetal);
                     }
                     con.Close();
@@ -240,7 +240,7 @@ namespace SilverGold.Helper
 
         public static void GetMetalCategory(ComboBox cmb)
         {
-            
+
             try
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
@@ -260,7 +260,7 @@ namespace SilverGold.Helper
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
-            } 
+            }
         }
 
 
@@ -297,28 +297,28 @@ namespace SilverGold.Helper
             try
             {
                 OpeningMCXList.Clear();
-                OpeningMCXList.Add(new OpeningMCXEntity 
+                OpeningMCXList.Add(new OpeningMCXEntity
                 {
                     Name = "SILVER",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningMCXList.Add(new OpeningMCXEntity  
+                OpeningMCXList.Add(new OpeningMCXEntity
                 {
                     Name = "SILVERM",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningMCXList.Add(new OpeningMCXEntity 
+                OpeningMCXList.Add(new OpeningMCXEntity
                 {
                     Name = "GOLD",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
-                OpeningMCXList.Add(new OpeningMCXEntity 
+                OpeningMCXList.Add(new OpeningMCXEntity
                 {
                     Name = "GOLDM",
                     Weight = 0,
@@ -381,14 +381,14 @@ namespace SilverGold.Helper
                 {
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal  Where MetalCategory <> 'CASH'", con);
-                    OleDbDataReader dr = cmd.ExecuteReader();                  
+                    OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
                         oOpeningOtherEntity.Name = dr[0].ToString();
                         oOpeningOtherEntity.Amount = 0;
                         oOpeningOtherEntity.DrCr = "";
-                        OpeningOtherList.Add(oOpeningOtherEntity);                        
+                        OpeningOtherList.Add(oOpeningOtherEntity);
                     }
                     con.Close();
                 }
@@ -407,7 +407,7 @@ namespace SilverGold.Helper
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
-                    con.Open();                 
+                    con.Open();
                     OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " ", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     cmb.Items.Clear();
@@ -432,7 +432,7 @@ namespace SilverGold.Helper
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
-                   String STRCOND = "  where iif(isnull(" + Fcolumn + "),''," + Fcolumn + ")='" + Fvalue + "' ";
+                    String STRCOND = "  where iif(isnull(" + Fcolumn + "),''," + Fcolumn + ")='" + Fvalue + "' ";
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand("select " + columName + " from " + tabName + " " + STRCOND + "", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
@@ -460,7 +460,7 @@ namespace SilverGold.Helper
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) From Metal Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
-                    cmb.Items.Clear();                   
+                    cmb.Items.Clear();
                     while (dr.Read())
                     {
                         cmb.Items.Add(dr[0].ToString());
@@ -510,7 +510,7 @@ namespace SilverGold.Helper
                     con.Open();
 
                     OleDbCommand cmd = new OleDbCommand("Select * from PartyDetails where PartyName='" + strPartyName.Trim() + "'", con);
-                    OleDbDataReader dr = cmd.ExecuteReader();                    
+                    OleDbDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
                         existingparty = true;
@@ -572,7 +572,7 @@ namespace SilverGold.Helper
             return s2;
         }
 
-       
+
 
         public static List<OpeningMCXEntity> GetPartyOpeningMCX(String strPartyName)
         {
@@ -653,9 +653,9 @@ namespace SilverGold.Helper
                     Product oProduct = new Product(dr["Category"].ToString(), dr["Unit"].ToString(), Conversion.ConToDec6(dr["Weight_Packet"].ToString()), dr["ProductName"].ToString(), dr["SubGroup"].ToString(), dr["PGroup"].ToString(), Conversion.ConToDec6(dr["Opening"].ToString()), Conversion.ConToDec6(dr["Pcs"].ToString()), Conversion.ConToDec6(dr["Tunch"].ToString()), Conversion.ConToDec6(dr["Westage"].ToString()), Conversion.ConToDec6(dr["LabourRate"].ToString()), Conversion.ConToDec6(dr["Fine"].ToString()), Conversion.ConToDec6(dr["Amount"].ToString()), dr["RawDefine"].ToString(), Conversion.ConToDT(dr["OpenDate"].ToString()), dr["Narration"].ToString(), dr["Company"].ToString(), dr["UserId"].ToString());
                     ProductList.Add(oProduct);
                 }
-                Product _Product = new Product("","",0, "ALL PRODUCT","","",0,0,0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
-                ProductList.Insert(0,_Product);
-                
+                Product _Product = new Product("", "", 0, "ALL PRODUCT", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
+                ProductList.Insert(0, _Product);
+
                 con.Close();
             }
             return ProductList;
@@ -675,13 +675,13 @@ namespace SilverGold.Helper
                 while (dr.Read())
                 {
                     cmb.Items.Add(dr["ProductName"].ToString().Trim());
-                }     
-                
+                }
+
                 con.Close();
             }
         }
 
-        public static void GetProductCategoryWise(DataGridViewComboBoxCell cmb,String _Category)
+        public static void GetProductCategoryWise(DataGridViewComboBoxCell cmb, String _Category)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
@@ -698,7 +698,7 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void GetProductCategoryWise(ComboBox cmb, String _Category )
+        public static void GetProductCategoryWise(ComboBox cmb, String _Category)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
@@ -714,7 +714,7 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void GetProductCategory_GroupWise(ComboBox cmb, String _Category,String _Group)
+        public static void GetProductCategory_GroupWise(ComboBox cmb, String _Category, String _Group)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
@@ -731,7 +731,7 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void GetParty(ComboBox cmb,String _Type)
+        public static void GetParty(ComboBox cmb, String _Type)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
@@ -765,15 +765,17 @@ namespace SilverGold.Helper
             return _CheckValue;
         }
 
-        public static String GetProductValue(String _ColName , String _ProductName)
+        public static String GetColumnValue(String _ColName, String _TableName, String _ColType, String _FValue)
         {
             String _Str = "";
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
+                String _StrWhere = "";
+                _StrWhere = "Where " + _ColType + " = '" + _FValue + "'";
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select " + _ColName + " From Product Where ProductName = '" + _ProductName + "'", con);
+                OleDbCommand cmd = new OleDbCommand("Select " + _ColName + " From " + _TableName + " " + _StrWhere + "", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
-                if(dr.Read())
+                if (dr.Read())
                 {
                     _Str = dr[0].ToString();
                 }
@@ -797,7 +799,7 @@ namespace SilverGold.Helper
                     CreditPeriodEntity oCreditPeriodEntity = new CreditPeriodEntity(dr["PartyName"].ToString(), Conversion.ConToDT(dr["DateFrom"].ToString()), Conversion.ConToDT(dr["DateTo"].ToString()),
                         dr["RateRevised"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec6(dr["Westage"].ToString()),
                         Conversion.ConToDec6(dr["Amount"].ToString()), dr["Tran_Type"].ToString(), Conversion.ConToInt(dr["Days"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
-                    CreditPeriodList.Add(oCreditPeriodEntity); 
+                    CreditPeriodList.Add(oCreditPeriodEntity);
                 }
                 con.Close();
             }
@@ -851,7 +853,7 @@ namespace SilverGold.Helper
                         if (_Curvalue == dr[0].ToString().Trim())
                         {
                             _Varified = true;
-                        }                       
+                        }
                     }
                     con.Close();
                 }
@@ -864,7 +866,7 @@ namespace SilverGold.Helper
         }
 
 
-     
+
 
         public static Boolean VarifiedValue(String _TabName, String _ColumName, String _curtext)
         {
@@ -930,5 +932,51 @@ namespace SilverGold.Helper
 
         }
 
+
+        public static int Get_Tunch_Sl_No(String trn_type)
+        {
+            int _Tunch_Sl_No = 0;
+
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select  iif(isnull(max(TunchSNo)),0,max(TunchSNo))+1 as Sl_No from PartyTran Where TranType='" + trn_type + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    _Tunch_Sl_No = Conversion.ConToInt(dr[0].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
+
+            return _Tunch_Sl_No;
+
+        }
+
+        public static Boolean CheckTunchPending(String _PartyName, DateTime _Date)
+        {
+            Boolean _TunchPendingExist = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select * from TunchPending Where PartyName='" + _PartyName + "' And TrDate <=#" + _Date + "#", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        _TunchPendingExist = true;
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return _TunchPendingExist;
+        }
     }
 }

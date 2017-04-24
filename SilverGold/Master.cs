@@ -34,6 +34,17 @@ namespace SilverGold
             objMaster = this;
             CommanHelper.FormX = this.Width;
             CommanHelper.FormY = this.Height;
+
+            //foreach (Control ctl in this.Controls)
+            //{
+            //    if (ctl is MdiClient)
+            //    {
+            //        ctl.BackColor = Color.RosyBrown;
+            //        break;
+            //    }
+            //}
+
+
         }
 
         private void Master_FormClosed(object sender, FormClosedEventArgs e)

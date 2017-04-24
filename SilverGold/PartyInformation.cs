@@ -1336,8 +1336,6 @@ namespace SilverGold
                     lblLot.Visible = true;
                     cmbLot.Enabled = true;
                     cmbLot.Visible = true;
-                    //lblLotGenerateIn.Visible = true;
-                    //Panel_LotGenerate.Visible = true;
                     cmbgrouphead.Text = "LABOUR JOB";
                 }
             }
