@@ -40,6 +40,7 @@ namespace SilverGold.Transaction
         {
             InitializeComponent();
             CommanHelper.ChangeGridFormate(dataGridView1);
+            CommanHelper.ChangeGridFormate2(dataGridView2);
             BindGridColumn();
         }
 
@@ -2215,8 +2216,9 @@ namespace SilverGold.Transaction
             try
             {
                 TunchPending oTunchPending = new TunchPending();
+                oTunchPending._Showtunch = 1;
+                oTunchPending.GetSqlQuery("Select TrDate,PartyName,Product,Weight,Tunch1,Tunch2,InvoiceType From TunchPending Where (Tunch1='Y' or Tunch2='Y') And Company='" + CommanHelper.CompName + "' And PartyName='" + Cmbparty.Text.Trim().ToString() + "'  Order By [TrDate] desc");
                 oTunchPending.Show();
-
             }
             catch (Exception ex)
             {
