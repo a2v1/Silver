@@ -226,7 +226,7 @@
             this.dtp1.Name = "dtp1";
             this.dtp1.Size = new System.Drawing.Size(101, 20);
             this.dtp1.TabIndex = 0;
-            this.dtp1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker2_KeyPress);
+            this.dtp1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtp1_KeyPress);
             // 
             // panel9
             // 
@@ -1593,6 +1593,7 @@
             this.Name = "Jama";
             this.Text = "Jama";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Jama_FormClosing);
             this.Load += new System.EventHandler(this.Jama_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

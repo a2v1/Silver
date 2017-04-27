@@ -34,6 +34,9 @@ namespace SilverGold.Transaction
         String _Tunch1LastValue = "";
         String _Tunch2LastValue = "";
 
+        public static int _Flage_TunchPending = 0;
+        public static int _TunchSno_TunchPending = 0;
+
         #endregion
 
         public Jama()
@@ -742,6 +745,21 @@ namespace SilverGold.Transaction
                             uTunchPending.Weight = Conversion.ConToDec(txtweight.Text.Trim());
                             uTunchPending.TunchValue1 = Conversion.ConToDec(txttunch1.Text.Trim());
                             uTunchPending.TunchValue2 = Conversion.ConToDec(txttunch2.Text.Trim());
+
+                            if (_Flage_TunchPending == 1)
+                            {
+                                var update = TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault();
+                                update.Tunch1 = "N";
+
+                                if (TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault().Tunch2 == "Y")
+                                {
+                                    if (txttunch2.Text.Trim() != "")
+                                    {
+                                        var updateTunch2 = TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault();
+                                        updateTunch2.Tunch2 = "N";
+                                    }
+                                }
+                            }
                         }
                     }
                     else
@@ -780,59 +798,65 @@ namespace SilverGold.Transaction
                     {
                         if (cmbPopUp.Text == "")
                         {
-                            if (_TunchSno != 0)
+                            if (_Flage_TunchPending == 0)
                             {
-                                DialogResult result;
-                                if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
+                                if (_TunchSno != 0)
                                 {
-                                    result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                }
-                                else
-                                {
-                                    result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                                }
-
-                                if (result == DialogResult.Yes)
-                                {
-                                    if (_TunchSno != 0)
+                                    DialogResult result;
+                                    if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
                                     {
-                                        TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                                     }
-                                }
-                                else
-                                {
-                                    if (_TunchSno != 0)
+                                    else
                                     {
-                                        TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                    }
+
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        }
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            if (_TunchSno != 0)
+                            if (_Flage_TunchPending == 0)
                             {
-                                DialogResult result;
-                                if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
+                                if (_TunchSno != 0)
                                 {
-                                    result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                }
-                                else
-                                {
-                                    result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                                }
-                                if (result == DialogResult.Yes)
-                                {
-                                    if (_TunchSno != 0)
+                                    DialogResult result;
+                                    if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
                                     {
-                                        TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                                     }
-                                }
-                                else
-                                {
-                                    if (_TunchSno != 0)
+                                    else
                                     {
-                                        TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "JAMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                    }
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        }
                                     }
                                 }
                             }
@@ -939,10 +963,10 @@ namespace SilverGold.Transaction
                     _Narration = dr.Cells[10].Value.ToString();
                     _TunchSno = Conversion.ConToInt(dr.Cells[11].Value.ToString());
 
-                    oJamaNaamEntity.InsertJamaNaam(txtbillno.Text.Trim(), Conversion.ConToDT(dtp1.Text), _Category, _PartyCategory, _PartyName, _PGroup, _Product, _Weight, _Pcs, _Tunch1, _Tunch2, _Westage, _LabourFine, 0, _Fine, _Amount, _Narration, "GR", this.FindForm().Name, _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+                    oJamaNaamEntity.InsertJamaNaam(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text), _Category, _PartyCategory, _PartyName, _PGroup, _Product, _Weight, _Pcs, _Tunch1, _Tunch2, _Westage, _LabourFine, 0, _Fine, _Amount, _Narration, "GR", this.FindForm().Name, _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
                     if (_Old_labour != _LabourFine || _Old_westage != _Westage)
                     {
-                        oPriceListEntity.InsertPriceList(Conversion.ConToDT(dtp1.Text), _PartyCategory, _PartyName, _Category, _Product, _Westage, _LabourFine, "GR", CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+                        oPriceListEntity.InsertPriceList(Conversion.GetDateStr(dtp1.Text), _PartyCategory, _PartyName, _Category, _Product, _Westage, _LabourFine, "GR", CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
                     }
                 }
 
@@ -953,8 +977,12 @@ namespace SilverGold.Transaction
 
                 Tran.Commit();
                 con.Close();
-                MessageBox.Show("Data Successfull Saved.....", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Data Successfully Saved.....", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearControl();
+                if (_Flage_TunchPending == 1)
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -1018,6 +1046,8 @@ namespace SilverGold.Transaction
         {
             try
             {
+                _Flage_TunchPending = 0;
+                _TunchSno_TunchPending = 0;
                 this.Close();
             }
             catch (Exception ex)
@@ -1051,7 +1081,7 @@ namespace SilverGold.Transaction
             }
         }
 
-        private void GetDetails(String _BillNo)
+        public void GetDetails(String _BillNo)
         {
             if (_BillNo != "")
             {
@@ -1100,13 +1130,56 @@ namespace SilverGold.Transaction
                 dr.Close();
                 con.Close();
 
+
+                if (_Flage_TunchPending == 1 && _TunchSno_TunchPending != 0)
+                {
+                    var _Select = JamaNaamList.Where(x => x.TunchSno == _TunchSno_TunchPending).SingleOrDefault();
+
+                    int _SelectRow = 0;
+                    foreach (var item in JamaNaamList)
+                    {
+
+                        if (_TunchSno_TunchPending == item.TunchSno)
+                        {
+                            dataGridView1.Rows[_SelectRow].Selected = true;
+                            dataGridView1.CurrentCell = dataGridView1.Rows[_SelectRow].Cells[1];
+                        }
+                        _SelectRow++;
+                    }
+                    //   dataGridView1.Rows[Row_No].Selected = true;
+
+                    cmbGroup.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmbproduct.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    txtweight.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    txttunch1.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    txttunch2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+                    txtfine.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
+                    txtamount.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
+                    txtdescription.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+                    _TunchSno = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+
+                    Row_No = Convert.ToInt32(dataGridView1.CurrentRow.Cells[12].Value.ToString());
+                    string remark = Remark_Tunch1(_BillNo, _TunchSno);
+                    if ((remark == "P1") || (remark == "P1P2"))
+                    {
+                        txttunch1.Focus();
+                    }
+                    if (remark == "P2")
+                    {
+                        txttunch2.Focus();
+                    }
+
+                }
                 Remark_Tunch(txtbillno.Text);
             }
         }
 
 
 
-        private void dateTimePicker2_KeyPress(object sender, KeyPressEventArgs e)
+        private void dtp1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -1446,7 +1519,6 @@ namespace SilverGold.Transaction
             try
             {
                 hti = dataGridView1.HitTest(e.X, e.Y);
-                Row_No = hti.RowY;
                 if (hti.RowIndex >= 0)
                 {
                     _Tunch_Update = "";
@@ -2217,7 +2289,7 @@ namespace SilverGold.Transaction
             {
                 TunchPending oTunchPending = new TunchPending();
                 oTunchPending._Showtunch = 1;
-                oTunchPending.GetSqlQuery("Select TrDate,PartyName,Product,Weight,Tunch1,Tunch2,InvoiceType From TunchPending Where (Tunch1='Y' or Tunch2='Y') And Company='" + CommanHelper.CompName + "' And PartyName='" + Cmbparty.Text.Trim().ToString() + "'  Order By [TrDate] desc");
+                oTunchPending.GetSqlQuery("Select BillNo,TrDate,PartyCate,PartyName,Category,Product,Weight,TunchValue1,TunchValue2,Tunch1,Tunch2,InvoiceType,TunchSno,Company,UserId From TunchPending Where (Tunch1='Y' or Tunch2='Y') And Company='" + CommanHelper.CompName + "' And PartyName='" + Cmbparty.Text.Trim().ToString() + "'  Order By [TrDate] desc");
                 oTunchPending.Show();
             }
             catch (Exception ex)
@@ -2225,5 +2297,20 @@ namespace SilverGold.Transaction
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
+
+        private void Jama_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                _Flage_TunchPending = 0;
+                _TunchSno_TunchPending = 0;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+   
     }
 }

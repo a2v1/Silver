@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.txtWeight = new System.Windows.Forms.TextBox();
@@ -76,8 +76,8 @@
             this.panel1.Controls.Add(this.label34);
             this.panel1.Location = new System.Drawing.Point(0, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(722, 34);
-            this.panel1.TabIndex = 24;
+            this.panel1.Size = new System.Drawing.Size(767, 34);
+            this.panel1.TabIndex = 8;
             // 
             // label34
             // 
@@ -92,44 +92,49 @@
             // 
             // txtWeight
             // 
-            this.txtWeight.Location = new System.Drawing.Point(462, 49);
+            this.txtWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWeight.Location = new System.Drawing.Point(503, 48);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(89, 20);
-            this.txtWeight.TabIndex = 28;
+            this.txtWeight.TabIndex = 3;
+            this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.TextChanged += new System.EventHandler(this.txtWeight_TextChanged);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(105, 49);
+            this.dateTimePicker1.Location = new System.Drawing.Point(72, 48);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(83, 20);
-            this.dateTimePicker1.TabIndex = 29;
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 52);
+            this.label2.Location = new System.Drawing.Point(12, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 25;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Search By";
             // 
             // txtProduct
             // 
-            this.txtProduct.Location = new System.Drawing.Point(373, 49);
+            this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProduct.Location = new System.Drawing.Point(340, 48);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(89, 20);
-            this.txtProduct.TabIndex = 27;
+            this.txtProduct.Size = new System.Drawing.Size(163, 20);
+            this.txtProduct.TabIndex = 2;
             this.txtProduct.TextChanged += new System.EventHandler(this.txtProduct_TextChanged);
             // 
             // txtPartyName
             // 
-            this.txtPartyName.Location = new System.Drawing.Point(188, 49);
+            this.txtPartyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPartyName.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtPartyName.Location = new System.Drawing.Point(155, 48);
             this.txtPartyName.Name = "txtPartyName";
             this.txtPartyName.Size = new System.Drawing.Size(185, 20);
-            this.txtPartyName.TabIndex = 26;
+            this.txtPartyName.TabIndex = 1;
             this.txtPartyName.TextChanged += new System.EventHandler(this.txtPartyName_TextChanged);
             // 
             // dataGridView1
@@ -143,17 +148,20 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 85);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(696, 348);
-            this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(741, 348);
+            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Location = new System.Drawing.Point(634, 439);
+            this.btnExit.Location = new System.Drawing.Point(679, 436);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 21);
-            this.btnExit.TabIndex = 32;
+            this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit(Esc)";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -161,10 +169,10 @@
             // btnPrint
             // 
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrint.Location = new System.Drawing.Point(553, 439);
+            this.btnPrint.Location = new System.Drawing.Point(598, 436);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(75, 21);
-            this.btnPrint.TabIndex = 31;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "Print(Ctrl+P)";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -172,9 +180,9 @@
             // dateDataGridViewTextBoxColumn
             // 
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle9.NullValue = null;
+            this.dateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.dateDataGridViewTextBoxColumn.FillWeight = 40F;
             this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
@@ -287,9 +295,9 @@
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Date";
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle10.NullValue = null;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn1.FillWeight = 40F;
             this.dataGridViewTextBoxColumn1.HeaderText = "Date";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -403,7 +411,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 469);
+            this.ClientSize = new System.Drawing.Size(766, 469);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.dataGridView1);

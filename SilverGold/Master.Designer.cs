@@ -185,6 +185,7 @@
             this.naamGivingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.naamGivingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.naamGivingToolStripMenuItem.Text = "Naam (Giving)";
+            this.naamGivingToolStripMenuItem.Click += new System.EventHandler(this.naamGivingToolStripMenuItem_Click);
             // 
             // cashPurchaseToolStripMenuItem
             // 

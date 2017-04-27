@@ -109,6 +109,13 @@ namespace SilverGold
             oJama.Show();
         }
 
+        private void naamGivingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Naam oNaam = new Naam();
+            oNaam.MdiParent = this;
+            oNaam.Show();
+        }
+
     
     }
 }

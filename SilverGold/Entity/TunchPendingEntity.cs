@@ -26,6 +26,8 @@ namespace SilverGold.Entity
         public string Company { get; set; }
         public string UserId { get; set; }
 
+        #region Add Tunch Pending List
+
         public void AddTunchPending(String _BillNo, DateTime _TrDate, String _PartyCate, String _PartyName, String _Category, String _Product, Decimal _Weight, Decimal _TunchValue1, Decimal _TunchValue2, String _Tunch1, String _Tunch2, String _InvoiceType, int _TunchSno, String _Company, String _UserId)
         {
             BillNo = _BillNo;
@@ -45,6 +47,10 @@ namespace SilverGold.Entity
             UserId = _UserId;
         }
 
+        #endregion
+
+        #region INSERT
+
         public void InsertTunchPending(String _BillNo, DateTime _TrDate, String _PartyCate, String _PartyName, String _Category, String _Product, Decimal _Weight, Decimal _TunchValue1, Decimal _TunchValue2, String _Tunch1, String _Tunch2, String _InvoiceType, int _TunchSno, String _Company, String _UserId, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
@@ -58,13 +64,13 @@ namespace SilverGold.Entity
             cmdInsert.CommandType = CommandType.Text;
             cmdInsert.Parameters.AddWithValue("@BillNo", _BillNo);
             cmdInsert.Parameters.AddWithValue("@TrDate", _TrDate);
-            cmdInsert.Parameters.AddWithValue("@PartyCat", _PartyCate);
+            cmdInsert.Parameters.AddWithValue("@PartyCate", _PartyCate);
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
             cmdInsert.Parameters.AddWithValue("@Category", _Category);
             cmdInsert.Parameters.AddWithValue("@Product", _Product);
             cmdInsert.Parameters.AddWithValue("@Weight", _Weight);
             cmdInsert.Parameters.AddWithValue("@TunchValue1", _TunchValue1);
-            cmdInsert.Parameters.AddWithValue("@TunchValue2", _TunchValue2);
+            cmdInsert.Parameters.AddWithValue("@TunchValue1", _TunchValue2);
             cmdInsert.Parameters.AddWithValue("@Tunch1", _Tunch1);
             cmdInsert.Parameters.AddWithValue("@Tunch2", _Tunch2);
             cmdInsert.Parameters.AddWithValue("@InvoiceType", _InvoiceType);
@@ -74,14 +80,37 @@ namespace SilverGold.Entity
             cmdInsert.ExecuteNonQuery();
         }
 
+        #endregion
 
-        private void BindGridColumn(DataGridView dgv)
+
+        #region Bind Column In Datagridview
+
+        public void BindGridColumn(DataGridView dgv)
         {
-            DataGridViewColumn col_Group = new DataGridViewTextBoxColumn();
-            col_Group.DataPropertyName = "PGroup";
-            col_Group.HeaderText = "PGroup";
-            col_Group.Name = "PGroup";
-            dgv.Columns.Add(col_Group);
+            DataGridViewColumn col_BillNo = new DataGridViewTextBoxColumn();
+            col_BillNo.DataPropertyName = "BillNo";
+            col_BillNo.HeaderText = "BillNo";
+            col_BillNo.Name = "BillNo";
+            col_BillNo.Visible = false;
+            dgv.Columns.Add(col_BillNo);
+
+            DataGridViewColumn col_TrDate = new DataGridViewTextBoxColumn();
+            col_TrDate.DataPropertyName = "TrDate";
+            col_TrDate.HeaderText = "Date";
+            col_TrDate.Name = "TrDate";
+            dgv.Columns.Add(col_TrDate);
+
+            DataGridViewColumn col_PartyName = new DataGridViewTextBoxColumn();
+            col_PartyName.DataPropertyName = "PartyName";
+            col_PartyName.HeaderText = "PartyName";
+            col_PartyName.Name = "PartyName";
+            dgv.Columns.Add(col_PartyName);
+
+            DataGridViewColumn col_Category = new DataGridViewTextBoxColumn();
+            col_Category.DataPropertyName = "Category";
+            col_Category.HeaderText = "Category";
+            col_Category.Name = "Category";
+            dgv.Columns.Add(col_Category);
 
             DataGridViewColumn col_Product = new DataGridViewTextBoxColumn();
             col_Product.DataPropertyName = "Product";
@@ -92,56 +121,26 @@ namespace SilverGold.Entity
             DataGridViewColumn col_Weight = new DataGridViewTextBoxColumn();
             col_Weight.DataPropertyName = "Weight";
             col_Weight.HeaderText = "Weight";
-            col_Weight.Name = "Weight";
+            col_Weight.Name = "Weight";            
             dgv.Columns.Add(col_Weight);
 
-            DataGridViewColumn col_Pcs = new DataGridViewTextBoxColumn();
-            col_Pcs.DataPropertyName = "Pcs";
-            col_Pcs.HeaderText = "Pcs";
-            col_Pcs.Name = "Pcs";
-            dgv.Columns.Add(col_Pcs);
+            DataGridViewColumn col_TunchValue1  = new DataGridViewTextBoxColumn();
+            col_TunchValue1.DataPropertyName = "TunchValue1";
+            col_TunchValue1.HeaderText = "Tunch1";
+            col_TunchValue1.Name = "TunchValue1";
+            dgv.Columns.Add(col_TunchValue1);
 
-            DataGridViewColumn col_Tunch1 = new DataGridViewTextBoxColumn();
-            col_Tunch1.DataPropertyName = "Tunch1";
-            col_Tunch1.HeaderText = "Tunch";
-            col_Tunch1.Name = "Tunch1";
-            dgv.Columns.Add(col_Tunch1);
+            DataGridViewColumn col_TunchValue2 = new DataGridViewTextBoxColumn();
+            col_TunchValue2.DataPropertyName = "TunchValue2";
+            col_TunchValue2.HeaderText = "Tunch2";
+            col_TunchValue2.Name = "TunchValue2";
+            dgv.Columns.Add(col_TunchValue2);
 
-            DataGridViewColumn col_Tunch2 = new DataGridViewTextBoxColumn();
-            col_Tunch2.DataPropertyName = "Tunch2";
-            col_Tunch2.HeaderText = "Tunch2";
-            col_Tunch2.Name = "Tunch2";
-            dgv.Columns.Add(col_Tunch2);
-
-            DataGridViewColumn col_Westage = new DataGridViewTextBoxColumn();
-            col_Westage.DataPropertyName = "Westage";
-            col_Westage.HeaderText = "Westage";
-            col_Westage.Name = "Westage";
-            dgv.Columns.Add(col_Westage);
-
-            DataGridViewColumn col_LabourFine = new DataGridViewTextBoxColumn();
-            col_LabourFine.DataPropertyName = "LaboursRate";
-            col_LabourFine.HeaderText = "LaboursFine";
-            col_LabourFine.Name = "LaboursRate";
-            dgv.Columns.Add(col_LabourFine);
-
-            DataGridViewColumn col_Fine = new DataGridViewTextBoxColumn();
-            col_Fine.DataPropertyName = "Fine";
-            col_Fine.HeaderText = "Fine";
-            col_Fine.Name = "Fine";
-            dgv.Columns.Add(col_Fine);
-
-            DataGridViewColumn col_Amount = new DataGridViewTextBoxColumn();
-            col_Amount.DataPropertyName = "Amount";
-            col_Amount.HeaderText = "Amount";
-            col_Amount.Name = "Amount";
-            dgv.Columns.Add(col_Amount);
-
-            DataGridViewColumn col_Narration = new DataGridViewTextBoxColumn();
-            col_Narration.DataPropertyName = "Narration";
-            col_Narration.HeaderText = "Narration";
-            col_Narration.Name = "Narration";
-            dgv.Columns.Add(col_Narration);
+            DataGridViewColumn col_InvoiceType = new DataGridViewTextBoxColumn();
+            col_InvoiceType.DataPropertyName = "InvoiceType";
+            col_InvoiceType.HeaderText = "Type";
+            col_InvoiceType.Name = "InvoiceType";
+            dgv.Columns.Add(col_InvoiceType);
 
             DataGridViewColumn col_TunchSno = new DataGridViewTextBoxColumn();
             col_TunchSno.DataPropertyName = "TunchSno";
@@ -149,16 +148,10 @@ namespace SilverGold.Entity
             col_TunchSno.Name = "TunchSno";
             col_TunchSno.Visible = false;
             dgv.Columns.Add(col_TunchSno);
-
-            DataGridViewColumn col_Sno = new DataGridViewTextBoxColumn();
-            col_Sno.DataPropertyName = "Sno";
-            col_Sno.HeaderText = "Sno";
-            col_Sno.Name = "Sno";
-            col_Sno.Visible = false;
-            dgv.Columns.Add(col_Sno);
-
-
+            
         }
+
+        #endregion
 
     }
 }

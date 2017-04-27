@@ -23,6 +23,7 @@ namespace SilverGold.Helper
         public static string _FinancialYear = "";
         public static string UserId = "";
         public static string Password = "";
+        public static int F_TunchPending = 0;
 
         public static List<CompanyLoginEntity> CompanyLogin = new List<CompanyLoginEntity>();
 
