@@ -93,10 +93,10 @@
     <Compile Include="Entity\PriceListEntity.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\TunchPendingEntity.cs" />
-    <Compile Include="GroupHead.cs">
+    <Compile Include="MasterInfo\GroupHead.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GroupHead.Designer.cs">
+    <Compile Include="MasterInfo\GroupHead.Designer.cs">
       <DependentUpon>GroupHead.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CommanHelper.cs" />
@@ -119,16 +119,16 @@
     <Compile Include="Master.Designer.cs">
       <DependentUpon>Master.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartyInformation.cs">
+    <Compile Include="MasterInfo\PartyInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartyInformation.Designer.cs">
+    <Compile Include="MasterInfo\PartyInformation.Designer.cs">
       <DependentUpon>PartyInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductDetails.cs">
+    <Compile Include="MasterInfo\ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductDetails.Designer.cs">
+    <Compile Include="MasterInfo\ProductDetails.Designer.cs">
       <DependentUpon>ProductDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -160,7 +160,7 @@
     <EmbeddedResource Include="CompanyDetails.resx">
       <DependentUpon>CompanyDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupHead.resx">
+    <EmbeddedResource Include="MasterInfo\GroupHead.resx">
       <DependentUpon>GroupHead.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Items.resx">
@@ -172,10 +172,10 @@
     <EmbeddedResource Include="Master.resx">
       <DependentUpon>Master.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartyInformation.resx">
+    <EmbeddedResource Include="MasterInfo\PartyInformation.resx">
       <DependentUpon>PartyInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductDetails.resx">
+    <EmbeddedResource Include="MasterInfo\ProductDetails.resx">
       <DependentUpon>ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

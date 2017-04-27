@@ -1,5 +1,5 @@
 ﻿using SilverGold.Comman;
-namespace SilverGold
+namespace SilverGold.MasterInfo
 {
     partial class PartyInformation
     {

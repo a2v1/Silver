@@ -1,4 +1,4 @@
-﻿namespace SilverGold
+﻿namespace SilverGold.MasterInfo
 {
     partial class GroupHead
     {

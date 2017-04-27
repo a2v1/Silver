@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SilverGold
+namespace SilverGold.MasterInfo
 {
     public partial class GroupHead : Form
     {
