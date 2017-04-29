@@ -60,12 +60,6 @@ namespace SilverGold
             oCompany.Show();
         }
 
-        private void createItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Items oItems = new Items();
-            oItems.MdiParent = this;
-            oItems.Show();
-        }
 
         private void partyInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {

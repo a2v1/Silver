@@ -18,7 +18,7 @@ namespace SilverGold
     {
         #region Declare Variables
         OleDbConnection con;
-      
+
         OleDbTransaction Tran = null;
         String _DPath = "";
         String _DName = "";
@@ -34,7 +34,7 @@ namespace SilverGold
         DataGridViewComboBoxColumn col_KF = new DataGridViewComboBoxColumn();
         DataGridViewColumn col_Amt = new DataGridViewTextBoxColumn();
         DataGridViewComboBoxColumn col_Weight = new DataGridViewComboBoxColumn();
-        
+
 
         DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
         DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
@@ -87,7 +87,7 @@ namespace SilverGold
             col_Weight.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col_Weight);
 
-            
+
             col_KF.DataPropertyName = "KachchiFine";
             col_KF.HeaderText = "KF";
             col_KF.Name = "KachchiFine";
@@ -103,15 +103,15 @@ namespace SilverGold
             col_Amt.DefaultCellStyle.Format = "N2";
             dataGridView1.Columns.Add(col_Amt);
 
-            
+
             DataGridViewComboBoxColumn col_DrCr = new DataGridViewComboBoxColumn();
             {
                 col_DrCr.DataPropertyName = "DrCr";
                 col_DrCr.HeaderText = "DrCr";
                 col_DrCr.Name = "DrCr";
                 col_DrCr.Items.Add("CREDIT");
-                col_DrCr.Items.Add("DEBIT");                
-                col_DrCr.FlatStyle = FlatStyle.Popup; 
+                col_DrCr.Items.Add("DEBIT");
+                col_DrCr.FlatStyle = FlatStyle.Popup;
                 dataGridView1.Columns.Add(col_DrCr);
             }
             DataGridViewColumn col_Sn = new DataGridViewTextBoxColumn();
@@ -278,12 +278,12 @@ namespace SilverGold
             if (dr.Read())
             {
                 txtUserId.Text = dr["UserId"].ToString();
-               txtRePassword.Text = txtPassword.Text = dr["Pwd"].ToString();
-               cmbUType.Text = dr["UserType"].ToString();
-            } 
+                txtRePassword.Text = txtPassword.Text = dr["Pwd"].ToString();
+                cmbUType.Text = dr["UserType"].ToString();
+            }
             con.Close();
             dataGridView1.Focus();
-            
+
         }
 
 
@@ -489,8 +489,8 @@ namespace SilverGold
                     if (MessageBox.Show("Do U Want To Login Into New Created Company ?", "Company", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Master.objMaster.Hide();
-                        Login oLogin = new Login(); oLogin.Show();
-                        oLogin.txtUserId.Focus();
+                        CompanyDetails oCompanyDetails = new CompanyDetails(); oCompanyDetails.Show();
+                        oCompanyDetails.listBox1.SelectedIndex = 0;
                     }
                     ClearControl();
                 }
@@ -506,7 +506,7 @@ namespace SilverGold
         {
             try
             {
-                
+
                 if (txtCompanyName.Text.Trim() == "")
                 {
                     txtCompanyName.Focus();
@@ -639,7 +639,7 @@ namespace SilverGold
 
                 MessageBox.Show("Company Updated Successfully.", "Company", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-               
+
                 ClearControl();
             }
             catch (Exception ex)
@@ -649,7 +649,7 @@ namespace SilverGold
             }
         }
 
-        
+
 
         private void btnrefresh_Click(object sender, EventArgs e)
         {
@@ -752,7 +752,7 @@ namespace SilverGold
                 if (dataGridView1.Rows.Count >= 0)
                 {
                     dataGridView1.CurrentRow.Cells[4].Value = lblFine.Text;
-                    dataGridView1.CurrentCell = dataGridView1.CurrentRow.Cells[5];                    
+                    dataGridView1.CurrentCell = dataGridView1.CurrentRow.Cells[5];
                     dataGridView1.Focus();
                 }
             }
@@ -771,7 +771,7 @@ namespace SilverGold
         private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {               
+            {
                 lblKFCate.Visible = false;
                 lblKFName.Visible = false;
                 if (dataGridView1.Rows.Count - 1 == dataGridView1.CurrentCell.RowIndex && e.ColumnIndex == 1)
@@ -788,7 +788,7 @@ namespace SilverGold
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -858,7 +858,7 @@ namespace SilverGold
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             int_keyvalue = e.KeyValue;
-            
+
             if (e.KeyCode == Keys.Delete)
             {
                 try
@@ -884,7 +884,7 @@ namespace SilverGold
                     //if (result != null)
                     //    MetalList.Remove(result);
 
-                  
+
                 }
                 catch (Exception ex)
                 {
@@ -912,7 +912,7 @@ namespace SilverGold
                         if (dataGridView1.CurrentCell.Value != null)
                         {
                             DataGridViewComboBoxCell tName = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[1];
-                            tName.DataSource = MetalList.Where(w => w.MetalCategory == _MetalCateCellValue.Trim()).Select(x => x.MetalName).Distinct().ToList();                            
+                            tName.DataSource = MetalList.Where(w => w.MetalCategory == _MetalCateCellValue.Trim()).Select(x => x.MetalName).Distinct().ToList();
                         }
                     }
 
@@ -924,8 +924,8 @@ namespace SilverGold
                             tWeight.DataSource = MetalList.Where(r => r.MetalName == _MetalNameCellValue.Trim()).OrderBy(z => z.WeightType).Select(x => x.WeightType).Distinct().ToList();
                         }
                     }
-                   
-                } 
+
+                }
                 dataGridView1.BeginEdit(true);
             }
             catch (Exception ex)
@@ -1001,7 +1001,7 @@ namespace SilverGold
             e.KeyChar = ch[0];
 
         }
-       
+
         private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -1020,7 +1020,7 @@ namespace SilverGold
             }
         }
 
-      
+
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             try
@@ -1070,7 +1070,7 @@ namespace SilverGold
                         dataGridView1.CurrentRow.Cells[2].Value = MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().ToList()[0].ToString();
 
                         dataGridView1.CurrentRow.Cells[3].Value = "NO";
-                     
+
                     }
                 }
 
@@ -1206,7 +1206,7 @@ namespace SilverGold
                         dataGridView2.Focus();
                     }
                 }
-                if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString().ToUpper() == "CASH" )
+                if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString().ToUpper() == "CASH")
                 {
                     if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
                         dataGridView1.CurrentCell.ReadOnly = true;
@@ -1227,7 +1227,7 @@ namespace SilverGold
                     {
                         _MetalNameCellValue = dataGridView1.CurrentRow.Cells[1].Value.ToString().Trim();
                         DataGridViewComboBoxCell cmbWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
-                        cmbWeight.Dispose();                     
+                        cmbWeight.Dispose();
                         if (MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim() && x.WeightType != "").Select(r => r.WeightType).Distinct().Any())
                         {
                             cmbWeight.DataSource = MetalList.Where(x => x.MetalName == _MetalNameCellValue.Trim()).Select(r => r.WeightType).Distinct().ToList();
@@ -1250,15 +1250,15 @@ namespace SilverGold
         {
             try
             {
-                 hti = dataGridView3.HitTest(e.X, e.Y);
-                 if (hti.RowIndex >= 0)
-                 {
-                     btnCreate.Enabled = false;
-                     _CompName = "";
-                     _CompName = dataGridView3.Rows[hti.RowIndex].Cells[0].Value.ToString();
-                     BindCompany();
-                     dataGridView1.Focus();
-                 }
+                hti = dataGridView3.HitTest(e.X, e.Y);
+                if (hti.RowIndex >= 0)
+                {
+                    btnCreate.Enabled = false;
+                    _CompName = "";
+                    _CompName = dataGridView3.Rows[hti.RowIndex].Cells[0].Value.ToString();
+                    BindCompany();
+                    dataGridView1.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1313,11 +1313,11 @@ namespace SilverGold
                         if (dataGridView1.Rows[row].Cells[1].Value != null && row != e.RowIndex && dataGridView1.Rows[row].Cells[1].Value.Equals(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value))
                         {
                             MessageBox.Show("Value: " + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value + " already in the grid!");
-                           
+
                         }
                     }
                 }
-              
+
             }
             catch (Exception ex)
             {
@@ -1325,6 +1325,6 @@ namespace SilverGold
             }
         }
 
-       
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,9 +16,44 @@ namespace SilverGold
         {
             try
             {
+                Boolean CheckCompanyDir = false;
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Login());
+
+                var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
+                var dirName = directoryInfo.GetDirectories();
+
+
+                for (int i = 0; i < dirName.Count(); i++)
+                {
+                    var mainDir = dirName[i].GetDirectories();
+                    FileInfo[] Files;
+                    foreach (var item in mainDir)
+                    {
+                        DirectoryInfo d = new DirectoryInfo(item.FullName);
+                        Files = d.GetFiles("*.mdb");
+                        foreach (FileInfo file in Files)
+                        {
+                            CheckCompanyDir = true;
+                        }
+                    }
+                }
+                if (CheckCompanyDir == true)
+                {
+                    Application.Run(new CompanyDetails());
+               
+                }
+                else
+                {
+                    if (MessageBox.Show("Please Create New Company ?", "Company", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Application.Run(new Master());
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -20,7 +20,7 @@ namespace SilverGold
         #region Declare Variable
 
         Boolean CheckCompanyDir = false;
-       
+        int _LoginCount = 0;
         #endregion
         public Login()
         {
@@ -37,48 +37,22 @@ namespace SilverGold
         {
             try
             {
-                var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
-                var dirName = directoryInfo.GetDirectories();
 
                 CommanHelper.UserId = txtUserId.Text.Trim();
                 CommanHelper.Password = txtPassword.Text.Trim();
-                for (int i = 0; i < dirName.Count(); i++)
-                {
-                    var mainDir = dirName[i].GetDirectories();
-                    FileInfo[] Files;
-                    foreach (var item in mainDir)
-                    {
-                        DirectoryInfo d = new DirectoryInfo(item.FullName);
-                        Files = d.GetFiles("*.mdb");
-                        foreach (FileInfo file in Files)
-                        {
 
-                            CheckCompanyDir = true;
-
-                            ValidateLogin(item.FullName, file.Name, txtUserId.Text.Trim(), txtPassword.Text.Trim());
-                        }
-                    }
-                }
-
-
-
-                if (CheckCompanyDir == true)
-                {
-                    if (CommanHelper.CompanyLogin.Count() == 0)
-                    {
-                        MessageBox.Show("Invalid Userid And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        txtUserId.Focus();
-                        return;
-                    }
-                    CompanyDetails oCompanyDetails = new CompanyDetails();
-                    oCompanyDetails.Show();
-                    this.Hide();
-                }
-                else
+                if (ValidateLogin(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME, txtUserId.Text.Trim(), txtPassword.Text.Trim()) == true)
                 {
                     Master oMaster = new Master();
                     oMaster.Show();
                     this.Hide();
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid id And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtUserId.Focus();
+                    return;
                 }
             }
             catch (Exception ex)
@@ -90,28 +64,25 @@ namespace SilverGold
 
         #region Helper
 
-        private void ValidateLogin(String _DataPath, String _DataBase, String Uid, String Pwd)
+        private Boolean ValidateLogin(String _DataPath, String _DataBase, String Uid, String Pwd)
         {
+            Boolean _CheckValidateLogin = false;
             try
             {
-                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(_DataPath, _DataBase)))
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(Application.StartupPath + "\\" + _DataPath, _DataBase + ".mdb")))
                 {
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand("Select UserId,Pwd,UserType,Company,DateFrom,DateTo,CompanyName,FinancialYear,DatabasePath,DataBaseName from Users Left Outer Join Company On Users.Company = Company.CompanyName Where UserId = '" + Uid + "' and Pwd = '" + Pwd + "'", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        CompanyLoginEntity oCompanyLoginEntity = new CompanyLoginEntity();
-                        oCompanyLoginEntity.UserId = dr["UserId"].ToString();
-                        oCompanyLoginEntity.Password = dr["Pwd"].ToString();
-                        oCompanyLoginEntity.CompanyName = dr["CompanyName"].ToString();
-                        oCompanyLoginEntity.DataBaseName = dr["DataBaseName"].ToString();
-                        oCompanyLoginEntity.DataBasePath = dr["DatabasePath"].ToString();
-                        oCompanyLoginEntity.DateFrom = dr["DateFrom"].ToString();
-                        oCompanyLoginEntity.DateTo = dr["DateTo"].ToString();
-                        oCompanyLoginEntity.FinancialYear = dr["FinancialYear"].ToString();
-                        CommanHelper.CompanyLogin.Add(oCompanyLoginEntity);
+                        if ((CommanHelper.CompName == dr["CompanyName"].ToString().Trim()) || (CommanHelper._FinancialYear == dr["FinancialYear"].ToString()) || (CommanHelper.Com_DB_PATH == dr["DatabasePath"].ToString()) || (CommanHelper.Com_DB_NAME == dr["DataBaseName"].ToString()))
+                        {
+                            _CheckValidateLogin = true;
+                        }
                     }
+                    
+                    dr.Close();
                     con.Close();
                 }
             }
@@ -119,6 +90,7 @@ namespace SilverGold
             {
                 MessageBox.Show(ex.ToString());
             }
+            return _CheckValidateLogin;
         }
 
         #endregion
@@ -133,7 +105,7 @@ namespace SilverGold
         {
             if (e.KeyChar == 13)
             {
-                txtPassword.Focus();                
+                txtPassword.Focus();
             }
         }
 
@@ -153,6 +125,16 @@ namespace SilverGold
         private void txtPassword_Enter(object sender, EventArgs e)
         {
             txtPassword.SelectAll();
+        }
+
+        private void btnLogin_Enter(object sender, EventArgs e)
+        {
+            _LoginCount++;
+            if (_LoginCount == 3)
+            {
+                Application.Exit();
+            }
+            
         }
     }
 }

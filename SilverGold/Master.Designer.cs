@@ -32,7 +32,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCompToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.partyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +69,7 @@
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createCompToolStripMenuItem,
-            this.createItemsToolStripMenuItem});
+            this.createCompToolStripMenuItem});
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.masterToolStripMenuItem.Text = "&Company";
@@ -79,16 +77,9 @@
             // createCompToolStripMenuItem
             // 
             this.createCompToolStripMenuItem.Name = "createCompToolStripMenuItem";
-            this.createCompToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.createCompToolStripMenuItem.Text = "Create Company";
+            this.createCompToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.createCompToolStripMenuItem.Text = "Create/Edit Company";
             this.createCompToolStripMenuItem.Click += new System.EventHandler(this.createCompToolStripMenuItem_Click);
-            // 
-            // createItemsToolStripMenuItem
-            // 
-            this.createItemsToolStripMenuItem.Name = "createItemsToolStripMenuItem";
-            this.createItemsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.createItemsToolStripMenuItem.Text = "Create Items";
-            this.createItemsToolStripMenuItem.Click += new System.EventHandler(this.createItemsToolStripMenuItem_Click);
             // 
             // masterInfoToolStripMenuItem
             // 
@@ -261,7 +252,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createCompToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem partyInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productDetailsToolStripMenuItem;
