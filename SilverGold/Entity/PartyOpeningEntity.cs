@@ -1,4 +1,5 @@
-﻿using SilverGold.Helper;
+﻿using SilverGold.Comman;
+using SilverGold.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,19 +9,17 @@ using System.Text;
 
 namespace SilverGold.Entity
 {
-    class CreditLimitOpeningEntity
+    class PartyOpeningEntity
     {
-        public string Name { get; set; }
-        public decimal Limit { get; set; }
     }
 
-    public static class CreditLimitFactory
+    public static class PartyOpeningFactory
     {
-        public static void Insert(String _PartyName, String _CreditPeriod, String _RateUpdate, String _ItemName, Decimal _ItemLimit, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _PartyName, String _ItemName, Decimal _Amount_Weight, Decimal _ClosingRate, String _DrCr, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
+            strInsert = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@ClosingRate,@DrCr,@Company,@UserId)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -30,10 +29,10 @@ namespace SilverGold.Entity
             cmdInsert = new OleDbCommand(strInsert, _Con, _Tran);
             cmdInsert.CommandType = CommandType.Text;
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
-            cmdInsert.Parameters.AddWithValue("@CreditPeriod", _CreditPeriod);
-            cmdInsert.Parameters.AddWithValue("@RateUpdate", _RateUpdate);
             cmdInsert.Parameters.AddWithValue("@ItemName", _ItemName);
-            cmdInsert.Parameters.AddWithValue("@ItemLimit", _ItemLimit);
+            cmdInsert.Parameters.AddWithValue("@Amount_Weight", _Amount_Weight);
+            cmdInsert.Parameters.AddWithValue("@ClosingRate", _ClosingRate);
+            cmdInsert.Parameters.AddWithValue("@DrCr", _DrCr);
             cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
             cmdInsert.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
             cmdInsert.ExecuteNonQuery();

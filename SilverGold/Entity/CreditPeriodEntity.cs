@@ -1,5 +1,8 @@
-﻿using System;
+﻿using SilverGold.Helper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 
@@ -20,7 +23,7 @@ namespace SilverGold.Entity
         public string Company { get; set; }
         public string UserId { get; set; }
 
-        public CreditPeriodEntity(String _PartyName, DateTime _DateFrom, DateTime _DateTo, string _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)  
+        public CreditPeriodEntity(String _PartyName, DateTime _DateFrom, DateTime _DateTo, string _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)
         {
             PartyName = _PartyName;
             DateFrom = _DateFrom;
@@ -34,6 +37,37 @@ namespace SilverGold.Entity
             Days = _Days;
             Company = _Company;
             UserId = _UserId;
-        }  
+        }
+    }
+
+    public static class CreditPeriodFactory
+    {
+        public static void Insert(String _PartyName, DateTime _DateFrom, DateTime _DateTo, String _RateRevised, String _Category, String _Product, Decimal _Westage, Decimal _Amount, String _Tran_Type, int _Days, OleDbConnection _Con, OleDbTransaction _Tran)
+        {
+            string strInsert = null;
+            OleDbCommand cmdInsert = new OleDbCommand();
+            strInsert = "INSERT INTO CreditPeriod(PartyName,DateFrom,DateTo,RateRevised,Category,Product,Westage,Amount,Tran_Type,Days,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@RateRevised,@Category,@Product,@Westage,@Amount,@Tran_Type,@Days,@Company,@UserId)";
+            if (_Con.State == ConnectionState.Closed)
+            {
+                _Con.Open();
+                _Tran = _Con.BeginTransaction();
+            }
+
+            cmdInsert = new OleDbCommand(strInsert, _Con, _Tran);
+            cmdInsert.CommandType = CommandType.Text;
+            cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
+            cmdInsert.Parameters.AddWithValue("@DateFrom", _DateFrom);
+            cmdInsert.Parameters.AddWithValue("@DateTo", _DateTo);
+            cmdInsert.Parameters.AddWithValue("@RateRevised", _RateRevised);
+            cmdInsert.Parameters.AddWithValue("@Category", _Category);
+            cmdInsert.Parameters.AddWithValue("@Product", _Product);
+            cmdInsert.Parameters.AddWithValue("@Westage", _Westage);
+            cmdInsert.Parameters.AddWithValue("@Amount", _Amount);
+            cmdInsert.Parameters.AddWithValue("@Tran_Type", _Tran_Type);
+            cmdInsert.Parameters.AddWithValue("@Days", _Days);
+            cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
+            cmdInsert.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
+            cmdInsert.ExecuteNonQuery();
+        }
     }
 }

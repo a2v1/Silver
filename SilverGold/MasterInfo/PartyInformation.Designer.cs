@@ -613,8 +613,8 @@ namespace SilverGold.MasterInfo
             this.cmbrs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbrs.FormattingEnabled = true;
             this.cmbrs.Items.AddRange(new object[] {
-            "CREDIT",
-            "DEBIT"});
+            "JAMA",
+            "NAAM"});
             this.cmbrs.Location = new System.Drawing.Point(2, 3);
             this.cmbrs.Margin = new System.Windows.Forms.Padding(4);
             this.cmbrs.Name = "cmbrs";
@@ -674,6 +674,7 @@ namespace SilverGold.MasterInfo
             // 
             this.cmbtype.FormattingEnabled = true;
             this.cmbtype.Items.AddRange(new object[] {
+            "OTHER",
             "PARTY",
             "WORKER"});
             this.cmbtype.Location = new System.Drawing.Point(53, 20);

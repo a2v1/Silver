@@ -107,6 +107,7 @@ namespace SilverGold
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(221, 20);
             this.txtCompanyName.TabIndex = 7;
+            this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
             this.txtCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCompanyName_KeyPress);
             // 
             // label6

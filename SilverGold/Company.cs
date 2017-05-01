@@ -48,6 +48,7 @@ namespace SilverGold
 
 
         #endregion
+
         public Company()
         {
             InitializeComponent();
@@ -109,8 +110,8 @@ namespace SilverGold
                 col_DrCr.DataPropertyName = "DrCr";
                 col_DrCr.HeaderText = "DrCr";
                 col_DrCr.Name = "DrCr";
-                col_DrCr.Items.Add("CREDIT");
-                col_DrCr.Items.Add("DEBIT");
+                col_DrCr.Items.Add("JAMA");
+                col_DrCr.Items.Add("NAAM");
                 col_DrCr.FlatStyle = FlatStyle.Popup;
                 dataGridView1.Columns.Add(col_DrCr);
             }
@@ -126,7 +127,6 @@ namespace SilverGold
 
         private void BindKFColumn()
         {
-
             col1.DataPropertyName = "PaatNo";
             col1.HeaderText = "PaatNo";
             col1.Name = "PaatNo";
@@ -145,6 +145,7 @@ namespace SilverGold
             col4.DataPropertyName = "Tunch2";
             col4.HeaderText = "Tunch2";
             col4.Name = "Tunch2";
+            col4.DefaultCellStyle.Format = "N2";
             dataGridView2.Columns.Add(col4);
 
             col5.DataPropertyName = "Fine";
@@ -209,6 +210,8 @@ namespace SilverGold
 
         private void ClearControl()
         {
+            txtCompanyName.ReadOnly = false;
+            txtFinancialYear.ReadOnly = false;
             F_Update = 0;
             txtCompanyName.Clear();
             txtFinancialYear.Clear();
@@ -235,7 +238,12 @@ namespace SilverGold
             btnCreate.Enabled = false;
             btnupdate.Enabled = true;
             txtCompanyName.Text = CommanHelper.CompName.ToString();
+            txtCompanyName.ReadOnly = true;
             txtFinancialYear.Text = CommanHelper._FinancialYear.ToString();
+            if (CommanHelper.CheckTransaction() == true)
+            {
+                txtFinancialYear.ReadOnly = true;
+            }
             MetalList.Clear();
             MetalList = CommanHelper.GetCompanyMetal().ToList();
 
@@ -316,6 +324,10 @@ namespace SilverGold
             MetalList = CommanHelper.GetMetalCate().ToList();
 
             this.dataGridView1.Columns["AmountWeight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridView2.Columns["Weight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridView2.Columns["Tunch1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridView2.Columns["Tunch2"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridView2.Columns["Fine"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -384,59 +396,55 @@ namespace SilverGold
                     OleDbCommand cmd = new OleDbCommand("", con2, Tran);
 
                     //-------Insert Company Details
-                    cmd.CommandText = "INSERT INTO Company(CompanyName,DateFrom,DateTo,FinancialYear,DatabasePath,DataBaseName)VALUES('" + txtCompanyName.Text.Trim() + "','" + _FYFrom + "','" + _FYTo + "','" + txtFinancialYear.Text.Trim() + "','" + _DPath + "','" + _DName + "')";
-                    cmd.ExecuteNonQuery();
+                    CompanyFactory.Insert(txtCompanyName.Text.Trim(), _FYFrom, _FYTo, txtFinancialYear.Text.Trim(), _DPath, _DName, con, Tran);
 
                     //--------Insert Users Id Password
-                    cmd.CommandText = "INSERT INTO USERS(UserId,Pwd,UserType,Company)VALUES('" + txtUserId.Text.Trim() + "','" + txtPassword.Text.Trim() + "','" + cmbUType.Text.Trim() + "','" + CommanHelper.CompName + "')";
-                    cmd.ExecuteNonQuery();
+                    UserFactory.Insert(txtUserId.Text.Trim(), txtPassword.Text.Trim(), cmbUType.Text.Trim(), CommanHelper.CompName, con, Tran);
 
                     //----------Company Opening Information
                     for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                     {
-                        String MetalCat = "";
-                        String MetalName = "";
-                        String WeightType = "";
-                        String KF = "";
-                        Decimal Amt_Weight = 0;
-
-                        String DrCr = "";
+                        String _MetalCat = "";
+                        String _MetalName = "";
+                        String _WeightType = "";
+                        String _KF = "";
+                        Decimal _Amt_Weight = 0;
+                        String _DrCr = "";
                         Decimal _Credit = 0;
                         Decimal _Debit = 0;
-                        MetalCat = (dataGridView1.Rows[i].Cells[0].Value ?? (object)"").ToString();
-                        MetalName = (dataGridView1.Rows[i].Cells[1].Value ?? (object)"").ToString();
-                        WeightType = (dataGridView1.Rows[i].Cells[2].Value ?? (object)"").ToString();
-                        KF = (dataGridView1.Rows[i].Cells[3].Value ?? (object)"").ToString();
+                        _MetalCat = (dataGridView1.Rows[i].Cells[0].Value ?? (object)"").ToString();
+                        _MetalName = (dataGridView1.Rows[i].Cells[1].Value ?? (object)"").ToString();
+                        _WeightType = (dataGridView1.Rows[i].Cells[2].Value ?? (object)"").ToString();
+                        _KF = (dataGridView1.Rows[i].Cells[3].Value ?? (object)"").ToString();
 
                         if (dataGridView1.Rows[i].Cells[4].Value != null)
                         {
-                            Amt_Weight = Conversion.ConToDec6(dataGridView1.Rows[i].Cells[4].Value.ToString());
+                            _Amt_Weight = Conversion.ConToDec6(dataGridView1.Rows[i].Cells[4].Value.ToString());
                         }
-                        DrCr = Conversion.ConToStr(dataGridView1.Rows[i].Cells[5].Value);
-                        if (DrCr.Trim() == "CREDIT")
+                        _DrCr = Conversion.ConToStr(dataGridView1.Rows[i].Cells[5].Value);
+                        if (_DrCr.Trim() == "JAMA")
                         {
-                            _Credit = Amt_Weight;
+                            _Credit = _Amt_Weight;
                         }
-                        if (DrCr.Trim() == "DEBIT")
+                        if (_DrCr.Trim() == "NAAM")
                         {
-                            _Debit = Amt_Weight;
+                            _Debit = _Amt_Weight;
                         }
 
-                        if (DrCr != "")
+                        if (_DrCr != "")
                         {
-                            cmd.CommandText = "INSERT INTO CompanyOpening(MetalName,Amount_Weight,DrCr,CompanyName,UserId)VALUES('" + MetalName + "','" + Amt_Weight + "','" + DrCr + "','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
-                            cmd.ExecuteNonQuery();
+                            CompnayOpeningFactory.Insert(_MetalName, _Amt_Weight, _DrCr, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
 
                             //--------Insert Data In PartyTran Table
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,TranType)VALUES('" + _FYFrom + "','" + txtCompanyName.Text.Trim() + "','" + MetalCat + "','" + MetalName + "','" + _Debit + "','" + _Credit + "','" + Amt_Weight + "','CO')";
+                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,TranType)VALUES('" + _FYFrom + "','" + txtCompanyName.Text.Trim() + "','" + _MetalCat + "','" + _MetalName + "','" + _Debit + "','" + _Credit + "','" + _Amt_Weight + "','CO')";
                             cmd.ExecuteNonQuery();
                         }
 
                         //---------Insert Data Metal
-                        if (MetalCat != "" && MetalName != "" && WeightType != "" && KF != "")
+                        if (_MetalCat != "" && _MetalName != "" && _KF != "")
                         {
                             Boolean CheckMetalExist = false;
-                            cmd.CommandText = "Select * From Metal  Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WeightType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
+                            cmd.CommandText = "Select * From Metal  Where MetalCategory='" + _MetalCat + "' And MetalName = '" + _MetalName + "' And WeightType = '" + _WeightType + "' And KachchiFine = '" + _KF + "'";
                             OleDbDataReader dr = cmd.ExecuteReader();
                             if (dr.Read())
                             {
@@ -446,12 +454,11 @@ namespace SilverGold
 
                             if (CheckMetalExist == false)
                             {
-                                cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WeightType,KachchiFine,CompanyName,UserId)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
-                                cmd.ExecuteNonQuery();
+                                MetalFactory.InsertMetal(_MetalCat, _MetalName, _WeightType, _KF, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
                             }
                             else
                             {
-                                cmd.CommandText = "UPDATE Metal SET CompanyName = '" + CommanHelper.CompName + "',UserId = '" + txtUserId.Text.Trim() + "', MetalCategory='" + MetalCat + "' , MetalName = '" + MetalName + "' , WeightType = '" + WeightType + "' , KachchiFine = '" + KF + "' Where MetalCategory='" + MetalCat + "' And MetalName = '" + MetalName + "' And WeightType = '" + WeightType + "' And KachchiFine = '" + KF + "'";
+                                cmd.CommandText = "UPDATE Metal SET CompanyName = '" + CommanHelper.CompName + "',UserId = '" + txtUserId.Text.Trim() + "', MetalCategory='" + _MetalCat + "' , MetalName = '" + _MetalName + "' , WeightType = '" + _WeightType + "' , KachchiFine = '" + _KF + "' Where MetalCategory='" + _MetalCat + "' And MetalName = '" + _MetalName + "' And WeightType = '" + _WeightType + "' And KachchiFine = '" + _KF + "'";
                                 cmd.ExecuteNonQuery();
                             }
                         }
@@ -463,21 +470,20 @@ namespace SilverGold
                     //-----Insert KF details
                     for (int k = 0; k < dataGridView2.Rows.Count - 1; k++)
                     {
-                        String strPaatNo = "";
-                        Decimal weight = 0;
-                        Decimal Tunch1 = 0;
-                        Decimal Tunch2 = 0;
-                        Decimal Fine = 0;
+                        String _StrPaatNo = "";
+                        Decimal _Weight = 0;
+                        Decimal _Tunch1 = 0;
+                        Decimal _Tunch2 = 0;
+                        Decimal _Fine = 0;
 
-                        strPaatNo = (dataGridView2.Rows[k].Cells[0].Value ?? (object)"").ToString();
-                        weight = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
-                        Tunch1 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
-                        Tunch2 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
-                        Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
-                        if (weight > 0)
+                        _StrPaatNo = (dataGridView2.Rows[k].Cells[0].Value ?? (object)"").ToString();
+                        _Weight = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
+                        _Tunch1 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
+                        _Tunch2 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
+                        _Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
+                        if (_Weight > 0)
                         {
-                            cmd.CommandText = "INSERT INTO KfDetails(MetalCategory,MetalName,PaatNo,Weight,Tunch1,Tunch2,Fine,TranType,Company,UserId)VALUES('" + lblKFCate.Text.Trim() + "','" + lblKFName.Text.Trim() + "','" + strPaatNo + "','" + weight + "','" + Tunch1 + "','" + Tunch2 + "','" + Fine + "','CKF','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
-                            cmd.ExecuteNonQuery();
+                            KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
                         }
                     }
 
@@ -559,78 +565,94 @@ namespace SilverGold
                 cmd.CommandText = "Delete From PartyTran Where TranType = 'CO'";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "Delete From Metal";
-                cmd.ExecuteNonQuery();
+                //cmd.CommandText = "Delete From Metal";
+                //cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "Delete From KfDetails Where TranType='CKF' And Company = '" + CommanHelper.CompName + "'";
                 cmd.ExecuteNonQuery();
 
                 //----------Company Opening Information
-                foreach (var item in MetalList)
-                {
-                    String MetalCat = "";
-                    String MetalName = "";
-                    String WeightType = "";
-                    String KF = "";
-                    Decimal Amt_Weight = 0;
 
-                    String DrCr = "";
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    String _MetalCat = "";
+                    String _MetalName = "";
+                    String _WeightType = "";
+                    String _KF = "";
+                    Decimal _Amt_Weight = 0;
+                    String _DrCr = "";
                     Decimal _Credit = 0;
                     Decimal _Debit = 0;
+                    _MetalCat = (dataGridView1.Rows[i].Cells[0].Value ?? (object)"").ToString();
+                    _MetalName = (dataGridView1.Rows[i].Cells[1].Value ?? (object)"").ToString();
+                    _WeightType = (dataGridView1.Rows[i].Cells[2].Value ?? (object)"").ToString();
+                    _KF = (dataGridView1.Rows[i].Cells[3].Value ?? (object)"").ToString();
 
-                    MetalCat = (item.MetalCategory ?? (object)"").ToString();
-                    MetalName = (item.MetalName ?? (object)"").ToString();
-                    WeightType = (item.WeightType ?? (object)"").ToString();
-                    KF = (item.KachchiFine ?? (object)"").ToString();
-
-                    Amt_Weight = Conversion.ConToDec6(item.AmountWeight.ToString());
-                    DrCr = item.DrCr.ToString();
-                    if (DrCr.Trim() == "CREDIT")
+                    if (dataGridView1.Rows[i].Cells[4].Value != null)
                     {
-                        _Credit = Amt_Weight;
+                        _Amt_Weight = Conversion.ConToDec6(dataGridView1.Rows[i].Cells[4].Value.ToString());
                     }
-                    if (DrCr.Trim() == "DEBIT")
+                    _DrCr = Conversion.ConToStr(dataGridView1.Rows[i].Cells[5].Value);
+                    if (_DrCr.Trim() == "JAMA")
                     {
-                        _Debit = Amt_Weight;
+                        _Credit = _Amt_Weight;
+                    }
+                    if (_DrCr.Trim() == "NAAM")
+                    {
+                        _Debit = _Amt_Weight;
                     }
 
-                    if (DrCr != "")
+                    if (_DrCr != "")
                     {
-                        cmd.CommandText = "INSERT INTO CompanyOpening(MetalName,Amount_Weight,DrCr,CompanyName,UserId)VALUES('" + MetalName + "','" + Amt_Weight + "','" + DrCr + "','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
-                        cmd.ExecuteNonQuery();
+                        CompnayOpeningFactory.Insert(_MetalName, _Amt_Weight, _DrCr, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
 
                         //--------Insert Data In PartyTran Table
-                        cmd.CommandText = "INSERT INTO PartyTran(TrDate,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,TranType)VALUES('" + _FYFrom + "','" + txtCompanyName.Text.Trim() + "','" + MetalCat + "','" + MetalName + "','" + _Debit + "','" + _Credit + "','" + Amt_Weight + "','CO')";
+                        cmd.CommandText = "INSERT INTO PartyTran(TrDate,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,TranType)VALUES('" + _FYFrom + "','" + txtCompanyName.Text.Trim() + "','" + _MetalCat + "','" + _MetalName + "','" + _Debit + "','" + _Credit + "','" + _Amt_Weight + "','CO')";
                         cmd.ExecuteNonQuery();
                     }
 
                     //---------Insert Data Metal
-                    if (MetalCat != "" && MetalName != "" && KF != "")
+                    if (_MetalCat != "" && _MetalName != "" && _KF != "")
                     {
-                        cmd.CommandText = "INSERT INTO Metal(MetalCategory,MetalName,WeightType,KachchiFine,CompanyName)VALUES('" + MetalCat + "','" + MetalName + "','" + WeightType + "','" + KF + "','" + (item.CompanyName ?? (object)"").ToString() + "')";
-                        cmd.ExecuteNonQuery();
+                        Boolean CheckMetalExist = false;
+                        cmd.CommandText = "Select * From Metal  Where MetalCategory='" + _MetalCat + "' And MetalName = '" + _MetalName + "' And WeightType = '" + _WeightType + "' And KachchiFine = '" + _KF + "'";
+                        OleDbDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            CheckMetalExist = true;
+                        }
+                        dr.Close();
 
+                        if (CheckMetalExist == false)
+                        {
+                            MetalFactory.InsertMetal(_MetalCat, _MetalName, _WeightType, _KF, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
+                        }
+                        else
+                        {
+                            cmd.CommandText = "UPDATE Metal SET CompanyName = '" + CommanHelper.CompName + "',UserId = '" + txtUserId.Text.Trim() + "', MetalCategory='" + _MetalCat + "' , MetalName = '" + _MetalName + "' , WeightType = '" + _WeightType + "' , KachchiFine = '" + _KF + "' Where MetalCategory='" + _MetalCat + "' And MetalName = '" + _MetalName + "' And WeightType = '" + _WeightType + "' And KachchiFine = '" + _KF + "'";
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
+
 
                 //-----Insert KF details
                 for (int k = 0; k < dataGridView2.Rows.Count - 1; k++)
                 {
-                    String strPaatNo = "";
-                    Decimal weight = 0;
-                    Decimal Tunch1 = 0;
-                    Decimal Tunch2 = 0;
-                    Decimal Fine = 0;
+                    String _StrPaatNo = "";
+                    Decimal _Weight = 0;
+                    Decimal _Tunch1 = 0;
+                    Decimal _Tunch2 = 0;
+                    Decimal _Fine = 0;
 
-                    strPaatNo = (dataGridView2.Rows[k].Cells[0].Value ?? (object)"").ToString();
-                    weight = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
-                    Tunch1 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
-                    Tunch2 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
-                    Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
-                    if (weight > 0)
+                    _StrPaatNo = (dataGridView2.Rows[k].Cells[0].Value ?? (object)"").ToString();
+                    _Weight = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[1].Value ?? (object)"").ToString());
+                    _Tunch1 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[2].Value ?? (object)"").ToString());
+                    _Tunch2 = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[3].Value ?? (object)"").ToString());
+                    _Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
+                    if (_Weight > 0)
                     {
-                        cmd.CommandText = "INSERT INTO KfDetails(MetalCategory,MetalName,PaatNo,Weight,Tunch1,Tunch2,Fine,TranType,Company,UserId)VALUES('" + lblKFCate.Text.Trim() + "','" + lblKFName.Text.Trim() + "','" + strPaatNo + "','" + weight + "','" + Tunch1 + "','" + Tunch2 + "','" + Fine + "','CKF','" + CommanHelper.CompName + "','" + txtUserId.Text.Trim() + "')";
-                        cmd.ExecuteNonQuery();
+                        KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
                     }
                 }
 
@@ -638,7 +660,6 @@ namespace SilverGold
                 con.Close();
 
                 MessageBox.Show("Company Updated Successfully.", "Company", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 
                 ClearControl();
             }
@@ -1006,9 +1027,7 @@ namespace SilverGold
         {
             try
             {
-                if (dataGridView2.CurrentCell.ColumnIndex == col2.Index || dataGridView2.CurrentCell.ColumnIndex == col3.Index ||
-                    dataGridView2.CurrentCell.ColumnIndex == col4.Index || dataGridView2.CurrentCell.ColumnIndex == col5.Index ||
-                    dataGridView2.CurrentCell.ColumnIndex == col6.Index)
+                if (dataGridView2.CurrentCell.ColumnIndex >= 1 && dataGridView2.CurrentCell.ColumnIndex <= 4)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -1086,14 +1105,27 @@ namespace SilverGold
                             {
                                 if (!MetalList.Where(x => x.MetalCategory == _MetalCateCellValue.Trim() && x.MetalName == e.FormattedValue.ToString()).Any())
                                 {
-                                    var max = 0;
-                                    if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
-                                    MetalEntity oMetal = new MetalEntity();
-                                    oMetal.MetalCategory = _MetalCateCellValue;
-                                    oMetal.MetalName = e.FormattedValue.ToString();
-                                    oMetal.WeightType = "";
-                                    oMetal.Sno = max;
-                                    oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
+                                    if (item.MetalCategory == "" && item.MetalName == "")
+                                    {
+                                        var max = 0;
+                                        if (result.Count > 0) { max = MetalList.Max(x => x.Sno) + 1; }
+                                        MetalEntity oMetal = new MetalEntity();
+                                        oMetal.MetalCategory = _MetalCateCellValue;
+                                        oMetal.MetalName = e.FormattedValue.ToString();
+                                        oMetal.WeightType = "";
+                                        oMetal.Sno = max;
+                                        oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
+                                       
+                                    }
+                                    else
+                                    {
+                                        if (item.MetalName == "")
+                                        {
+                                            var update = (from r in MetalList where r.Sno == item.Sno select r).FirstOrDefault();
+                                            update.MetalName = e.FormattedValue.ToString();
+                                            update.KachchiFine = "NO";
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -1163,7 +1195,7 @@ namespace SilverGold
                 }
                 if (dataGridView1.CurrentRow.Cells[5].Value == null)
                 {
-                    dataGridView1.CurrentRow.Cells[5].Value = "CREDIT";
+                    dataGridView1.CurrentRow.Cells[5].Value = "JAMA";
                 }
             }
             catch (Exception ex)
@@ -1300,6 +1332,7 @@ namespace SilverGold
         private void toolStripMenu_CompanyDetails_Click(object sender, EventArgs e)
         {
             dataGridView3.Focus();
+            dataGridView3.Rows[0].Selected = true;
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -1318,6 +1351,22 @@ namespace SilverGold
                     }
                 }
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtCompanyName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (CommanHelper.CompName == txtCompanyName.Text.Trim())
+                //{
+                //    MessageBox.Show("Sorry! We Can Not Change Company Name", "Company", MessageBoxButtons.OK, MessageBoxIcon.Stop);                    
+                //    return;
+                //}
             }
             catch (Exception ex)
             {

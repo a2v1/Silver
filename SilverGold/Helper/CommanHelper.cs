@@ -124,26 +124,33 @@ namespace SilverGold.Helper
             ConnectionClass objCon = new ConnectionClass();
             try
             {
-                using (OleDbConnection con = new OleDbConnection(objCon._CONSTR()))
-                {
-                    con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WeightType,KachchiFine,Sno,CompanyName,UserId From Metal ORDER BY MetalCategory ASC", con);
-                    OleDbDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        MetalEntity oMetal = new MetalEntity();
-                        oMetal.MetalName = dr["MetalName"].ToString();
-                        oMetal.MetalCategory = dr["MetalCategory"].ToString();
-                        oMetal.WeightType = dr["WeightType"].ToString();
-                        oMetal.KachchiFine = dr["KachchiFine"].ToString();
-                        oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
-                        oMetal.CompanyName = dr["CompanyName"].ToString();
-                        oMetal.UserId = dr["UserId"].ToString();
-                        MetalList.Add(oMetal);
-                    }
-                    con.Close();
+                OleDbConnection con = new OleDbConnection();
 
+                if (CompName != "" && UserId != "")
+                {
+                    con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
                 }
+                else
+                {
+                    con.ConnectionString = objCon._CONSTR();
+                }
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WeightType,KachchiFine,Sno,CompanyName,UserId From Metal ORDER BY MetalCategory ASC", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    MetalEntity oMetal = new MetalEntity();
+                    oMetal.MetalName = dr["MetalName"].ToString();
+                    oMetal.MetalCategory = dr["MetalCategory"].ToString();
+                    oMetal.WeightType = dr["WeightType"].ToString();
+                    oMetal.KachchiFine = dr["KachchiFine"].ToString();
+                    oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
+                    oMetal.CompanyName = dr["CompanyName"].ToString();
+                    oMetal.UserId = dr["UserId"].ToString();
+                    MetalList.Add(oMetal);
+                }
+                con.Close();
+
             }
             catch (Exception ex)
             {
@@ -979,5 +986,33 @@ namespace SilverGold.Helper
             }
             return _TunchPendingExist;
         }
+
+        public static Boolean CheckTransaction()
+        {
+            Boolean _Check = false;
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select * from PartyTran Where TranType IN ('GR','GG')", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        _Check = true;
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return _Check;
+        }
+
+
+
     }
 }

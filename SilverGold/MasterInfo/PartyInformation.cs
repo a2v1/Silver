@@ -498,7 +498,7 @@ namespace SilverGold.MasterInfo
 
             DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
             col2.DataPropertyName = "Amount";
-            col2.HeaderText = "Amount";
+            col2.HeaderText = "Weight";
             col2.Name = "Amount";
             dataGridView1.Columns.Add(col2);
 
@@ -506,8 +506,8 @@ namespace SilverGold.MasterInfo
             col3.DataPropertyName = "DrCr";
             col3.HeaderText = "DrCr";
             col3.Name = "DrCr";
-            col3.Items.Add("DEBIT");
-            col3.Items.Add("CREDIT");
+            col3.Items.Add("JAMA");
+            col3.Items.Add("NAAM");
             col3.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col3);
         }
@@ -794,42 +794,14 @@ namespace SilverGold.MasterInfo
 
                 #region Insert PartyDetails
 
-                cmd.CommandText = "INSERT INTO PartyDetails(Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,Company,UserId)VALUES" +
-                    "(@Type,@Category,@PartyName,@PartyType,@Address,@Email,@ContactNo,@GroupHead,@SubGroup,@IntroducerName,@ShowInTrail,@WithCreditPeriod,@Lot,@LotGenerate,@Company,@UserId)";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@Type", cmbtype.Text.Trim());
-                cmd.Parameters.AddWithValue("@Category", cmbCategory.Text.Trim());
-                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                cmd.Parameters.AddWithValue("@PartyType", cmbBullion.Text.Trim());
-                cmd.Parameters.AddWithValue("@Address", txtaddress.Text.Trim());
-                cmd.Parameters.AddWithValue("@Email", txtemailid.Text.Trim());
-                cmd.Parameters.AddWithValue("@ContactNo", txtcontactno.Text.Trim());
-                cmd.Parameters.AddWithValue("@GroupHead", cmbgrouphead.Text.Trim());
-                cmd.Parameters.AddWithValue("@SubGroup", cmbsubhead.Text.Trim());
-                cmd.Parameters.AddWithValue("@IntroducerName", cmbIntroducer.Text.Trim());
-                cmd.Parameters.AddWithValue("@ShowInTrail", cmbShowtrail.Text.Trim());
-                cmd.Parameters.AddWithValue("@WithCreditPeriod", strWithCreditLimit);
-                cmd.Parameters.AddWithValue("@Lot", cmbLot.Text.Trim());
-                cmd.Parameters.AddWithValue("@LotGenerate", cmb_gen_type.Text.Trim());
-                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                cmd.ExecuteNonQuery();
+                PartyInformationFactory.Insert(cmbtype.Text.Trim(), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), cmbBullion.Text.Trim(), txtaddress.Text.Trim(), txtemailid.Text.Trim(), txtcontactno.Text.Trim(), cmbgrouphead.Text.Trim(), cmbsubhead.Text.Trim(), cmbIntroducer.Text.Trim(), cmbShowtrail.Text.Trim(), strWithCreditLimit, cmbLot.Text.Trim(), cmb_gen_type.Text.Trim(), con, Tran);
 
                 #endregion
 
                 #region Insert Cash Opening
 
                 ///---------------Insert Cash Opening
-                cmd.Parameters.Clear();
-                cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                cmd.Parameters.AddWithValue("@ItemName", "CASH");
-                cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()));
-                cmd.Parameters.AddWithValue("@DrCr", cmbrs.Text.ToString().Trim());
-                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                cmd.ExecuteNonQuery();
+                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()),0, cmbrs.Text.ToString().Trim(), con, Tran);
 
                 #endregion
 
@@ -851,18 +823,7 @@ namespace SilverGold.MasterInfo
                         }
                         foreach (DataGridViewRow dr in dataGridView2.Rows)
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@CreditPeriod", cmbDays.Text.Trim());
-                            cmd.Parameters.AddWithValue("@RateUpdate", rate_revised.Trim());
-                            cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@ItemLimit", Conversion.ConToDec6((dr.Cells[1].Value ?? (object)"").ToString().Trim()));
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                            cmd.ExecuteNonQuery();
-
+                            CreditLimitFactory.Insert(txtpartyname.Text.Trim(), cmbDays.Text.Trim(), rate_revised.Trim(), dr.Cells[0].Value.ToString().Trim(), Conversion.ConToDec6((dr.Cells[1].Value ?? (object)"").ToString().Trim()), con, Tran);
                         }
 
                         foreach (DataGridViewRow dr in dataGridViewCreditPeriod.Rows)
@@ -889,22 +850,7 @@ namespace SilverGold.MasterInfo
 
                             if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
                             {
-                                cmd.Parameters.Clear();
-                                cmd.CommandText = "INSERT INTO CreditPeriod(PartyName,DateFrom,DateTo,RateRevised,Category,Product,Westage,Amount,Tran_Type,Days,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@RateRevised,@Category,@Product,@Westage,@Amount,@Tran_Type,@Days,@Company,@UserId)";
-                                cmd.CommandType = CommandType.Text;
-                                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                                cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
-                                cmd.Parameters.AddWithValue("@DateTo", _DateTo);
-                                cmd.Parameters.AddWithValue("@RateRevised", _RateRevised);
-                                cmd.Parameters.AddWithValue("@Category", _Category);
-                                cmd.Parameters.AddWithValue("@Product", _Product);
-                                cmd.Parameters.AddWithValue("@Westage", _Westage);
-                                cmd.Parameters.AddWithValue("@Amount", _Amount);
-                                cmd.Parameters.AddWithValue("@Tran_Type", _Tran_Type);
-                                cmd.Parameters.AddWithValue("@Days", _Days);
-                                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                                cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                                cmd.ExecuteNonQuery();
+                                CreditPeriodFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);                              
                             }
                         }
                     }
@@ -940,22 +886,7 @@ namespace SilverGold.MasterInfo
 
                             if (_BrokType != "" && _Product != "" && _BrokRate != 0 && _TranType != "" && _LotSet != 0 && _PType != "")
                             {
-                                cmd.Parameters.Clear();
-                                cmd.CommandText = "INSERT INTO BrokerageSetting(PartyName,DateFrom,DateTo,BrokerageType,Category,Product,BrokerageRate,TranType,LotSet,PayType,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@BrokerageType,@Category,@Product,@BrokerageRate,@TranType,@LotSet,@PayType,@Company,@UserId)";
-                                cmd.CommandType = CommandType.Text;
-                                cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                                cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
-                                cmd.Parameters.AddWithValue("@DateTo", _DateTo);
-                                cmd.Parameters.AddWithValue("@BrokerageType", _BrokType);
-                                cmd.Parameters.AddWithValue("@Category", "");
-                                cmd.Parameters.AddWithValue("@Product", _Product);
-                                cmd.Parameters.AddWithValue("@BrokerageRate", _BrokRate);
-                                cmd.Parameters.AddWithValue("@TranType", _TranType);
-                                cmd.Parameters.AddWithValue("@LotSet", _LotSet);
-                                cmd.Parameters.AddWithValue("@PayType", _PType);
-                                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                                cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                                cmd.ExecuteNonQuery();
+                                BrokerageSettingFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _BrokType, "", _Product, _BrokRate, _TranType, _LotSet, _PType, con, Tran);
                             }
                         }
                     }
@@ -991,21 +922,7 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Fine_Amount != "" && _LaboursRate != 0 && _PayType != "")
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO LaboursRate(PartyName,DateFrom,DateTo,WeightPcs,Category,Product,Fine_Amount,LaboursRate,PayType,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@WeightPcs,@Category,@Product,@Fine_Amount,@LaboursRate,@PayType,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
-                            cmd.Parameters.AddWithValue("@DateTo", _DateTo);
-                            cmd.Parameters.AddWithValue("@WeightPcs", _WeightPcs);
-                            cmd.Parameters.AddWithValue("@Category", _Category);
-                            cmd.Parameters.AddWithValue("@Product", _Product);
-                            cmd.Parameters.AddWithValue("@Fine_Amount", _Fine_Amount);
-                            cmd.Parameters.AddWithValue("@LaboursRate", _LaboursRate);
-                            cmd.Parameters.AddWithValue("@PayType", _PayType);
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                            cmd.ExecuteNonQuery();
+                            LaboursRateFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _LaboursRate, _PayType, con, Tran);
                         }
                     }
                     #endregion
@@ -1037,21 +954,7 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Ghattak != 0 && _Jama_Naam != "" && _PayType != "")
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO GhattakList(PartyName,DateFrom,DateTo,WeightPcs,Category,Product,Ghattak,PayType,Jama_Naam,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@WeightPcs,@Category,@Product,@Ghattak,@PayType,@Jama_Naam,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
-                            cmd.Parameters.AddWithValue("@DateTo", _DateTo);
-                            cmd.Parameters.AddWithValue("@WeightPcs", _WeightPcs);
-                            cmd.Parameters.AddWithValue("@Category", _Category);
-                            cmd.Parameters.AddWithValue("@Product", _Product);
-                            cmd.Parameters.AddWithValue("@Ghattak", _Ghattak);
-                            cmd.Parameters.AddWithValue("@PayType", _Jama_Naam);
-                            cmd.Parameters.AddWithValue("@Jama_Naam", _PayType);
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                            cmd.ExecuteNonQuery();
+                            GhattakListFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Ghattak, _PayType, _Jama_Naam, con, Tran);
                         }
                     }
 
@@ -1091,22 +994,7 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Product != "" && _Fine_Amount != "" && _BrokerageRate != 0 && _JamaNaam != "" && _PayType != "")
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO CommissionList(PartyName,DateFrom,DateTo,WeightPcs,Category,Product,Fine_Amount,BrokerageRate,PayType,JamaNaam,Company,UserId)VALUES(@PartyName,@DateFrom,@DateTo,@WeightPcs,@Category,@Product,@Fine_Amount,@BrokerageRate,@PayType,@JamaNaam,@Company,@UserId)";
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DateFrom", _DateFrom);
-                            cmd.Parameters.AddWithValue("@DateTo", _DateTo);
-                            cmd.Parameters.AddWithValue("@WeightPcs", _WeightPcs);
-                            cmd.Parameters.AddWithValue("@Category", _Category);
-                            cmd.Parameters.AddWithValue("@Product", _Product);
-                            cmd.Parameters.AddWithValue("@Fine_Amount", _Fine_Amount);
-                            cmd.Parameters.AddWithValue("@BrokerageRate", _BrokerageRate);
-                            cmd.Parameters.AddWithValue("@PayType", _JamaNaam);
-                            cmd.Parameters.AddWithValue("@JamaNaam", _PayType);
-                            cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                            cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                            cmd.ExecuteNonQuery();
+                            CommissionListFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _BrokerageRate, _PayType, _JamaNaam, con, Tran);
                         }
                     }
 
@@ -1144,17 +1032,7 @@ namespace SilverGold.MasterInfo
                             _Weight = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
 
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@ClosingRate,@DrCr,@Company,@UserId)";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                        cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
-                        cmd.Parameters.AddWithValue("@Amount_Weight", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
-                        cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()));
-                        cmd.Parameters.AddWithValue("@DrCr", (dr.Cells[3].Value ?? (object)"").ToString().Trim());
-                        cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                        cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                        cmd.ExecuteNonQuery();
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()), (dr.Cells[3].Value ?? (object)"").ToString().Trim(), con, Tran);
 
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
@@ -1169,26 +1047,15 @@ namespace SilverGold.MasterInfo
                         Decimal _Debit = 0;
                         Decimal _Credit = 0;
 
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "DEBIT")
+                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "NAAM")
                         {
                             _Debit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "CREDIT")
+                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "JAMA")
                         {
                             _Credit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
-
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@DrCr,@Company,@UserId)";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@PartyName", txtpartyname.Text.Trim());
-                        cmd.Parameters.AddWithValue("@ItemName", dr.Cells[0].Value.ToString().Trim());
-                        cmd.Parameters.AddWithValue("@ClosingRate", Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()));
-                        cmd.Parameters.AddWithValue("@DrCr", (dr.Cells[2].Value ?? (object)"").ToString().Trim());
-                        cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
-                        cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
-                        cmd.ExecuteNonQuery();
-
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), 0, Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() != "")
                         {

@@ -51,7 +51,10 @@
             this.paymentVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.labourProccessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -63,7 +66,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(632, 24);
-            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // masterToolStripMenuItem
@@ -165,7 +168,6 @@
             // jamaRecievingToolStripMenuItem
             // 
             this.jamaRecievingToolStripMenuItem.Name = "jamaRecievingToolStripMenuItem";
-            this.jamaRecievingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.jamaRecievingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.jamaRecievingToolStripMenuItem.Text = "Jama(Recieving)";
             this.jamaRecievingToolStripMenuItem.Click += new System.EventHandler(this.jamaRecievingToolStripMenuItem_Click);
@@ -228,11 +230,28 @@
             this.labourProccessingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.labourProccessingToolStripMenuItem.Text = "Labour  Proccessing";
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(632, 22);
+            this.statusStrip.TabIndex = 1;
+            this.statusStrip.Text = "StatusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel.Text = "Status";
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 453);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "Master";
@@ -243,13 +262,14 @@
             this.Load += new System.EventHandler(this.Master_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createCompToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterInfoToolStripMenuItem;
@@ -271,6 +291,9 @@
         private System.Windows.Forms.ToolStripMenuItem paymentVoucherToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem labourProccessingToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        public System.Windows.Forms.MenuStrip menuStrip1;
 
     }
 }

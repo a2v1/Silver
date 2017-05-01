@@ -80,19 +80,26 @@
     <Compile Include="CompanyDetails.Designer.cs">
       <DependentUpon>CompanyDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entity\BrokerageSettingEntity.cs" />
+    <Compile Include="Entity\CommissionListEntity.cs" />
     <Compile Include="Entity\CompanyEntity.cs" />
     <Compile Include="Entity\CompanyLoginEntity.cs" />
     <Compile Include="Entity\CreditLimitOpeningEntity.cs" />
     <Compile Include="Entity\CreditPeriodEntity.cs" />
+    <Compile Include="Entity\GhattakListEntity.cs" />
     <Compile Include="Entity\GroupHeadEntity.cs" />
     <Compile Include="Entity\ItemOpening.cs" />
     <Compile Include="Entity\JamaNaamEntity.cs" />
     <Compile Include="Entity\KFEntity.cs" />
+    <Compile Include="Entity\LaboursRateEntity.cs" />
     <Compile Include="Entity\MetalEntity.cs" />
     <Compile Include="Entity\OpeningEntity.cs" />
+    <Compile Include="Entity\PartyInformationEntity.cs" />
+    <Compile Include="Entity\PartyOpeningEntity.cs" />
     <Compile Include="Entity\PriceListEntity.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\TunchPendingEntity.cs" />
+    <Compile Include="Entity\UsersEntity.cs" />
     <Compile Include="MasterInfo\GroupHead.cs">
       <SubType>Form</SubType>
     </Compile>
