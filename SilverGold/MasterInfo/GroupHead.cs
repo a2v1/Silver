@@ -110,7 +110,7 @@ namespace SilverGold.MasterInfo
                 con.Open();
                 Tran = con.BeginTransaction();
 
-                OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead = '" + _GroupName + "' And Company = '" + CommanHelper.CompName.Trim() + "'", con, Tran);
+                OleDbCommand cmd = new OleDbCommand("Delete From GroupHead Where GroupHead = '" + _GroupName + "' ", con, Tran);
                 cmd.ExecuteNonQuery();
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)

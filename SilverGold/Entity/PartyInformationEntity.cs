@@ -12,14 +12,15 @@ namespace SilverGold.Entity
     {
 
     }
+
     public static class PartyInformationFactory
     {
-        public static void Insert(String _Type, String _Category, String _PartyName, String _PartyType, String _Address, String _Email, String _ContactNo, String _GroupHead, String _SubGroup, String _IntroducerName, String _ShowInTrail, String _WithCreditPeriod, String _Lot, String _LotGenerate, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _Type, String _Category, String _PartyName, String _PartyType, String _Address, String _Email, String _ContactNo, String _GroupHead, String _SubGroup, String _IntroducerName, String _ShowInTrail, String _WithCreditPeriod, String _Lot, String _LotGenerate, Decimal _BankCredit, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO PartyDetails(Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,Company,UserId)VALUES" +
-                    "(@Type,@Category,@PartyName,@PartyType,@Address,@Email,@ContactNo,@GroupHead,@SubGroup,@IntroducerName,@ShowInTrail,@WithCreditPeriod,@Lot,@LotGenerate,@Company,@UserId)";
+            strInsert = "INSERT INTO PartyDetails(Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,BankCredit,Company,UserId)VALUES" +
+                    "(@Type,@Category,@PartyName,@PartyType,@Address,@Email,@ContactNo,@GroupHead,@SubGroup,@IntroducerName,@ShowInTrail,@WithCreditPeriod,@Lot,@LotGenerate,@BankCredit,@Company,@UserId)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -42,6 +43,7 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@WithCreditPeriod", _WithCreditPeriod);
             cmdInsert.Parameters.AddWithValue("@Lot", _Lot);
             cmdInsert.Parameters.AddWithValue("@LotGenerate", _LotGenerate);
+            cmdInsert.Parameters.AddWithValue("@BankCredit", _BankCredit);
             cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
             cmdInsert.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
             cmdInsert.ExecuteNonQuery();

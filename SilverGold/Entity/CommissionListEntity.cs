@@ -1,15 +1,93 @@
-﻿using SilverGold.Helper;
+﻿using SilverGold.Comman;
+using SilverGold.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace SilverGold.Entity
 {
     class CommissionListEntity
     {
+        CalendarColumn dtpDateFrom_CommList = new CalendarColumn();
+        CalendarColumn dtpDateTo_CommList = new CalendarColumn();
+        public DataGridViewComboBoxColumn col_WtPcs_CommList = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_Cate_CommList = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_Product_CommList = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_FineAmt_CommList = new DataGridViewComboBoxColumn();
+        public DataGridViewColumn col_Com_CommList = new DataGridViewTextBoxColumn();
+        public DataGridViewComboBoxColumn col_PType_CommList = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_JN_CommList = new DataGridViewComboBoxColumn();
+
+        public void BindCommissionList(DataGridView dgv)
+        {
+            dtpDateFrom_CommList.DataPropertyName = "DateFrom";
+            dtpDateFrom_CommList.HeaderText = "DateFrom";
+            dtpDateFrom_CommList.Name = "DateFrom";
+            dgv.Columns.Add(dtpDateFrom_CommList);
+
+            dtpDateTo_CommList.DataPropertyName = "DateTo";
+            dtpDateTo_CommList.HeaderText = "DateTo";
+            dtpDateTo_CommList.Name = "DateTo";
+            dgv.Columns.Add(dtpDateTo_CommList);
+
+            col_WtPcs_CommList.DataPropertyName = "WeightPcs";
+            col_WtPcs_CommList.HeaderText = "WT/PCS";
+            col_WtPcs_CommList.Name = "WeightPcs";
+            col_WtPcs_CommList.Items.Add("WEIGHT");
+            col_WtPcs_CommList.Items.Add("PCS");
+            col_WtPcs_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_WtPcs_CommList);
+
+            col_Cate_CommList.DataPropertyName = "Category";
+            col_Cate_CommList.HeaderText = "Category";
+            col_Cate_CommList.Name = "Category";
+            col_Cate_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            col_Cate_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_Cate_CommList);
+
+            col_Product_CommList.DataPropertyName = "Product";
+            col_Product_CommList.HeaderText = "Product";
+            col_Product_CommList.Name = "Product";
+            col_Product_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            col_Product_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_Product_CommList);
+
+
+            col_FineAmt_CommList.DataPropertyName = "Fine_Amount";
+            col_FineAmt_CommList.HeaderText = "FINE/AMT";
+            col_FineAmt_CommList.Name = "Fine_Amount";
+            col_FineAmt_CommList.Items.Add("AMOUNT");
+            col_FineAmt_CommList.Items.Add("FINE");
+            col_FineAmt_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_FineAmt_CommList);
+
+            col_Com_CommList.DataPropertyName = "BrokerageRate";
+            col_Com_CommList.HeaderText = "Com Rate";
+            col_Com_CommList.Name = "BrokerageRate";
+            dgv.Columns.Add(col_Com_CommList);
+
+            col_PType_CommList.DataPropertyName = "PayType";
+            col_PType_CommList.HeaderText = "PayType";
+            col_PType_CommList.Name = "PayType";
+            col_PType_CommList.Items.Add("GIVING");
+            col_PType_CommList.Items.Add("RECIEVING");
+            col_PType_CommList.Items.Add("COMMON");
+            col_PType_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_PType_CommList);
+
+            col_JN_CommList.DataPropertyName = "JamaNaam";
+            col_JN_CommList.HeaderText = "J/N";
+            col_JN_CommList.Name = "JamaNaam";
+            col_JN_CommList.Items.Add("JAMA");
+            col_JN_CommList.Items.Add("NAAM");
+            col_JN_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_JN_CommList);
+        }
+
     }
 
     public static class CommissionListFactory

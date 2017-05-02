@@ -70,8 +70,8 @@ namespace SilverGold.MasterInfo
             this.label6 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtbanklimit = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
+            this.txtBankCredit = new System.Windows.Forms.TextBox();
+            this.lblBankCredit = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.Panel_LotGenerate = new System.Windows.Forms.Panel();
             this.cmb_gen_type = new System.Windows.Forms.ComboBox();
@@ -166,8 +166,8 @@ namespace SilverGold.MasterInfo
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtbanklimit);
-            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.txtBankCredit);
+            this.groupBox1.Controls.Add(this.lblBankCredit);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.Panel_LotGenerate);
             this.groupBox1.Controls.Add(this.lblLotGenerateIn);
@@ -192,7 +192,7 @@ namespace SilverGold.MasterInfo
             this.groupBox1.Controls.Add(this.txtemailid);
             this.groupBox1.Controls.Add(this.cmbsubhead);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(32, 41);
+            this.groupBox1.Location = new System.Drawing.Point(10, 41);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -207,7 +207,7 @@ namespace SilverGold.MasterInfo
             this.panel_ShowInTrail.Location = new System.Drawing.Point(240, 18);
             this.panel_ShowInTrail.Name = "panel_ShowInTrail";
             this.panel_ShowInTrail.Size = new System.Drawing.Size(73, 28);
-            this.panel_ShowInTrail.TabIndex = 58;
+            this.panel_ShowInTrail.TabIndex = 1;
             // 
             // cmbShowtrail
             // 
@@ -221,7 +221,7 @@ namespace SilverGold.MasterInfo
             this.cmbShowtrail.Name = "cmbShowtrail";
             this.cmbShowtrail.Size = new System.Drawing.Size(66, 21);
             this.cmbShowtrail.Sorted = true;
-            this.cmbShowtrail.TabIndex = 1;
+            this.cmbShowtrail.TabIndex = 0;
             this.cmbShowtrail.Enter += new System.EventHandler(this.cmbShowtrail_Enter);
             this.cmbShowtrail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShowtrail_KeyPress);
             this.cmbShowtrail.Leave += new System.EventHandler(this.cmbShowtrail_Leave);
@@ -232,7 +232,7 @@ namespace SilverGold.MasterInfo
             this.Panel_McxBullion.Location = new System.Drawing.Point(286, 73);
             this.Panel_McxBullion.Name = "Panel_McxBullion";
             this.Panel_McxBullion.Size = new System.Drawing.Size(85, 27);
-            this.Panel_McxBullion.TabIndex = 19;
+            this.Panel_McxBullion.TabIndex = 21;
             // 
             // cmbBullion
             // 
@@ -247,7 +247,7 @@ namespace SilverGold.MasterInfo
             this.cmbBullion.Name = "cmbBullion";
             this.cmbBullion.Size = new System.Drawing.Size(81, 21);
             this.cmbBullion.Sorted = true;
-            this.cmbBullion.TabIndex = 4;
+            this.cmbBullion.TabIndex = 0;
             this.cmbBullion.Visible = false;
             this.cmbBullion.SelectedIndexChanged += new System.EventHandler(this.cmbBullion_SelectedIndexChanged);
             this.cmbBullion.Enter += new System.EventHandler(this.cmbBullion_Enter);
@@ -260,21 +260,15 @@ namespace SilverGold.MasterInfo
             this.Panel_Category.Location = new System.Drawing.Point(90, 46);
             this.Panel_Category.Name = "Panel_Category";
             this.Panel_Category.Size = new System.Drawing.Size(117, 26);
-            this.Panel_Category.TabIndex = 19;
+            this.Panel_Category.TabIndex = 4;
             // 
             // cmbCategory
             // 
-            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Items.AddRange(new object[] {
-            "Gold",
-            "Other",
-            "Silver"});
             this.cmbCategory.Location = new System.Drawing.Point(4, 3);
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(109, 21);
-            this.cmbCategory.Sorted = true;
             this.cmbCategory.TabIndex = 0;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
@@ -318,7 +312,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.Size = new System.Drawing.Size(200, 80);
-            this.dataGridView2.TabIndex = 17;
+            this.dataGridView2.TabIndex = 20;
             this.dataGridView2.Visible = false;
             this.dataGridView2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView2_CellValidating);
             this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
@@ -332,7 +326,7 @@ namespace SilverGold.MasterInfo
             this.dateTimePicker1.Location = new System.Drawing.Point(90, 209);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
-            this.dateTimePicker1.TabIndex = 10;
+            this.dateTimePicker1.TabIndex = 15;
             // 
             // txtopnarr
             // 
@@ -340,7 +334,7 @@ namespace SilverGold.MasterInfo
             this.txtopnarr.Margin = new System.Windows.Forms.Padding(4);
             this.txtopnarr.Name = "txtopnarr";
             this.txtopnarr.Size = new System.Drawing.Size(195, 20);
-            this.txtopnarr.TabIndex = 11;
+            this.txtopnarr.TabIndex = 16;
             this.txtopnarr.Enter += new System.EventHandler(this.txtopnarr_Enter);
             this.txtopnarr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtopnarr_KeyPress);
             this.txtopnarr.Leave += new System.EventHandler(this.txtopnarr_Leave);
@@ -351,7 +345,7 @@ namespace SilverGold.MasterInfo
             this.txtoprs.Margin = new System.Windows.Forms.Padding(4);
             this.txtoprs.Name = "txtoprs";
             this.txtoprs.Size = new System.Drawing.Size(87, 20);
-            this.txtoprs.TabIndex = 13;
+            this.txtoprs.TabIndex = 12;
             this.txtoprs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtoprs.Enter += new System.EventHandler(this.txtoprs_Enter);
             this.txtoprs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtoprs_KeyPress);
@@ -363,7 +357,7 @@ namespace SilverGold.MasterInfo
             this.grpBoxWithCreditLimit.Location = new System.Drawing.Point(7, 281);
             this.grpBoxWithCreditLimit.Name = "grpBoxWithCreditLimit";
             this.grpBoxWithCreditLimit.Size = new System.Drawing.Size(135, 41);
-            this.grpBoxWithCreditLimit.TabIndex = 15;
+            this.grpBoxWithCreditLimit.TabIndex = 18;
             this.grpBoxWithCreditLimit.TabStop = false;
             this.grpBoxWithCreditLimit.Visible = false;
             // 
@@ -389,7 +383,7 @@ namespace SilverGold.MasterInfo
             this.groBoxCreditPeriod.Location = new System.Drawing.Point(148, 282);
             this.groBoxCreditPeriod.Name = "groBoxCreditPeriod";
             this.groBoxCreditPeriod.Size = new System.Drawing.Size(317, 40);
-            this.groBoxCreditPeriod.TabIndex = 16;
+            this.groBoxCreditPeriod.TabIndex = 19;
             this.groBoxCreditPeriod.TabStop = false;
             this.groBoxCreditPeriod.Visible = false;
             // 
@@ -399,7 +393,7 @@ namespace SilverGold.MasterInfo
             this.rateupdate_radio_N.Location = new System.Drawing.Point(269, 15);
             this.rateupdate_radio_N.Name = "rateupdate_radio_N";
             this.rateupdate_radio_N.Size = new System.Drawing.Size(39, 17);
-            this.rateupdate_radio_N.TabIndex = 4;
+            this.rateupdate_radio_N.TabIndex = 2;
             this.rateupdate_radio_N.TabStop = true;
             this.rateupdate_radio_N.Text = "No";
             this.rateupdate_radio_N.UseVisualStyleBackColor = true;
@@ -414,7 +408,7 @@ namespace SilverGold.MasterInfo
             this.rateupdate_radio.Location = new System.Drawing.Point(225, 15);
             this.rateupdate_radio.Name = "rateupdate_radio";
             this.rateupdate_radio.Size = new System.Drawing.Size(43, 17);
-            this.rateupdate_radio.TabIndex = 3;
+            this.rateupdate_radio.TabIndex = 1;
             this.rateupdate_radio.TabStop = true;
             this.rateupdate_radio.Text = "Yes";
             this.rateupdate_radio.UseVisualStyleBackColor = true;
@@ -443,7 +437,7 @@ namespace SilverGold.MasterInfo
             this.cmbDays.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDays.Name = "cmbDays";
             this.cmbDays.Size = new System.Drawing.Size(57, 21);
-            this.cmbDays.TabIndex = 1;
+            this.cmbDays.TabIndex = 0;
             this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
             this.cmbDays.Enter += new System.EventHandler(this.cmbDays_Enter);
             this.cmbDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDays_KeyPress);
@@ -506,28 +500,29 @@ namespace SilverGold.MasterInfo
             this.label9.TabIndex = 20;
             this.label9.Text = "Dr/Cr:";
             // 
-            // txtbanklimit
+            // txtBankCredit
             // 
-            this.txtbanklimit.Location = new System.Drawing.Point(90, 260);
-            this.txtbanklimit.Margin = new System.Windows.Forms.Padding(4);
-            this.txtbanklimit.Name = "txtbanklimit";
-            this.txtbanklimit.Size = new System.Drawing.Size(75, 20);
-            this.txtbanklimit.TabIndex = 12;
-            this.txtbanklimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtbanklimit.Enter += new System.EventHandler(this.txtbanklimit_Enter);
-            this.txtbanklimit.Leave += new System.EventHandler(this.txtbanklimit_Leave);
+            this.txtBankCredit.Location = new System.Drawing.Point(90, 260);
+            this.txtBankCredit.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBankCredit.Name = "txtBankCredit";
+            this.txtBankCredit.Size = new System.Drawing.Size(75, 20);
+            this.txtBankCredit.TabIndex = 17;
+            this.txtBankCredit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBankCredit.Visible = false;
+            this.txtBankCredit.Enter += new System.EventHandler(this.txtBankCredit_Enter);
+            this.txtBankCredit.Leave += new System.EventHandler(this.txtBankCredit_Leave);
             // 
-            // label31
+            // lblBankCredit
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(8, 262);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(71, 15);
-            this.label31.TabIndex = 53;
-            this.label31.Text = "Bank Credit";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBankCredit.AutoSize = true;
+            this.lblBankCredit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBankCredit.Location = new System.Drawing.Point(8, 262);
+            this.lblBankCredit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBankCredit.Name = "lblBankCredit";
+            this.lblBankCredit.Size = new System.Drawing.Size(71, 15);
+            this.lblBankCredit.TabIndex = 53;
+            this.lblBankCredit.Text = "Bank Credit";
+            this.lblBankCredit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label24
             // 
@@ -633,7 +628,7 @@ namespace SilverGold.MasterInfo
             this.cmbIntroducer.Name = "cmbIntroducer";
             this.cmbIntroducer.Size = new System.Drawing.Size(195, 21);
             this.cmbIntroducer.Sorted = true;
-            this.cmbIntroducer.TabIndex = 9;
+            this.cmbIntroducer.TabIndex = 11;
             this.cmbIntroducer.Enter += new System.EventHandler(this.cmbIntroducer_Enter);
             this.cmbIntroducer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbIntroducer_KeyPress);
             this.cmbIntroducer.Leave += new System.EventHandler(this.cmbIntroducer_Leave);
@@ -674,14 +669,13 @@ namespace SilverGold.MasterInfo
             // 
             this.cmbtype.FormattingEnabled = true;
             this.cmbtype.Items.AddRange(new object[] {
-            "OTHER",
             "PARTY",
-            "WORKER"});
+            "WORKER",
+            "OTHER"});
             this.cmbtype.Location = new System.Drawing.Point(53, 20);
             this.cmbtype.Margin = new System.Windows.Forms.Padding(4);
             this.cmbtype.Name = "cmbtype";
             this.cmbtype.Size = new System.Drawing.Size(97, 21);
-            this.cmbtype.Sorted = true;
             this.cmbtype.TabIndex = 0;
             this.cmbtype.SelectedIndexChanged += new System.EventHandler(this.cmbtype_SelectedIndexChanged);
             this.cmbtype.Enter += new System.EventHandler(this.cmbtype_Enter);
@@ -727,7 +721,7 @@ namespace SilverGold.MasterInfo
             this.txtpartyname.Margin = new System.Windows.Forms.Padding(4);
             this.txtpartyname.Name = "txtpartyname";
             this.txtpartyname.Size = new System.Drawing.Size(195, 20);
-            this.txtpartyname.TabIndex = 3;
+            this.txtpartyname.TabIndex = 5;
             this.txtpartyname.Enter += new System.EventHandler(this.txtpartyname_Enter);
             this.txtpartyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpartyname_KeyPress);
             this.txtpartyname.Leave += new System.EventHandler(this.txtpartyname_Leave);
@@ -738,7 +732,7 @@ namespace SilverGold.MasterInfo
             this.txtaddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtaddress.Name = "txtaddress";
             this.txtaddress.Size = new System.Drawing.Size(231, 20);
-            this.txtaddress.TabIndex = 4;
+            this.txtaddress.TabIndex = 6;
             this.txtaddress.Enter += new System.EventHandler(this.txtaddress_Enter);
             this.txtaddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtaddress_KeyPress);
             this.txtaddress.Leave += new System.EventHandler(this.txtaddress_Leave);
@@ -784,7 +778,7 @@ namespace SilverGold.MasterInfo
             this.cmbgrouphead.Name = "cmbgrouphead";
             this.cmbgrouphead.Size = new System.Drawing.Size(195, 21);
             this.cmbgrouphead.Sorted = true;
-            this.cmbgrouphead.TabIndex = 7;
+            this.cmbgrouphead.TabIndex = 9;
             this.cmbgrouphead.SelectedIndexChanged += new System.EventHandler(this.cmbgrouphead_SelectedIndexChanged);
             this.cmbgrouphead.Enter += new System.EventHandler(this.cmbgrouphead_Enter);
             this.cmbgrouphead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrouphead_KeyPress);
@@ -797,7 +791,7 @@ namespace SilverGold.MasterInfo
             this.txtcontactno.MaxLength = 10;
             this.txtcontactno.Name = "txtcontactno";
             this.txtcontactno.Size = new System.Drawing.Size(195, 20);
-            this.txtcontactno.TabIndex = 5;
+            this.txtcontactno.TabIndex = 7;
             this.txtcontactno.Enter += new System.EventHandler(this.txtcontactno_Enter);
             this.txtcontactno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcontactno_KeyPress);
             this.txtcontactno.Leave += new System.EventHandler(this.txtcontactno_Leave);
@@ -819,7 +813,7 @@ namespace SilverGold.MasterInfo
             this.txtemailid.Margin = new System.Windows.Forms.Padding(4);
             this.txtemailid.Name = "txtemailid";
             this.txtemailid.Size = new System.Drawing.Size(231, 20);
-            this.txtemailid.TabIndex = 6;
+            this.txtemailid.TabIndex = 8;
             this.txtemailid.Enter += new System.EventHandler(this.txtemailid_Enter);
             this.txtemailid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtemailid_KeyPress);
             this.txtemailid.Leave += new System.EventHandler(this.txtemailid_Leave);
@@ -832,7 +826,8 @@ namespace SilverGold.MasterInfo
             this.cmbsubhead.Name = "cmbsubhead";
             this.cmbsubhead.Size = new System.Drawing.Size(195, 21);
             this.cmbsubhead.Sorted = true;
-            this.cmbsubhead.TabIndex = 8;
+            this.cmbsubhead.TabIndex = 10;
+            this.cmbsubhead.SelectedIndexChanged += new System.EventHandler(this.cmbsubhead_SelectedIndexChanged);
             this.cmbsubhead.Enter += new System.EventHandler(this.cmbsubhead_Enter);
             this.cmbsubhead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbsubhead_KeyPress);
             this.cmbsubhead.Leave += new System.EventHandler(this.cmbsubhead_Leave);
@@ -845,7 +840,7 @@ namespace SilverGold.MasterInfo
             this.panel1.Controls.Add(this.label34);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1300, 34);
+            this.panel1.Size = new System.Drawing.Size(1292, 34);
             this.panel1.TabIndex = 18;
             // 
             // label34
@@ -863,7 +858,7 @@ namespace SilverGold.MasterInfo
             // 
             this.groupBox3.Controls.Add(this.cmbPopUp);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(487, 379);
+            this.groupBox3.Location = new System.Drawing.Point(465, 377);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
@@ -894,7 +889,7 @@ namespace SilverGold.MasterInfo
             this.groupBox2.Controls.Add(this.btndelete);
             this.groupBox2.Controls.Add(this.btnrefresh);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(32, 378);
+            this.groupBox2.Location = new System.Drawing.Point(10, 376);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -973,7 +968,7 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_PopUp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1293, 24);
             this.menuStrip1.TabIndex = 20;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1018,10 +1013,10 @@ namespace SilverGold.MasterInfo
             this.groupBox_LabourRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_LabourRate.Controls.Add(this.dataGridView_LabourRate);
-            this.groupBox_LabourRate.Location = new System.Drawing.Point(714, 36);
+            this.groupBox_LabourRate.Location = new System.Drawing.Point(692, 34);
             this.groupBox_LabourRate.Name = "groupBox_LabourRate";
-            this.groupBox_LabourRate.Size = new System.Drawing.Size(575, 149);
-            this.groupBox_LabourRate.TabIndex = 21;
+            this.groupBox_LabourRate.Size = new System.Drawing.Size(567, 149);
+            this.groupBox_LabourRate.TabIndex = 4;
             this.groupBox_LabourRate.TabStop = false;
             this.groupBox_LabourRate.Text = "Labour Rate (Alt+R)";
             this.groupBox_LabourRate.Visible = false;
@@ -1031,10 +1026,10 @@ namespace SilverGold.MasterInfo
             this.groupBox_GhattakList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_GhattakList.Controls.Add(this.dataGridView_GhattakList);
-            this.groupBox_GhattakList.Location = new System.Drawing.Point(714, 187);
+            this.groupBox_GhattakList.Location = new System.Drawing.Point(692, 185);
             this.groupBox_GhattakList.Name = "groupBox_GhattakList";
-            this.groupBox_GhattakList.Size = new System.Drawing.Size(575, 136);
-            this.groupBox_GhattakList.TabIndex = 22;
+            this.groupBox_GhattakList.Size = new System.Drawing.Size(567, 136);
+            this.groupBox_GhattakList.TabIndex = 5;
             this.groupBox_GhattakList.TabStop = false;
             this.groupBox_GhattakList.Text = "Ghattak List (Alt+G)";
             this.groupBox_GhattakList.Visible = false;
@@ -1044,10 +1039,10 @@ namespace SilverGold.MasterInfo
             this.groupBox_CommissionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CommissionList.Controls.Add(this.dataGridView_Commission);
-            this.groupBox_CommissionList.Location = new System.Drawing.Point(714, 322);
+            this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 320);
             this.groupBox_CommissionList.Name = "groupBox_CommissionList";
-            this.groupBox_CommissionList.Size = new System.Drawing.Size(575, 144);
-            this.groupBox_CommissionList.TabIndex = 23;
+            this.groupBox_CommissionList.Size = new System.Drawing.Size(567, 144);
+            this.groupBox_CommissionList.TabIndex = 6;
             this.groupBox_CommissionList.TabStop = false;
             this.groupBox_CommissionList.Text = "Commission List (Alt+M)";
             this.groupBox_CommissionList.Visible = false;
@@ -1057,10 +1052,10 @@ namespace SilverGold.MasterInfo
             this.groupBox_BrokerageSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_BrokerageSetting.Controls.Add(this.dataGridView_BrokerageSetting);
-            this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(715, 468);
+            this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(693, 466);
             this.groupBox_BrokerageSetting.Name = "groupBox_BrokerageSetting";
-            this.groupBox_BrokerageSetting.Size = new System.Drawing.Size(575, 162);
-            this.groupBox_BrokerageSetting.TabIndex = 24;
+            this.groupBox_BrokerageSetting.Size = new System.Drawing.Size(567, 162);
+            this.groupBox_BrokerageSetting.TabIndex = 7;
             this.groupBox_BrokerageSetting.TabStop = false;
             this.groupBox_BrokerageSetting.Text = "Brokerage Setting";
             this.groupBox_BrokerageSetting.Visible = false;
@@ -1100,8 +1095,8 @@ namespace SilverGold.MasterInfo
             dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_BrokerageSetting.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView_BrokerageSetting.RowHeadersWidth = 15;
-            this.dataGridView_BrokerageSetting.Size = new System.Drawing.Size(563, 139);
-            this.dataGridView_BrokerageSetting.TabIndex = 18;
+            this.dataGridView_BrokerageSetting.Size = new System.Drawing.Size(555, 139);
+            this.dataGridView_BrokerageSetting.TabIndex = 0;
             this.dataGridView_BrokerageSetting.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_BrokerageSetting_CellValidating);
             this.dataGridView_BrokerageSetting.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_BrokerageSetting_DataError);
             this.dataGridView_BrokerageSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_BrokerageSetting_EditingControlShowing);
@@ -1141,8 +1136,8 @@ namespace SilverGold.MasterInfo
             dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_Commission.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView_Commission.RowHeadersWidth = 15;
-            this.dataGridView_Commission.Size = new System.Drawing.Size(563, 121);
-            this.dataGridView_Commission.TabIndex = 18;
+            this.dataGridView_Commission.Size = new System.Drawing.Size(555, 121);
+            this.dataGridView_Commission.TabIndex = 0;
             this.dataGridView_Commission.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_Commission_CellValidating);
             this.dataGridView_Commission.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_Commission_DataError);
             this.dataGridView_Commission.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_Commission_EditingControlShowing);
@@ -1182,8 +1177,8 @@ namespace SilverGold.MasterInfo
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_GhattakList.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView_GhattakList.RowHeadersWidth = 15;
-            this.dataGridView_GhattakList.Size = new System.Drawing.Size(563, 115);
-            this.dataGridView_GhattakList.TabIndex = 18;
+            this.dataGridView_GhattakList.Size = new System.Drawing.Size(555, 115);
+            this.dataGridView_GhattakList.TabIndex = 0;
             this.dataGridView_GhattakList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_GhattakList_CellValidating);
             this.dataGridView_GhattakList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_GhattakList_DataError);
             this.dataGridView_GhattakList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_GhattakList_EditingControlShowing);
@@ -1223,8 +1218,8 @@ namespace SilverGold.MasterInfo
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_LabourRate.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView_LabourRate.RowHeadersWidth = 15;
-            this.dataGridView_LabourRate.Size = new System.Drawing.Size(563, 126);
-            this.dataGridView_LabourRate.TabIndex = 18;
+            this.dataGridView_LabourRate.Size = new System.Drawing.Size(555, 126);
+            this.dataGridView_LabourRate.TabIndex = 0;
             this.dataGridView_LabourRate.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_LabourRate_CellValidating);
             this.dataGridView_LabourRate.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_LabourRate_DataError);
             this.dataGridView_LabourRate.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_LabourRate_EditingControlShowing);
@@ -1239,8 +1234,8 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.Location = new System.Drawing.Point(8, 485);
             this.dataGridViewCreditPeriod.Name = "dataGridViewCreditPeriod";
             this.dataGridViewCreditPeriod.RowHeadersWidth = 20;
-            this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(701, 143);
-            this.dataGridViewCreditPeriod.TabIndex = 19;
+            this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(679, 143);
+            this.dataGridViewCreditPeriod.TabIndex = 3;
             this.dataGridViewCreditPeriod.Visible = false;
             this.dataGridViewCreditPeriod.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCreditPeriod_CellValidating);
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
@@ -1293,7 +1288,7 @@ namespace SilverGold.MasterInfo
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1301, 690);
+            this.ClientSize = new System.Drawing.Size(1293, 642);
             this.Controls.Add(this.groupBox_BrokerageSetting);
             this.Controls.Add(this.groupBox_CommissionList);
             this.Controls.Add(this.groupBox_GhattakList);
@@ -1349,8 +1344,8 @@ namespace SilverGold.MasterInfo
         private System.Windows.Forms.TextBox txtopnarr;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtbanklimit;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtBankCredit;
+        private System.Windows.Forms.Label lblBankCredit;
         private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groBoxCreditPeriod;

@@ -1,10 +1,12 @@
-﻿using SilverGold.Helper;
+﻿using SilverGold.Comman;
+using SilverGold.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace SilverGold.Entity
 {
@@ -23,7 +25,7 @@ namespace SilverGold.Entity
         public string Company { get; set; }
         public string UserId { get; set; }
 
-        public CreditPeriodEntity(String _PartyName, DateTime _DateFrom, DateTime _DateTo, string _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)
+        public void CreditPeriodMapper(String _PartyName, DateTime _DateFrom, DateTime _DateTo, string _RateRevised, string _Category, string _Product, Decimal _Westage, Decimal _Amount, string _Tran_Type, int _Days, string _Company, string _UserId)
         {
             PartyName = _PartyName;
             DateFrom = _DateFrom;
@@ -37,6 +39,77 @@ namespace SilverGold.Entity
             Days = _Days;
             Company = _Company;
             UserId = _UserId;
+        }
+
+       public DataGridViewComboBoxColumn col_RateRevise_CreditPeriod = new DataGridViewComboBoxColumn();
+       public DataGridViewComboBoxColumn col_Matltype_CreditPeriod = new DataGridViewComboBoxColumn();
+       public DataGridViewComboBoxColumn col_Product_CreditPeriod = new DataGridViewComboBoxColumn();
+       public DataGridViewColumn col_Westage_CreditPeriod = new DataGridViewTextBoxColumn();
+       public DataGridViewColumn col_Amount_CreditPeriod = new DataGridViewTextBoxColumn();
+       public DataGridViewColumn col_Days_CreditPeriod = new DataGridViewTextBoxColumn();
+       public DataGridViewComboBoxColumn col_TranType_CreditPeriod = new DataGridViewComboBoxColumn();
+
+        CalendarColumn dtpDateFrom = new CalendarColumn();
+        CalendarColumn dtpDateTo = new CalendarColumn();
+
+        public void BindCreditPeriod(DataGridView dgv)
+        {
+            dtpDateFrom.DataPropertyName = "DateFrom";
+            dtpDateFrom.HeaderText = "DateFrom";
+            dtpDateFrom.Name = "DateFrom";
+            dgv.Columns.Add(dtpDateFrom);
+
+            dtpDateTo.DataPropertyName = "DateTo";
+            dtpDateTo.HeaderText = "DateTo";
+            dtpDateTo.Name = "DateTo";
+            dgv.Columns.Add(dtpDateTo);
+
+            col_RateRevise_CreditPeriod.DataPropertyName = "RateRevised";
+            col_RateRevise_CreditPeriod.HeaderText = "Rate Revised";
+            col_RateRevise_CreditPeriod.Name = "RateRevised";
+            col_RateRevise_CreditPeriod.Items.Add("AMOUNT");
+            col_RateRevise_CreditPeriod.Items.Add("WESTAGE");
+            col_RateRevise_CreditPeriod.Items.Add("BOTH");
+            col_RateRevise_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_RateRevise_CreditPeriod);
+
+            col_Matltype_CreditPeriod.DataPropertyName = "Category";
+            col_Matltype_CreditPeriod.HeaderText = "Category";
+            col_Matltype_CreditPeriod.Name = "Category";
+            col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            col_Matltype_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_Matltype_CreditPeriod);
+
+            col_Product_CreditPeriod.DataPropertyName = "Product";
+            col_Product_CreditPeriod.HeaderText = "Product";
+            col_Product_CreditPeriod.Name = "Product";
+            col_Product_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_Product_CreditPeriod);
+
+            col_Westage_CreditPeriod.DataPropertyName = "Westage";
+            col_Westage_CreditPeriod.HeaderText = "Westage";
+            col_Westage_CreditPeriod.Name = "Westage";
+            dgv.Columns.Add(col_Westage_CreditPeriod);
+
+            col_Amount_CreditPeriod.DataPropertyName = "AmountWeight";
+            col_Amount_CreditPeriod.HeaderText = "Amount";
+            col_Amount_CreditPeriod.Name = "AmountWeight";
+            dgv.Columns.Add(col_Amount_CreditPeriod);
+
+            col_TranType_CreditPeriod.DataPropertyName = "Tran_Type";
+            col_TranType_CreditPeriod.HeaderText = "TranType";
+            col_TranType_CreditPeriod.Name = "Tran_Type";
+            col_TranType_CreditPeriod.Items.Add("JAMA");
+            col_TranType_CreditPeriod.Items.Add("NAAM");
+            col_TranType_CreditPeriod.Items.Add("BOTH");
+            col_TranType_CreditPeriod.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_TranType_CreditPeriod);
+
+            col_Days_CreditPeriod.DataPropertyName = "Days";
+            col_Days_CreditPeriod.HeaderText = "Days";
+            col_Days_CreditPeriod.Name = "Days";
+            dgv.Columns.Add(col_Days_CreditPeriod);
         }
     }
 

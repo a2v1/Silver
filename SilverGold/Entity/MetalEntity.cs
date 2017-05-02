@@ -13,7 +13,7 @@ namespace SilverGold.Entity
         public string MetalName { get; set; }
         public string WeightType { get; set; }
         public string KachchiFine { get; set; }
-        public decimal AmountWeight { get; set; }
+        public decimal Weight { get; set; }
         public string DrCr { get; set; }
         public int Sno { get; set; }
         public string CompanyName { get; set; }

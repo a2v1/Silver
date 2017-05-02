@@ -265,7 +265,7 @@ namespace SilverGold
                 dataGridView1.Rows[Snu].Cells[2].Value = Convert.ToString(item.WeightType);
 
                 dataGridView1.Rows[Snu].Cells[3].Value = Convert.ToString(item.KachchiFine);
-                dataGridView1.Rows[Snu].Cells[4].Value = Convert.ToString(item.AmountWeight);
+                dataGridView1.Rows[Snu].Cells[4].Value = Convert.ToString(item.Weight);
                 dataGridView1.Rows[Snu].Cells[5].Value = Convert.ToString(item.DrCr);
                 Snu++;
             }

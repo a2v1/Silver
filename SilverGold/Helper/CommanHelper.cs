@@ -219,7 +219,7 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,[Metal.MetalName] AS MetalName,WeightType,KachchiFine,Amount_Weight,DrCr,[CompanyOpening.CompanyName] AS CompanyName,[CompanyOpening.UserId] AS UserId,[Metal.Sno] AS Sno  from Metal LEFT OUTER JOIN CompanyOpening ON Metal.MetalName  = CompanyOpening.MetalName ORDER BY MetalCategory ASC", con);
+                    OleDbCommand cmd = new OleDbCommand("Select MetalCategory,[Metal.MetalName] AS MetalName,WeightType,KachchiFine,Weight,DrCr,[CompanyOpening.CompanyName] AS CompanyName,[CompanyOpening.UserId] AS UserId,[Metal.Sno] AS Sno  from Metal LEFT OUTER JOIN CompanyOpening ON Metal.MetalName  = CompanyOpening.MetalName ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -229,7 +229,7 @@ namespace SilverGold.Helper
                         oMetal.WeightType = dr["WeightType"].ToString().Trim();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString().Trim();
                         oMetal.DrCr = dr["DrCr"].ToString().Trim();
-                        oMetal.AmountWeight = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
+                        oMetal.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
                         oMetal.CompanyName = dr["CompanyName"].ToString().Trim();
                         oMetal.UserId = dr["UserId"].ToString().Trim();
@@ -354,14 +354,23 @@ namespace SilverGold.Helper
                 e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
         }
 
-        public static void FillCreditLimitOpening(DataGridView gdv)
+        public static void FillCreditLimitOpening(DataGridView gdv, String _str)
         {
             try
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
+                    String str = "";
+                    if (_str != "")
+                    {
+                        str = "Select Distinct(MetalCategory) from Metal Where MetalCategory IN ('" + _str + "','CASH')";
+                    }
+                    else
+                    {
+                        str = "Select Distinct(MetalCategory) from Metal";
+                    } 
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal", con);
+                    OleDbCommand cmd = new OleDbCommand(str, con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     gdv.Rows.Clear();
                     int Sno = 0;
@@ -388,11 +397,12 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from Metal  Where MetalCategory <> 'CASH'", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalName),MetalCategory from Metal  Where MetalCategory <> 'CASH'", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
+                        oOpeningOtherEntity.Category = dr[1].ToString();
                         oOpeningOtherEntity.Name = dr[0].ToString();
                         oOpeningOtherEntity.Amount = 0;
                         oOpeningOtherEntity.DrCr = "";
@@ -473,7 +483,7 @@ namespace SilverGold.Helper
                     {
                         cmb.Items.Add(dr[0].ToString());
                     }
-                    cmb.Items.Add("OTHER");
+                    cmb.Items.Add("COMMON");
                     con.Close();
                 }
             }
@@ -588,13 +598,13 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select ItemName,Amount_Weight,ClosingRate,DrCr From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,Weight,ClosingRate,DrCr From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningMCXEntity oOpeningMCXEntity = new OpeningMCXEntity();
                     oOpeningMCXEntity.Name = dr["ItemName"].ToString();
-                    oOpeningMCXEntity.Weight = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
+                    oOpeningMCXEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
                     oOpeningMCXEntity.Closing = Conversion.ConToDec(dr["ClosingRate"].ToString());
                     oOpeningMCXEntity.DrCr = dr["DrCr"].ToString();
                     OpeningMCX.Add(oOpeningMCXEntity);
@@ -611,13 +621,13 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select ItemName,Amount_Weight,DrCr From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,Weight,DrCr From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
                     oOpeningOtherEntity.Name = dr["ItemName"].ToString();
-                    oOpeningOtherEntity.Amount = Conversion.ConToDec6(dr["Amount_Weight"].ToString());
+                    oOpeningOtherEntity.Amount = Conversion.ConToDec6(dr["Weight"].ToString());
                     oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
                     OpeningOther.Add(oOpeningOtherEntity);
                 }
@@ -804,9 +814,10 @@ namespace SilverGold.Helper
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    CreditPeriodEntity oCreditPeriodEntity = new CreditPeriodEntity(dr["PartyName"].ToString(), Conversion.ConToDT(dr["DateFrom"].ToString()), Conversion.ConToDT(dr["DateTo"].ToString()),
-                        dr["RateRevised"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec6(dr["Westage"].ToString()),
-                        Conversion.ConToDec6(dr["Amount"].ToString()), dr["Tran_Type"].ToString(), Conversion.ConToInt(dr["Days"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
+                    CreditPeriodEntity oCreditPeriodEntity = new CreditPeriodEntity();
+                    oCreditPeriodEntity.CreditPeriodMapper(dr["PartyName"].ToString(), Conversion.ConToDT(dr["DateFrom"].ToString()), Conversion.ConToDT(dr["DateTo"].ToString()),
+                            dr["RateRevised"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec6(dr["Westage"].ToString()),
+                            Conversion.ConToDec6(dr["Amount"].ToString()), dr["Tran_Type"].ToString(), Conversion.ConToInt(dr["Days"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
                     CreditPeriodList.Add(oCreditPeriodEntity);
                 }
                 con.Close();

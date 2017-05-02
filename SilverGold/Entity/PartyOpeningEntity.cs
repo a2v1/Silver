@@ -15,11 +15,11 @@ namespace SilverGold.Entity
 
     public static class PartyOpeningFactory
     {
-        public static void Insert(String _PartyName, String _ItemName, Decimal _Amount_Weight, Decimal _ClosingRate, String _DrCr, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _PartyName, String _ItemName, Decimal _Weight, Decimal _ClosingRate, String _DrCr, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO PartyOpening(PartyName,ItemName,Amount_Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Amount_Weight,@ClosingRate,@DrCr,@Company,@UserId)";
+            strInsert = "INSERT INTO PartyOpening(PartyName,ItemName,Weight,ClosingRate,DrCr,Company,UserId)VALUES(@PartyName,@ItemName,@Weight,@ClosingRate,@DrCr,@Company,@UserId)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -30,7 +30,7 @@ namespace SilverGold.Entity
             cmdInsert.CommandType = CommandType.Text;
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
             cmdInsert.Parameters.AddWithValue("@ItemName", _ItemName);
-            cmdInsert.Parameters.AddWithValue("@Amount_Weight", _Amount_Weight);
+            cmdInsert.Parameters.AddWithValue("@Weight", _Weight);
             cmdInsert.Parameters.AddWithValue("@ClosingRate", _ClosingRate);
             cmdInsert.Parameters.AddWithValue("@DrCr", _DrCr);
             cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());

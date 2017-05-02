@@ -21,393 +21,39 @@ namespace SilverGold.MasterInfo
         OleDbTransaction Tran = null;
         List<OpeningMCXEntity> OpeningMCXList = new List<OpeningMCXEntity>();
         List<OpeningOtherEntity> OpeningOtherList = new List<OpeningOtherEntity>();
+        GhattakListEntity oGhattakListEntity = new GhattakListEntity();
+        CreditPeriodEntity oCreditPeriodEntity = new CreditPeriodEntity();
+        LaboursRateEntity oLaboursRateEntity = new LaboursRateEntity();
+        CommissionListEntity oCommissionListEntity = new CommissionListEntity();
+        BrokerageSettingEntity oBrokerageSettingEntity = new BrokerageSettingEntity();
         private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(CommanHelper.NumericCheck);
-        DataGridViewColumn colLimit = new DataGridViewTextBoxColumn();
-
-        CalendarColumn dtpDateFrom_CreditPeriod = new CalendarColumn();
-        CalendarColumn dtpDateTo_CreditPeriod = new CalendarColumn();
-        DataGridViewComboBoxColumn col_RateRevise_CreditPeriod = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Matltype_CreditPeriod = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Product_CreditPeriod = new DataGridViewComboBoxColumn();
-        DataGridViewColumn col_Westage_CreditPeriod = new DataGridViewTextBoxColumn();
-        DataGridViewColumn col_Amount_CreditPeriod = new DataGridViewTextBoxColumn();
-        DataGridViewColumn col_Days_CreditPeriod = new DataGridViewTextBoxColumn();
-        DataGridViewComboBoxColumn col_TranType_CreditPeriod = new DataGridViewComboBoxColumn();
-
-        CalendarColumn dtpDateFrom_LabourRate = new CalendarColumn();
-        CalendarColumn dtpDateTo_LabourRate = new CalendarColumn();
-        DataGridViewComboBoxColumn col_WtPcs_LabourRate = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Cate_LabourRate = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Product_LabourRate = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_FineAmnt_LabourRate = new DataGridViewComboBoxColumn();
-        DataGridViewColumn col_LRate_LabourRate = new DataGridViewTextBoxColumn();
-        DataGridViewComboBoxColumn col_PType_LabourRate = new DataGridViewComboBoxColumn();
-
-        CalendarColumn dtpDateFrom_GhattakList = new CalendarColumn();
-        CalendarColumn dtpDateTo_GhattakList = new CalendarColumn();
-        DataGridViewComboBoxColumn col_WtPcs_GhattakList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Cate_GhattakList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Product_GhattakList = new DataGridViewComboBoxColumn();        
-        DataGridViewColumn col_Ghattk_GhattakList = new DataGridViewTextBoxColumn();
-        DataGridViewComboBoxColumn col_PType_GhattakList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_JN_GhattakList = new DataGridViewComboBoxColumn();
-
-        CalendarColumn dtpDateFrom_CommList = new CalendarColumn();
-        CalendarColumn dtpDateTo_CommList = new CalendarColumn();
-        DataGridViewComboBoxColumn col_WtPcs_CommList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Cate_CommList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Product_CommList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_FineAmt_CommList = new DataGridViewComboBoxColumn();
-        DataGridViewColumn col_Com_CommList = new DataGridViewTextBoxColumn();
-        DataGridViewComboBoxColumn col_PType_CommList = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_JN_CommList = new DataGridViewComboBoxColumn();
 
 
-        CalendarColumn dtpDateFrom_Brok = new CalendarColumn();
-        CalendarColumn dtpDateTo_Brok = new CalendarColumn();
-        DataGridViewComboBoxColumn col_BrokType_Brok = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_Product_Brok = new DataGridViewComboBoxColumn();
-        DataGridViewColumn col_BrokRate_Brok = new DataGridViewTextBoxColumn();
-        DataGridViewComboBoxColumn col_TranType_Brok = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_LotSet_Brok = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn col_PType_Brok = new DataGridViewComboBoxColumn();
+
+
+
+
+
 
         #endregion
         public PartyInformation()
         {
             InitializeComponent();
             CommanHelper.ChangeGridFormate2(dataGridView1);
-          //  CommanHelper.ChangeGridFormate2(dataGridView2);
+            //  CommanHelper.ChangeGridFormate2(dataGridView2);
             CommanHelper.ChangeGridFormate(dataGridViewCreditPeriod);
             CommanHelper.ChangeGridFormate(dataGridView_LabourRate);
             CommanHelper.ChangeGridFormate(dataGridView_GhattakList);
             CommanHelper.ChangeGridFormate(dataGridView_Commission);
             CommanHelper.ChangeGridFormate(dataGridView_BrokerageSetting);
-            BindCreditLimitOpeningColumn();
-            BindCreditPeriod();
+
+
             dataGridView2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
         }
 
         #region Helper
 
-        private void BindCreditLimitOpeningColumn()
-        {
-            DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
-            col1.DataPropertyName = "Name";
-            col1.HeaderText = "Name";
-            col1.Name = "Name";
-            col1.ReadOnly = true;
-            dataGridView2.Columns.Add(col1);
-
-            colLimit.DataPropertyName = "Limit";
-            colLimit.HeaderText = "Limit";
-            colLimit.Name = "Limit";
-            dataGridView2.Columns.Add(colLimit);
-        }
-
-        private void BindCreditPeriod()
-        {
-            dtpDateFrom_CreditPeriod.DataPropertyName = "DateFrom";
-            dtpDateFrom_CreditPeriod.HeaderText = "DateFrom";
-            dtpDateFrom_CreditPeriod.Name = "DateFrom";
-            dataGridViewCreditPeriod.Columns.Add(dtpDateFrom_CreditPeriod);
-
-            dtpDateTo_CreditPeriod.DataPropertyName = "DateTo";
-            dtpDateTo_CreditPeriod.HeaderText = "DateTo";
-            dtpDateTo_CreditPeriod.Name = "DateTo";
-            dataGridViewCreditPeriod.Columns.Add(dtpDateTo_CreditPeriod);
-
-            col_RateRevise_CreditPeriod.DataPropertyName = "RateRevised";
-            col_RateRevise_CreditPeriod.HeaderText = "Rate Revised";
-            col_RateRevise_CreditPeriod.Name = "RateRevised";
-            col_RateRevise_CreditPeriod.Items.Add("AMOUNT");
-            col_RateRevise_CreditPeriod.Items.Add("WESTAGE");
-            col_RateRevise_CreditPeriod.Items.Add("BOTH");
-            col_RateRevise_CreditPeriod.FlatStyle = FlatStyle.Popup;
-            dataGridViewCreditPeriod.Columns.Add(col_RateRevise_CreditPeriod);
-
-            col_Matltype_CreditPeriod.DataPropertyName = "Category";
-            col_Matltype_CreditPeriod.HeaderText = "Category";
-            col_Matltype_CreditPeriod.Name = "Category";
-            col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
-            col_Matltype_CreditPeriod.FlatStyle = FlatStyle.Popup;
-            dataGridViewCreditPeriod.Columns.Add(col_Matltype_CreditPeriod);
-
-            col_Product_CreditPeriod.DataPropertyName = "Product";
-            col_Product_CreditPeriod.HeaderText = "Product";
-            col_Product_CreditPeriod.Name = "Product";
-            col_Product_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
-            col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;
-            dataGridViewCreditPeriod.Columns.Add(col_Product_CreditPeriod);
-
-            col_Westage_CreditPeriod.DataPropertyName = "Westage";
-            col_Westage_CreditPeriod.HeaderText = "Westage";
-            col_Westage_CreditPeriod.Name = "Westage";
-            dataGridViewCreditPeriod.Columns.Add(col_Westage_CreditPeriod);
-
-            col_Amount_CreditPeriod.DataPropertyName = "AmountWeight";
-            col_Amount_CreditPeriod.HeaderText = "Amount";
-            col_Amount_CreditPeriod.Name = "AmountWeight";
-            dataGridViewCreditPeriod.Columns.Add(col_Amount_CreditPeriod);
-
-            col_TranType_CreditPeriod.DataPropertyName = "Tran_Type";
-            col_TranType_CreditPeriod.HeaderText = "TranType";
-            col_TranType_CreditPeriod.Name = "Tran_Type";
-            col_TranType_CreditPeriod.Items.Add("JAMA");
-            col_TranType_CreditPeriod.Items.Add("NAAM");
-            col_TranType_CreditPeriod.Items.Add("BOTH");
-            col_TranType_CreditPeriod.FlatStyle = FlatStyle.Popup;
-            dataGridViewCreditPeriod.Columns.Add(col_TranType_CreditPeriod);
-
-            col_Days_CreditPeriod.DataPropertyName = "Days";
-            col_Days_CreditPeriod.HeaderText = "Days";
-            col_Days_CreditPeriod.Name = "Days";
-            dataGridViewCreditPeriod.Columns.Add(col_Days_CreditPeriod);
-        }
-
-        private void BindLabourRate()
-        {
-            dtpDateFrom_LabourRate.DataPropertyName = "DateFrom";
-            dtpDateFrom_LabourRate.HeaderText = "DateFrom";
-            dtpDateFrom_LabourRate.Name = "DateFrom";
-            dataGridView_LabourRate.Columns.Add(dtpDateFrom_LabourRate);
-
-            dtpDateTo_LabourRate.DataPropertyName = "DateTo";
-            dtpDateTo_LabourRate.HeaderText = "DateTo";
-            dtpDateTo_LabourRate.Name = "DateTo";
-            dataGridView_LabourRate.Columns.Add(dtpDateTo_LabourRate);
-
-            col_WtPcs_LabourRate.DataPropertyName = "WeightPcs";
-            col_WtPcs_LabourRate.HeaderText = "WT/PCS";
-            col_WtPcs_LabourRate.Name = "WeightPcs";
-            col_WtPcs_LabourRate.Items.Add("WEIGHT");
-            col_WtPcs_LabourRate.Items.Add("PCS");
-            col_WtPcs_LabourRate.FlatStyle = FlatStyle.Popup;
-            dataGridView_LabourRate.Columns.Add(col_WtPcs_LabourRate);
-
-            col_Cate_LabourRate.DataPropertyName = "Category";
-            col_Cate_LabourRate.HeaderText = "Category";
-            col_Cate_LabourRate.Name = "Category";
-            col_Cate_LabourRate.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
-            col_Cate_LabourRate.FlatStyle = FlatStyle.Popup;
-            dataGridView_LabourRate.Columns.Add(col_Cate_LabourRate);
-
-            col_Product_LabourRate.DataPropertyName = "Product";
-            col_Product_LabourRate.HeaderText = "Product";
-            col_Product_LabourRate.Name = "Product";
-            col_Product_LabourRate.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
-            col_Product_LabourRate.FlatStyle = FlatStyle.Popup;
-            dataGridView_LabourRate.Columns.Add(col_Product_LabourRate);
-
-            col_FineAmnt_LabourRate.DataPropertyName = "Fine_Amount";
-            col_FineAmnt_LabourRate.HeaderText = "FINE/AMT";
-            col_FineAmnt_LabourRate.Name = "Fine_Amount";
-            col_FineAmnt_LabourRate.Items.Add("AMOUNT");
-            col_FineAmnt_LabourRate.Items.Add("FINE");
-            col_FineAmnt_LabourRate.FlatStyle = FlatStyle.Popup;
-            dataGridView_LabourRate.Columns.Add(col_FineAmnt_LabourRate);
-
-            col_LRate_LabourRate.DataPropertyName = "LabourRate";
-            col_LRate_LabourRate.HeaderText = "LRate";
-            col_LRate_LabourRate.Name = "LabourRate";
-            dataGridView_LabourRate.Columns.Add(col_LRate_LabourRate);
-
-            col_PType_LabourRate.DataPropertyName = "PayRate";
-            col_PType_LabourRate.HeaderText = "Pay Type";
-            col_PType_LabourRate.Name = "PayRate";
-            col_PType_LabourRate.Items.Add("GIVING");
-            col_PType_LabourRate.Items.Add("RECIEVING");
-            col_PType_LabourRate.Items.Add("COMMON");
-            col_PType_LabourRate.FlatStyle = FlatStyle.Popup;
-            dataGridView_LabourRate.Columns.Add(col_PType_LabourRate);
-        }
-
-        private void BindGhattakList()
-        {
-            dtpDateFrom_GhattakList.DataPropertyName = "DateFrom";
-            dtpDateFrom_GhattakList.HeaderText = "DateFrom";
-            dtpDateFrom_GhattakList.Name = "DateFrom";
-            dataGridView_GhattakList.Columns.Add(dtpDateFrom_GhattakList);
-
-            dtpDateTo_GhattakList.DataPropertyName = "DateTo";
-            dtpDateTo_GhattakList.HeaderText = "DateTo";
-            dtpDateTo_GhattakList.Name = "DateTo";
-            dataGridView_GhattakList.Columns.Add(dtpDateTo_GhattakList);
-
-            col_WtPcs_GhattakList.DataPropertyName = "WeightPcs";
-            col_WtPcs_GhattakList.HeaderText = "WT/PCS";
-            col_WtPcs_GhattakList.Name = "WeightPcs";
-            col_WtPcs_GhattakList.Items.Add("WEIGHT");
-            col_WtPcs_GhattakList.Items.Add("PCS");
-            col_WtPcs_GhattakList.FlatStyle = FlatStyle.Popup;
-            dataGridView_GhattakList.Columns.Add(col_WtPcs_GhattakList);
-
-            col_Cate_GhattakList.DataPropertyName = "Category";
-            col_Cate_GhattakList.HeaderText = "Category";
-            col_Cate_GhattakList.Name = "Category";
-            col_Cate_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
-            col_Cate_GhattakList.FlatStyle = FlatStyle.Popup;
-            dataGridView_GhattakList.Columns.Add(col_Cate_GhattakList);
-
-            col_Product_GhattakList.DataPropertyName = "Product";
-            col_Product_GhattakList.HeaderText = "Product";
-            col_Product_GhattakList.Name = "Product";
-            col_Product_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
-            col_Product_GhattakList.FlatStyle = FlatStyle.Popup;
-            dataGridView_GhattakList.Columns.Add(col_Product_GhattakList);
-
-            col_Ghattk_GhattakList.DataPropertyName = "Ghattak";
-            col_Ghattk_GhattakList.HeaderText = "Ghattak";
-            col_Ghattk_GhattakList.Name = "Ghattak";
-            dataGridView_GhattakList.Columns.Add(col_Ghattk_GhattakList);
-
-            col_PType_GhattakList.DataPropertyName = "PayType";
-            col_PType_GhattakList.HeaderText = "PayType";
-            col_PType_GhattakList.Name = "PayType";
-            col_PType_GhattakList.Items.Add("GIVING");
-            col_PType_GhattakList.Items.Add("RECIEVING");
-            col_PType_GhattakList.Items.Add("COMMON");
-            col_PType_GhattakList.FlatStyle = FlatStyle.Popup;
-            dataGridView_GhattakList.Columns.Add(col_PType_GhattakList);
-
-            col_JN_GhattakList.DataPropertyName = "Jama_Naam";
-            col_JN_GhattakList.HeaderText = "J/N";
-            col_JN_GhattakList.Name = "Jama_Naam";
-            col_JN_GhattakList.Items.Add("JAMA");
-            col_JN_GhattakList.Items.Add("NAAM");
-            col_JN_GhattakList.FlatStyle = FlatStyle.Popup;
-            dataGridView_GhattakList.Columns.Add(col_JN_GhattakList);
-        }
-
-
-        private void BindCommissionList()
-        {
-            dtpDateFrom_CommList.DataPropertyName = "DateFrom";
-            dtpDateFrom_CommList.HeaderText = "DateFrom";
-            dtpDateFrom_CommList.Name = "DateFrom";
-            dataGridView_Commission.Columns.Add(dtpDateFrom_CommList);
-
-            dtpDateTo_CommList.DataPropertyName = "DateTo";
-            dtpDateTo_CommList.HeaderText = "DateTo";
-            dtpDateTo_CommList.Name = "DateTo";
-            dataGridView_Commission.Columns.Add(dtpDateTo_CommList);
-
-            col_WtPcs_CommList.DataPropertyName = "WeightPcs";
-            col_WtPcs_CommList.HeaderText = "WT/PCS";
-            col_WtPcs_CommList.Name = "WeightPcs";
-            col_WtPcs_CommList.Items.Add("WEIGHT");
-            col_WtPcs_CommList.Items.Add("PCS");
-            col_WtPcs_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_WtPcs_CommList);
-
-            col_Cate_CommList.DataPropertyName = "Category";
-            col_Cate_CommList.HeaderText = "Category";
-            col_Cate_CommList.Name = "Category";
-            col_Cate_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
-            col_Cate_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_Cate_CommList);
-
-            col_Product_CommList.DataPropertyName = "Product";
-            col_Product_CommList.HeaderText = "Product";
-            col_Product_CommList.Name = "Product";
-            col_Product_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
-            col_Product_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_Product_CommList);
-          
-
-            col_FineAmt_CommList.DataPropertyName = "Fine_Amount";
-            col_FineAmt_CommList.HeaderText = "FINE/AMT";
-            col_FineAmt_CommList.Name = "Fine_Amount";
-            col_FineAmt_CommList.Items.Add("AMOUNT");
-            col_FineAmt_CommList.Items.Add("FINE");
-            col_FineAmt_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_FineAmt_CommList);
-
-            col_Com_CommList.DataPropertyName = "BrokerageRate";
-            col_Com_CommList.HeaderText = "Com Rate";
-            col_Com_CommList.Name = "BrokerageRate";
-            dataGridView_Commission.Columns.Add(col_Com_CommList);
-
-            col_PType_CommList.DataPropertyName = "PayType";
-            col_PType_CommList.HeaderText = "PayType";
-            col_PType_CommList.Name = "PayType";
-            col_PType_CommList.Items.Add("GIVING");
-            col_PType_CommList.Items.Add("RECIEVING");
-            col_PType_CommList.Items.Add("COMMON");
-            col_PType_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_PType_CommList);
-
-            col_JN_CommList.DataPropertyName = "JamaNaam";
-            col_JN_CommList.HeaderText = "J/N";
-            col_JN_CommList.Name = "JamaNaam";
-            col_JN_CommList.Items.Add("JAMA");
-            col_JN_CommList.Items.Add("NAAM");
-            col_JN_CommList.FlatStyle = FlatStyle.Popup;
-            dataGridView_Commission.Columns.Add(col_JN_CommList);
-        }
-
-        private void BindBrokerageList()
-        {
-            dtpDateFrom_Brok.DataPropertyName = "DateFrom";
-            dtpDateFrom_Brok.HeaderText = "DateFrom";
-            dtpDateFrom_Brok.Name = "DateFrom";
-            dataGridView_BrokerageSetting.Columns.Add(dtpDateFrom_Brok);
-
-            dtpDateTo_Brok.DataPropertyName = "DateTo";
-            dtpDateTo_Brok.HeaderText = "DateTo";
-            dtpDateTo_Brok.Name = "DateTo";
-            dataGridView_BrokerageSetting.Columns.Add(dtpDateTo_Brok);
-
-            col_BrokType_Brok.DataPropertyName = "BrokerageType";
-            col_BrokType_Brok.HeaderText = "BrokType";
-            col_BrokType_Brok.Name = "BrokerageType";
-            col_BrokType_Brok.Items.Add("LotWise");
-            col_BrokType_Brok.Items.Add("Turnover");
-            col_BrokType_Brok.FlatStyle = FlatStyle.Popup;
-            dataGridView_BrokerageSetting.Columns.Add(col_BrokType_Brok);
-
-            col_Product_Brok.DataPropertyName = "Product";
-            col_Product_Brok.HeaderText = "Product";
-            col_Product_Brok.Name = "Product";
-            col_Product_Brok.Items.Add("SILVER");
-            col_Product_Brok.Items.Add("SILVERM");
-            col_Product_Brok.Items.Add("GOLD");
-            col_Product_Brok.Items.Add("GOLDM");
-            col_Product_Brok.FlatStyle = FlatStyle.Popup;
-            dataGridView_BrokerageSetting.Columns.Add(col_Product_Brok);
-
-            col_BrokRate_Brok.DataPropertyName = "BrokerageRate";
-            col_BrokRate_Brok.HeaderText = "BrokRate";
-            col_BrokRate_Brok.Name = "BrokerageRate";
-            dataGridView_BrokerageSetting.Columns.Add(col_BrokRate_Brok);
-
-            col_TranType_Brok.DataPropertyName = "TranType";
-            col_TranType_Brok.HeaderText = "TranType";
-            col_TranType_Brok.Name = "TranType";
-            col_TranType_Brok.Items.Add("JAMA");
-            col_TranType_Brok.Items.Add("NAAM");
-            col_TranType_Brok.FlatStyle = FlatStyle.Popup;
-            dataGridView_BrokerageSetting.Columns.Add(col_TranType_Brok);
-
-            col_LotSet_Brok.DataPropertyName = "LotSet";
-            col_LotSet_Brok.HeaderText = "LotSet";
-            col_LotSet_Brok.Name = "LotSet";
-            col_LotSet_Brok.Items.Add("30");
-            col_LotSet_Brok.Items.Add(".100");
-            col_LotSet_Brok.Items.Add("1.000");
-            col_LotSet_Brok.FlatStyle = FlatStyle.Popup;
-            dataGridView_BrokerageSetting.Columns.Add(col_LotSet_Brok);
-
-            col_PType_Brok.DataPropertyName = "PayType";
-            col_PType_Brok.HeaderText = "P Type";
-            col_PType_Brok.Name = "PayType";
-            col_PType_Brok.Items.Add("PURCHASE");
-            col_PType_Brok.Items.Add("SELL");
-            col_PType_Brok.Items.Add("BOTH");
-            col_PType_Brok.FlatStyle = FlatStyle.Popup;
-            dataGridView_BrokerageSetting.Columns.Add(col_PType_Brok);
-        }
 
         private void SetCreditLimitGridView_ColumnWith()
         {
@@ -510,6 +156,13 @@ namespace SilverGold.MasterInfo
             col3.Items.Add("NAAM");
             col3.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col3);
+
+            DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
+            col4.DataPropertyName = "Category";
+            col4.HeaderText = "Category";
+            col4.Name = "Category";
+            col4.Visible = false;
+            dataGridView1.Columns.Add(col4);
         }
 
         private void ClearControl()
@@ -538,6 +191,7 @@ namespace SilverGold.MasterInfo
             txtoprs.Clear();
             cmbrs.SelectedIndex = -1;
             cmb_gen_type.SelectedIndex = -1;
+            txtBankCredit.Clear();
 
             dataGridViewCreditPeriod.DataSource = null;
             dataGridViewCreditPeriod.Rows.Clear();
@@ -559,6 +213,9 @@ namespace SilverGold.MasterInfo
             dataGridView_Commission.DataSource = null;
             dataGridView_Commission.Rows.Clear();
             groupBox_CommissionList.Visible = false;
+            lblBankCredit.Visible = false;
+            txtBankCredit.Visible = false;
+            cmbtype.Focus();
         }
 
         private void GetPartyDetails(String strPartyName)
@@ -569,7 +226,7 @@ namespace SilverGold.MasterInfo
                 {
                     con.Open();
                 }
-                OleDbCommand cmd = new OleDbCommand("Select Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate From PartyDetails Where PartyName = '" + strPartyName + "'", con);
+                OleDbCommand cmd = new OleDbCommand("Select Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,BankCredit From PartyDetails Where PartyName = '" + strPartyName + "'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmbtype.SelectedIndex = -1;
                 cmbCategory.SelectedIndex = -1;
@@ -585,6 +242,9 @@ namespace SilverGold.MasterInfo
                 cmbLot.SelectedIndex = -1;
                 cmb_gen_type.SelectedIndex = -1;
                 chkWithCreditLimit.Checked = false;
+                txtBankCredit.Clear();
+                txtBankCredit.Visible = false;
+                lblBankCredit.Visible = false;
                 if (dr.Read())
                 {
                     cmbtype.Text = dr["Type"].ToString();
@@ -604,17 +264,22 @@ namespace SilverGold.MasterInfo
                     }
                     cmbLot.Text = dr["Lot"].ToString();
                     cmb_gen_type.Text = dr["LotGenerate"].ToString();
-
+                    if (dr["SubGroup"].ToString().Trim() == "BANK OD/CC")
+                    {
+                        txtBankCredit.Visible = true;
+                        lblBankCredit.Visible = true;
+                        txtBankCredit.Text = dr["BankCredit"].ToString();
+                    }
                 }
                 dr.Close();
 
-                cmd.CommandText = "Select ROUND(Amount_Weight,2) AS Amount_Weight,DrCr from PartyOpening Where PartyName = '" + strPartyName + "' AND ItemName = 'CASH'";
+                cmd.CommandText = "Select ROUND(Weight,2) AS Weight,DrCr from PartyOpening Where PartyName = '" + strPartyName + "' AND ItemName = 'CASH'";
                 dr = cmd.ExecuteReader();
                 txtoprs.Clear();
                 cmbrs.SelectedIndex = -1;
                 if (dr.Read())
                 {
-                    txtoprs.Text = dr["Amount_Weight"].ToString();
+                    txtoprs.Text = dr["Weight"].ToString();
                     cmbrs.Text = dr["DrCr"].ToString();
                 }
                 dr.Close();
@@ -665,11 +330,18 @@ namespace SilverGold.MasterInfo
             BindOpeningOtherColumn();
 
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
+
+            CreditLimitFactory.BindCreditLimitOpeningColumn(dataGridView2);
+            oCreditPeriodEntity.BindCreditPeriod(dataGridViewCreditPeriod);
+            oGhattakListEntity.BindGhattakList(dataGridView_GhattakList);
+            oLaboursRateEntity.BindLabourRate(dataGridView_LabourRate);
+            oCommissionListEntity.BindCommissionList(dataGridView_Commission);
+            oBrokerageSettingEntity.BindBrokerageList(dataGridView_BrokerageSetting);
             CommanHelper.BindPartyName(cmbPopUp);
             CommanHelper.BindPartyName(cmbIntroducer);
 
 
-            CommanHelper.FillCreditLimitOpening(dataGridView2);
+
             CommanHelper.BindPartyCategory(cmbCategory);
             for (int i = 0; i <= 365; i++)
             {
@@ -678,10 +350,7 @@ namespace SilverGold.MasterInfo
 
             CommanHelper.ComboBoxItem(cmbgrouphead, "GroupHead", "Distinct(GroupHead)");
             SetCreditLimitGridView_ColumnWith();
-            BindLabourRate();
-            BindGhattakList();
-            BindCommissionList();
-            BindBrokerageList();
+
             SetLabourRateGridView_ColumnWith();
             SetGhattakListGridView_ColumnWith();
             SetCommissionListGridView_ColumnWith();
@@ -690,7 +359,7 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewCreditPeriod.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewCreditPeriod.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            this.dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;          
+            this.dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             cmbtype.Focus();
         }
 
@@ -765,7 +434,6 @@ namespace SilverGold.MasterInfo
                     con.Close();
                 }
 
-
                 if (cmbPopUp.Text.Trim() == "")
                 {
                     _PartyName = txtpartyname.Text.Trim();
@@ -789,19 +457,19 @@ namespace SilverGold.MasterInfo
                 cmd.ExecuteNonQuery();
                 cmd.CommandText = "Delete From CreditPeriod Where PartyName = '" + _PartyName + "'";
                 cmd.ExecuteNonQuery();
-               
-                
+
+
 
                 #region Insert PartyDetails
 
-                PartyInformationFactory.Insert(cmbtype.Text.Trim(), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), cmbBullion.Text.Trim(), txtaddress.Text.Trim(), txtemailid.Text.Trim(), txtcontactno.Text.Trim(), cmbgrouphead.Text.Trim(), cmbsubhead.Text.Trim(), cmbIntroducer.Text.Trim(), cmbShowtrail.Text.Trim(), strWithCreditLimit, cmbLot.Text.Trim(), cmb_gen_type.Text.Trim(), con, Tran);
+                PartyInformationFactory.Insert(cmbtype.Text.Trim(), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), cmbBullion.Text.Trim(), txtaddress.Text.Trim(), txtemailid.Text.Trim(), txtcontactno.Text.Trim(), cmbgrouphead.Text.Trim(), cmbsubhead.Text.Trim(), cmbIntroducer.Text.Trim(), cmbShowtrail.Text.Trim(), strWithCreditLimit, cmbLot.Text.Trim(), cmb_gen_type.Text.Trim(), Conversion.ConToDec(txtBankCredit.Text.Trim()), con, Tran);
 
                 #endregion
 
                 #region Insert Cash Opening
 
                 ///---------------Insert Cash Opening
-                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()),0, cmbrs.Text.ToString().Trim(), con, Tran);
+                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()), 0, cmbrs.Text.ToString().Trim(), con, Tran);
 
                 #endregion
 
@@ -850,7 +518,7 @@ namespace SilverGold.MasterInfo
 
                             if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
                             {
-                                CreditPeriodFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);                              
+                                CreditPeriodFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);
                             }
                         }
                     }
@@ -868,7 +536,7 @@ namespace SilverGold.MasterInfo
 
                             DateTime _DateFrom = DateTime.Now;
                             DateTime _DateTo = DateTime.Now;
-                            String _BrokType = "";                            
+                            String _BrokType = "";
                             String _Product = "";
                             Decimal _BrokRate = 0;
                             String _TranType = "";
@@ -948,7 +616,7 @@ namespace SilverGold.MasterInfo
                         _WeightPcs = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
                         _Category = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
                         _Product = (dr.Cells[4].Value ?? (object)"").ToString().Trim();
-                        _Ghattak =  Conversion.ConToDec6((dr.Cells[5].Value ?? (object)"").ToString().Trim());
+                        _Ghattak = Conversion.ConToDec6((dr.Cells[5].Value ?? (object)"").ToString().Trim());
                         _Jama_Naam = (dr.Cells[6].Value ?? (object)"").ToString().Trim();
                         _PayType = (dr.Cells[7].Value ?? (object)"").ToString().Trim();
 
@@ -987,7 +655,7 @@ namespace SilverGold.MasterInfo
                         _WeightPcs = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
                         _Category = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
                         _Product = (dr.Cells[4].Value ?? (object)"").ToString().Trim();
-                        _Fine_Amount =(dr.Cells[5].Value ?? (object)"").ToString().Trim();
+                        _Fine_Amount = (dr.Cells[5].Value ?? (object)"").ToString().Trim();
                         _BrokerageRate = Conversion.ConToDec6((dr.Cells[6].Value ?? (object)"").ToString().Trim());
                         _JamaNaam = (dr.Cells[7].Value ?? (object)"").ToString().Trim();
                         _PayType = (dr.Cells[8].Value ?? (object)"").ToString().Trim();
@@ -1009,12 +677,11 @@ namespace SilverGold.MasterInfo
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
-
+                    Decimal _Weight = 0;
                     if (cmbBullion.Text.Trim().ToUpper() == "MCX" || cmbtype.Text.Trim().ToUpper() == "WORKER")
                     {
                         Decimal _Sell = 0;
                         Decimal _Purchase = 0;
-                        Decimal _Weight = 0;
                         String _MetalCategory = "";
                         Decimal _MCXRate = 0;
 
@@ -1032,21 +699,20 @@ namespace SilverGold.MasterInfo
                             _Weight = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
 
-                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()), (dr.Cells[3].Value ?? (object)"").ToString().Trim(), con, Tran);
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _MetalCategory, Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()), (dr.Cells[3].Value ?? (object)"").ToString().Trim(), con, Tran);
 
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,MCXRate,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + txtpartyname.Text.Trim() + "','" + _MetalCategory + "','" + _MetalCategory + "','" + _Sell + "','" + _Purchase + "','" + _Weight + "','" + _MCXRate + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
-                            cmd.ExecuteNonQuery();
+                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), _MetalCategory, _MetalCategory, _Sell, _Purchase, _Weight, _MCXRate, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
                         }
                     }
                     else
                     {
                         Decimal _Debit = 0;
                         Decimal _Credit = 0;
-
+                        String _MetalCategory = dr.Cells[0].Value.ToString().Trim();
+                        _Weight = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "NAAM")
                         {
                             _Debit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
@@ -1055,12 +721,12 @@ namespace SilverGold.MasterInfo
                         {
                             _Credit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
                         }
-                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), 0, Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _MetalCategory, _Weight, 0, (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
+
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() != "")
                         {
-                            cmd.CommandText = "INSERT INTO PartyTran(TrDate,Category,PartyName,MetalCategory,MetalName,Debit,Credit,TranType,ContCode,Narration,Company,UserId)VALUES('" + DateTime.Now.ToString("MM/dd/yyy") + "','" + cmbCategory.Text.Trim() + "','" + txtpartyname.Text.Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + dr.Cells[0].Value.ToString().Trim() + "','" + _Debit + "','" + _Credit + "','O','" + CommanHelper.CompName.ToString() + "','PARTY OPENING','" + CommanHelper.CompName.ToString() + "','" + CommanHelper.UserId.ToString() + "')";
-                            cmd.ExecuteNonQuery();
+                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), _MetalCategory, _MetalCategory, _Debit, _Credit, 0, 0, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
                         }
                     }
                 }
@@ -1074,7 +740,7 @@ namespace SilverGold.MasterInfo
             }
             catch (Exception ex)
             {
-                Tran.Rollback();               
+                Tran.Rollback();
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
@@ -1107,6 +773,7 @@ namespace SilverGold.MasterInfo
                         MessageBox.Show("U Can't Delete The Party. Transaction Exist.", "Party Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         Tran.Commit();
                         con.Close();
+                        return;
                     }
                     else
                     {
@@ -1129,6 +796,8 @@ namespace SilverGold.MasterInfo
                         cmd.CommandText = "Delete From BrokerageSetting Where PartyName = '" + cmbPopUp.Text.Trim() + "'";
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Data SuccessFully Deleted", "Party Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Tran.Commit();
+                        con.Close();
                         ClearControl();
                         cmbtype.Focus();
                     }
@@ -1136,6 +805,7 @@ namespace SilverGold.MasterInfo
             }
             catch (Exception ex)
             {
+                Tran.Rollback();
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
@@ -1178,8 +848,7 @@ namespace SilverGold.MasterInfo
                 if (cmbtype.Text.Trim() == "PARTY")
                 {
                     BindOpeningOtherColumn();
-                    OpeningOtherList = CommanHelper.OpeningOther();
-                    dataGridView1.DataSource = OpeningOtherList.ToList();
+
                     cmbBullion.Visible = true;
                     grpBoxWithCreditLimit.Visible = true;
                     cmbLot.SelectedIndex = -1;
@@ -1214,20 +883,36 @@ namespace SilverGold.MasterInfo
 
         private void cmbBullion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = null;
-            dataGridView1.Rows.Clear();
-            if (cmbBullion.Text.Trim().ToUpper() == "MCX")
+            try
             {
-                BindOpeningMCXColumn();
-                OpeningMCXList = CommanHelper.BindMCXDefaultOpening();
-                dataGridView1.DataSource = OpeningMCXList.ToList();
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+                if (cmbBullion.Text.Trim().ToUpper() == "MCX")
+                {
+                    BindOpeningMCXColumn();
+                    OpeningMCXList = CommanHelper.BindMCXDefaultOpening();
+                    dataGridView1.DataSource = OpeningMCXList.ToList();
+                    groupBox_BrokerageSetting.Visible = true;
+                }
+                else
+                {
+                    BindOpeningOtherColumn();
+                    OpeningOtherList = CommanHelper.OpeningOther();
+                    if (cmbCategory.Text.Trim() == "COMMON")
+                    {
+                        dataGridView1.DataSource = OpeningOtherList.Select(r => new { r.Name, r.Amount, r.DrCr }).ToList();
+                    }
+                    else
+                    {
+                        dataGridView1.DataSource = OpeningOtherList.Where(x => x.Category == cmbCategory.Text.Trim().ToUpper()).ToList();
+                    }
+                    groupBox_BrokerageSetting.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                BindOpeningOtherColumn();
-                OpeningOtherList = CommanHelper.OpeningOther();
-                dataGridView1.DataSource = OpeningOtherList.ToList();
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1243,49 +928,108 @@ namespace SilverGold.MasterInfo
 
         private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView2.CurrentCell.ColumnIndex == colLimit.Index)
+            try
             {
-                e.Control.KeyPress -= NumericCheckHandler;
-                e.Control.KeyPress += NumericCheckHandler;
+                if (dataGridView2.CurrentCell.ColumnIndex == CreditLimitFactory.colLimit.Index)
+                {
+                    e.Control.KeyPress -= NumericCheckHandler;
+                    e.Control.KeyPress += NumericCheckHandler;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void chkWithCreditLimit_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkWithCreditLimit.Checked == true)
+            try
             {
-                groBoxCreditPeriod.Visible = true;
-                dataGridView2.Visible = true;
+                if (chkWithCreditLimit.Checked == true)
+                {
+                    if (cmbCategory.Text.Trim() == "COMMAN")
+                    {
+                        CommanHelper.FillCreditLimitOpening(dataGridView2, "");
+                    }
+                    else
+                    {
+                        CommanHelper.FillCreditLimitOpening(dataGridView2, cmbCategory.Text.Trim());
+                    }
+                    dataGridViewCreditPeriod.Visible = true;
+                    groBoxCreditPeriod.Visible = true;
+                    dataGridView2.Visible = true;
+                }
+                else
+                {
+                    dataGridViewCreditPeriod.Visible = false;
+                    groBoxCreditPeriod.Visible = false;
+                    dataGridView2.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                groBoxCreditPeriod.Visible = false;
-                dataGridView2.Visible = false;
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbDays_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((cmbDays.Text != "0") && (cmbDays.Text != ""))
+            try
             {
-                label19.Visible = true;
-                rateupdate_radio.Visible = true;
-                rateupdate_radio_N.Visible = true;
-
+                if ((cmbDays.Text != "0") && (cmbDays.Text != ""))
+                {
+                    label19.Visible = true;
+                    rateupdate_radio.Visible = true;
+                    rateupdate_radio_N.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (cmbtype.Text.Trim() == "PARTY")
+                {
+                    BindOpeningOtherColumn();
+                    OpeningOtherList = CommanHelper.OpeningOther();
+                    if (cmbCategory.Text.Trim() == "COMMON")
+                    {
+                        dataGridView1.DataSource = OpeningOtherList.ToList();
+                        CommanHelper.FillCreditLimitOpening(dataGridView2, "");
+                    }
+                    else
+                    {
+                     dataGridView1.DataSource = OpeningOtherList.Where(x => x.Category == cmbCategory.Text.Trim().ToUpper()).ToList();
+                        CommanHelper.FillCreditLimitOpening(dataGridView2, cmbCategory.Text.Trim());
+                    }
+                }
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbgrouphead_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbgrouphead.Text.Trim() != "")
+            try
             {
-                cmbsubhead.Text = "";
-                CommanHelper.ComboBoxItem(cmbsubhead, "GroupHead", "Distinct(SubGroup)", "GroupHead", cmbgrouphead.Text);
+                if (cmbgrouphead.Text.Trim() != "")
+                {
+                    cmbsubhead.Text = "";
+                    CommanHelper.ComboBoxItem(cmbsubhead, "GroupHead", "Distinct(SubGroup)", "GroupHead", cmbgrouphead.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -1302,21 +1046,25 @@ namespace SilverGold.MasterInfo
 
         private void cmbLot_Enter(object sender, EventArgs e)
         {
+            cmbLot.BackColor = Color.Cyan;
             plnlot.BackColor = Color.Red;
         }
 
         private void cmbLot_Leave(object sender, EventArgs e)
         {
+            cmbLot.BackColor = Color.White;
             plnlot.BackColor = Color.Transparent;
         }
 
         private void cmb_gen_type_Enter(object sender, EventArgs e)
         {
+            cmb_gen_type.BackColor = Color.Cyan;
             Panel_LotGenerate.BackColor = Color.Red;
         }
 
         private void cmb_gen_type_Leave(object sender, EventArgs e)
         {
+            cmb_gen_type.BackColor = Color.White;
             Panel_LotGenerate.BackColor = Color.Transparent;
         }
 
@@ -1332,11 +1080,13 @@ namespace SilverGold.MasterInfo
 
         private void cmbCategory_Enter(object sender, EventArgs e)
         {
+            cmbCategory.BackColor = Color.Cyan;
             Panel_Category.BackColor = Color.Red;
         }
 
         private void cmbCategory_Leave(object sender, EventArgs e)
         {
+            cmbCategory.BackColor = Color.White;
             Panel_Category.BackColor = Color.Transparent;
         }
 
@@ -1350,11 +1100,13 @@ namespace SilverGold.MasterInfo
         }
         private void cmbBullion_Enter(object sender, EventArgs e)
         {
+            cmbBullion.BackColor = Color.Cyan;
             Panel_McxBullion.BackColor = Color.Red;
         }
 
         private void cmbBullion_Leave(object sender, EventArgs e)
         {
+            cmbBullion.BackColor = Color.White;
             Panel_McxBullion.BackColor = Color.Transparent;
         }
         private void txtaddress_Enter(object sender, EventArgs e)
@@ -1409,11 +1161,13 @@ namespace SilverGold.MasterInfo
 
         private void cmbrs_Enter(object sender, EventArgs e)
         {
+            cmbrs.BackColor = Color.Cyan;
             plncmbrs.BackColor = Color.Red;
         }
 
         private void cmbrs_Leave(object sender, EventArgs e)
         {
+            cmbrs.BackColor = Color.White;
             plncmbrs.BackColor = Color.Transparent;
         }
 
@@ -1447,19 +1201,18 @@ namespace SilverGold.MasterInfo
             txtopnarr.BackColor = Color.White;
         }
 
-        private void txtbanklimit_Enter(object sender, EventArgs e)
+        private void txtBankCredit_Enter(object sender, EventArgs e)
         {
-            txtbanklimit.BackColor = Color.Cyan;
+            txtBankCredit.BackColor = Color.Cyan;
         }
 
-        private void txtbanklimit_Leave(object sender, EventArgs e)
+        private void txtBankCredit_Leave(object sender, EventArgs e)
         {
-            txtbanklimit.BackColor = Color.White;
+            txtBankCredit.BackColor = Color.White;
         }
 
         private void cmbtype_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (e.KeyChar == 13)
             {
                 cmbShowtrail.Focus();
@@ -1583,7 +1336,7 @@ namespace SilverGold.MasterInfo
                     if (cmbBullion.Text.Trim().ToUpper() == "MCX")
                     {
                         this.dataGridView_BrokerageSetting.CurrentCell = this.dataGridView_BrokerageSetting[0, 0];
-                        groupBox_BrokerageSetting.Visible = true;                        
+                        groupBox_BrokerageSetting.Visible = true;
                         dataGridView_BrokerageSetting.Focus();
                     }
                     else
@@ -1678,6 +1431,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                groupBox_CommissionList.Visible = false;
                 if (e.KeyChar == 13)
                 {
                     if (cmbIntroducer.Text != "")
@@ -1743,7 +1497,7 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
-                  //  txtopnarr.Focus();
+                    //  txtopnarr.Focus();
                 }
             }
             catch (Exception ex)
@@ -1851,6 +1605,7 @@ namespace SilverGold.MasterInfo
                     dataGridViewCreditPeriod.Rows.Clear();
                     dataGridViewCreditPeriod.Visible = false;
 
+                    groupBox_LabourRate.Visible = false;
                     dataGridView_LabourRate.DataSource = null;
                     dataGridView_LabourRate.Rows.Clear();
                     dataGridView_LabourRate.Visible = false;
@@ -1985,7 +1740,7 @@ namespace SilverGold.MasterInfo
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridViewCreditPeriod.Rows.Clear();
-            dataGridViewCreditPeriod.Visible = true; 
+            dataGridViewCreditPeriod.Visible = true;
             while (dr.Read())
             {
                 dataGridViewCreditPeriod.Rows.Add();
@@ -2088,11 +1843,13 @@ namespace SilverGold.MasterInfo
 
         private void cmbShowtrail_Enter(object sender, EventArgs e)
         {
+            cmbShowtrail.BackColor = Color.Cyan;
             panel_ShowInTrail.BackColor = Color.Red;
         }
 
         private void cmbShowtrail_Leave(object sender, EventArgs e)
         {
+            cmbShowtrail.BackColor = Color.White;
             panel_ShowInTrail.BackColor = Color.Transparent;
         }
 
@@ -2102,13 +1859,20 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
-                    if (cmbtype.Text == "WORKER")
+                    if (cmbtype.Text.Trim() != "")
                     {
-                        cmbLot.Focus();
+                        if (cmbtype.Text != "PARTY")
+                        {
+                            cmbLot.Focus();
+                        }
+                        else
+                        {
+                            cmbCategory.Focus();
+                        }
                     }
                     else
                     {
-                        txtpartyname.Focus();
+                        cmbCategory.Focus();
                     }
                 }
             }
@@ -2134,7 +1898,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridViewCreditPeriod.CurrentCellAddress.X == col_Matltype_CreditPeriod.DisplayIndex)
+                if (dataGridViewCreditPeriod.CurrentCellAddress.X == oCreditPeriodEntity.col_Matltype_CreditPeriod.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridViewCreditPeriod.CurrentRow.Cells[4];
                     if (e.FormattedValue.ToString() != "")
@@ -2173,9 +1937,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Westage_CreditPeriod.Index ||
-                    dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Amount_CreditPeriod.Index ||
-                    dataGridViewCreditPeriod.CurrentCell.ColumnIndex == col_Days_CreditPeriod.Index)
+                if (dataGridViewCreditPeriod.CurrentCell.ColumnIndex == oCreditPeriodEntity.col_Westage_CreditPeriod.Index || dataGridViewCreditPeriod.CurrentCell.ColumnIndex == oCreditPeriodEntity.col_Amount_CreditPeriod.Index || dataGridViewCreditPeriod.CurrentCell.ColumnIndex == oCreditPeriodEntity.col_Days_CreditPeriod.Index)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -2189,13 +1951,20 @@ namespace SilverGold.MasterInfo
 
         private void rateupdate_radio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (rateupdate_radio.Checked == true)
+            try
             {
-                if (e.KeyChar == 13)
+                if (rateupdate_radio.Checked == true)
                 {
-                    this.dataGridViewCreditPeriod.CurrentCell = this.dataGridViewCreditPeriod[0, 0];
-                    dataGridViewCreditPeriod.Focus();
+                    if (e.KeyChar == 13)
+                    {
+                        this.dataGridViewCreditPeriod.CurrentCell = this.dataGridViewCreditPeriod[0, 0];
+                        dataGridViewCreditPeriod.Focus();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
 
@@ -2252,7 +2021,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_LabourRate.CurrentCellAddress.X == col_WtPcs_LabourRate.DisplayIndex)
+                if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_WtPcs_LabourRate.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbFineAmt = (DataGridViewComboBoxCell)dataGridView_LabourRate.CurrentRow.Cells[5];
                     cmbFineAmt.Items.Clear();
@@ -2268,7 +2037,7 @@ namespace SilverGold.MasterInfo
                         dataGridView_LabourRate.CurrentRow.Cells[5].Value = "AMOUNT";
                     }
                 }
-                if (dataGridView_LabourRate.CurrentCellAddress.X == col_Cate_LabourRate.DisplayIndex)
+                if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_Cate_LabourRate.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridView_LabourRate.CurrentRow.Cells[4];
                     if (e.FormattedValue.ToString() != "")
@@ -2278,7 +2047,7 @@ namespace SilverGold.MasterInfo
                     else
                     {
                         CommanHelper.GetProduct(cmbProduct);
-                   }
+                    }
                 }
                 if (e.ColumnIndex == 7)
                 {
@@ -2297,7 +2066,7 @@ namespace SilverGold.MasterInfo
                         this.dataGridView_GhattakList.CurrentCell = this.dataGridView_GhattakList[0, 0];
                         dataGridView_GhattakList.Focus();
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -2310,7 +2079,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_LabourRate.CurrentCell.ColumnIndex == col_LRate_LabourRate.Index)
+                if (dataGridView_LabourRate.CurrentCell.ColumnIndex == oLaboursRateEntity.col_LRate_LabourRate.Index)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -2331,7 +2100,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_GhattakList.CurrentCell.ColumnIndex == col_Ghattk_GhattakList.Index)
+                if (dataGridView_GhattakList.CurrentCell.ColumnIndex == oGhattakListEntity.col_Ghattk_GhattakList.Index)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -2347,7 +2116,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_GhattakList.CurrentCellAddress.X == col_Cate_GhattakList.DisplayIndex)
+                if (dataGridView_GhattakList.CurrentCellAddress.X == oGhattakListEntity.col_Cate_GhattakList.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridView_GhattakList.CurrentRow.Cells[4];
                     if (e.FormattedValue.ToString() != "")
@@ -2373,7 +2142,7 @@ namespace SilverGold.MasterInfo
             }
         }
 
-     
+
         private void dataGridView_Commission_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
@@ -2383,7 +2152,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_Commission.CurrentCellAddress.X == col_WtPcs_CommList.DisplayIndex)
+                if (dataGridView_Commission.CurrentCellAddress.X == oCommissionListEntity.col_WtPcs_CommList.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbFineAmt = (DataGridViewComboBoxCell)dataGridView_Commission.CurrentRow.Cells[5];
                     cmbFineAmt.Items.Clear();
@@ -2399,7 +2168,7 @@ namespace SilverGold.MasterInfo
                         dataGridView_Commission.CurrentRow.Cells[5].Value = "AMOUNT";
                     }
                 }
-                if (dataGridView_Commission.CurrentCellAddress.X == col_Cate_CommList.DisplayIndex)
+                if (dataGridView_Commission.CurrentCellAddress.X == oCommissionListEntity.col_Cate_CommList.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridView_Commission.CurrentRow.Cells[4];
                     if (e.FormattedValue.ToString() != "")
@@ -2435,12 +2204,12 @@ namespace SilverGold.MasterInfo
             }
         }
 
-       
+
         private void dataGridView_Commission_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
             {
-                if (dataGridView_Commission.CurrentCell.ColumnIndex == col_Com_CommList.Index)
+                if (dataGridView_Commission.CurrentCell.ColumnIndex == oCommissionListEntity.col_Com_CommList.Index)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -2461,7 +2230,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_BrokerageSetting.CurrentCell.ColumnIndex == col_BrokRate_Brok.Index)
+                if (dataGridView_BrokerageSetting.CurrentCell.ColumnIndex == oBrokerageSettingEntity.col_BrokRate_Brok.Index)
                 {
                     e.Control.KeyPress -= NumericCheckHandler;
                     e.Control.KeyPress += NumericCheckHandler;
@@ -2473,7 +2242,7 @@ namespace SilverGold.MasterInfo
             }
         }
 
-       
+
 
         private void dataGridView_BrokerageSetting_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -2544,7 +2313,26 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-               
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+
+        private void cmbsubhead_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblBankCredit.Visible = false;
+                txtBankCredit.Visible = false;
+                if (cmbgrouphead.Text.Trim() == "CURRENT ASSETS" && cmbsubhead.Text.Trim() == "BANK OD/CC")
+                {
+                    lblBankCredit.Visible = true;
+                    txtBankCredit.Visible = true;
+                }
             }
             catch (Exception ex)
             {

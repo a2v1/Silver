@@ -96,6 +96,7 @@
     <Compile Include="Entity\OpeningEntity.cs" />
     <Compile Include="Entity\PartyInformationEntity.cs" />
     <Compile Include="Entity\PartyOpeningEntity.cs" />
+    <Compile Include="Entity\PartyTranEntity.cs" />
     <Compile Include="Entity\PriceListEntity.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\TunchPendingEntity.cs" />
