@@ -9,17 +9,21 @@ namespace SilverGold.Entity
 {
     class OpeningMCXEntity
     {
+        public DateTime OpeningDate { get; set; }
         public string Name { get; set; }
         public decimal Weight { get; set; }
         public decimal Closing { get; set; }
         public string DrCr { get; set; }
+        public string Narration { get; set; }
     }
 
     class OpeningOtherEntity
     {
+        public DateTime OpeningDate { get; set; }
         public string Name { get; set; }
-        public decimal Amount { get; set; }
+        public decimal Weight { get; set; }
         public string DrCr { get; set; }
+        public string Narration { get; set; }
         public string Category { get; set; }
     }
 

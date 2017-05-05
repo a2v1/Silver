@@ -55,7 +55,7 @@ namespace SilverGold.Entity
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO Company(CompanyName,DateFrom,DateTo,FinancialYear,DatabasePath,CompanyName,DataBaseName)VALUES(@CompanyName,@DateFrom,@DateTo,@FinancialYear,@DatabasePath,@CompanyName,@DataBaseName)";
+            strInsert = "INSERT INTO Company(CompanyName,DateFrom,DateTo,FinancialYear,DatabasePath,DataBaseName)VALUES(@CompanyName,@DateFrom,@DateTo,@FinancialYear,@DatabasePath,@DataBaseName)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -68,7 +68,6 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@DateTo", _DateTo);
             cmdInsert.Parameters.AddWithValue("@FinancialYear", _FinancialYear);
             cmdInsert.Parameters.AddWithValue("@DatabasePath", _DatabasePath);
-            cmdInsert.Parameters.AddWithValue("@CompanyName", _CompanyName);
             cmdInsert.Parameters.AddWithValue("@DataBaseName", _DataBaseName); 
             cmdInsert.ExecuteNonQuery();
         }

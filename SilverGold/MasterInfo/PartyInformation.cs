@@ -27,15 +27,11 @@ namespace SilverGold.MasterInfo
         CommissionListEntity oCommissionListEntity = new CommissionListEntity();
         BrokerageSettingEntity oBrokerageSettingEntity = new BrokerageSettingEntity();
         private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(CommanHelper.NumericCheck);
-
-
-
-
-
-
-
+        DataGridViewColumn colLimit = new DataGridViewTextBoxColumn();
+        CalendarColumn dtpOpeningDate = new CalendarColumn();
 
         #endregion
+
         public PartyInformation()
         {
             InitializeComponent();
@@ -47,13 +43,27 @@ namespace SilverGold.MasterInfo
             CommanHelper.ChangeGridFormate(dataGridView_Commission);
             CommanHelper.ChangeGridFormate(dataGridView_BrokerageSetting);
 
-
             dataGridView2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
         }
 
         #region Helper
 
+
+        private void BindCreditLimitOpeningColumn()
+        {
+            DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
+            col1.DataPropertyName = "Name";
+            col1.HeaderText = "Name";
+            col1.Name = "Name";
+            col1.ReadOnly = true;
+            dataGridView2.Columns.Add(col1);
+
+
+            colLimit.DataPropertyName = "Limit";
+            colLimit.HeaderText = "Limit";
+            colLimit.Name = "Limit";
+            dataGridView2.Columns.Add(colLimit);
+        }
 
         private void SetCreditLimitGridView_ColumnWith()
         {
@@ -103,9 +113,16 @@ namespace SilverGold.MasterInfo
         private void BindOpeningMCXColumn()
         {
             dataGridView1.Columns.Clear();
+
+            dtpOpeningDate.DataPropertyName = "OpeningDate";
+            dtpOpeningDate.HeaderText = "Date(Op)";
+            dtpOpeningDate.Name = "OpeningDate";
+            dataGridView1.Columns.Add(dtpOpeningDate);
+
+
             DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
             col1.DataPropertyName = "Name";
-            col1.HeaderText = "Name";
+            col1.HeaderText = "Item";
             col1.Name = "Name";
             col1.ReadOnly = true;
             dataGridView1.Columns.Add(col1);
@@ -130,22 +147,35 @@ namespace SilverGold.MasterInfo
             col4.Items.Add("PURCHASE");
             col4.FlatStyle = FlatStyle.Popup;
             dataGridView1.Columns.Add(col4);
+
+            DataGridViewColumn col5 = new DataGridViewTextBoxColumn();
+            col5.DataPropertyName = "Narration";
+            col5.HeaderText = "Narration";
+            col5.Name = "Narration";
+            dataGridView1.Columns.Add(col5);
         }
 
         private void BindOpeningOtherColumn()
         {
             dataGridView1.Columns.Clear();
+
+            dtpOpeningDate.DataPropertyName = "OpeningDate";
+            dtpOpeningDate.HeaderText = "Date(Op)";
+            dtpOpeningDate.Name = "OpeningDate";
+            dataGridView1.Columns.Add(dtpOpeningDate);
+
+
             DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
             col1.DataPropertyName = "Name";
-            col1.HeaderText = "Name";
+            col1.HeaderText = "Item";
             col1.Name = "Name";
             col1.ReadOnly = true;
             dataGridView1.Columns.Add(col1);
 
             DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
-            col2.DataPropertyName = "Amount";
+            col2.DataPropertyName = "Weight";
             col2.HeaderText = "Weight";
-            col2.Name = "Amount";
+            col2.Name = "Weight";
             dataGridView1.Columns.Add(col2);
 
             DataGridViewComboBoxColumn col3 = new DataGridViewComboBoxColumn();
@@ -158,11 +188,17 @@ namespace SilverGold.MasterInfo
             dataGridView1.Columns.Add(col3);
 
             DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
-            col4.DataPropertyName = "Category";
-            col4.HeaderText = "Category";
-            col4.Name = "Category";
-            col4.Visible = false;
+            col4.DataPropertyName = "Narration";
+            col4.HeaderText = "Narration";
+            col4.Name = "Narration";
             dataGridView1.Columns.Add(col4);
+
+            DataGridViewColumn col5 = new DataGridViewTextBoxColumn();
+            col5.DataPropertyName = "Category";
+            col5.HeaderText = "Category";
+            col5.Name = "Category";
+            col5.Visible = false;
+            dataGridView1.Columns.Add(col5);
         }
 
         private void ClearControl()
@@ -228,7 +264,7 @@ namespace SilverGold.MasterInfo
                 }
                 OleDbCommand cmd = new OleDbCommand("Select Type,Category,PartyName,PartyType,Address,Email,ContactNo,GroupHead,SubGroup,IntroducerName,ShowInTrail,WithCreditPeriod,Lot,LotGenerate,BankCredit From PartyDetails Where PartyName = '" + strPartyName + "'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
-                cmbtype.SelectedIndex = -1;
+                cmbtype.Text = "";
                 cmbCategory.SelectedIndex = -1;
                 txtpartyname.Clear();
                 cmbBullion.SelectedIndex = -1;
@@ -331,7 +367,7 @@ namespace SilverGold.MasterInfo
 
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
 
-            CreditLimitFactory.BindCreditLimitOpeningColumn(dataGridView2);
+            BindCreditLimitOpeningColumn();
             oCreditPeriodEntity.BindCreditPeriod(dataGridViewCreditPeriod);
             oGhattakListEntity.BindGhattakList(dataGridView_GhattakList);
             oLaboursRateEntity.BindLabourRate(dataGridView_LabourRate);
@@ -424,7 +460,7 @@ namespace SilverGold.MasterInfo
                         txtpartyname.Focus();
                         return;
                     }
-                }
+                } DateTime _OpeningDate = Conversion.ConToDT(DateTime.Now.ToString("MM/dd/yyyy"));
                 String _PartyName = "";
                 String strWithCreditLimit = "";
                 String rate_revised = "";
@@ -469,7 +505,7 @@ namespace SilverGold.MasterInfo
                 #region Insert Cash Opening
 
                 ///---------------Insert Cash Opening
-                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()), 0, cmbrs.Text.ToString().Trim(), con, Tran);
+                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()), 0, cmbrs.Text.ToString().Trim(), "", con, Tran);
 
                 #endregion
 
@@ -677,29 +713,37 @@ namespace SilverGold.MasterInfo
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
+                    String _MetalCategory = "";
                     Decimal _Weight = 0;
+                    _OpeningDate = DateTime.Now;
+                    _OpeningDate = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
+                    String _Narration = "";
+                    String _JN = "";
                     if (cmbBullion.Text.Trim().ToUpper() == "MCX" || cmbtype.Text.Trim().ToUpper() == "WORKER")
                     {
+
                         Decimal _Sell = 0;
                         Decimal _Purchase = 0;
-                        String _MetalCategory = "";
+                        _MetalCategory = "";
+                        Decimal _OpeningWeight = 0;
                         Decimal _MCXRate = 0;
-
-                        _MetalCategory = dr.Cells[0].Value.ToString().Trim();
-                        _MCXRate = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
-
-                        if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() == "SELL")
+                        _MetalCategory = dr.Cells["Name"].Value.ToString().Trim();
+                        _OpeningWeight = Conversion.ConToDec6(dr.Cells["Weight"].Value.ToString().Trim());
+                        _MCXRate = Conversion.ConToDec6(dr.Cells["Closing"].Value.ToString().Trim());
+                        _JN = (dr.Cells["DrCr"].Value ?? (object)"").ToString().Trim();
+                        _Narration = (dr.Cells["Narration"].Value ?? (object)"").ToString().Trim();
+                        if (_JN.Trim() == "SELL")
                         {
-                            _Sell = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
-                            _Weight = -Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
+                            _Sell = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
+                            _Weight = -Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
                         }
-                        if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() == "PURCHASE")
+                        if (_JN.Trim() == "PURCHASE")
                         {
-                            _Purchase = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
-                            _Weight = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
+                            _Purchase = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
+                            _Weight = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
                         }
 
-                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _MetalCategory, Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim()), Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim()), (dr.Cells[3].Value ?? (object)"").ToString().Trim(), con, Tran);
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, _MetalCategory, _OpeningWeight, _MCXRate, _JN, _Narration, con, Tran);
 
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
@@ -709,19 +753,22 @@ namespace SilverGold.MasterInfo
                     }
                     else
                     {
+                        _MetalCategory = "";
                         Decimal _Debit = 0;
                         Decimal _Credit = 0;
-                        String _MetalCategory = dr.Cells[0].Value.ToString().Trim();
-                        _Weight = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "NAAM")
+                        _MetalCategory = dr.Cells["Name"].Value.ToString().Trim();
+                        _Weight = Conversion.ConToDec6(dr.Cells["Weight"].Value.ToString().Trim());
+                        _JN = (dr.Cells["DrCr"].Value ?? (object)"").ToString().Trim();
+                        _Narration = (dr.Cells["Narration"].Value ?? (object)"").ToString().Trim();
+                        if (_JN.Trim() == "NAAM")
                         {
-                            _Debit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
+                            _Debit = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
                         }
-                        if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() == "JAMA")
+                        if (_JN.Trim() == "JAMA")
                         {
-                            _Credit = Conversion.ConToDec6(dr.Cells[1].Value.ToString().Trim());
+                            _Credit = Conversion.ConToDec6(dr.Cells[2].Value.ToString().Trim());
                         }
-                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _MetalCategory, _Weight, 0, (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
+                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
 
                         //-----------Insert Opening In PartyTran
                         if ((dr.Cells[2].Value ?? (object)"").ToString().Trim() != "")
@@ -845,10 +892,9 @@ namespace SilverGold.MasterInfo
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
+                BindOpeningOtherColumn();
                 if (cmbtype.Text.Trim() == "PARTY")
                 {
-                    BindOpeningOtherColumn();
-
                     cmbBullion.Visible = true;
                     grpBoxWithCreditLimit.Visible = true;
                     cmbLot.SelectedIndex = -1;
@@ -901,7 +947,7 @@ namespace SilverGold.MasterInfo
                     OpeningOtherList = CommanHelper.OpeningOther();
                     if (cmbCategory.Text.Trim() == "COMMON")
                     {
-                        dataGridView1.DataSource = OpeningOtherList.Select(r => new { r.Name, r.Amount, r.DrCr }).ToList();
+                        dataGridView1.DataSource = OpeningOtherList.Select(r => new { r.Name, r.Weight, r.DrCr, r.Narration }).ToList();
                     }
                     else
                     {
@@ -930,11 +976,8 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView2.CurrentCell.ColumnIndex == CreditLimitFactory.colLimit.Index)
-                {
-                    e.Control.KeyPress -= NumericCheckHandler;
-                    e.Control.KeyPress += NumericCheckHandler;
-                }
+                e.Control.KeyPress -= NumericCheckHandler;
+                e.Control.KeyPress += NumericCheckHandler;
             }
             catch (Exception ex)
             {
@@ -948,17 +991,24 @@ namespace SilverGold.MasterInfo
             {
                 if (chkWithCreditLimit.Checked == true)
                 {
-                    if (cmbCategory.Text.Trim() == "COMMAN")
+                    if (cmbtype.Text.Trim() == "PARTY")
                     {
-                        CommanHelper.FillCreditLimitOpening(dataGridView2, "");
+                        if (cmbCategory.Text.Trim() == "COMMAN")
+                        {
+                            CommanHelper.FillCreditLimitOpening(dataGridView2, "");
+                        }
+                        else
+                        {
+                            CommanHelper.FillCreditLimitOpening(dataGridView2, cmbCategory.Text.Trim());
+                        }
+                        if (rateupdate_radio.Checked == true)
+                        {
+                            dataGridViewCreditPeriod.Visible = true;
+                        }
+                        groBoxCreditPeriod.Visible = true;
+                        dataGridView2.Visible = true;
+
                     }
-                    else
-                    {
-                        CommanHelper.FillCreditLimitOpening(dataGridView2, cmbCategory.Text.Trim());
-                    }
-                    dataGridViewCreditPeriod.Visible = true;
-                    groBoxCreditPeriod.Visible = true;
-                    dataGridView2.Visible = true;
                 }
                 else
                 {
@@ -994,22 +1044,19 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                BindOpeningOtherColumn();
                 if (cmbtype.Text.Trim() == "PARTY")
                 {
-                    BindOpeningOtherColumn();
                     OpeningOtherList = CommanHelper.OpeningOther();
                     if (cmbCategory.Text.Trim() == "COMMON")
                     {
                         dataGridView1.DataSource = OpeningOtherList.ToList();
-                        CommanHelper.FillCreditLimitOpening(dataGridView2, "");
                     }
                     else
                     {
-                     dataGridView1.DataSource = OpeningOtherList.Where(x => x.Category == cmbCategory.Text.Trim().ToUpper()).ToList();
-                        CommanHelper.FillCreditLimitOpening(dataGridView2, cmbCategory.Text.Trim());
+                        dataGridView1.DataSource = OpeningOtherList.Where(x => x.Category == cmbCategory.Text.Trim().ToUpper()).ToList();
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1042,7 +1089,6 @@ namespace SilverGold.MasterInfo
         {
             cmbtype.BackColor = Color.White;
         }
-
 
         private void cmbLot_Enter(object sender, EventArgs e)
         {
@@ -1189,16 +1235,6 @@ namespace SilverGold.MasterInfo
         private void cmbIntroducer_Leave(object sender, EventArgs e)
         {
             cmbIntroducer.BackColor = Color.White;
-        }
-
-        private void txtopnarr_Enter(object sender, EventArgs e)
-        {
-            txtopnarr.BackColor = Color.Cyan;
-        }
-
-        private void txtopnarr_Leave(object sender, EventArgs e)
-        {
-            txtopnarr.BackColor = Color.White;
         }
 
         private void txtBankCredit_Enter(object sender, EventArgs e)
@@ -1482,6 +1518,7 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
+                    this.dataGridView1.CurrentCell = this.dataGridView1[0, 0];
                     dataGridView1.Focus();
                 }
             }
@@ -1497,7 +1534,17 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
-                    //  txtopnarr.Focus();
+                    if (this.dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns.Count - 2 && this.dataGridView1.CurrentCell.RowIndex == dataGridView1.Rows.Count - 1)
+                    {
+                        if (chkWithCreditLimit.Visible == true)
+                        {
+                            chkWithCreditLimit.Focus();
+                        }
+                        else
+                        {
+                            btnsave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1560,7 +1607,10 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
-                    //btnsave.Focus();
+                    if (this.dataGridView2.CurrentCell.ColumnIndex == dataGridView2.Columns.Count - 1 && this.dataGridView2.CurrentCell.RowIndex == dataGridView2.Rows.Count - 1)
+                    {
+                        btnsave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1653,6 +1703,7 @@ namespace SilverGold.MasterInfo
                     {
                         dataGridView2.DataSource = null;
                         dataGridView2.DataSource = CommanHelper.GetCreditLimit(cmbPopUp.Text.Trim());
+                        this.dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
 
                     if (rateupdate_radio.Checked == true)
@@ -2313,7 +2364,6 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-
             }
             catch (Exception ex)
             {
@@ -2333,6 +2383,19 @@ namespace SilverGold.MasterInfo
                     lblBankCredit.Visible = true;
                     txtBankCredit.Visible = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void rateupdate_radio_N_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                this.dataGridView2.CurrentCell = this.dataGridView2[1, 0];
+                dataGridView2.Focus();
             }
             catch (Exception ex)
             {

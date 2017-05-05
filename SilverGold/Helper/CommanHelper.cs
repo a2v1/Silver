@@ -42,8 +42,8 @@ namespace SilverGold.Helper
         }
         public static void ChangeGridFormate2(DataGridView grd)
         {
-            grd.DefaultCellStyle.Font = new Font("Calibri", 10.25f, FontStyle.Regular);
-            grd.ColumnHeadersDefaultCellStyle.Font = new Font("Calibri", 11, FontStyle.Regular);
+            grd.DefaultCellStyle.Font = new Font("Calibri", 9.0f, FontStyle.Regular);
+            grd.ColumnHeadersDefaultCellStyle.Font = new Font("Calibri", 9, FontStyle.Regular);
             grd.ColumnHeadersDefaultCellStyle.BackColor = Color.BurlyWood;
             grd.EnableHeadersVisualStyles = false;
             grd.RowHeadersVisible = false;
@@ -307,6 +307,7 @@ namespace SilverGold.Helper
                 OpeningMCXList.Clear();
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
+                    OpeningDate = DateTime.Now,
                     Name = "SILVER",
                     Weight = 0,
                     Closing = 0,
@@ -314,6 +315,7 @@ namespace SilverGold.Helper
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
+                    OpeningDate = DateTime.Now,
                     Name = "SILVERM",
                     Weight = 0,
                     Closing = 0,
@@ -321,6 +323,7 @@ namespace SilverGold.Helper
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
+                    OpeningDate = DateTime.Now,
                     Name = "GOLD",
                     Weight = 0,
                     Closing = 0,
@@ -328,6 +331,7 @@ namespace SilverGold.Helper
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
+                    OpeningDate = DateTime.Now,
                     Name = "GOLDM",
                     Weight = 0,
                     Closing = 0,
@@ -368,18 +372,19 @@ namespace SilverGold.Helper
                     else
                     {
                         str = "Select Distinct(MetalCategory) from Metal";
-                    } 
+                    }
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand(str, con);
                     OleDbDataReader dr = cmd.ExecuteReader();
-                    gdv.Rows.Clear();
-                    int Sno = 0;
+                    List<CreditLimitOpeningEntity> CreditLimitOpeningList = new List<CreditLimitOpeningEntity>();
                     while (dr.Read())
                     {
-                        gdv.Rows.Add();
-                        gdv.Rows[Sno].Cells[0].Value = dr[0].ToString();
-                        Sno++;
+                        CreditLimitOpeningEntity oCreditLimitOpeningEntity = new CreditLimitOpeningEntity();
+                        oCreditLimitOpeningEntity.Name = dr[0].ToString();
+                        oCreditLimitOpeningEntity.Limit = 0;
+                        CreditLimitOpeningList.Add(oCreditLimitOpeningEntity);
                     }
+                    gdv.DataSource = CreditLimitOpeningList.ToList();
                     con.Close();
                 }
             }
@@ -402,9 +407,10 @@ namespace SilverGold.Helper
                     while (dr.Read())
                     {
                         OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
+                        oOpeningOtherEntity.OpeningDate = DateTime.Now;
                         oOpeningOtherEntity.Category = dr[1].ToString();
                         oOpeningOtherEntity.Name = dr[0].ToString();
-                        oOpeningOtherEntity.Amount = 0;
+                        oOpeningOtherEntity.Weight = 0;
                         oOpeningOtherEntity.DrCr = "";
                         OpeningOtherList.Add(oOpeningOtherEntity);
                     }
@@ -598,15 +604,17 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select ItemName,Weight,ClosingRate,DrCr From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select OpeningDate,ItemName,Weight,ClosingRate,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningMCXEntity oOpeningMCXEntity = new OpeningMCXEntity();
+                    oOpeningMCXEntity.OpeningDate = Conversion.ConToDT(dr["OpeningDate"].ToString());
                     oOpeningMCXEntity.Name = dr["ItemName"].ToString();
                     oOpeningMCXEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
                     oOpeningMCXEntity.Closing = Conversion.ConToDec(dr["ClosingRate"].ToString());
                     oOpeningMCXEntity.DrCr = dr["DrCr"].ToString();
+                    oOpeningMCXEntity.Narration = dr["Narration"].ToString();
                     OpeningMCX.Add(oOpeningMCXEntity);
                 }
                 con.Close();
@@ -621,13 +629,15 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select ItemName,Weight,DrCr From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select OpeningDate,ItemName,Weight,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
+                    oOpeningOtherEntity.OpeningDate = Conversion.ConToDT(dr["OpeningDate"].ToString());
                     oOpeningOtherEntity.Name = dr["ItemName"].ToString();
-                    oOpeningOtherEntity.Amount = Conversion.ConToDec6(dr["Weight"].ToString());
+                    oOpeningOtherEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
+                    oOpeningOtherEntity.Narration = dr["Narration"].ToString();
                     oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
                     OpeningOther.Add(oOpeningOtherEntity);
                 }

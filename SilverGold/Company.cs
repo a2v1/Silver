@@ -396,10 +396,10 @@ namespace SilverGold
                     OleDbCommand cmd = new OleDbCommand("", con2, Tran);
 
                     //-------Insert Company Details
-                    CompanyFactory.Insert(txtCompanyName.Text.Trim(), _FYFrom, _FYTo, txtFinancialYear.Text.Trim(), _DPath, _DName, con, Tran);
+                    CompanyFactory.Insert(txtCompanyName.Text.Trim(), _FYFrom, _FYTo, txtFinancialYear.Text.Trim(), _DPath, _DName, con2, Tran);
 
                     //--------Insert Users Id Password
-                    UserFactory.Insert(txtUserId.Text.Trim(), txtPassword.Text.Trim(), cmbUType.Text.Trim(), CommanHelper.CompName, con, Tran);
+                    UserFactory.Insert(txtUserId.Text.Trim(), txtPassword.Text.Trim(), cmbUType.Text.Trim(), CommanHelper.CompName, con2, Tran);
 
                     //----------Company Opening Information
                     for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
@@ -433,7 +433,7 @@ namespace SilverGold
 
                         if (_DrCr != "")
                         {
-                            CompnayOpeningFactory.Insert(_MetalName, _Amt_Weight, _DrCr, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
+                            CompnayOpeningFactory.Insert(_MetalName, _Amt_Weight, _DrCr, CommanHelper.CompName, txtUserId.Text.Trim(), con2, Tran);
 
                             //--------Insert Data In PartyTran Table
                             cmd.CommandText = "INSERT INTO PartyTran(TrDate,PartyName,MetalCategory,MetalName,Debit,Credit,Weight,TranType)VALUES('" + _FYFrom + "','" + txtCompanyName.Text.Trim() + "','" + _MetalCat + "','" + _MetalName + "','" + _Debit + "','" + _Credit + "','" + _Amt_Weight + "','CO')";
@@ -454,7 +454,7 @@ namespace SilverGold
 
                             if (CheckMetalExist == false)
                             {
-                                MetalFactory.InsertMetal(_MetalCat, _MetalName, _WeightType, _KF, CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
+                                MetalFactory.InsertMetal(_MetalCat, _MetalName, _WeightType, _KF, CommanHelper.CompName, txtUserId.Text.Trim(), con2, Tran);
                             }
                             else
                             {
@@ -483,7 +483,7 @@ namespace SilverGold
                         _Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
                         if (_Weight > 0)
                         {
-                            KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
+                            KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con2, Tran);
                         }
                     }
 
