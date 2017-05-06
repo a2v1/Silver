@@ -1,6 +1,6 @@
 ﻿using SilverGold.Comman;
 using SilverGold.Helper;
-namespace SilverGold
+namespace SilverGold.CompanyInfo
 {
     partial class Company
     {

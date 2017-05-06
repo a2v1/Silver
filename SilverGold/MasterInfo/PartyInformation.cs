@@ -35,8 +35,7 @@ namespace SilverGold.MasterInfo
         public PartyInformation()
         {
             InitializeComponent();
-            CommanHelper.ChangeGridFormate2(dataGridView1);
-            //  CommanHelper.ChangeGridFormate2(dataGridView2);
+            CommanHelper.ChangeGridFormate2(dataGridView1);           
             CommanHelper.ChangeGridFormate(dataGridViewCreditPeriod);
             CommanHelper.ChangeGridFormate(dataGridView_LabourRate);
             CommanHelper.ChangeGridFormate(dataGridView_GhattakList);
@@ -315,7 +314,10 @@ namespace SilverGold.MasterInfo
                 cmbrs.SelectedIndex = -1;
                 if (dr.Read())
                 {
-                    txtoprs.Text = dr["Weight"].ToString();
+                    if (dr["Weight"].ToString() != "0")
+                    {
+                        txtoprs.Text = dr["Weight"].ToString();
+                    }
                     cmbrs.Text = dr["DrCr"].ToString();
                 }
                 dr.Close();

@@ -53,6 +53,7 @@
             this.labourProccessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.changeCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,8 @@
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createCompToolStripMenuItem});
+            this.createCompToolStripMenuItem,
+            this.changeCompanyToolStripMenuItem});
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.masterToolStripMenuItem.Text = "&Company";
@@ -246,6 +248,13 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
+            // changeCompanyToolStripMenuItem
+            // 
+            this.changeCompanyToolStripMenuItem.Name = "changeCompanyToolStripMenuItem";
+            this.changeCompanyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.changeCompanyToolStripMenuItem.Text = "Change Company";
+            this.changeCompanyToolStripMenuItem.Click += new System.EventHandler(this.changeCompanyToolStripMenuItem_Click);
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,6 +303,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem changeCompanyToolStripMenuItem;
 
     }
 }

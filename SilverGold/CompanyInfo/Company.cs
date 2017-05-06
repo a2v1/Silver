@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SilverGold
+namespace SilverGold.CompanyInfo
 {
     public partial class Company : Form
     {
@@ -369,13 +369,28 @@ namespace SilverGold
                 var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
                 var dirName = directoryInfo.GetDirectories();
 
-                foreach (var item in dirName)
+                //foreach (var item in dirName)
+                //{
+                //    if (txtCompanyName.Text.Trim().ToUpper() == item.Name.ToString().ToUpper())
+                //    {
+                //        MessageBox.Show("Company Name Allready Exists.", "Company", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        txtCompanyName.Focus();
+                //        return;
+                //    }
+                //}
+
+                for (int i = 0; i < dirName.Count(); i++)
                 {
-                    if (txtCompanyName.Text.Trim() == item.Name.ToString())
+                    var mainDir = dirName[i].GetDirectories();
+                    foreach (var item in mainDir)
                     {
-                        MessageBox.Show("Company Name Allready Exists.", "Company", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        txtCompanyName.Focus();
-                        return;
+                        DirectoryInfo d = new DirectoryInfo(item.FullName);
+                        if ((txtCompanyName.Text.Trim().ToUpper() == dirName[i].Name.ToString().ToUpper()) && (txtFinancialYear.Text.Trim() == item.Name.ToString()))
+                        {
+                            MessageBox.Show("Company Name Allready Exists.", "Company", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            txtCompanyName.Focus();
+                            return;
+                        }
                     }
                 }
 
@@ -503,8 +518,11 @@ namespace SilverGold
             }
             catch (Exception ex)
             {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
                 Tran.Rollback();
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+                File.Delete(Application.StartupPath + "\\" + txtCompanyName.Text + "\\" + txtFinancialYear.Text + "\\" + txtCompanyName.Text + "(" + txtFinancialYear.Text + ")" + ".mdb");
+                Directory.Delete(Application.StartupPath + "\\" + txtCompanyName.Text + "\\" + txtFinancialYear.Text);
+                Directory.Delete(Application.StartupPath + "\\" + txtCompanyName.Text);
             }
         }
 
@@ -1115,7 +1133,7 @@ namespace SilverGold
                                         oMetal.WeightType = "";
                                         oMetal.Sno = max;
                                         oMetal.CompanyName = txtCompanyName.Text.Trim(); MetalList.Add(oMetal);
-                                       
+
                                     }
                                     else
                                     {

@@ -1,4 +1,5 @@
-﻿using SilverGold.Helper;
+﻿using SilverGold.CompanyInfo;
+using SilverGold.Helper;
 using SilverGold.MasterInfo;
 using SilverGold.Transaction;
 using System;
@@ -21,20 +22,48 @@ namespace SilverGold
             InitializeComponent();
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
+        //private void ShowNewForm(object sender, EventArgs e)
+        //{
+        //    Form childForm = new Form();
+        //    childForm.MdiParent = this;
+        //    childForm.Text = "Window " + childFormNumber++;
+        //    childForm.Show();
+        //}
+
+
+        #region Helper
+
+        private void MenuEnable()
         {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
-            childForm.Show();
+
+            masterInfoToolStripMenuItem.Enabled = true;
+            transactionToolStripMenuItem.Enabled = true;
         }
 
+
+        private void MenuDesable()
+        {
+            masterInfoToolStripMenuItem.Enabled = false;
+            transactionToolStripMenuItem.Enabled = false;
+        }
+
+        #endregion
 
         private void Master_Load(object sender, EventArgs e)
         {
             objMaster = this;
             CommanHelper.FormX = this.Width;
             CommanHelper.FormY = this.Height;
+
+            if (CommanHelper.CompName == "")
+            {
+                MenuDesable();
+
+            }
+            else
+            {
+                MenuEnable();
+            }
 
             //foreach (Control ctl in this.Controls)
             //{
@@ -109,6 +138,13 @@ namespace SilverGold
             Naam oNaam = new Naam();
             oNaam.MdiParent = this;
             oNaam.Show();
+        }
+
+        private void changeCompanyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeCompany oChangeCompany = new ChangeCompany();
+            oChangeCompany.MdiParent = this;
+            oChangeCompany.Show();
         }
 
     

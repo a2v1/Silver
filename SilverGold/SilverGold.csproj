@@ -68,10 +68,16 @@
     <Compile Include="Comman\GRIDVIEWCUSTOM1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Company.cs">
+    <Compile Include="CompanyInfo\ChangeCompany.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Company.Designer.cs">
+    <Compile Include="CompanyInfo\ChangeCompany.Designer.cs">
+      <DependentUpon>ChangeCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyInfo\Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyInfo\Company.Designer.cs">
       <DependentUpon>Company.cs</DependentUpon>
     </Compile>
     <Compile Include="CompanyDetails.cs">
@@ -162,7 +168,7 @@
     <EmbeddedResource Include="Comman\GRIDVIEWCUSTOM1.resx">
       <DependentUpon>GRIDVIEWCUSTOM1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Company.resx">
+    <EmbeddedResource Include="CompanyInfo\Company.resx">
       <DependentUpon>Company.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyDetails.resx">
