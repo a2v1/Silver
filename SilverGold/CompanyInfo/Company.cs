@@ -200,7 +200,7 @@ namespace SilverGold.CompanyInfo
                 }
                 con.Close();
 
-                dataGridView3.DataSource = companyEntity.ToList();
+                dataGridView3.DataSource = companyEntity.Select(x => new { x.CompanyName, x.DateFrom, x.DateTo, x.FinancialYear }).ToList();
             }
             catch (Exception ex)
             {
@@ -1390,6 +1390,11 @@ namespace SilverGold.CompanyInfo
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 

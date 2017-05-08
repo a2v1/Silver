@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCompToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.partyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,23 +52,34 @@
             this.paymentVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.labourProccessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.changeCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.masterToolStripMenuItem,
             this.masterInfoToolStripMenuItem,
-            this.transactionToolStripMenuItem});
+            this.transactionToolStripMenuItem,
+            this.reportToolStripMenuItem,
+            this.utilitiesToolStripMenuItem,
+            this.sToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(632, 24);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // masterToolStripMenuItem
@@ -85,6 +97,13 @@
             this.createCompToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.createCompToolStripMenuItem.Text = "Create/Edit Company";
             this.createCompToolStripMenuItem.Click += new System.EventHandler(this.createCompToolStripMenuItem_Click);
+            // 
+            // changeCompanyToolStripMenuItem
+            // 
+            this.changeCompanyToolStripMenuItem.Name = "changeCompanyToolStripMenuItem";
+            this.changeCompanyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.changeCompanyToolStripMenuItem.Text = "Change Company";
+            this.changeCompanyToolStripMenuItem.Click += new System.EventHandler(this.changeCompanyToolStripMenuItem_Click);
             // 
             // masterInfoToolStripMenuItem
             // 
@@ -232,6 +251,55 @@
             this.labourProccessingToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.labourProccessingToolStripMenuItem.Text = "Labour  Proccessing";
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.reportToolStripMenuItem.Text = "&Report";
+            // 
+            // utilitiesToolStripMenuItem
+            // 
+            this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userToolStripMenuItem,
+            this.changePasswordToolStripMenuItem});
+            this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
+            this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.utilitiesToolStripMenuItem.Text = "&Utilities";
+            // 
+            // userToolStripMenuItem
+            // 
+            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.userToolStripMenuItem.Text = "User Management";
+            this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            // 
+            // sToolStripMenuItem
+            // 
+            this.sToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setPasswordToolStripMenuItem,
+            this.removePasswordToolStripMenuItem});
+            this.sToolStripMenuItem.Name = "sToolStripMenuItem";
+            this.sToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.sToolStripMenuItem.Text = "Security System";
+            // 
+            // setPasswordToolStripMenuItem
+            // 
+            this.setPasswordToolStripMenuItem.Name = "setPasswordToolStripMenuItem";
+            this.setPasswordToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.setPasswordToolStripMenuItem.Text = "Set Password";
+            // 
+            // removePasswordToolStripMenuItem
+            // 
+            this.removePasswordToolStripMenuItem.Name = "removePasswordToolStripMenuItem";
+            this.removePasswordToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.removePasswordToolStripMenuItem.Text = "Remove Password";
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -248,13 +316,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // changeCompanyToolStripMenuItem
-            // 
-            this.changeCompanyToolStripMenuItem.Name = "changeCompanyToolStripMenuItem";
-            this.changeCompanyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.changeCompanyToolStripMenuItem.Text = "Change Company";
-            this.changeCompanyToolStripMenuItem.Click += new System.EventHandler(this.changeCompanyToolStripMenuItem_Click);
-            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +330,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Master_FormClosed);
             this.Load += new System.EventHandler(this.Master_Load);
+            this.Click += new System.EventHandler(this.Master_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
@@ -304,6 +366,13 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         public System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem changeCompanyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setPasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removePasswordToolStripMenuItem;
 
     }
 }

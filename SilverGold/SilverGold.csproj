@@ -165,8 +165,17 @@
     <Compile Include="Utilities\TunchPending.Designer.cs">
       <DependentUpon>TunchPending.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\UserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\UserManagement.Designer.cs">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Comman\GRIDVIEWCUSTOM1.resx">
       <DependentUpon>GRIDVIEWCUSTOM1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanyInfo\ChangeCompany.resx">
+      <DependentUpon>ChangeCompany.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyInfo\Company.resx">
       <DependentUpon>Company.cs</DependentUpon>
@@ -210,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\TunchPending.resx">
       <DependentUpon>TunchPending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\UserManagement.resx">
+      <DependentUpon>UserManagement.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
