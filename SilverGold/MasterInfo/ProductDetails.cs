@@ -45,10 +45,7 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Delete.Click += new EventHandler(btndelete_Click);
             this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
 
-            oOpeningOtherEntity = CommanHelper.OpeningOther();            
-            cmbcategory.DataSource = oOpeningOtherEntity;
-            cmbcategory.DisplayMember = "Name";
-            cmbcategory.SelectedIndex = -1;
+            CommanHelper.BindMetalCategory(cmbcategory);
 
             CommanHelper.ComboBoxItem(cmbPopUp, "Product", "Distinct(ProductName)");
             CommanHelper.ComboBoxItem(cmbsubgroup, "Product", "Distinct(SubGroup)");

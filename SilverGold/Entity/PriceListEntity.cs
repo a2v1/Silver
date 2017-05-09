@@ -21,7 +21,7 @@ namespace SilverGold.Entity
         public string UserId { get; set; }
         public int Sno { get; set; }
 
-        public void InsertPriceList(DateTime _TrDate, String _PartyCat, String _PartyName, String _Category, String _Product, Decimal _Westage, Decimal _LabourRs, String _TranType, String _Company, String _UserId, OleDbConnection _Con, OleDbTransaction _Tran)
+        public void InsertPriceList(String _BillNo, DateTime _TrDate, String _PartyCat, String _PartyName, String _Category, String _Product, Decimal _Westage, Decimal _LabourRs, String _TranType, String _Company, String _UserId, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
@@ -29,9 +29,10 @@ namespace SilverGold.Entity
             {
                 _Con.Open();
             }
-            strInsert = "INSERT INTO PriceList(TrDate, PartyCat,PartyName,Category,Product,Westage,LabourRs,TranType,Company,UserId )VALUES(@TrDate, @PartyCat,@PartyName,@Category,@Product,@Westage,@LabourRs,@TranType,@Company,@UserId)";
+            strInsert = "INSERT INTO PriceList(BillNo,TrDate, PartyCat,PartyName,Category,Product,Westage,LabourRs,TranType,Company,UserId )VALUES(@BillNo,@TrDate, @PartyCat,@PartyName,@Category,@Product,@Westage,@LabourRs,@TranType,@Company,@UserId)";
             cmdInsert = new OleDbCommand(strInsert, _Con, _Tran);
             cmdInsert.CommandType = CommandType.Text;
+            cmdInsert.Parameters.AddWithValue("@BillNo", _BillNo);
             cmdInsert.Parameters.AddWithValue("@TrDate", _TrDate);
             cmdInsert.Parameters.AddWithValue("@PartyCat", _PartyCat);
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);

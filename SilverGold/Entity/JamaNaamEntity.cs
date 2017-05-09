@@ -73,7 +73,7 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@Narration", _Narration);
             cmdInsert.Parameters.AddWithValue("@TranType", _TranType);
             cmdInsert.Parameters.AddWithValue("@EntryFrom", _EntryFrom);
-            cmdInsert.Parameters.AddWithValue("@TunchSno", _TunchSno);
+            cmdInsert.Parameters.AddWithValue("@TunchSno", _TunchSno);            
             cmdInsert.Parameters.AddWithValue("@Company", _Company);
             cmdInsert.Parameters.AddWithValue("@UserId", _UserId);
             cmdInsert.ExecuteNonQuery();

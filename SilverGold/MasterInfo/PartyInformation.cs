@@ -380,7 +380,7 @@ namespace SilverGold.MasterInfo
 
 
 
-            CommanHelper.BindPartyCategory(cmbCategory);
+            CommanHelper.BindMetalCategory(cmbCategory);
             for (int i = 0; i <= 365; i++)
             {
                 cmbDays.Items.Add(i);

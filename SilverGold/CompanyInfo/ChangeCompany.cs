@@ -113,7 +113,7 @@ namespace SilverGold.CompanyInfo
         {
             try
             {
-                //Fun_ChangeCompany();
+                
             }
             catch (Exception ex)
             {

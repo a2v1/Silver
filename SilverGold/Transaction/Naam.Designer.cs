@@ -80,6 +80,13 @@
             this.cmbProduct_PriceList = new System.Windows.Forms.ComboBox();
             this.cmbPartyName_PriseList = new System.Windows.Forms.ComboBox();
             this.lblTunchPending = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.SaveStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.RefreshStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrintStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PopUpStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PriceListStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -89,6 +96,7 @@
             this.pnlpopup.SuspendLayout();
             this.grpPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -273,6 +281,10 @@
             this.dataGridView1.Size = new System.Drawing.Size(747, 174);
             this.dataGridView1.TabIndex = 48;
             this.dataGridView1.TabStop = false;
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // Grpanel
             // 
@@ -452,6 +464,9 @@
             this.cmbPopUp.Sorted = true;
             this.cmbPopUp.TabIndex = 0;
             this.cmbPopUp.SelectedIndexChanged += new System.EventHandler(this.cmbPopUp_SelectedIndexChanged);
+            this.cmbPopUp.Enter += new System.EventHandler(this.cmbPopUp_Enter);
+            this.cmbPopUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPopUp_KeyPress);
+            this.cmbPopUp.Leave += new System.EventHandler(this.cmbPopUp_Leave);
             // 
             // dateTimePicker1
             // 
@@ -461,6 +476,8 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 59;
+            this.dateTimePicker1.CloseUp += new System.EventHandler(this.dateTimePicker1_CloseUp);
+            this.dateTimePicker1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker1_KeyPress);
             // 
             // btnClose
             // 
@@ -531,6 +548,8 @@
             this.listBox1.Size = new System.Drawing.Size(191, 147);
             this.listBox1.TabIndex = 60;
             this.listBox1.Visible = false;
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.listBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBox1_KeyPress);
             // 
             // grpPriceList
             // 
@@ -545,9 +564,9 @@
             this.grpPriceList.Controls.Add(this.dtpFrom);
             this.grpPriceList.Controls.Add(this.cmbProduct_PriceList);
             this.grpPriceList.Controls.Add(this.cmbPartyName_PriseList);
-            this.grpPriceList.Location = new System.Drawing.Point(948, 279);
+            this.grpPriceList.Location = new System.Drawing.Point(959, 286);
             this.grpPriceList.Name = "grpPriceList";
-            this.grpPriceList.Size = new System.Drawing.Size(306, 349);
+            this.grpPriceList.Size = new System.Drawing.Size(298, 345);
             this.grpPriceList.TabIndex = 61;
             this.grpPriceList.TabStop = false;
             this.grpPriceList.Text = "Price List";
@@ -556,12 +575,13 @@
             // btnClose_PriceList
             // 
             this.btnClose_PriceList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose_PriceList.Location = new System.Drawing.Point(225, 317);
+            this.btnClose_PriceList.Location = new System.Drawing.Point(215, 317);
             this.btnClose_PriceList.Name = "btnClose_PriceList";
             this.btnClose_PriceList.Size = new System.Drawing.Size(75, 23);
             this.btnClose_PriceList.TabIndex = 4;
             this.btnClose_PriceList.Text = "Close";
             this.btnClose_PriceList.UseVisualStyleBackColor = true;
+            this.btnClose_PriceList.Click += new System.EventHandler(this.btnClose_PriceList_Click);
             // 
             // dataGridView2
             // 
@@ -571,7 +591,7 @@
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(21, 124);
+            this.dataGridView2.Location = new System.Drawing.Point(11, 124);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
@@ -581,7 +601,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(170, 98);
+            this.label8.Location = new System.Drawing.Point(160, 98);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 13);
             this.label8.TabIndex = 40;
@@ -590,7 +610,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 98);
+            this.label7.Location = new System.Drawing.Point(8, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 39;
@@ -599,7 +619,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 74);
+            this.label6.Location = new System.Drawing.Point(8, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 38;
@@ -608,7 +628,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 49);
+            this.label4.Location = new System.Drawing.Point(8, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 37;
@@ -617,7 +637,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 25);
+            this.label1.Location = new System.Drawing.Point(8, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 36;
@@ -627,35 +647,43 @@
             // 
             this.dtpTo.CustomFormat = "dd/MM/yyyy";
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(213, 95);
+            this.dtpTo.Location = new System.Drawing.Point(203, 95);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(87, 20);
             this.dtpTo.TabIndex = 3;
+            this.dtpTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpTo_KeyPress);
             // 
             // dtpFrom
             // 
             this.dtpFrom.CustomFormat = "dd/MM/yyyy";
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(63, 95);
+            this.dtpFrom.Location = new System.Drawing.Point(53, 95);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(88, 20);
             this.dtpFrom.TabIndex = 2;
+            this.dtpFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpFrom_KeyPress);
             // 
             // cmbProduct_PriceList
             // 
             this.cmbProduct_PriceList.FormattingEnabled = true;
-            this.cmbProduct_PriceList.Location = new System.Drawing.Point(113, 44);
+            this.cmbProduct_PriceList.Location = new System.Drawing.Point(103, 44);
             this.cmbProduct_PriceList.Name = "cmbProduct_PriceList";
             this.cmbProduct_PriceList.Size = new System.Drawing.Size(187, 21);
             this.cmbProduct_PriceList.TabIndex = 1;
+            this.cmbProduct_PriceList.Enter += new System.EventHandler(this.cmbProduct_PriceList_Enter);
+            this.cmbProduct_PriceList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProduct_PriceList_KeyPress);
+            this.cmbProduct_PriceList.Leave += new System.EventHandler(this.cmbProduct_PriceList_Leave);
             // 
             // cmbPartyName_PriseList
             // 
             this.cmbPartyName_PriseList.FormattingEnabled = true;
-            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(113, 20);
+            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(103, 20);
             this.cmbPartyName_PriseList.Name = "cmbPartyName_PriseList";
             this.cmbPartyName_PriseList.Size = new System.Drawing.Size(187, 21);
             this.cmbPartyName_PriseList.TabIndex = 0;
+            this.cmbPartyName_PriseList.Enter += new System.EventHandler(this.cmbPartyName_PriseList_Enter);
+            this.cmbPartyName_PriseList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPartyName_PriseList_KeyPress);
+            this.cmbPartyName_PriseList.Leave += new System.EventHandler(this.cmbPartyName_PriseList_Leave);
             // 
             // lblTunchPending
             // 
@@ -667,6 +695,65 @@
             this.lblTunchPending.Size = new System.Drawing.Size(115, 15);
             this.lblTunchPending.TabIndex = 62;
             this.lblTunchPending.Text = "lblTunchPending";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveStripMenuItem1,
+            this.DeleteStripMenuItem2,
+            this.RefreshStripMenuItem3,
+            this.PrintStripMenuItem4,
+            this.PopUpStripMenuItem5,
+            this.PriceListStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1266, 24);
+            this.menuStrip1.TabIndex = 63;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // SaveStripMenuItem1
+            // 
+            this.SaveStripMenuItem1.Name = "SaveStripMenuItem1";
+            this.SaveStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.SaveStripMenuItem1.Size = new System.Drawing.Size(25, 20);
+            this.SaveStripMenuItem1.Text = "  ";
+            // 
+            // DeleteStripMenuItem2
+            // 
+            this.DeleteStripMenuItem2.Name = "DeleteStripMenuItem2";
+            this.DeleteStripMenuItem2.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.DeleteStripMenuItem2.Size = new System.Drawing.Size(25, 20);
+            this.DeleteStripMenuItem2.Text = "  ";
+            // 
+            // RefreshStripMenuItem3
+            // 
+            this.RefreshStripMenuItem3.Name = "RefreshStripMenuItem3";
+            this.RefreshStripMenuItem3.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.RefreshStripMenuItem3.Size = new System.Drawing.Size(25, 20);
+            this.RefreshStripMenuItem3.Text = "  ";
+            // 
+            // PrintStripMenuItem4
+            // 
+            this.PrintStripMenuItem4.Name = "PrintStripMenuItem4";
+            this.PrintStripMenuItem4.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.PrintStripMenuItem4.Size = new System.Drawing.Size(25, 20);
+            this.PrintStripMenuItem4.Text = "  ";
+            // 
+            // PopUpStripMenuItem5
+            // 
+            this.PopUpStripMenuItem5.Name = "PopUpStripMenuItem5";
+            this.PopUpStripMenuItem5.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.PopUpStripMenuItem5.Size = new System.Drawing.Size(28, 20);
+            this.PopUpStripMenuItem5.Text = "   ";
+            this.PopUpStripMenuItem5.Click += new System.EventHandler(this.PopUpStripMenuItem5_Click);
+            // 
+            // PriceListStripMenuItem1
+            // 
+            this.PriceListStripMenuItem1.Name = "PriceListStripMenuItem1";
+            this.PriceListStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            this.PriceListStripMenuItem1.Size = new System.Drawing.Size(25, 20);
+            this.PriceListStripMenuItem1.Text = "  ";
+            this.PriceListStripMenuItem1.Click += new System.EventHandler(this.PriceListStripMenuItem1_Click);
             // 
             // Naam
             // 
@@ -709,6 +796,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Naam";
             this.Text = "Naam";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -724,6 +813,8 @@
             this.grpPriceList.ResumeLayout(false);
             this.grpPriceList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,5 +874,12 @@
         private System.Windows.Forms.ComboBox cmbProduct_PriceList;
         private System.Windows.Forms.ComboBox cmbPartyName_PriseList;
         private System.Windows.Forms.Label lblTunchPending;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem SaveStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem DeleteStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem RefreshStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem PrintStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem PopUpStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem PriceListStripMenuItem1;
     }
 }

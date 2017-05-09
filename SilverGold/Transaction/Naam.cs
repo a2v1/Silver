@@ -24,8 +24,18 @@ namespace SilverGold.Transaction
         List<OpeningOtherEntity> oOpeningOtherEntity = new List<OpeningOtherEntity>();
         List<TunchPendingEntity> TunchPendingList = new List<TunchPendingEntity>();
         DataGridView.HitTestInfo hti;
+        int Row_No = -1;
+
         Decimal _Old_westage = 0;
         Decimal _Old_labour = 0;
+        String _Tunch_pending_YN = "";
+        String _Tunch_Update = "";
+        int _TunchSno = -1;
+        String _Tunch1LastValue = "";
+        String _Tunch2LastValue = "";
+
+        public static int _Flage_TunchPending = 0;
+        public static int _TunchSno_TunchPending = 0;
         #endregion
         public Naam()
         {
@@ -109,9 +119,152 @@ namespace SilverGold.Transaction
                 txtfine.Text = "";
             }
         }
+
         public void AutoCode(string str1, string str2)
         {
             txtbillno.Text = str1 + CommanHelper.Pro_AutoCode("PartyTran", "BillNo", "TranType", str2);
+        }
+
+        private void Remark_Tunch(String _BillNo)
+        {
+            for (int i = 0; i <= dataGridView1.Rows.Count - 1; i++)
+            {
+                bool check_isvalid = false;
+                bool check_T1valid = false;
+                bool check_T2valid = false;
+                bool check_tunch1 = false;
+                bool check_tunch2 = false;
+
+                int tunch_penslno = Convert.ToInt32(dataGridView1.Rows[i].Cells[11].Value.ToString());
+
+                var result = TunchPendingList.Where(x => x.BillNo == _BillNo && x.TunchSno == tunch_penslno).SingleOrDefault();
+                if (result.BillNo != null)
+                {
+                    check_isvalid = true;
+
+                    if (result.Tunch1 != "")
+                    {
+                        if (result.Tunch1 == "N")
+                        {
+                            check_tunch1 = true;
+                        }
+                        else
+                        {
+                            check_tunch1 = false;
+                        }
+                        check_T1valid = true;
+                    }
+                    else
+                    {
+                        check_T1valid = false;
+                    }
+
+                    if (result.Tunch2 != "")
+                    {
+                        if (result.Tunch2 == "N")
+                        {
+                            check_tunch2 = true;
+                        }
+                        else
+                        {
+                            check_tunch2 = false;
+                        }
+                        check_T2valid = true;
+                    }
+                    else
+                    {
+                        check_T2valid = false;
+                    }
+                }
+
+                if (check_isvalid == true)
+                {
+                    if ((check_tunch1 == true) && (check_tunch2 == true))
+                    {
+                        dataGridView1.Rows[i].HeaderCell.Value = "U";
+                    }
+
+                    if ((check_tunch1 == false) && (check_tunch2 == true))
+                    {
+                        if (check_T1valid == true)
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "P1";
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "U";
+                        }
+                    }
+
+                    if ((check_tunch1 == true) && (check_tunch2 == false))
+                    {
+                        if (check_T2valid == true)
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "P2";
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "U";
+                        }
+                    }
+                    if ((check_tunch1 == false) && (check_tunch2 == false))
+                    {
+                        if ((check_T1valid == true) && (check_T2valid == true))
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "P1P2";
+                        }
+                        if ((check_T1valid == true) && (check_T2valid == false))
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "P1";
+                        }
+                        if ((check_T1valid == false) && (check_T2valid == true))
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "P2";
+                        }
+                        if ((check_T1valid == false) && (check_T2valid == false))
+                        {
+                            dataGridView1.Rows[i].HeaderCell.Value = "";
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Total()
+        {
+            if (CommanHelper.SumRow1(dataGridView1, 9) > 0)
+            {
+                lblTotalAmount.Text = CommanHelper.SumRow1(dataGridView1, 9).ToString();
+            }
+            else
+            {
+                lblTotalAmount.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 8) > 0)
+            {
+                lblTotalFine.Text = CommanHelper.SumRow1(dataGridView1, 8).ToString();
+            }
+            else
+            {
+                lblTotalFine.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 2) > 0)
+            {
+                lblTotalWeight.Text = CommanHelper.SumRow1(dataGridView1, 2).ToString();
+            }
+            else
+            {
+                lblTotalWeight.Text = "";
+            }
+            if (CommanHelper.SumRow1(dataGridView1, 3) > 0)
+            {
+                lblTotalPcs.Text = CommanHelper.SumRow1(dataGridView1, 3).ToString();
+            }
+            else
+            {
+                lblTotalPcs.Text = "";
+            }
+
         }
 
         private void _Clear()
@@ -131,6 +284,235 @@ namespace SilverGold.Transaction
             dataGridView2.DataSource = "";
         }
 
+        private void ClearControl()
+        {
+            lblTunchPending.Text = "";
+            _Clear();
+            CommanHelper.ComboBoxItem(cmbPopUp, "PartyTran", "Distinct(BillNo)", "TranType", "GG");
+            JamaNaamList.Clear();
+            TunchPendingList.Clear();
+            grpPriceList.Visible = false;
+            AutoCode("N", "GG");
+            dtp1.Text = DateTime.Now.ToString();
+            cmbCategory.SelectedIndex = -1;
+            Cmbparty.SelectedIndex = -1;
+            dataGridView1.DataSource = JamaNaamList.ToList();
+            Row_No = -1;
+            cmbGroup.SelectedIndex = -1;
+            cmbGroup.Text = "";
+            cmbproduct.Items.Clear();
+            cmbproduct.Text = "";
+            txtweight.Clear();
+            txtpcs.Clear();
+            txttunch1.Clear();
+            txttunch2.Clear();
+            txtwestage.Clear();
+            txtlabourrs.Clear();
+            txtfine.Clear();
+            txtamount.Clear();
+            txtdescription.Clear();
+            cmbCategory.Focus();
+        }
+
+        public void GetDetails(String _BillNo)
+        {
+            if (_BillNo != "")
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                OleDbCommand cmd = new OleDbCommand("Select BillNo,TrDate,MetalCategory,PartyName,PGroup, Product, Weight, Pcs, Tunch1, Tunch2, Westage, LaboursRate,Credit, Amount, Narration,TunchSno,Sno From PartyTran Where TranType = 'GG' And BillNo = '" + _BillNo + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                JamaNaamList.Clear();
+                while (dr.Read())
+                {
+                    txtbillno.Text = dr["BillNo"].ToString();
+                    dtp1.Text = dr["TrDate"].ToString();
+                    cmbCategory.Text = dr["MetalCategory"].ToString();
+                    Cmbparty.Text = dr["PartyName"].ToString();
+
+                    JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
+                    oJamaNaamEntity.PGroup = dr["PGroup"].ToString();
+                    oJamaNaamEntity.Product = dr["Product"].ToString();
+                    oJamaNaamEntity.Weight = Conversion.ConToDec(dr["Weight"].ToString());
+                    oJamaNaamEntity.Pcs = Conversion.ConToDec(dr["Pcs"].ToString());
+                    oJamaNaamEntity.Tunch1 = Conversion.ConToDec(dr["Tunch1"].ToString());
+                    oJamaNaamEntity.Tunch2 = Conversion.ConToDec(dr["Tunch2"].ToString());
+                    oJamaNaamEntity.Westage = Conversion.ConToDec(dr["Westage"].ToString());
+                    oJamaNaamEntity.LaboursRate = Conversion.ConToDec(dr["LaboursRate"].ToString());
+                    oJamaNaamEntity.Fine = Conversion.ConToDec(dr["Credit"].ToString());
+                    oJamaNaamEntity.Amount = Conversion.ConToDec(dr["Amount"].ToString());
+                    oJamaNaamEntity.Narration = dr["Narration"].ToString();
+                    oJamaNaamEntity.TunchSno = Conversion.ConToInt(dr["TunchSno"].ToString());
+                    oJamaNaamEntity.Sno = Conversion.ConToInt(dr["Sno"].ToString());
+                    JamaNaamList.Add(oJamaNaamEntity);
+                }
+                dr.Close();
+                dataGridView1.DataSource = JamaNaamList.ToList();
+
+                cmd.CommandText = "Select BillNo,TrDate,PartyCate,PartyName,Category,Product,Weight,TunchValue1,TunchValue2,Tunch1,Tunch2,InvoiceType,TunchSno,Company,UserId from TunchPending Where InvoiceType = 'GG' And BillNo = '" + _BillNo + "'";
+                dr = cmd.ExecuteReader();
+                TunchPendingList.Clear();
+                while (dr.Read())
+                {
+                    TunchPendingEntity oTunchPendingEntity = new TunchPendingEntity();
+                    oTunchPendingEntity.AddTunchPending(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text.Trim()), dr["PartyCate"].ToString().Trim(), dr["PartyName"].ToString().Trim(), dr["Category"].ToString().Trim(), dr["Product"].ToString().Trim(), Conversion.ConToDec(dr["Weight"].ToString().Trim()), Conversion.ConToDec(dr["TunchValue1"].ToString().Trim()), Conversion.ConToDec(dr["TunchValue2"].ToString().Trim()), dr["Tunch1"].ToString().Trim(), dr["Tunch2"].ToString().Trim(), dr["InvoiceType"].ToString().Trim(), Conversion.ConToInt(dr["TunchSno"].ToString().Trim()), dr["Company"].ToString().Trim(), dr["UserId"].ToString().Trim());
+                    TunchPendingList.Add(oTunchPendingEntity);
+                }
+                dr.Close();
+                con.Close();
+
+
+                if (_Flage_TunchPending == 1 && _TunchSno_TunchPending != 0)
+                {
+                    var _Select = JamaNaamList.Where(x => x.TunchSno == _TunchSno_TunchPending).SingleOrDefault();
+
+                    int _SelectRow = 0;
+                    foreach (var item in JamaNaamList)
+                    {
+
+                        if (_TunchSno_TunchPending == item.TunchSno)
+                        {
+                            dataGridView1.Rows[_SelectRow].Selected = true;
+                            dataGridView1.CurrentCell = dataGridView1.Rows[_SelectRow].Cells[1];
+                        }
+                        _SelectRow++;
+                    }
+                    //   dataGridView1.Rows[Row_No].Selected = true;
+
+                    cmbGroup.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmbproduct.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    txtweight.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    txttunch1.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    txttunch2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+                    txtfine.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
+                    txtamount.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
+                    txtdescription.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+                    _TunchSno = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+
+                    Row_No = Convert.ToInt32(dataGridView1.CurrentRow.Cells[12].Value.ToString());
+                    string remark = Remark_Tunch1(_BillNo, _TunchSno);
+                    if ((remark == "P1") || (remark == "P1P2"))
+                    {
+                        txttunch1.Focus();
+                    }
+                    if (remark == "P2")
+                    {
+                        txttunch2.Focus();
+                    }
+
+                }
+                Remark_Tunch(txtbillno.Text);
+            }
+        }
+
+        private string Remark_Tunch1(string _BillNo, int _TunchSno)
+        {
+            var result = TunchPendingList.Where(x => x.BillNo == _BillNo && x.TunchSno == _TunchSno).SingleOrDefault();
+            bool check_isvalid = false;
+            bool check_T1valid = false;
+            bool check_T2valid = false;
+            bool check_tunch1 = false;
+            bool check_tunch2 = false;
+            string remark = "";
+            if (result.BillNo != null)
+            {
+                check_isvalid = true;
+
+                if (result.Tunch1 != "")
+                {
+                    if (result.Tunch1 == "N")
+                    {
+                        check_tunch1 = true;
+                    }
+                    else
+                    {
+                        check_tunch1 = false;
+                    }
+                    check_T1valid = true;
+                }
+                else
+                {
+                    check_T1valid = false;
+                }
+
+                if (result.Tunch2 != "")
+                {
+                    if (result.Tunch2 == "N")
+                    {
+                        check_tunch2 = true;
+                    }
+                    else
+                    {
+                        check_tunch2 = false;
+                    }
+                    check_T2valid = true;
+                }
+                else
+                {
+                    check_T2valid = false;
+                }
+            }
+
+            if (check_isvalid == true)
+            {
+                if ((check_tunch1 == true) && (check_tunch2 == true))
+                {
+                    remark = "U";
+                }
+
+                if ((check_tunch1 == false) && (check_tunch2 == true))
+                {
+                    if (check_T1valid == true)
+                    {
+                        remark = "P1";
+                    }
+                    else
+                    {
+                        remark = "U";
+                    }
+                }
+
+                if ((check_tunch1 == true) && (check_tunch2 == false))
+                {
+                    if (check_T2valid == true)
+                    {
+                        remark = "P2";
+                    }
+                    else
+                    {
+                        remark = "U";
+                    }
+                }
+                if ((check_tunch1 == false) && (check_tunch2 == false))
+                {
+                    if ((check_T1valid == true) && (check_T2valid == true))
+                    {
+                        remark = "P1P2";
+                    }
+                    if ((check_T1valid == true) && (check_T2valid == false))
+                    {
+                        remark = "P1";
+                    }
+                    if ((check_T1valid == false) && (check_T2valid == true))
+                    {
+                        remark = "P2";
+                    }
+                    if ((check_T1valid == false) && (check_T2valid == false))
+                    {
+                        remark = "";
+                    }
+                }
+            }
+            return remark;
+        }
+
+
+
         #endregion
 
         private void Naam_Load(object sender, EventArgs e)
@@ -147,13 +529,14 @@ namespace SilverGold.Transaction
             JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
             oJamaNaamEntity.BindGridColumn(dataGridView1);
             oJamaNaamEntity.SetCreditLimitGridView_ColumnWith(dataGridView1);
-
             _Clear();
-            oOpeningOtherEntity = CommanHelper.OpeningOther();
-            cmbCategory.DataSource = oOpeningOtherEntity;
-            cmbCategory.DisplayMember = "Name";
-            cmbCategory.SelectedIndex = -1;
 
+            this.SaveStripMenuItem1.Click += new EventHandler(btnSave_Click);
+            this.DeleteStripMenuItem2.Click += new EventHandler(btnDelete_Click);
+            this.RefreshStripMenuItem3.Click += new EventHandler(btnRefresh_Click);
+            this.PopUpStripMenuItem5.Click += new EventHandler(btnPrint_Click);
+
+            CommanHelper.BindMetalCategory(cmbCategory);
             CommanHelper.ComboBoxItem(cmbGroup, "Product", "Distinct(PGroup)");
             CommanHelper.ComboBoxItem(cmbPopUp, "PartyTran", "Distinct(BillNo)", "TranType", "GG");
             CommanHelper.GetParty(Cmbparty, "PARTY");
@@ -324,7 +707,226 @@ namespace SilverGold.Transaction
         private void btnOk_Click(object sender, EventArgs e)
         {
             try
-            { }
+            {
+
+                String _Category = "";
+                String _PartyName = "";
+                String _PartyCategory = "";
+                _Category = cmbCategory.Text;
+                _PartyName = Cmbparty.Text.Trim();
+                _PartyCategory = CommanHelper.GetColumnValue("Category", "PartyDetails", "PartyName", Cmbparty.Text.Trim());
+                if (CommanHelper.VarifiedValue("PartyDetails", "PartyName", "Type", "Party", Cmbparty.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter valid Party", "NAAM GIVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cmbparty.Focus();
+                    return;
+                }
+
+
+                if (CommanHelper.VarifiedValue("Product", "PGroup", cmbGroup.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter Valid Product Category", "NAAM GIVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbGroup.Focus();
+                    return;
+                }
+
+                if (CommanHelper.VarifiedValue("Product", "ProductName", cmbproduct.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Enter valid Product", "NAAM GIVING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbproduct.Focus();
+                    return;
+                }
+                _Tunch_pending_YN = CommanHelper.GetColumnValue("RawDefine", "Product", "ProductName", cmbproduct.Text.Trim());
+                if (_TunchSno == -1)
+                {
+                    if (TunchPendingList.Count() == 0)
+                    {
+                        _TunchSno = CommanHelper.Get_Tunch_Sl_No("GG");
+                    }
+                    else
+                    {
+                        _TunchSno = TunchPendingList.Max(x => x.TunchSno) + 1;
+                        if (_TunchSno < CommanHelper.Get_Tunch_Sl_No("GG"))
+                        {
+                            _TunchSno = CommanHelper.Get_Tunch_Sl_No("GG");
+                        }
+                    }
+                }
+                if (txtbillno.Text == "")
+                {
+                    txtbillno.Text = 'N' + CommanHelper.Pro_AutoCode("PartyTran", "BillNo", "TranType", "GG");
+                }
+
+
+                if (Row_No != -1)
+                {
+                    //----Update JAMA Data
+                    var result = (from r in JamaNaamList where r.Sno == Row_No select r).SingleOrDefault();
+                    result.PGroup = cmbGroup.Text.Trim();
+                    result.Product = cmbproduct.Text.Trim();
+                    result.Weight = Conversion.ConToDec(txtweight.Text.Trim());
+                    result.Pcs = Conversion.ConToDec(txtpcs.Text.Trim());
+                    result.Tunch1 = Conversion.ConToDec(txttunch1.Text.Trim());
+                    result.Tunch2 = Conversion.ConToDec(txttunch2.Text.Trim());
+                    result.Westage = Conversion.ConToDec(txtwestage.Text.Trim());
+                    result.LaboursRate = Conversion.ConToDec(txtlabourrs.Text.Trim());
+                    result.Fine = Conversion.ConToDec(txtfine.Text.Trim());
+                    result.Amount = Conversion.ConToDec6(txtamount.Text.Trim());
+                    result.Narration = txtdescription.Text.Trim();
+                    result.TunchSno = _TunchSno;
+
+                    if (_Tunch_Update != "U")
+                    {
+                        if (_Tunch_pending_YN == "Y")
+                        {
+                            //---  Update TunchPending Data
+                            var uTunchPending = TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault();
+                            uTunchPending.BillNo = txtbillno.Text.Trim();
+                            uTunchPending.TrDate = Conversion.GetDateStr(dtp1.Text.Trim());
+                            uTunchPending.PartyCate = _PartyCategory;
+                            uTunchPending.PartyName = _PartyName;
+                            uTunchPending.Category = _Category;
+                            uTunchPending.Product = cmbproduct.Text.Trim();
+                            uTunchPending.Weight = Conversion.ConToDec(txtweight.Text.Trim());
+                            uTunchPending.TunchValue1 = Conversion.ConToDec(txttunch1.Text.Trim());
+                            uTunchPending.TunchValue2 = Conversion.ConToDec(txttunch2.Text.Trim());
+
+                            if (_Flage_TunchPending == 1)
+                            {
+                                var update = TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault();
+                                update.Tunch1 = "N";
+
+                                if (TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault().Tunch2 == "Y")
+                                {
+                                    if (txttunch2.Text.Trim() != "")
+                                    {
+                                        var updateTunch2 = TunchPendingList.Where(x => x.TunchSno == _TunchSno_TunchPending).FirstOrDefault();
+                                        updateTunch2.Tunch2 = "N";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("Do You Want change Updated Tunch ?", "NAAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            txttunch1.Text = _Tunch1LastValue;
+                            txttunch2.Text = _Tunch2LastValue;
+                        }
+                    }
+                }
+                else
+                {
+                    var max = 0;
+                    if (JamaNaamList.Count > 0)
+                    {
+                        max = JamaNaamList.Max(x => x.Sno) + 1;
+                    }
+
+                    JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
+                    oJamaNaamEntity.AddJamaNaam(cmbGroup.Text.Trim(), cmbproduct.Text.Trim(), Conversion.ConToDec(txtweight.Text.Trim()), Conversion.ConToDec(txtpcs.Text.Trim()), Conversion.ConToDec(txttunch1.Text.Trim()), Conversion.ConToDec(txttunch2.Text.Trim()), Conversion.ConToDec(txtwestage.Text.Trim()), Conversion.ConToDec(txtlabourrs.Text.Trim()), Conversion.ConToDec(txtfine.Text.Trim()), Conversion.ConToDec6(txtamount.Text.Trim()), txtdescription.Text.Trim(), _TunchSno, max);
+                    JamaNaamList.Add(oJamaNaamEntity);
+
+                    if (_Tunch_pending_YN == "Y")
+                    {
+                        TunchPendingEntity oTunchPendingEntity = new TunchPendingEntity();
+                        oTunchPendingEntity.AddTunchPending(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text.Trim()), _PartyCategory, _PartyName, _Category, cmbproduct.Text.Trim(), Conversion.ConToDec(txtweight.Text.Trim()), Conversion.ConToDec(txttunch1.Text.Trim()), Conversion.ConToDec(txttunch2.Text.Trim()), "Y", "", "GG", _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString());
+                        TunchPendingList.Add(oTunchPendingEntity);
+                    }
+                }
+
+                if (_Tunch_Update != "U")
+                {
+                    if (_Tunch_pending_YN == "Y")
+                    {
+                        if (cmbPopUp.Text == "")
+                        {
+                            if (_Flage_TunchPending == 0)
+                            {
+                                if (_TunchSno != 0)
+                                {
+                                    DialogResult result;
+                                    if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
+                                    {
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "NAAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                    }
+                                    else
+                                    {
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "NAAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                    }
+
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_Flage_TunchPending == 0)
+                            {
+                                if (_TunchSno != 0)
+                                {
+                                    DialogResult result;
+                                    if ((_Tunch_Update == "P1") || (_Tunch_Update == ""))
+                                    {
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "NAAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                    }
+                                    else
+                                    {
+                                        result = MessageBox.Show("Do You Want Tunch Pending 2", "NAAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                    }
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "Y";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (_TunchSno != 0)
+                                        {
+                                            TunchPendingList.Where(x => x.TunchSno == _TunchSno && x.BillNo == txtbillno.Text.Trim()).FirstOrDefault().Tunch2 = "";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                dataGridView1.DataSource = JamaNaamList.ToList();
+                Remark_Tunch(txtbillno.Text.Trim());
+                Total();
+                _TunchSno = -1;
+                Row_No = -1;
+                cmbproduct.SelectedIndex = -1;
+                cmbproduct.Text = "";
+                txtweight.Clear();
+                txtpcs.Clear();
+                txttunch1.Clear();
+                txttunch2.Clear();
+                txtwestage.Clear();
+                txtlabourrs.Clear();
+                txtfine.Clear();
+                txtamount.Clear();
+                txtdescription.Clear();
+                cmbGroup.Focus();
+
+            }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
@@ -334,27 +936,152 @@ namespace SilverGold.Transaction
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
-            { }
+            {
+                if (cmbCategory.Text.Trim() == "")
+                {
+                    cmbCategory.Focus();
+                    return;
+                }
+
+                if (Cmbparty.Text.Trim() == "")
+                {
+                    Cmbparty.Focus();
+                    return;
+                }
+                if (dataGridView1.Rows.Count == 0)
+                {
+                    MessageBox.Show("Some Data is Missing", "NAAM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbproduct.Focus();
+                    return;
+                }
+
+
+                _TunchSno = 0;
+                String _Category = "";
+                String _PartyName = "";
+                String _PartyCategory = "";
+                _Category = cmbCategory.Text;
+                _PartyName = Cmbparty.Text.Trim();
+                _PartyCategory = CommanHelper.GetColumnValue("Category", "PartyDetails", "PartyName", Cmbparty.Text.Trim());
+                JamaNaamEntity oJamaNaamEntity = new JamaNaamEntity();
+                PriceListEntity oPriceListEntity = new PriceListEntity();
+                TunchPendingEntity oTunchPendingEntity = new TunchPendingEntity();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+                Tran = con.BeginTransaction();
+
+                OleDbCommand cmd = new OleDbCommand("Delete From PartyTran Where BillNo = '" + txtbillno.Text.Trim() + "'", con, Tran);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "Delete From TunchPending Where BillNo = '" + txtbillno.Text.Trim() + "'";
+                cmd.ExecuteNonQuery();
+
+                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                {
+                    String _PGroup = "";
+                    String _Product = "";
+                    Decimal _Weight = 0;
+                    Decimal _Pcs = 0;
+                    Decimal _Tunch1 = 0;
+                    Decimal _Tunch2 = 0;
+                    Decimal _Westage = 0;
+                    Decimal _LabourFine = 0;
+                    Decimal _Fine = 0;
+                    Decimal _Amount = 0;
+                    String _Narration = "";
+
+                    _PGroup = dr.Cells[0].Value.ToString();
+                    _Product = dr.Cells[1].Value.ToString();
+                    _Weight = Conversion.ConToDec6(dr.Cells[2].Value.ToString());
+                    _Pcs = Conversion.ConToDec6(dr.Cells[3].Value.ToString());
+                    _Tunch1 = Conversion.ConToDec6(dr.Cells[4].Value.ToString());
+                    _Tunch2 = Conversion.ConToDec6(dr.Cells[5].Value.ToString());
+                    _Westage = Conversion.ConToDec6(dr.Cells[6].Value.ToString());
+                    _LabourFine = Conversion.ConToDec6(dr.Cells[7].Value.ToString());
+                    _Fine = Conversion.ConToDec6(dr.Cells[8].Value.ToString());
+                    _Amount = Conversion.ConToDec6(dr.Cells[9].Value.ToString());
+                    _Narration = dr.Cells[10].Value.ToString();
+                    _TunchSno = Conversion.ConToInt(dr.Cells[11].Value.ToString());
+
+                    oJamaNaamEntity.InsertJamaNaam(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text), _Category, _PartyCategory, _PartyName, _PGroup, _Product, _Weight, _Pcs, _Tunch1, _Tunch2, _Westage, _LabourFine, 0, _Fine, _Amount, _Narration, "GG", this.FindForm().Name, _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+                    if (_Old_labour != _LabourFine || _Old_westage != _Westage)
+                    {
+                        oPriceListEntity.InsertPriceList(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text), _PartyCategory, _PartyName, _Category, _Product, _Westage, _LabourFine, "GG", CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+                    }
+                }
+                foreach (var item in TunchPendingList)
+                {
+                    oTunchPendingEntity.InsertTunchPending(item.BillNo, item.TrDate, item.PartyCate, item.PartyName, item.Category, item.Product, item.Weight, item.TunchValue1, item.TunchValue2, item.Tunch1, item.Tunch2, item.InvoiceType, item.TunchSno, item.Company, item.UserId, con, Tran);
+                }
+
+                Tran.Commit();
+                con.Close();
+                MessageBox.Show("Data Successfully Saved.....", "NAAM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearControl();
+                if (_Flage_TunchPending == 1)
+                {
+                    this.Close();
+                }
+            }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+                Tran.Rollback();
+                con.Close();
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
-            { }
+            {
+                if (Cmbparty.Text.ToString() != "")
+                {
+                    if (MessageBox.Show("Do You Want To Delete Data", "NAAM", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        int _TranCount = 0;
+                        Tran = null;
+                        if (con.State == ConnectionState.Open)
+                        {
+                            con.Close();
+                        }
+                        con.Open();
+                        Tran = con.BeginTransaction();
+                        OleDbCommand cmd = new OleDbCommand("Delete From PartyTran Where BillNo = '" + txtbillno.Text.Trim() + "'", con, Tran);
+                        _TranCount = cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = "Delete From TunchPending Where BillNo = '" + txtbillno.Text.Trim() + "' AND InvoiceType = 'GG'";
+                        cmd.ExecuteNonQuery();
+
+                        Tran.Commit();
+                        con.Close();
+                        if (_TranCount > 0)
+                        {
+                            MessageBox.Show("Data SuccessFully Deleted", "NAAM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Any Data Found!", "NAAM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        ClearControl();
+                    }
+                }
+            }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+                Tran.Rollback();
+                con.Close();
             }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             try
-            { }
+            { ClearControl(); }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
@@ -384,7 +1111,10 @@ namespace SilverGold.Transaction
         private void cmbPopUp_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            { }
+            {
+                GetDetails(cmbPopUp.Text.Trim());
+                Total();
+            }
             catch (Exception ex)
             {
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
@@ -619,26 +1349,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                //if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                //{
-                //}
-                //else
-                //{
-                //    e.Handled = e.KeyChar != (char)Keys.Back;
-                //}
-
-
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-                {
-                    e.Handled = true;
-                }
-
-                // only allow one decimal point
-                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-                {
-                    e.Handled = true;
-                }
-
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtpcs.Focus();
@@ -705,13 +1416,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txttunch1.Focus();
@@ -764,13 +1469,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txttunch2.Focus();
@@ -822,13 +1521,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtwestage.Focus();
@@ -880,13 +1573,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtlabourrs.Focus();
@@ -950,13 +1637,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtdescription.Focus();
@@ -1031,6 +1712,396 @@ namespace SilverGold.Transaction
                 {
                     txtdescription.TabStop = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.BackColor = Color.Aqua;
+                pnlpopup.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    dataGridView1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.BackColor = Color.White;
+                pnlpopup.BackColor = Color.RosyBrown;
+                pnlpopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+
+        }
+
+        private void dateTimePicker1_CloseUp(object sender, EventArgs e)
+        {
+            try
+            {
+                listBox1.Visible = true;
+                listBox1.Focus();
+                listBox1.Items.Clear();
+
+                new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.GetDateStr(dateTimePicker1.Text), "GG", con);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+
+                    ClearControl();
+                    listBox1.Visible = true;
+                    listBox1.Focus();
+                    listBox1.Items.Clear();
+                    new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.GetDateStr(dateTimePicker1.Text), "GG", con);
+
+                    listBox1.Focus();
+                    if (listBox1.Items.Count > 0)
+                    {
+                        listBox1.SelectedIndex = 0;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void listBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    string _Billno = "";
+                    _Billno = listBox1.SelectedItem.ToString().Substring(0, 5);
+                    cmbPopUp.Text = _Billno;
+                    GetDetails(_Billno);
+                    Total();
+                    dataGridView1.Focus();
+                }
+                listBox1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                string _Billno = "";
+
+                _Billno = listBox1.SelectedItem.ToString().Substring(0, 5);
+                cmbPopUp.Text = _Billno;
+                GetDetails(_Billno);
+                Total();
+
+                listBox1.Visible = false;
+                cmbproduct.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    int SNo = Convert.ToInt32(dataGridView1.CurrentRow.Cells[12].Value.ToString());
+                    int TunchSno = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+                    var result = (from r in JamaNaamList where r.Sno == SNo select r).SingleOrDefault();
+                    if (result != null)
+                        JamaNaamList.Remove(result);
+
+                    var deleteTunch = (from x in TunchPendingList where x.TunchSno == TunchSno select x).SingleOrDefault();
+                    if (deleteTunch != null)
+                        TunchPendingList.Remove(deleteTunch);
+
+                    dataGridView1.DataSource = JamaNaamList.ToList();
+                    Total();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    _Tunch_Update = "";
+                    cmbGroup.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmbproduct.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    txtweight.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    _Tunch1LastValue = txttunch1.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    _Tunch2LastValue = txttunch2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+                    txtfine.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
+                    txtamount.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
+                    txtdescription.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+                    _TunchSno = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+                    Row_No = Convert.ToInt32(dataGridView1.CurrentRow.Cells[12].Value.ToString());
+                    _Tunch_Update = (dataGridView1.CurrentRow.HeaderCell.Value ?? (object)"").ToString();
+                    dtp1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                hti = dataGridView1.HitTest(e.X, e.Y);
+                if (hti.RowIndex >= 0)
+                {
+                    _Tunch_Update = "";
+                    cmbGroup.Text = dataGridView1.Rows[hti.RowIndex].Cells[0].Value.ToString();
+                    cmbproduct.Text = dataGridView1.Rows[hti.RowIndex].Cells[1].Value.ToString();
+                    txtweight.Text = dataGridView1.Rows[hti.RowIndex].Cells[2].Value.ToString();
+                    txtpcs.Text = dataGridView1.Rows[hti.RowIndex].Cells[3].Value.ToString();
+                    _Tunch1LastValue = txttunch1.Text = dataGridView1.Rows[hti.RowIndex].Cells[4].Value.ToString();
+                    _Tunch2LastValue = txttunch2.Text = dataGridView1.Rows[hti.RowIndex].Cells[5].Value.ToString();
+                    txtwestage.Text = dataGridView1.Rows[hti.RowIndex].Cells[6].Value.ToString();
+                    txtlabourrs.Text = dataGridView1.Rows[hti.RowIndex].Cells[7].Value.ToString();
+                    txtfine.Text = dataGridView1.Rows[hti.RowIndex].Cells[8].Value.ToString();
+                    txtamount.Text = dataGridView1.Rows[hti.RowIndex].Cells[9].Value.ToString();
+                    txtdescription.Text = dataGridView1.Rows[hti.RowIndex].Cells[10].Value.ToString();
+                    _TunchSno = Convert.ToInt32(dataGridView1.CurrentRow.Cells[11].Value.ToString());
+                    Row_No = Convert.ToInt32(dataGridView1.Rows[hti.RowIndex].Cells[12].Value.ToString());
+                    _Tunch_Update = (dataGridView1.CurrentRow.HeaderCell.Value ?? (object)"").ToString();
+                    dtp1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void PopUpStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPopUp.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void PriceListStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PriceList_Clear();
+                grpPriceList.Visible = true;
+                CommanHelper.GetParty(cmbPartyName_PriseList, "PARTY");
+                CommanHelper.ComboBoxItem(cmbProduct_PriceList, "Product", "ProductName");
+                cmbPartyName_PriseList.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPartyName_PriseList_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPartyName_PriseList.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPartyName_PriseList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (cmbPartyName_PriseList.Text.Trim() == "")
+                    {
+                        cmbPartyName_PriseList.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        cmbProduct_PriceList.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPartyName_PriseList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPartyName_PriseList.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProduct_PriceList_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProduct_PriceList.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProduct_PriceList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (cmbProduct_PriceList.Text.Trim() == "")
+                    {
+                        cmbProduct_PriceList.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        dtpFrom.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProduct_PriceList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProduct_PriceList.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dtpFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    dtpTo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dtpTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    OleDbDataAdapter da = new OleDbDataAdapter("Select format([TrDate],\"dd/MM/yyyy\") as [Date],Westage,LabourRs From PriceList Where PartyName='" + cmbPartyName_PriseList.Text + "' And Product='" + cmbProduct_PriceList.Text + "' And [TrDate]>= #" + Conversion.GetDateStr(dtpFrom.Text.Trim()) + "# And [TrDate]<= #" + Conversion.GetDateStr(dtpTo.Text.Trim()) + "#  and TranType='GG' Order by [TrDate] desc", con);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    dataGridView2.DataSource = ds.Tables[0];
+                    this.dataGridView2.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.dataGridView2.Columns["Westage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.dataGridView2.Columns["LabourRs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnClose_PriceList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                grpPriceList.Visible = false;
+                PriceList_Clear();
             }
             catch (Exception ex)
             {

@@ -36,7 +36,6 @@ namespace SilverGold.Transaction
 
         public static int _Flage_TunchPending = 0;
         public static int _TunchSno_TunchPending = 0;
-
         #endregion
 
         public Jama()
@@ -543,10 +542,7 @@ namespace SilverGold.Transaction
             objCon = new ConnectionClass();
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
             _Clear();
-            oOpeningOtherEntity = CommanHelper.OpeningOther();
-            cmbCategory.DataSource = oOpeningOtherEntity;
-            cmbCategory.DisplayMember = "Name";
-            cmbCategory.SelectedIndex = -1;
+            CommanHelper.BindMetalCategory(cmbCategory);
 
             CommanHelper.ComboBoxItem(cmbGroup, "Product", "Distinct(PGroup)");
             CommanHelper.ComboBoxItem(cmbPopUp, "PartyTran", "Distinct(BillNo)", "TranType", "GR");
@@ -914,6 +910,7 @@ namespace SilverGold.Transaction
                 }
 
                 _TunchSno = 0;
+
                 String _Category = "";
                 String _PartyName = "";
                 String _PartyCategory = "";
@@ -966,7 +963,7 @@ namespace SilverGold.Transaction
                     oJamaNaamEntity.InsertJamaNaam(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text), _Category, _PartyCategory, _PartyName, _PGroup, _Product, _Weight, _Pcs, _Tunch1, _Tunch2, _Westage, _LabourFine, 0, _Fine, _Amount, _Narration, "GR", this.FindForm().Name, _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
                     if (_Old_labour != _LabourFine || _Old_westage != _Westage)
                     {
-                        oPriceListEntity.InsertPriceList(Conversion.GetDateStr(dtp1.Text), _PartyCategory, _PartyName, _Category, _Product, _Westage, _LabourFine, "GR", CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
+                        oPriceListEntity.InsertPriceList(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text), _PartyCategory, _PartyName, _Category, _Product, _Westage, _LabourFine, "GR", CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString(), con, Tran);
                     }
                 }
 
@@ -1002,6 +999,7 @@ namespace SilverGold.Transaction
                 {
                     if (MessageBox.Show("Do You Want To Delete Data", "JAMA", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
+                        int _TranCount = 0;
                         Tran = null;
                         if (con.State == ConnectionState.Open)
                         {
@@ -1010,14 +1008,21 @@ namespace SilverGold.Transaction
                         con.Open();
                         Tran = con.BeginTransaction();
                         OleDbCommand cmd = new OleDbCommand("Delete From PartyTran Where BillNo = '" + txtbillno.Text.Trim() + "'", con, Tran);
-                        cmd.ExecuteNonQuery();
+                        _TranCount = cmd.ExecuteNonQuery();
 
                         cmd.CommandText = "Delete From TunchPending Where BillNo = '" + txtbillno.Text.Trim() + "' AND InvoiceType = 'GR'";
                         cmd.ExecuteNonQuery();
 
                         Tran.Commit();
                         con.Close();
-                        MessageBox.Show("Data SuccessFully Deleted", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (_TranCount > 0)
+                        {
+                            MessageBox.Show("Data SuccessFully Deleted", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Any Data Found!", "JAMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         ClearControl();
                     }
                 }
@@ -1265,26 +1270,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                //if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                //{
-                //}
-                //else
-                //{
-                //    e.Handled = e.KeyChar != (char)Keys.Back;
-                //}
-
-
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-                {
-                    e.Handled = true;
-                }
-
-                // only allow one decimal point
-                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-                {
-                    e.Handled = true;
-                }
-
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtpcs.Focus();
@@ -1300,13 +1286,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txttunch1.Focus();
@@ -1322,13 +1302,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txttunch2.Focus();
@@ -1344,13 +1318,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtwestage.Focus();
@@ -1366,13 +1334,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtlabourrs.Focus();
@@ -1388,13 +1350,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '£')
-                {
-                }
-                else
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
+                CommanHelper.IsNumericTextBox(sender, e);
                 if (e.KeyChar == 13)
                 {
                     txtdescription.Focus();
@@ -2036,7 +1992,7 @@ namespace SilverGold.Transaction
                 listBox1.Focus();
                 listBox1.Items.Clear();
 
-                new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.ConToDT(dateTimePicker1.Text), "GR", con);
+                new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.GetDateStr(dateTimePicker1.Text), "GR", con);
             }
             catch (Exception ex)
             {
@@ -2055,7 +2011,7 @@ namespace SilverGold.Transaction
                     listBox1.Visible = true;
                     listBox1.Focus();
                     listBox1.Items.Clear();
-                    new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.ConToDT(dateTimePicker1.Text), "GR", con);
+                    new JamaNaamEntity().GetBillNo_ListBox(listBox1, Conversion.GetDateStr(dateTimePicker1.Text), "GR", con);
 
                     listBox1.Focus();
                     if (listBox1.Items.Count > 0)

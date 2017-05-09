@@ -1,4 +1,5 @@
-﻿using SilverGold.CompanyInfo;
+﻿using SilverGold.Comman;
+using SilverGold.CompanyInfo;
 using SilverGold.Helper;
 using SilverGold.MasterInfo;
 using SilverGold.Transaction;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -73,6 +75,25 @@ namespace SilverGold
             //    }
             //}
 
+
+            if (CommanHelper.CompName != "" && CommanHelper.UserId != "")
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    try
+                    {
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PriceList ADD BillNo Text(50)", con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                    }
+
+                }
+            }
 
         }
 

@@ -27,6 +27,17 @@ namespace SilverGold.Helper
 
         public static List<CompanyLoginEntity> CompanyLogin = new List<CompanyLoginEntity>();
 
+        public static void IsNumericTextBox(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '.'))
+            { e.Handled = true; }
+            TextBox txtDecimal = sender as TextBox;
+            if (e.KeyChar == '.' && txtDecimal.Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
+
         public static void ChangeGridFormate(DataGridView grd)
         {
 
@@ -475,7 +486,7 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void BindPartyCategory(ComboBox cmb)
+        public static void BindMetalCategory(ComboBox cmb)
         {
             try
             {

@@ -226,6 +226,7 @@
             this.dtp1.Name = "dtp1";
             this.dtp1.Size = new System.Drawing.Size(101, 20);
             this.dtp1.TabIndex = 0;
+            this.dtp1.Value = new System.DateTime(2017, 5, 9, 12, 3, 0, 0);
             this.dtp1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtp1_KeyPress);
             // 
             // panel9
@@ -631,9 +632,9 @@
             this.grpPriceList.Controls.Add(this.dtpFrom);
             this.grpPriceList.Controls.Add(this.cmbProduct_PriceList);
             this.grpPriceList.Controls.Add(this.cmbPartyName_PriseList);
-            this.grpPriceList.Location = new System.Drawing.Point(946, 309);
+            this.grpPriceList.Location = new System.Drawing.Point(956, 309);
             this.grpPriceList.Name = "grpPriceList";
-            this.grpPriceList.Size = new System.Drawing.Size(306, 349);
+            this.grpPriceList.Size = new System.Drawing.Size(298, 349);
             this.grpPriceList.TabIndex = 33;
             this.grpPriceList.TabStop = false;
             this.grpPriceList.Text = "Price List";
@@ -642,7 +643,7 @@
             // btnClose_PriceList
             // 
             this.btnClose_PriceList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose_PriceList.Location = new System.Drawing.Point(225, 317);
+            this.btnClose_PriceList.Location = new System.Drawing.Point(214, 317);
             this.btnClose_PriceList.Name = "btnClose_PriceList";
             this.btnClose_PriceList.Size = new System.Drawing.Size(75, 23);
             this.btnClose_PriceList.TabIndex = 4;
@@ -658,7 +659,7 @@
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(21, 124);
+            this.dataGridView2.Location = new System.Drawing.Point(10, 124);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
@@ -668,7 +669,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(170, 98);
+            this.label8.Location = new System.Drawing.Point(159, 98);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 13);
             this.label8.TabIndex = 40;
@@ -677,7 +678,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 98);
+            this.label7.Location = new System.Drawing.Point(7, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 39;
@@ -686,7 +687,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 74);
+            this.label6.Location = new System.Drawing.Point(7, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 38;
@@ -695,7 +696,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 49);
+            this.label4.Location = new System.Drawing.Point(7, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 37;
@@ -704,7 +705,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 25);
+            this.label1.Location = new System.Drawing.Point(7, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 36;
@@ -714,7 +715,7 @@
             // 
             this.dtpTo.CustomFormat = "dd/MM/yyyy";
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(213, 95);
+            this.dtpTo.Location = new System.Drawing.Point(202, 95);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(87, 20);
             this.dtpTo.TabIndex = 3;
@@ -724,7 +725,7 @@
             // 
             this.dtpFrom.CustomFormat = "dd/MM/yyyy";
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(63, 95);
+            this.dtpFrom.Location = new System.Drawing.Point(52, 95);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(88, 20);
             this.dtpFrom.TabIndex = 2;
@@ -733,7 +734,7 @@
             // cmbProduct_PriceList
             // 
             this.cmbProduct_PriceList.FormattingEnabled = true;
-            this.cmbProduct_PriceList.Location = new System.Drawing.Point(113, 44);
+            this.cmbProduct_PriceList.Location = new System.Drawing.Point(102, 44);
             this.cmbProduct_PriceList.Name = "cmbProduct_PriceList";
             this.cmbProduct_PriceList.Size = new System.Drawing.Size(187, 21);
             this.cmbProduct_PriceList.TabIndex = 1;
@@ -744,7 +745,7 @@
             // cmbPartyName_PriseList
             // 
             this.cmbPartyName_PriseList.FormattingEnabled = true;
-            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(113, 20);
+            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(102, 20);
             this.cmbPartyName_PriseList.Name = "cmbPartyName_PriseList";
             this.cmbPartyName_PriseList.Size = new System.Drawing.Size(187, 21);
             this.cmbPartyName_PriseList.TabIndex = 0;
