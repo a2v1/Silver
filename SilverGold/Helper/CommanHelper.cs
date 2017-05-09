@@ -454,9 +454,9 @@ namespace SilverGold.Helper
                     con.Close();
                 }
             }
-            catch (Exception exrr)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -480,9 +480,9 @@ namespace SilverGold.Helper
                     con.Close();
                 }
             }
-            catch (Exception exrr)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -500,7 +500,30 @@ namespace SilverGold.Helper
                     {
                         cmb.Items.Add(dr[0].ToString());
                     }
-                    cmb.Items.Add("COMMON");
+                   
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public static void BindMetalName(ComboBox cmb,String _Category)
+        {
+            try
+            {
+                using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+                {
+                    con.Open();
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalName) From Metal Where MetalCategory = '" + _Category + "' ORDER BY MetalName ASC", con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    cmb.Items.Clear();
+                    while (dr.Read())
+                    {
+                        cmb.Items.Add(dr[0].ToString());
+                    }
                     con.Close();
                 }
             }
@@ -776,6 +799,22 @@ namespace SilverGold.Helper
             {
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where Type = '" + _Type + "' ORDER BY PartyName ASC", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["PartyName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetCashParty(ComboBox cmb, String _CashType)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where SubGroup = '" + _CashType + "' ORDER BY PartyName ASC", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmb.Items.Clear();
                 while (dr.Read())

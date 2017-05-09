@@ -381,6 +381,7 @@ namespace SilverGold.MasterInfo
 
 
             CommanHelper.BindMetalCategory(cmbCategory);
+            cmbCategory.Items.Add("COMMON");
             for (int i = 0; i <= 365; i++)
             {
                 cmbDays.Items.Add(i);

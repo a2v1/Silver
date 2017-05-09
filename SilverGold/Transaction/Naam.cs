@@ -979,6 +979,9 @@ namespace SilverGold.Transaction
                 cmd.CommandText = "Delete From TunchPending Where BillNo = '" + txtbillno.Text.Trim() + "'";
                 cmd.ExecuteNonQuery();
 
+                cmd.CommandText = "Delete From PriceList Where BillNo = '" + txtbillno.Text.Trim() + "'";
+                cmd.ExecuteNonQuery();
+
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
                     String _PGroup = "";

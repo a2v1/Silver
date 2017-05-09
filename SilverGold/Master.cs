@@ -91,7 +91,17 @@ namespace SilverGold
                     {
                         con.Close();
                     }
-
+                    try
+                    {
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD Hazir Decimal(14,6)", con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                    }
                 }
             }
 
@@ -253,6 +263,13 @@ namespace SilverGold
             UserManagement oUserManagement = new UserManagement();
             oUserManagement.MdiParent = this;
             oUserManagement.Show();
+        }
+
+        private void cashPurchaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CashPurchase oCashPurchase = new CashPurchase();
+            oCashPurchase.MdiParent = this;
+            oCashPurchase.Show();
         }
     }
 }

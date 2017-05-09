@@ -206,6 +206,7 @@
             this.cashPurchaseToolStripMenuItem.Name = "cashPurchaseToolStripMenuItem";
             this.cashPurchaseToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.cashPurchaseToolStripMenuItem.Text = "Cash (Purchase)";
+            this.cashPurchaseToolStripMenuItem.Click += new System.EventHandler(this.cashPurchaseToolStripMenuItem_Click);
             // 
             // cashSaleToolStripMenuItem
             // 
