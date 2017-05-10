@@ -22,8 +22,28 @@ namespace SilverGold.Entity
         public decimal Amount { get; set; }
         public string Narration { get; set; }
         public string GivingType { get; set; }
+        public int TunchSno { get; set; }
         public int Sno { get; set; }
 
+        public void AddCashPurchaseSale(String _PGroup, String _Product, Decimal _Weight, Decimal _Pcs, Decimal _Tunch1, Decimal _Tunch2, Decimal _Westage, Decimal _LaboursRate, Decimal _Fine, Decimal _Mcx, Decimal _Hazir, Decimal _Amount, String _Narration, String _GivingType, int _TunchSno, int _Sno)
+        {
+            PGroup = _PGroup;
+            Product = _Product;
+            Weight = _Weight;
+            Pcs = _Pcs;
+            Tunch1 = _Tunch1;
+            Tunch2 = _Tunch2;
+            Westage = _Westage;
+            LaboursRate = _LaboursRate;
+            Fine = _Fine;
+            Mcx = _Mcx;
+            Hazir = _Hazir;
+            Amount = _Amount;
+            Narration = _Narration;
+            GivingType = _GivingType;
+            TunchSno = _TunchSno;
+            Sno = _Sno;
+        }
 
         public void BindGridColumn(DataGridView grd)
         {
@@ -72,7 +92,7 @@ namespace SilverGold.Entity
 
             DataGridViewColumn col_LabourFine = new DataGridViewTextBoxColumn();
             col_LabourFine.DataPropertyName = "LaboursRate";
-            col_LabourFine.HeaderText = "LaboursFine";
+            col_LabourFine.HeaderText = "LRate";
             col_LabourFine.Name = "LaboursRate";
             grd.Columns.Add(col_LabourFine);
 
@@ -106,10 +126,17 @@ namespace SilverGold.Entity
             col_Narration.Name = "Narration";
             grd.Columns.Add(col_Narration);
 
+            DataGridViewColumn col_GivingType = new DataGridViewTextBoxColumn();
+            col_GivingType.DataPropertyName = "GivingType";
+            col_GivingType.HeaderText = "Type";
+            col_GivingType.Name = "GivingType";
+            grd.Columns.Add(col_GivingType);
+
             DataGridViewColumn col_TunchSno = new DataGridViewTextBoxColumn();
-            col_TunchSno.DataPropertyName = "GivingType";
-            col_TunchSno.HeaderText = "Type";
-            col_TunchSno.Name = "GivingType";
+            col_TunchSno.DataPropertyName = "TunchSno";
+            col_TunchSno.HeaderText = "TunchSno";
+            col_TunchSno.Name = "TunchSno";
+            col_TunchSno.Visible = false;
             grd.Columns.Add(col_TunchSno);
 
             DataGridViewColumn col_Sno = new DataGridViewTextBoxColumn();
@@ -136,6 +163,17 @@ namespace SilverGold.Entity
             grd.Columns["Amount"].Width = 100;
             grd.Columns["Narration"].Width = 100;
             grd.Columns["GivingType"].Width = 50;
+
+            grd.Columns["Weight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Pcs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Tunch1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Tunch2"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Westage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["LaboursRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Fine"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Mcx"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Hazir"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grd.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
     }
 }

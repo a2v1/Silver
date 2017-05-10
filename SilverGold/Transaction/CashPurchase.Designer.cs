@@ -46,7 +46,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.txtnarration = new System.Windows.Forms.TextBox();
-            this.txtamount1 = new System.Windows.Forms.TextBox();
+            this.txtamount = new System.Windows.Forms.TextBox();
             this.btnok = new System.Windows.Forms.Button();
             this.txtfine = new System.Windows.Forms.TextBox();
             this.txtlabourrs = new System.Windows.Forms.TextBox();
@@ -58,7 +58,7 @@
             this.plnYN = new System.Windows.Forms.Panel();
             this.cmbPtype = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.disRs = new System.Windows.Forms.TextBox();
+            this.txtDisRs = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.Rsdr = new System.Windows.Forms.RadioButton();
             this.Rscr = new System.Windows.Forms.RadioButton();
@@ -79,7 +79,7 @@
             this.lblGFine = new System.Windows.Forms.Label();
             this.txtPhazir = new System.Windows.Forms.TextBox();
             this.txtPmcx = new System.Windows.Forms.TextBox();
-            this.txtbalence = new System.Windows.Forms.TextBox();
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.txtPamt = new System.Windows.Forms.TextBox();
             this.txtPfine = new System.Windows.Forms.TextBox();
             this.txtGfine = new System.Windows.Forms.TextBox();
@@ -110,6 +110,8 @@
             this.dtpgrp2From = new System.Windows.Forms.DateTimePicker();
             this.cmbgrp2product = new System.Windows.Forms.ComboBox();
             this.cmbgrp2partyname = new System.Windows.Forms.ComboBox();
+            this.txtbillno = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.billNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -265,7 +267,7 @@
             this.panel9.Controls.Add(this.cmbParty);
             this.panel9.Location = new System.Drawing.Point(451, 42);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(133, 25);
+            this.panel9.Size = new System.Drawing.Size(133, 24);
             this.panel9.TabIndex = 49;
             // 
             // cmbParty
@@ -309,7 +311,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 15);
             this.label2.TabIndex = 52;
-            this.label2.Text = "Cash Purchage:";
+            this.label2.Text = "Cash Purchase:";
             // 
             // label5
             // 
@@ -372,6 +374,9 @@
             this.cmbgivingtype.Name = "cmbgivingtype";
             this.cmbgivingtype.Size = new System.Drawing.Size(54, 21);
             this.cmbgivingtype.TabIndex = 14;
+            this.cmbgivingtype.Enter += new System.EventHandler(this.cmbgivingtype_Enter);
+            this.cmbgivingtype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgivingtype_KeyPress);
+            this.cmbgivingtype.Leave += new System.EventHandler(this.cmbgivingtype_Leave);
             // 
             // panel5
             // 
@@ -405,12 +410,13 @@
             this.txtnarration.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnarration_KeyPress);
             this.txtnarration.Leave += new System.EventHandler(this.txtnarration_Leave);
             // 
-            // txtamount1
+            // txtamount
             // 
-            this.txtamount1.Location = new System.Drawing.Point(579, 121);
-            this.txtamount1.Name = "txtamount1";
-            this.txtamount1.Size = new System.Drawing.Size(71, 20);
-            this.txtamount1.TabIndex = 61;
+            this.txtamount.Location = new System.Drawing.Point(579, 121);
+            this.txtamount.Name = "txtamount";
+            this.txtamount.Size = new System.Drawing.Size(71, 20);
+            this.txtamount.TabIndex = 61;
+            this.txtamount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnok
             // 
@@ -422,13 +428,16 @@
             this.btnok.TabIndex = 65;
             this.btnok.Text = "OK";
             this.btnok.UseVisualStyleBackColor = true;
+            this.btnok.Click += new System.EventHandler(this.btnok_Click);
             // 
             // txtfine
             // 
             this.txtfine.Location = new System.Drawing.Point(650, 121);
             this.txtfine.Name = "txtfine";
-            this.txtfine.Size = new System.Drawing.Size(84, 20);
+            this.txtfine.Size = new System.Drawing.Size(76, 20);
             this.txtfine.TabIndex = 62;
+            this.txtfine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtfine.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtfine_KeyPress);
             // 
             // txtlabourrs
             // 
@@ -436,6 +445,8 @@
             this.txtlabourrs.Name = "txtlabourrs";
             this.txtlabourrs.Size = new System.Drawing.Size(65, 20);
             this.txtlabourrs.TabIndex = 60;
+            this.txtlabourrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtlabourrs.TextChanged += new System.EventHandler(this.txtlabourrs_TextChanged);
             this.txtlabourrs.Enter += new System.EventHandler(this.txtlabourrs_Enter);
             this.txtlabourrs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtlabourrs_KeyPress);
             this.txtlabourrs.Leave += new System.EventHandler(this.txtlabourrs_Leave);
@@ -446,6 +457,8 @@
             this.txtwestage.Name = "txtwestage";
             this.txtwestage.Size = new System.Drawing.Size(65, 20);
             this.txtwestage.TabIndex = 59;
+            this.txtwestage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtwestage.TextChanged += new System.EventHandler(this.txtwestage_TextChanged);
             this.txtwestage.Enter += new System.EventHandler(this.txtwestage_Enter);
             this.txtwestage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtwestage_KeyPress);
             this.txtwestage.Leave += new System.EventHandler(this.txtwestage_Leave);
@@ -456,6 +469,8 @@
             this.txttunch2.Name = "txttunch2";
             this.txttunch2.Size = new System.Drawing.Size(50, 20);
             this.txttunch2.TabIndex = 58;
+            this.txttunch2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txttunch2.TextChanged += new System.EventHandler(this.txttunch2_TextChanged);
             this.txttunch2.Enter += new System.EventHandler(this.txttunch2_Enter);
             this.txttunch2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttunch2_KeyPress);
             this.txttunch2.Leave += new System.EventHandler(this.txttunch2_Leave);
@@ -466,6 +481,8 @@
             this.txttunch1.Name = "txttunch1";
             this.txttunch1.Size = new System.Drawing.Size(54, 20);
             this.txttunch1.TabIndex = 57;
+            this.txttunch1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txttunch1.TextChanged += new System.EventHandler(this.txttunch1_TextChanged);
             this.txttunch1.Enter += new System.EventHandler(this.txttunch1_Enter);
             this.txttunch1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttunch1_KeyPress);
             this.txttunch1.Leave += new System.EventHandler(this.txttunch1_Leave);
@@ -476,6 +493,8 @@
             this.txtpcs.Name = "txtpcs";
             this.txtpcs.Size = new System.Drawing.Size(44, 20);
             this.txtpcs.TabIndex = 56;
+            this.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtpcs.TextChanged += new System.EventHandler(this.txtpcs_TextChanged);
             this.txtpcs.Enter += new System.EventHandler(this.txtpcs_Enter);
             this.txtpcs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpcs_KeyPress);
             this.txtpcs.Leave += new System.EventHandler(this.txtpcs_Leave);
@@ -486,6 +505,8 @@
             this.txtweight.Name = "txtweight";
             this.txtweight.Size = new System.Drawing.Size(74, 20);
             this.txtweight.TabIndex = 55;
+            this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtweight.TextChanged += new System.EventHandler(this.txtweight_TextChanged);
             this.txtweight.Enter += new System.EventHandler(this.txtweight_Enter);
             this.txtweight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtweight_KeyPress);
             this.txtweight.Leave += new System.EventHandler(this.txtweight_Leave);
@@ -515,19 +536,20 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label10.Location = new System.Drawing.Point(1071, 74);
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(1073, 73);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(22, 15);
             this.label10.TabIndex = 87;
             this.label10.Text = "Rs";
             // 
-            // disRs
+            // txtDisRs
             // 
-            this.disRs.Location = new System.Drawing.Point(1006, 70);
-            this.disRs.Name = "disRs";
-            this.disRs.Size = new System.Drawing.Size(66, 20);
-            this.disRs.TabIndex = 70;
+            this.txtDisRs.Location = new System.Drawing.Point(1006, 70);
+            this.txtDisRs.Name = "txtDisRs";
+            this.txtDisRs.Size = new System.Drawing.Size(66, 20);
+            this.txtDisRs.TabIndex = 70;
+            this.txtDisRs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel4
             // 
@@ -543,7 +565,7 @@
             // 
             this.Rsdr.AutoSize = true;
             this.Rsdr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rsdr.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Rsdr.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Rsdr.Location = new System.Drawing.Point(44, 3);
             this.Rsdr.Name = "Rsdr";
             this.Rsdr.Size = new System.Drawing.Size(35, 19);
@@ -556,7 +578,7 @@
             // 
             this.Rscr.AutoSize = true;
             this.Rscr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rscr.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Rscr.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Rscr.Location = new System.Drawing.Point(3, 3);
             this.Rscr.Name = "Rscr";
             this.Rscr.Size = new System.Drawing.Size(32, 19);
@@ -569,8 +591,8 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(705, 75);
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label9.Location = new System.Drawing.Point(706, 74);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(21, 15);
             this.label9.TabIndex = 80;
@@ -582,6 +604,7 @@
             this.disSil.Name = "disSil";
             this.disSil.Size = new System.Drawing.Size(71, 20);
             this.disSil.TabIndex = 66;
+            this.disSil.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel3
             // 
@@ -597,7 +620,7 @@
             // 
             this.sildr.AutoSize = true;
             this.sildr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sildr.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.sildr.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.sildr.Location = new System.Drawing.Point(46, 3);
             this.sildr.Name = "sildr";
             this.sildr.Size = new System.Drawing.Size(35, 19);
@@ -637,6 +660,7 @@
             this.txtGamt.Size = new System.Drawing.Size(71, 20);
             this.txtGamt.TabIndex = 86;
             this.txtGamt.TabStop = false;
+            this.txtGamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnPOK
             // 
@@ -653,7 +677,7 @@
             // 
             this.lbltype.AutoSize = true;
             this.lbltype.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltype.Location = new System.Drawing.Point(1110, 77);
+            this.lbltype.Location = new System.Drawing.Point(1110, 73);
             this.lbltype.Name = "lbltype";
             this.lbltype.Size = new System.Drawing.Size(33, 15);
             this.lbltype.TabIndex = 88;
@@ -725,6 +749,7 @@
             this.txtPhazir.Name = "txtPhazir";
             this.txtPhazir.Size = new System.Drawing.Size(68, 20);
             this.txtPhazir.TabIndex = 69;
+            this.txtPhazir.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPmcx
             // 
@@ -732,15 +757,17 @@
             this.txtPmcx.Name = "txtPmcx";
             this.txtPmcx.Size = new System.Drawing.Size(71, 20);
             this.txtPmcx.TabIndex = 68;
+            this.txtPmcx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtbalence
+            // txtBalance
             // 
-            this.txtbalence.Location = new System.Drawing.Point(724, 93);
-            this.txtbalence.Name = "txtbalence";
-            this.txtbalence.ReadOnly = true;
-            this.txtbalence.Size = new System.Drawing.Size(71, 20);
-            this.txtbalence.TabIndex = 81;
-            this.txtbalence.TabStop = false;
+            this.txtBalance.Location = new System.Drawing.Point(724, 93);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.ReadOnly = true;
+            this.txtBalance.Size = new System.Drawing.Size(71, 20);
+            this.txtBalance.TabIndex = 81;
+            this.txtBalance.TabStop = false;
+            this.txtBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPamt
             // 
@@ -750,6 +777,7 @@
             this.txtPamt.Size = new System.Drawing.Size(70, 20);
             this.txtPamt.TabIndex = 76;
             this.txtPamt.TabStop = false;
+            this.txtPamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPfine
             // 
@@ -759,6 +787,7 @@
             this.txtPfine.Size = new System.Drawing.Size(69, 20);
             this.txtPfine.TabIndex = 75;
             this.txtPfine.TabStop = false;
+            this.txtPfine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtGfine
             // 
@@ -768,6 +797,7 @@
             this.txtGfine.Size = new System.Drawing.Size(69, 20);
             this.txtGfine.TabIndex = 74;
             this.txtGfine.TabStop = false;
+            this.txtGfine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dataGridView1
             // 
@@ -860,6 +890,7 @@
             this.cmbPopUp.Size = new System.Drawing.Size(91, 21);
             this.cmbPopUp.Sorted = true;
             this.cmbPopUp.TabIndex = 0;
+            this.cmbPopUp.SelectedIndexChanged += new System.EventHandler(this.cmbPopUp_SelectedIndexChanged);
             // 
             // btnClose
             // 
@@ -979,7 +1010,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 82);
+            this.label7.Location = new System.Drawing.Point(8, 85);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 39;
@@ -988,16 +1019,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 62);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 65);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 38;
             this.label6.Text = "Date Range:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 44);
+            this.label4.Location = new System.Drawing.Point(9, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 37;
@@ -1006,7 +1038,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 20);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 36;
@@ -1033,18 +1065,41 @@
             // cmbgrp2product
             // 
             this.cmbgrp2product.FormattingEnabled = true;
-            this.cmbgrp2product.Location = new System.Drawing.Point(114, 39);
+            this.cmbgrp2product.Location = new System.Drawing.Point(93, 39);
             this.cmbgrp2product.Name = "cmbgrp2product";
-            this.cmbgrp2product.Size = new System.Drawing.Size(142, 21);
+            this.cmbgrp2product.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2product.TabIndex = 1;
             // 
             // cmbgrp2partyname
             // 
             this.cmbgrp2partyname.FormattingEnabled = true;
-            this.cmbgrp2partyname.Location = new System.Drawing.Point(114, 15);
+            this.cmbgrp2partyname.Location = new System.Drawing.Point(93, 15);
             this.cmbgrp2partyname.Name = "cmbgrp2partyname";
-            this.cmbgrp2partyname.Size = new System.Drawing.Size(142, 21);
+            this.cmbgrp2partyname.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2partyname.TabIndex = 0;
+            // 
+            // txtbillno
+            // 
+            this.txtbillno.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtbillno.Enabled = false;
+            this.txtbillno.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbillno.Location = new System.Drawing.Point(1094, 40);
+            this.txtbillno.Name = "txtbillno";
+            this.txtbillno.ReadOnly = true;
+            this.txtbillno.Size = new System.Drawing.Size(21, 22);
+            this.txtbillno.TabIndex = 104;
+            this.txtbillno.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.RosyBrown;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
+            this.textBox1.Location = new System.Drawing.Point(612, 344);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(183, 14);
+            this.textBox1.TabIndex = 105;
             // 
             // pGroupDataGridViewTextBoxColumn
             // 
@@ -1769,6 +1824,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 572);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtbillno);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.plnpopup);
@@ -1785,7 +1842,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.plnYN);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.disRs);
+            this.Controls.Add(this.txtDisRs);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.disSil);
@@ -1802,7 +1859,7 @@
             this.Controls.Add(this.lblGFine);
             this.Controls.Add(this.txtPhazir);
             this.Controls.Add(this.txtPmcx);
-            this.Controls.Add(this.txtbalence);
+            this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.txtPamt);
             this.Controls.Add(this.txtPfine);
             this.Controls.Add(this.txtGfine);
@@ -1810,7 +1867,7 @@
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.txtnarration);
-            this.Controls.Add(this.txtamount1);
+            this.Controls.Add(this.txtamount);
             this.Controls.Add(this.btnok);
             this.Controls.Add(this.txtfine);
             this.Controls.Add(this.txtlabourrs);
@@ -1874,7 +1931,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.TextBox txtnarration;
-        private System.Windows.Forms.TextBox txtamount1;
+        private System.Windows.Forms.TextBox txtamount;
         private System.Windows.Forms.Button btnok;
         private System.Windows.Forms.TextBox txtfine;
         private System.Windows.Forms.TextBox txtlabourrs;
@@ -1886,7 +1943,7 @@
         private System.Windows.Forms.Panel plnYN;
         private System.Windows.Forms.ComboBox cmbPtype;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox disRs;
+        private System.Windows.Forms.TextBox txtDisRs;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.RadioButton Rsdr;
         private System.Windows.Forms.RadioButton Rscr;
@@ -1907,7 +1964,7 @@
         private System.Windows.Forms.Label lblGFine;
         private System.Windows.Forms.TextBox txtPhazir;
         private System.Windows.Forms.TextBox txtPmcx;
-        private System.Windows.Forms.TextBox txtbalence;
+        private System.Windows.Forms.TextBox txtBalance;
         private System.Windows.Forms.TextBox txtPamt;
         private System.Windows.Forms.TextBox txtPfine;
         private System.Windows.Forms.TextBox txtGfine;
@@ -2021,12 +2078,14 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpgrp2To;
         private System.Windows.Forms.DateTimePicker dtpgrp2From;
         private System.Windows.Forms.ComboBox cmbgrp2product;
         private System.Windows.Forms.ComboBox cmbgrp2partyname;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox txtbillno;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SilverGold.Comman
 {
-    public static class Conversion
+    class Conversion
     {
         public static System.Int32 ConToInt(string strvalue)
         {

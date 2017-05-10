@@ -834,7 +834,7 @@ namespace SilverGold.Transaction
                         oTunchPendingEntity.AddTunchPending(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text.Trim()), _PartyCategory, _PartyName, _Category, cmbproduct.Text.Trim(), Conversion.ConToDec(txtweight.Text.Trim()), Conversion.ConToDec(txttunch1.Text.Trim()), Conversion.ConToDec(txttunch2.Text.Trim()), "Y", "", "GG", _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString());
                         TunchPendingList.Add(oTunchPendingEntity);
                     }
-                }
+                } 
 
                 if (_Tunch_Update != "U")
                 {
