@@ -498,7 +498,7 @@ namespace SilverGold.CompanyInfo
                         _Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
                         if (_Weight > 0)
                         {
-                            KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con2, Tran);
+                            KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF","N",Conversion.ConToDT(_FYFrom), CommanHelper.CompName, txtUserId.Text.Trim(), con2, Tran);
                         }
                     }
 
@@ -670,7 +670,7 @@ namespace SilverGold.CompanyInfo
                     _Fine = Conversion.ConToDec6((dataGridView2.Rows[k].Cells[4].Value ?? (object)"").ToString());
                     if (_Weight > 0)
                     {
-                        KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF", CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
+                        KFFactory.Insert(lblKFCate.Text.Trim(), lblKFName.Text.Trim(), _StrPaatNo, _Weight, _Tunch1, _Tunch2, _Fine, "CKF","N",Conversion.ConToDT(_FYFrom), CommanHelper.CompName, txtUserId.Text.Trim(), con, Tran);
                     }
                 }
 

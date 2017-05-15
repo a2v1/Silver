@@ -106,6 +106,7 @@
     <Compile Include="Entity\PartyTranEntity.cs" />
     <Compile Include="Entity\PriceListEntity.cs" />
     <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\ReturnMetalEntity.cs" />
     <Compile Include="Entity\TunchPendingEntity.cs" />
     <Compile Include="Entity\UsersEntity.cs" />
     <Compile Include="MasterInfo\GroupHead.cs">

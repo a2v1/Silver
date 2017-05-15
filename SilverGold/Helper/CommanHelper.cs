@@ -96,7 +96,7 @@ namespace SilverGold.Helper
                 count_row = dgt.Rows.Count;
                 for (int i = 0; i < count_row; i++)
                 {
-                    col1 = Conversion.ConToDec(dgt.Rows[i].Cells[col].Value.ToString());
+                    col1 = Conversion.ConToDec5(dgt.Rows[i].Cells[col].Value.ToString());
                     sum_col = sum_col + col1;
                 }
             }

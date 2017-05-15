@@ -102,6 +102,30 @@ namespace SilverGold
                     {
                         con.Close();
                     }
+
+                    try
+                    {
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("ALTER TABLE KFDetails ADD YN TEXT(50),KF_Sno INT,KF_DateR DateTime,KF_DateP DateTime", con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                    }
+
+                    try
+                    {
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD KF_Sno INT", con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                    }
                 }
             }
 

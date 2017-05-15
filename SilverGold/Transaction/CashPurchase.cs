@@ -18,6 +18,7 @@ namespace SilverGold.Transaction
         #region Declare Variable
         List<CashPurchaseSaleEntity> CashPurchaseSaleList = new List<CashPurchaseSaleEntity>();
         List<TunchPendingEntity> TunchPendingList = new List<TunchPendingEntity>();
+        List<ReturnMetalEntity> ReturnMetalList = new List<ReturnMetalEntity>();
         OleDbConnection con;
         ConnectionClass objCon;
         OleDbTransaction Tran = null;
@@ -32,14 +33,18 @@ namespace SilverGold.Transaction
         String _Tunch2LastValue = "";
         public static int _Flage_TunchPending_CR = 0;
         public static int _TunchSno_TunchPending_CR = 0;
-
+        string _WeightR = "";
         Boolean _Ratecut_Check = false;
+        int int_keyvalue = 0;
+        private static KeyPressEventHandler NumericCheckHandler = new KeyPressEventHandler(CommanHelper.NumericCheck);
 
         #endregion
         public CashPurchase()
         {
             InitializeComponent();
             CommanHelper.ChangeGridFormate(dataGridView1);
+            CommanHelper.ChangeGridFormate(dataGridView3);
+            CommanHelper.ChangeGridFormate(dataGridView4);
         }
         #region Mapper
 
@@ -142,7 +147,117 @@ namespace SilverGold.Transaction
             }
         }
 
-        public void Cal_Amount()
+        private void TotalKF()
+        {
+            string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProduct.Text.Trim());
+            lblsno.Visible = true;
+            if (CommanHelper.SumRow(dataGridView3, 4) > 0)
+            {
+                lblfine.Visible = true;
+                lblfine.Text = CommanHelper.SumRow1(dataGridView3, 4).ToString();
+            }
+            if (CommanHelper.SumRow(dataGridView3, 1) > 0)
+            {
+                if (_wt_type == "GRMS")
+                {
+                    lblweight.Text = string.Format("{0:0.000000}", CommanHelper.SumRow1(dataGridView3, 1));
+                }
+                else
+                {
+                    lblweight.Text = string.Format("{0:0.000}", CommanHelper.SumRow1(dataGridView3, 1));
+                }
+                lblweight.Visible = true;
+            }
+
+            int CountSno = 0;
+            CountSno = dataGridView3.Rows.Count - 1;
+            if (CountSno > 0)
+            {
+                lblsno.Text = CountSno.ToString();
+                lbltqty.Visible = true;
+            }
+        }
+
+        private void TotalReturn()
+        {
+            string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProduct.Text.Trim());
+            //objfunction.ShowFineCash(dataGridView4, 15, 37, lblPreFineP, lblPreAmtP, label12, label12);
+            if (CommanHelper.SumRow1(dataGridView4, 13) > 0)
+            {
+                if (_wt_type == "GRMS")
+                {
+                    lbltotFineP.Text = String.Format("{0:0.000000}", CommanHelper.SumRow1(dataGridView4, 1));
+                }
+                else
+                {
+                    lbltotFineP.Text = String.Format("{0:0.000}", CommanHelper.SumRow1(dataGridView4, 1));
+                }
+            }
+            else
+            {
+                lbltotFineP.Text = "";
+            }
+        }
+
+        private void Calculate_FineR()
+        {
+            if (cmbProduct.Text.Trim() != "CASH")
+            {
+                string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProduct.Text.Trim());
+                if (txtPremiumR.Text != "")
+                {
+                    Double _Premiunm, _Fine;
+                    _Premiunm = 0;
+                    _Fine = 0;
+                    if ((CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProductR.Text.Trim().ToUpper()) == "YES") && (Gross.Checked == true))
+                    {
+                        _Fine = Conversion.ConToDob6(_WeightR.ToString());
+                    }
+                    else
+                    {
+                        _Fine = Conversion.ConToDob6(txtFineR.Text);
+                    }
+                    _Premiunm = Conversion.ConToDob6(txtPremiumR.Text);
+                    if (Rs.Checked == true)
+                    {
+                        _Premiunm = _Fine * _Premiunm;
+                        txtPremiumValueR.Text = String.Format("{0:0}", _Premiunm);
+                    }
+                    if (Wt.Checked == true)
+                    {
+                        _Premiunm = _Fine * _Premiunm;
+                        if (_Premiunm > 0)
+                        {
+                            if (_wt_type == "GRMS")
+                            {
+                                txtPremiumValueR.Text = String.Format("{0:.000000}", _Premiunm);
+                            }
+                            else
+                            {
+                                txtPremiumValueR.Text = String.Format("{0:.000}", _Premiunm);
+                            }
+                        }
+                        else
+                        {
+                            if (_wt_type == "GRMS")
+                            {
+                                txtPremiumValueR.Text = String.Format("{0:.000000}", _Premiunm);
+                            }
+                            else
+                            {
+                                txtPremiumValueR.Text = String.Format("{0:.000}", _Premiunm);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    txtPremiumValueR.Clear();
+                }
+            }
+        }
+
+        private void Cal_Amount()
         {
             try
             {
@@ -187,9 +302,9 @@ namespace SilverGold.Transaction
         }
 
 
-        public void Cal_Fine()
+        private void Cal_Fine()
         {
-            if (cmbProduct.Text.Trim().ToUpper() != "KF")
+            if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProduct.Text.Trim().ToUpper()) != "YES")
             {
                 Double _Weight = 0; Double _Tunch1 = 0; Double _Tunch2 = 0; Double _Fine = 0; Double _Westage = 0; Double _mTunch = 0;
 
@@ -232,6 +347,103 @@ namespace SilverGold.Transaction
                 }
             }
         }
+
+        private void Suppress_Des(string desc)
+        {
+            string first = "";
+            string sec = "";
+            int a = desc.IndexOf("(");
+            int b = desc.IndexOf(")");
+
+            int len = desc.Length;
+            if (((b + 1 == len) && (a == 0)) || ((b + 1 == len) && (a == 1)))
+            {
+                desc = "";
+            }
+            else
+            {
+                if (a > 1)
+                {
+                    first = desc.Substring(0, a - 1);
+                }
+                if (b + 1 > len)
+                {
+                    sec = desc.Substring(b + 1, len);
+                }
+                if ((first != "") || (sec != ""))
+                {
+                    desc = first + sec;
+                }
+            }
+            txtdiscription.Clear();
+            txtdiscription.Text = desc;
+
+        }
+
+
+        private void KF_Visible_ON()
+        {
+            dataGridView3.Visible = true;
+            lblsno.Visible = true;
+            lbltqty.Visible = true;
+            lblweight.Visible = true;
+            lblfine.Visible = true;
+            btnKfOK.Visible = true;
+        }
+
+        private void KF_Visible_OFF()
+        {
+            dataGridView3.Visible = false;
+            lblsno.Visible = false;
+            lbltqty.Visible = false;
+            lblweight.Visible = false;
+            lblfine.Visible = false;
+            btnKfOK.Visible = false;
+
+        }
+
+        private void Return_Visible_ON()
+        {
+            cmbProductR.Visible = true;
+            txtFineR.Visible = true;
+            txtPremiumR.Visible = true;
+            txtPremiumValueR.Visible = true;
+            txtdiscription.Visible = true;
+
+        }
+
+
+        private void Return_Visible_OFF()
+        {
+            cmbProductR.Visible = false;
+            txtFineR.Visible = false;
+            txtPremiumR.Visible = false;
+            txtPremiumValueR.Visible = false;
+            txtdiscription.Visible = false;
+            btnOKR.Visible = false;
+            panel1.Visible = false;
+            panel2.Visible = false;
+            dataGridView4.Visible = false;
+            lbltotFineP.Visible = false;
+            lblPreFineP.Visible = false;
+            lblPreAmtP.Visible = false;
+
+            btnReturnOK.Visible = false;
+            lbltotFineP.Text = "";
+            lblPreFineP.Text = "";
+            lblPreAmtP.Text = "";
+
+            txtFineR.Clear();
+            txtPremiumR.Clear();
+            txtPremiumValueR.Clear();
+            txtdiscription.Clear();
+            cmbProductR.Text = "";
+            Net.Checked = false;
+            Gross.Checked = false;
+            Rs.Checked = false;
+            Wt.Checked = false;
+        }
+
 
         private void _Clear()
         {
@@ -320,23 +532,34 @@ namespace SilverGold.Transaction
 
         private void CashPurchase_Load(object sender, EventArgs e)
         {
-            this.CancelButton = btnClose;
-            this.Width = CommanHelper.FormX;
-            this.Height = CommanHelper.FormY;
-            con = new OleDbConnection();
-            objCon = new ConnectionClass();
-            con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
+            try
+            {
+                this.CancelButton = btnClose;
+                this.Width = CommanHelper.FormX;
+                this.Height = CommanHelper.FormY;
+                con = new OleDbConnection();
+                objCon = new ConnectionClass();
+                con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
 
-            CashPurchaseSaleEntity oCashPurchaseSaleEntity = new CashPurchaseSaleEntity();
-            oCashPurchaseSaleEntity.BindGridColumn(dataGridView1);
-            oCashPurchaseSaleEntity.SetCreditLimitGridView_ColumnWith(dataGridView1);
+                CashPurchaseSaleEntity oCashPurchaseSaleEntity = new CashPurchaseSaleEntity();
+                oCashPurchaseSaleEntity.BindGridColumn(dataGridView1);
+                oCashPurchaseSaleEntity.SetCreditLimitGridView_ColumnWith(dataGridView1);
+                KFFactory.BindKFColumn(dataGridView3);
+                KFFactory.SetKF_ColumnWidth(dataGridView3);
+                ReturnMetalFactory.BindReturnMetalColumn(dataGridView4);
 
-            Ratecut_off();
-            _Clear();
-            CommanHelper.BindMetalCategory(cmbCategory);
-            CommanHelper.GetCashParty(cmbParty, "CASH PURCHASE");
-            CommanHelper.ComboBoxItem(cmbGroup, "Product", "Distinct(PGroup)");
-            cmbGroup.Items.Add("Metal");
+                Ratecut_off();
+                _Clear();
+                KF_Visible_OFF();
+                CommanHelper.BindMetalCategory(cmbCategory);
+                CommanHelper.GetCashParty(cmbParty, "CASH PURCHASE");
+                CommanHelper.ComboBoxItem(cmbGroup, "Product", "Distinct(PGroup)");
+                cmbGroup.Items.Add("Metal");
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -415,7 +638,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel11.BackColor = Color.Transparent;
+                panel11.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -456,7 +679,7 @@ namespace SilverGold.Transaction
             try
             {
                 cmbCategory.BackColor = Color.White;
-                panel7.BackColor = Color.Transparent;
+                panel7.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -504,7 +727,7 @@ namespace SilverGold.Transaction
             try
             {
                 cmbParty.BackColor = Color.White;
-                panel9.BackColor = Color.Transparent;
+                panel9.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -551,7 +774,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel5.BackColor = Color.Transparent;
+                panel5.BackColor = Color.White;
                 cmbGroup.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -613,8 +836,22 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel12.BackColor = Color.Transparent;
+                panel12.BackColor = Color.White;
                 cmbProduct.BackColor = Color.White;
+                if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProduct.Text.Trim().ToUpper()) == "YES")
+                {
+                    OleDbDataAdapter da = new OleDbDataAdapter("Select PaatNo,Weight,Tunch1,Tunch2,Fine,Sno from KfDetails Where  BillNo='" + txtbillno.Text + "' And  TranType = 'RCF'", con);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        dataGridView3.DataSource = ds.Tables[0];
+                        dataGridView3.Columns["Sno"].Visible = false;
+                    }
+                    this.dataGridView3.CurrentCell = this.dataGridView3[0, 0];
+                    KF_Visible_ON();
+                    dataGridView3.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -626,7 +863,17 @@ namespace SilverGold.Transaction
         {
             try
             {
-                txtweight.Focus();
+                if (e.KeyChar == 13)
+                {
+                    if (cmbProduct.Text.Trim() == "")
+                    {
+
+                    }
+                    else
+                    {
+                        txtweight.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1137,7 +1384,7 @@ namespace SilverGold.Transaction
                 }
                 if (txttunch1.Text == "" && txttunch2.Text == "" && txtwestage.Text == "")
                 {
-                    if (cmbProduct.Text.ToUpper() != "KF")
+                    if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProduct.Text.Trim().ToUpper()) != "YES")
                     {
                         MessageBox.Show("Please Enter Tunch/Westage", "CASH(RECIEVE)", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txttunch1.Focus();
@@ -1410,7 +1657,633 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel6.BackColor = Color.Transparent;
+                panel6.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView3_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            try
+            {
+                //if (dataGridView3.Rows[e.RowIndex].Cells[7].Value.ToString().Trim().ToUpper() == "Y")
+                //{
+                //    e.Cancel = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView3_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Double _WEIGHT, _FINE, _TUNCH1, _TUNCH2;
+                _WEIGHT = 0;
+                _TUNCH1 = 0;
+                _FINE = 0;
+                _TUNCH2 = 0;
+                if (e.ColumnIndex >= 0 && e.ColumnIndex <= 4)
+                {
+                    _WEIGHT = Conversion.ConTodob(dataGridView3.Rows[e.RowIndex].Cells[1].Value);
+                    _TUNCH1 = Conversion.ConTodob(dataGridView3.Rows[e.RowIndex].Cells[2].Value);
+                    _TUNCH2 = Conversion.ConTodob(dataGridView3.Rows[e.RowIndex].Cells[3].Value);
+                    if (_TUNCH1 > 0 && _TUNCH2 == 0)
+                        _FINE = System.Math.Round(((_WEIGHT * _TUNCH1) / 100), 3);
+                    else if (_TUNCH2 > 0 && _TUNCH1 == 0)
+                        _FINE = System.Math.Round(((_WEIGHT * _TUNCH2) / 100), 3);
+                    else
+                        _FINE = System.Math.Round(((_WEIGHT * ((_TUNCH1 + _TUNCH2) / 2)) / 100), 3);
+                    if (_WEIGHT > 0)
+                        dataGridView3.Rows[e.RowIndex].Cells[4].Value = _FINE.ToString();
+
+                    TotalKF();
+                    if (dataGridView3.Rows.Count - 1 == dataGridView3.CurrentCell.RowIndex && e.ColumnIndex == 1 && int_keyvalue == 13)
+                    {
+                        int_keyvalue = 0;
+                        if ((dataGridView3.CurrentRow.Cells[1].Value ?? (object)"").ToString() == "" && (dataGridView3.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "")
+                        {
+                            btnKfOK.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+
+        private void dataGridView3_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                int_keyvalue = e.KeyValue;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView3_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
+        }
+
+        private void dataGridView3_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (dataGridView3.CurrentCell.ColumnIndex >= 1 && dataGridView3.CurrentCell.ColumnIndex <= 4)
+                {
+                    e.Control.KeyPress -= NumericCheckHandler;
+                    e.Control.KeyPress += NumericCheckHandler;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnKfOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (lblweight.Text.Trim().ToUpper() == "WEIGHT")
+                    txtweight.Text = "0";
+                else
+                    txtweight.Text = lblweight.Text;
+
+                if (lblfine.Text.ToString().Trim().ToUpper() == "FINE")
+                    txtfine.Text = "0";
+                else
+                    txtfine.Text = lblfine.Text;
+
+                KF_Visible_OFF();
+                txtweight.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnOKR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((Gross.Checked == true) && (txtPremiumR.Text != "") && (txtPremiumValueR.Text != "") && (_WeightR == ""))
+                {
+                   // _WeightR = lblkfweight.Text.Trim();
+                }
+                Suppress_Des(txtdiscription.Text.ToString());
+                if (Gross.Checked == true)
+                {
+                    if (txtPremiumR.Text.Trim() != "")
+                    {
+                        txtdiscription.Text = txtdiscription.Text + " (Gross Weight=" + _WeightR + ")";
+                    }
+                }
+                if (cmbProductR.Text.Trim() == "")
+                {
+                    cmbProductR.Focus();
+                    return;
+                }
+
+                if (cmbPopUp.Text.Trim() == "")
+                {
+                    if (txtbillno.Text == "")
+                    {
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnReturnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProductR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductR.BackColor = Color.Aqua;
+                CommanHelper.BindMetalName(cmbProductR, cmbCategory.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProductR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductR.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProductR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (cmbProductR.Text.Trim() != "")
+                    {
+                        if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProductR.Text.Trim().ToUpper()) == "YES")
+                        {
+
+                        }
+                        else
+                        {
+                            txtFineR.Focus();
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+
+        }
+
+        private void cmbProductR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtFineR.Clear();
+                TotalReturn();
+                txtdiscription.Clear();
+                txtPremiumR.Clear();
+                txtPremiumValueR.Clear();
+                if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProductR.Text.Trim().ToUpper()) != "YES")
+                {
+                    //dataGridView5.Visible = false;
+                    //lblkfweight.Visible = false;
+                    //lblkffine.Visible = false;
+                    //button2.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtFineR.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProductR.Text.Trim());
+                txtFineR.BackColor = Color.White;
+                if (txtFineR.Text != "")
+                {
+                    Decimal finep = Conversion.ConToDec6(txtFineR.Text);
+                    if (_wt_type == "GRMS")
+                    {
+                        txtFineR.Text = String.Format("{0:0.000000}", finep);
+                    }
+                    else
+                    {
+                        txtFineR.Text = String.Format("{0:0.000}", finep);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                CommanHelper.IsNumericTextBox(txtFineR, e);
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPremiumR.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                CommanHelper.IsNumericTextBox(txtPremiumR, e);
+                if (e.KeyChar == 13)
+                {
+                    txtdiscription.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProductR.Text.Trim());
+                txtPremiumR.BackColor = Color.White;
+                if (txtPremiumR.Text != "")
+                {
+                    if (Wt.Checked == true)
+                    {
+                        decimal finep = Conversion.ConToDec6(txtPremiumR.Text);
+                        if (_wt_type == "GRMS")
+                        {
+                            txtPremiumR.Text = String.Format("{0:0.000000}", finep);
+                        }
+                        else
+                        {
+                            txtPremiumR.Text = String.Format("{0:0.000}", finep);
+                        }
+                    }
+                    else
+                    {
+                        Decimal finep = Conversion.ConToDec6(txtPremiumR.Text);
+                        txtPremiumR.Text = finep.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumValueR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPremiumValueR.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumValueR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPremiumValueR.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumValueR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    txtdiscription.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdiscription.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdiscription.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    btnOKR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Gross.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Gross.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_Enter(object sender, EventArgs e)
+        {
+            try { Net.BackColor = Color.Aqua; }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Net.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Wt.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Wt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    txtPremiumR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Rs.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Rs.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    txtPremiumR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Calculate_FineR();
             }
             catch (Exception ex)
             {

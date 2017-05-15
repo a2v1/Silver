@@ -297,6 +297,25 @@ namespace SilverGold.Comman
             }
         }
 
+        public static double ConToDob6(object strvalue)
+        {
+            try
+            {
+                double decVal = 0;
+                if (strvalue != null & strvalue.ToString().Trim() != "")
+                {
+                    decVal = Convert.ToDouble(strvalue.ToString().Trim());
+                }
+                else
+                    return decVal = 0;
+
+                return Math.Round(decVal, 6);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
 
         public static double ConTodob(string strvalue, int NDecimal)
         {
