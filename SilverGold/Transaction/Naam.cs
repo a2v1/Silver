@@ -1,6 +1,7 @@
 ﻿using SilverGold.Comman;
 using SilverGold.Entity;
 using SilverGold.Helper;
+using SilverGold.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -834,7 +835,7 @@ namespace SilverGold.Transaction
                         oTunchPendingEntity.AddTunchPending(txtbillno.Text.Trim(), Conversion.GetDateStr(dtp1.Text.Trim()), _PartyCategory, _PartyName, _Category, cmbproduct.Text.Trim(), Conversion.ConToDec(txtweight.Text.Trim()), Conversion.ConToDec(txttunch1.Text.Trim()), Conversion.ConToDec(txttunch2.Text.Trim()), "Y", "", "GG", _TunchSno, CommanHelper.CompName.ToString(), CommanHelper.UserId.ToString());
                         TunchPendingList.Add(oTunchPendingEntity);
                     }
-                } 
+                }
 
                 if (_Tunch_Update != "U")
                 {
@@ -2105,6 +2106,21 @@ namespace SilverGold.Transaction
             {
                 grpPriceList.Visible = false;
                 PriceList_Clear();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void lblTunchPending_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                TunchPending oTunchPending = new TunchPending();
+                oTunchPending._Showtunch = 1;
+                oTunchPending.GetSqlQuery("Select BillNo,TrDate,PartyCate,PartyName,Category,Product,Weight,TunchValue1,TunchValue2,Tunch1,Tunch2,InvoiceType,TunchSno,Company,UserId From TunchPending Where (Tunch1='Y' or Tunch2='Y') And Company='" + CommanHelper.CompName + "' And PartyName='" + Cmbparty.Text.Trim().ToString() + "'  Order By [TrDate] desc");
+                oTunchPending.Show();
             }
             catch (Exception ex)
             {

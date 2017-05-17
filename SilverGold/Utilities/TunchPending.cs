@@ -254,6 +254,14 @@ namespace SilverGold.Utilities
                         oJama.Show();
                         oJama.GetDetails(_BillNo);
                     }
+                    if (_InvoiceType == "GG")
+                    {
+                        Naam oNaam = new Naam();
+                        Naam._Flage_TunchPending = 1;
+                        Naam._TunchSno_TunchPending = _TunchSno;
+                        oNaam.Show();
+                        oNaam.GetDetails(_BillNo);
+                    }
                 }
             }
             catch (Exception ex)
@@ -267,8 +275,31 @@ namespace SilverGold.Utilities
             try
             {
                 if (e.KeyChar == 13)
-                { 
-                
+                {
+                    String _InvoiceType = "";
+                    String _BillNo = "";
+                    int _TunchSno = 0;
+
+                    CommanHelper.F_TunchPending = 1;
+                    _InvoiceType = dataGridView1.CurrentRow.Cells[8].Value.ToString();
+                    _BillNo = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    _TunchSno = Conversion.ConToInt(dataGridView1.CurrentRow.Cells[9].Value.ToString());
+                    if (_InvoiceType == "GR")
+                    {
+                        Jama oJama = new Jama();
+                        Jama._Flage_TunchPending = 1;
+                        Jama._TunchSno_TunchPending = _TunchSno;
+                        oJama.Show();
+                        oJama.GetDetails(_BillNo);
+                    }
+                    if (_InvoiceType == "GG")
+                    {
+                        Naam oNaam = new Naam();
+                        Naam._Flage_TunchPending = 1;
+                        Naam._TunchSno_TunchPending = _TunchSno;
+                        oNaam.Show();
+                        oNaam.GetDetails(_BillNo);
+                    }
                 }
             }
             catch (Exception ex)

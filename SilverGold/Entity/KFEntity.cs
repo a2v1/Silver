@@ -99,6 +99,52 @@ namespace SilverGold.Entity
             dgv.Columns.Add(col6);
         }
 
+        public static void BindKFColumnCheckBox(DataGridView dgv)
+        {
+            DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
+            col1.DataPropertyName = "PaatNo";
+            col1.HeaderText = "PaatNo";
+            col1.Name = "PaatNo";
+            dgv.Columns.Add(col1);
+
+            DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
+            col2.DataPropertyName = "Weight";
+            col2.HeaderText = "Weight";
+            col2.Name = "Weight";
+            dgv.Columns.Add(col2);
+
+            DataGridViewColumn col3 = new DataGridViewTextBoxColumn();
+            col3.DataPropertyName = "Tunch1";
+            col3.HeaderText = "Tunch1";
+            col3.Name = "Tunch1";
+            dgv.Columns.Add(col3);
+
+            DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
+            col4.DataPropertyName = "Tunch2";
+            col4.HeaderText = "Tunch2";
+            col4.Name = "Tunch2";
+            col4.DefaultCellStyle.Format = "N2";
+            dgv.Columns.Add(col4);
+
+            DataGridViewColumn col5 = new DataGridViewTextBoxColumn();
+            col5.DataPropertyName = "Fine";
+            col5.HeaderText = "Fine";
+            col5.Name = "Fine";
+            dgv.Columns.Add(col5);
+
+            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            dgv.Columns.Add(chk);
+            chk.HeaderText = "YN";
+            chk.Name = "YN";
+            
+            DataGridViewColumn col6 = new DataGridViewTextBoxColumn();
+            col6.DataPropertyName = "Sno";
+            col6.HeaderText = "Sno";
+            col6.Name = "Sno";
+            col6.Visible = false;
+            dgv.Columns.Add(col6);
+        }
+
         public static void SetKF_ColumnWidth(DataGridView grd)
         {
             grd.Columns["Weight"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

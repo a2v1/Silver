@@ -8,9 +8,6 @@ namespace SilverGold.Entity
 {
     class ReturnMetalEntity
     {
-        public string BillNo { get; set; }
-        public DateTime TrDate { get; set; }
-        public string MetalCate { get; set; }
         public string MetalName { get; set; }
         public decimal Fine { get; set; }
         public decimal Premium { get; set; }
@@ -19,6 +16,19 @@ namespace SilverGold.Entity
         public string WeightRate { get; set; }
         public string GrossNet { get; set; }
         public int Sno { get; set; }
+
+
+        public void AddReturnMetal(String _MetalName, Decimal _Fine, Decimal _Premium, Decimal _FinePrem, String _Narration, String _WeightRate, String _GrossNet, int _Sno)
+        {
+            MetalName = _MetalName;
+            Fine = _Fine;
+            Premium = _Premium;
+            FinePrem = _FinePrem;
+            Narration = _Narration;
+            WeightRate = _WeightRate;
+            GrossNet = _GrossNet;
+            Sno = _Sno;
+        }
     }
 
 

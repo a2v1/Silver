@@ -528,9 +528,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(560, 373);
+            this.listBox1.Location = new System.Drawing.Point(563, 373);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 147);
+            this.listBox1.Size = new System.Drawing.Size(188, 147);
             this.listBox1.TabIndex = 22;
             this.listBox1.Visible = false;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
@@ -578,6 +578,7 @@
             this.txtbillno.ReadOnly = true;
             this.txtbillno.Size = new System.Drawing.Size(124, 22);
             this.txtbillno.TabIndex = 28;
+            this.txtbillno.Visible = false;
             // 
             // lblTotalWeight
             // 

@@ -155,11 +155,23 @@
     <Compile Include="Transaction\CashPurchase.Designer.cs">
       <DependentUpon>CashPurchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transaction\CashSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\CashSale.Designer.cs">
+      <DependentUpon>CashSale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\Jama.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transaction\Jama.Designer.cs">
       <DependentUpon>Jama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\JournalVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\JournalVoucher.Designer.cs">
+      <DependentUpon>JournalVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\Naam.cs">
       <SubType>Form</SubType>
@@ -222,8 +234,14 @@
     <EmbeddedResource Include="Transaction\CashPurchase.resx">
       <DependentUpon>CashPurchase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\CashSale.resx">
+      <DependentUpon>CashSale.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Jama.resx">
       <DependentUpon>Jama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\journalVoucher.resx">
+      <DependentUpon>JournalVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Naam.resx">
       <DependentUpon>Naam.cs</DependentUpon>

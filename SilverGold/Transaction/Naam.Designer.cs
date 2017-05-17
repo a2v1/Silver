@@ -131,6 +131,7 @@
             this.txtbillno.ReadOnly = true;
             this.txtbillno.Size = new System.Drawing.Size(124, 22);
             this.txtbillno.TabIndex = 35;
+            this.txtbillno.Visible = false;
             // 
             // panel10
             // 
@@ -543,9 +544,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(565, 383);
+            this.listBox1.Location = new System.Drawing.Point(568, 383);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 147);
+            this.listBox1.Size = new System.Drawing.Size(188, 147);
             this.listBox1.TabIndex = 60;
             this.listBox1.Visible = false;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
@@ -695,6 +696,7 @@
             this.lblTunchPending.Size = new System.Drawing.Size(115, 15);
             this.lblTunchPending.TabIndex = 62;
             this.lblTunchPending.Text = "lblTunchPending";
+            this.lblTunchPending.DoubleClick += new System.EventHandler(this.lblTunchPending_DoubleClick);
             // 
             // menuStrip1
             // 

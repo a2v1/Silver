@@ -24,6 +24,7 @@ namespace SilverGold.Transaction
         OleDbTransaction Tran = null;
         DataGridView.HitTestInfo hti;
         int Row_No = -1;
+        int Row_No_Return = -1;
         Decimal _Old_westage = 0;
         Decimal _Old_labour = 0;
         String _Tunch_pending_YN = "";
@@ -45,6 +46,7 @@ namespace SilverGold.Transaction
             CommanHelper.ChangeGridFormate(dataGridView1);
             CommanHelper.ChangeGridFormate(dataGridView3);
             CommanHelper.ChangeGridFormate(dataGridView4);
+            CommanHelper.ChangeGridFormate2(dataGridView5);
         }
         #region Mapper
 
@@ -181,7 +183,7 @@ namespace SilverGold.Transaction
         private void TotalReturn()
         {
             string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProduct.Text.Trim());
-            //objfunction.ShowFineCash(dataGridView4, 15, 37, lblPreFineP, lblPreAmtP, label12, label12);
+            CommanHelper.ShowFineCash(dataGridView4, 3, 6, lblPreFineP, lblPreAmtP);
             if (CommanHelper.SumRow1(dataGridView4, 13) > 0)
             {
                 if (_wt_type == "GRMS")
@@ -261,11 +263,11 @@ namespace SilverGold.Transaction
         {
             try
             {
+                String _Product = "";
                 String _Wt_Type = "";
                 Double _Pcs = 0; Double _Amount = 0; Double _Weight = 0; Double _LabourRs = 0;
-
-                _Wt_Type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", "");
-
+                _Product = dataGridView1.Rows.Count > 0 ? (dataGridView1.Rows[0].Cells[1].Value ?? (object)"").ToString() : "";
+                _Wt_Type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", _Product);
                 _Weight = Conversion.ConTodob(txtweight.Text);
                 _Pcs = Conversion.ConTodob(txtpcs.Text);
                 _LabourRs = Conversion.ConTodob(txtlabourrs.Text);
@@ -348,7 +350,7 @@ namespace SilverGold.Transaction
             }
         }
 
-        private void Suppress_Des(string desc)
+        private void Suppress_Des(String desc)
         {
             string first = "";
             string sec = "";
@@ -377,7 +379,6 @@ namespace SilverGold.Transaction
             }
             txtdiscription.Clear();
             txtdiscription.Text = desc;
-
         }
 
 
@@ -412,7 +413,6 @@ namespace SilverGold.Transaction
 
         }
 
-
         private void Return_Visible_OFF()
         {
             cmbProductR.Visible = false;
@@ -444,7 +444,6 @@ namespace SilverGold.Transaction
             Wt.Checked = false;
         }
 
-
         private void _Clear()
         {
             lblTotalAmount.Text = "";
@@ -461,7 +460,6 @@ namespace SilverGold.Transaction
             dtpgrp2To.Text = DateTime.Now.ToString();
             dataGridView2.DataSource = "";
         }
-
 
         private void Total()
         {
@@ -547,6 +545,7 @@ namespace SilverGold.Transaction
                 KFFactory.BindKFColumn(dataGridView3);
                 KFFactory.SetKF_ColumnWidth(dataGridView3);
                 ReturnMetalFactory.BindReturnMetalColumn(dataGridView4);
+                KFFactory.BindKFColumnCheckBox(dataGridView5);
 
                 Ratecut_off();
                 _Clear();
@@ -638,7 +637,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel11.BackColor = Color.White;
+                panel11.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -679,7 +678,7 @@ namespace SilverGold.Transaction
             try
             {
                 cmbCategory.BackColor = Color.White;
-                panel7.BackColor = Color.White;
+                panel7.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -727,7 +726,7 @@ namespace SilverGold.Transaction
             try
             {
                 cmbParty.BackColor = Color.White;
-                panel9.BackColor = Color.White;
+                panel9.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -774,7 +773,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel5.BackColor = Color.White;
+                panel5.BackColor = Color.Transparent;
                 cmbGroup.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -836,7 +835,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel12.BackColor = Color.White;
+                panel12.BackColor = Color.Transparent;
                 cmbProduct.BackColor = Color.White;
                 if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProduct.Text.Trim().ToUpper()) == "YES")
                 {
@@ -867,13 +866,35 @@ namespace SilverGold.Transaction
                 {
                     if (cmbProduct.Text.Trim() == "")
                     {
-
+                        String _ForwardAction = "";
+                        Object ac = _ForwardAction;
+                        for (int i = 0; i <= dataGridView1.Rows.Count - 1; i++)
+                        {
+                            string _type = "";
+                            if (dataGridView1.Rows[i].Cells[13].Value.ToString().Length <= 3)
+                            {
+                                _type = dataGridView1.Rows[i].Cells[13].Value.ToString();
+                            }
+                            else
+                            {
+                                _type = dataGridView1.Rows[i].Cells[13].Value.ToString().Substring(0, 3);
+                            }
+                            if (_type == "MET")
+                            {
+                                _ForwardAction = "WithReturn";
+                            }
+                        }
+                        if (_ForwardAction == "WithReturn")
+                        {
+                            Return_Visible_ON();
+                        }
                     }
                     else
                     {
                         txtweight.Focus();
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -1657,7 +1678,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                panel6.BackColor = Color.White;
+                panel6.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1782,9 +1803,12 @@ namespace SilverGold.Transaction
         {
             try
             {
+                String _WeightRate = "";
+                String _GrossNet = "";
+
                 if ((Gross.Checked == true) && (txtPremiumR.Text != "") && (txtPremiumValueR.Text != "") && (_WeightR == ""))
                 {
-                   // _WeightR = lblkfweight.Text.Trim();
+                    // _WeightR = lblkfweight.Text.Trim();
                 }
                 Suppress_Des(txtdiscription.Text.ToString());
                 if (Gross.Checked == true)
@@ -1799,13 +1823,79 @@ namespace SilverGold.Transaction
                     cmbProductR.Focus();
                     return;
                 }
-
-                if (cmbPopUp.Text.Trim() == "")
+                if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProductR.Text.Trim().ToUpper()) == "YES")
                 {
-                    if (txtbillno.Text == "")
+                    if (txtPremiumR.Text.Trim() != "")
                     {
+                        if (Rs.Checked == true)
+                        {
+                            _WeightRate = "RUPEES";
+                        }
+                        if (Wt.Checked == true)
+                        {
+                            _WeightRate = "WEIGHT";
+                        }
+                        if (Gross.Checked == true)
+                        {
+                            _GrossNet = "GROSS";
+                        }
+                        if (Net.Checked == true)
+                        {
+                            _GrossNet = "NET";
+                        }
                     }
                 }
+                else
+                {
+                    if (txtPremiumR.Text.Trim() != "")
+                    {
+                        if (Rs.Checked == true)
+                        {
+                            _WeightRate = "RUPEES";
+                        }
+                        if (Wt.Checked == true)
+                        {
+                            _WeightRate = "WEIGHT";
+                        }
+                    }
+                }
+
+                if (Row_No_Return != -1)
+                {
+                    //-------Update Return Metal Data
+                    var result = (from r in ReturnMetalList where r.Sno == Row_No_Return select r).SingleOrDefault();
+                    result.MetalName = cmbProductR.Text.Trim();
+                    result.Fine = Conversion.ConToDec6(txtFineR.Text.Trim());
+                    result.Premium = Conversion.ConToDec6(txtPremiumR.Text.Trim());
+                    result.FinePrem = Conversion.ConToDec6(txtPremiumValueR.Text.Trim());
+                    result.Narration = txtdiscription.Text.Trim();
+                    result.WeightRate = _WeightRate;
+                    result.GrossNet = _GrossNet;
+                }
+                else
+                {
+                    var max = 0;
+                    if (ReturnMetalList.Count > 0)
+                    {
+                        max = ReturnMetalList.Max(x => x.Sno) + 1;
+                    }
+                    ReturnMetalEntity oReturnMetalEntity = new ReturnMetalEntity();
+                    oReturnMetalEntity.AddReturnMetal(cmbProductR.Text.Trim(), Conversion.ConToDec6(txtFineR.Text.Trim()), Conversion.ConToDec6(txtPremiumR.Text.Trim()), Conversion.ConToDec6(txtPremiumValueR.Text.Trim()), txtdiscription.Text.Trim(), _WeightRate, _GrossNet, max);
+                    ReturnMetalList.Add(oReturnMetalEntity);
+                }
+
+                dataGridView4.DataSource = ReturnMetalList.ToList();
+
+                cmbProductR.Text = ""; txtFineR.Clear();
+                TotalReturn();
+                txtdiscription.Clear();
+                txtPremiumR.Clear();
+                txtPremiumValueR.Clear();
+                Wt.Checked = false;
+                Rs.Checked = false;
+                Gross.Checked = false;
+                Net.Checked = false;
+                cmbProductR.Focus();
             }
             catch (Exception ex)
             {
@@ -2120,7 +2210,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                Gross.BackColor = Color.White;
+                Gross.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2167,7 +2257,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                Net.BackColor = Color.White;
+                Net.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2217,7 +2307,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                Wt.BackColor = Color.White;
+                Wt.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2256,7 +2346,7 @@ namespace SilverGold.Transaction
         {
             try
             {
-                Rs.BackColor = Color.White;
+                Rs.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

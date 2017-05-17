@@ -37,23 +37,41 @@ namespace SilverGold
         {
             try
             {
-
-                CommanHelper.UserId = txtUserId.Text.Trim();
-                CommanHelper.Password = txtPassword.Text.Trim();
-
-                if (ValidateLogin(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME, txtUserId.Text.Trim(), txtPassword.Text.Trim()) == true)
+                if (CommanHelper._CompName_ChangeComapny != "")
                 {
-                    Master oMaster = new Master();
-                    oMaster.Show();
-                    this.Hide();
-
+                    if (ValidateLogin(CommanHelper._Com_DB_PATH_ChangeComapny, CommanHelper._Com_DB_NAME_ChangeComapny, txtUserId.Text.Trim(), txtPassword.Text.Trim()) == true)
+                    {
+                        this.Hide();
+                        Master.objMaster.Hide();
+                        Master oMaster = new Master();
+                        oMaster.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid id And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        txtUserId.Focus();
+                        return;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid id And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    txtUserId.Focus();
-                    return;
+                    CommanHelper.UserId = txtUserId.Text.Trim();
+                    CommanHelper.Password = txtPassword.Text.Trim();
+
+                    if (ValidateLogin(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME, txtUserId.Text.Trim(), txtPassword.Text.Trim()) == true)
+                    {
+                        Master oMaster = new Master();
+                        oMaster.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid id And Password !!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        txtUserId.Focus();
+                        return;
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -76,12 +94,19 @@ namespace SilverGold
                     OleDbDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
+                        if (CommanHelper._CompName_ChangeComapny != "")
+                        {
+                            CommanHelper.CompName = CommanHelper._CompName_ChangeComapny.ToString();
+                            CommanHelper._FinancialYear = CommanHelper._FinancialYear_ChangeComapny.ToString();
+                            CommanHelper.Com_DB_PATH = CommanHelper._Com_DB_PATH_ChangeComapny.ToString();
+                            CommanHelper.Com_DB_NAME = CommanHelper._Com_DB_NAME_ChangeComapny.ToString();
+                        }
                         if ((CommanHelper.CompName == dr["CompanyName"].ToString().Trim()) || (CommanHelper._FinancialYear == dr["FinancialYear"].ToString()) || (CommanHelper.Com_DB_PATH == dr["DatabasePath"].ToString()) || (CommanHelper.Com_DB_NAME == dr["DataBaseName"].ToString()))
                         {
                             _CheckValidateLogin = true;
                         }
                     }
-                    
+
                     dr.Close();
                     con.Close();
                 }
@@ -134,7 +159,7 @@ namespace SilverGold
             {
                 Application.Exit();
             }
-            
+
         }
     }
 }

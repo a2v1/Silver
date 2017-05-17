@@ -17,13 +17,19 @@ namespace SilverGold.Helper
         public static string CompName = "";
         public static string Com_DB_PATH = "";
         public static string Com_DB_NAME = "";
+        public static string _FinancialYear = "";
 
         public static string FDate = "";
-        public static string TDate = "";
-        public static string _FinancialYear = "";
+        public static string TDate = "";      
         public static string UserId = "";
         public static string Password = "";
         public static int F_TunchPending = 0;
+
+        public static string _CompName_ChangeComapny = "";
+        public static string _Com_DB_PATH_ChangeComapny = "";
+        public static string _Com_DB_NAME_ChangeComapny = "";
+        public static string _FinancialYear_ChangeComapny = "";
+
 
         public static List<CompanyLoginEntity> CompanyLogin = new List<CompanyLoginEntity>();
 
@@ -500,7 +506,7 @@ namespace SilverGold.Helper
                     {
                         cmb.Items.Add(dr[0].ToString());
                     }
-                   
+
                     con.Close();
                 }
             }
@@ -510,7 +516,7 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void BindMetalName(ComboBox cmb,String _Category)
+        public static void BindMetalName(ComboBox cmb, String _Category)
         {
             try
             {
@@ -830,7 +836,6 @@ namespace SilverGold.Helper
             Boolean _CheckValue = false;
             for (int row = 0; row < dgrd.Rows.Count; row++)
             {
-
                 if (dgrd.Rows[row].Cells[1].Value != null && dgrd.Rows[row].Cells[1].Value.Equals(strValue.Trim()))
                 {
                     _CheckValue = true;
@@ -1045,7 +1050,10 @@ namespace SilverGold.Helper
                     OleDbDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        _TunchPendingExist = true;
+                        if ((dr["Tunch1"].ToString().Trim() == "Y") || (dr["Tunch2"].ToString().Trim() == "Y"))
+                        {
+                            _TunchPendingExist = true;
+                        }
                     }
                     dr.Close();
                     con.Close();
@@ -1083,7 +1091,53 @@ namespace SilverGold.Helper
             return _Check;
         }
 
+        public static void ShowFineCash(DataGridView dgv, int _Col_FineRs, int _col_WeightRs, Label _lblFine, Label _lblRs)
+        {
+            String _fine_string = "";
+            String _Amount_string = "";
+            Decimal _Fine = 0;
+            Decimal _Rs = 0;
+            for (int i = 0; i <= dgv.RowCount - 1; i++)
+            {
+                if (dgv.Rows[i].Cells[_col_WeightRs].Value.ToString().ToUpper() == "WEIGHT")
+                {
+                    decimal S = Conversion.ConToDec6((dgv.Rows[i].Cells[_Col_FineRs].Value ?? (object)"").ToString());
+                    _Fine = _Fine + S;
+                }
+                if (dgv.Rows[i].Cells[_col_WeightRs].Value.ToString().ToUpper() == "RUPEES")
+                {
+                    decimal S1 = Conversion.ConToDec6((dgv.Rows[i].Cells[_Col_FineRs].Value ?? (object)"").ToString());
+                    _Rs = _Rs + S1;
+                }
+            }
+            _fine_string = (String.Format("{0:0.000}", _Fine)) + "(F)";
+            if (_Rs != 0)
+            {
+                _lblRs.Text = _Rs.ToString();
+                _Amount_string = _Rs.ToString() + "(R)";
+            }
+            if (_Rs == 0)
+            {
+                _lblRs.Text = "";
+            }
 
+            if ((_Rs == 0) && (_Fine == 0))
+            {
+                _lblFine.Text = "";
+            }
+            if ((_Rs != 0) && (_Fine == 0))
+            {
+                _lblFine.Text = _Amount_string;
+            }
+            if ((_Rs == 0) && (_Fine != 0))
+            {
+                _lblFine.Text = _fine_string;
+            }
+            if ((_Rs != 0) && (_Fine != 0))
+            {
+                _lblFine.Text = _fine_string + "/" + _Amount_string;
+            }
+        }
 
     }
 }

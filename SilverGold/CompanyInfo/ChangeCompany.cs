@@ -1,4 +1,5 @@
-﻿using SilverGold.Entity;
+﻿using SilverGold.Comman;
+using SilverGold.Entity;
 using SilverGold.Helper;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,16 @@ namespace SilverGold.CompanyInfo
         public ChangeCompany()
         {
             InitializeComponent();
+            CommanHelper._CompName_ChangeComapny = "";
+            CommanHelper._FinancialYear_ChangeComapny = "";
+            CommanHelper._Com_DB_PATH_ChangeComapny = "";
+            CommanHelper._Com_DB_NAME_ChangeComapny = "";
         }
 
         private void ChangeCompany_Load(object sender, EventArgs e)
         {
             this.CancelButton = btnClose;
+
             try
             {
                 var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
@@ -85,12 +91,21 @@ namespace SilverGold.CompanyInfo
         private void Fun_ChangeCompany()
         {
             String _CompanyName = "";
-            if (listBox1.SelectedIndex > 0)
+            if (listBox1.Text.ToString().Trim() != "")
             {
                 _CompanyName = listBox1.Text.ToString();
+                var result = CompanyDetailsList.Where(x => x.Sno == Conversion.ConToInt(listBox1.SelectedValue.ToString())).SingleOrDefault();
+
                 if ((MessageBox.Show("Do U Want To Access Company " + _CompanyName + " ?", "Change Company", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes))
                 {
+                    CommanHelper._CompName_ChangeComapny = result.CompanyName;
+                    CommanHelper._FinancialYear_ChangeComapny = result.FinancialYear.ToString();
+                    CommanHelper._Com_DB_PATH_ChangeComapny = result.DataBasePath.ToString();
+                    CommanHelper._Com_DB_NAME_ChangeComapny = result.DataBaseName.ToString();
 
+                    Login oLogin = new Login();
+                    oLogin.ShowDialog();
+                    this.Hide();
                 }
             }
         }
@@ -113,7 +128,7 @@ namespace SilverGold.CompanyInfo
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {

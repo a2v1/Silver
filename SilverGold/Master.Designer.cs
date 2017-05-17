@@ -59,10 +59,7 @@
             this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -78,7 +75,7 @@
             this.sToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(632, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1093, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -213,6 +210,7 @@
             this.cashSaleToolStripMenuItem.Name = "cashSaleToolStripMenuItem";
             this.cashSaleToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.cashSaleToolStripMenuItem.Text = "Cash (Sale)";
+            this.cashSaleToolStripMenuItem.Click += new System.EventHandler(this.cashSaleToolStripMenuItem_Click);
             // 
             // journalVoucherToolStripMenuItem
             // 
@@ -220,6 +218,7 @@
             this.journalVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.journalVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.journalVoucherToolStripMenuItem.Text = "Journal Voucher";
+            this.journalVoucherToolStripMenuItem.Click += new System.EventHandler(this.journalVoucherToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -232,6 +231,7 @@
             this.recieptVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
             this.recieptVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.recieptVoucherToolStripMenuItem.Text = "Reciept Voucher";
+            this.recieptVoucherToolStripMenuItem.Click += new System.EventHandler(this.recieptVoucherToolStripMenuItem_Click);
             // 
             // paymentVoucherToolStripMenuItem
             // 
@@ -239,6 +239,7 @@
             this.paymentVoucherToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.paymentVoucherToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.paymentVoucherToolStripMenuItem.Text = "Payment Voucher";
+            this.paymentVoucherToolStripMenuItem.Click += new System.EventHandler(this.paymentVoucherToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -301,32 +302,15 @@
             this.removePasswordToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.removePasswordToolStripMenuItem.Text = "Remove Password";
             // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 431);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(632, 22);
-            this.statusStrip.TabIndex = 1;
-            this.statusStrip.Text = "StatusStrip";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
-            this.toolStripStatusLabel.Text = "Status";
-            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 453);
-            this.Controls.Add(this.statusStrip);
+            this.ClientSize = new System.Drawing.Size(1093, 567);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Master";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Master";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Master_FormClosed);
@@ -334,8 +318,6 @@
             this.Click += new System.EventHandler(this.Master_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,8 +345,6 @@
         private System.Windows.Forms.ToolStripMenuItem paymentVoucherToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem labourProccessingToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         public System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem changeCompanyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
