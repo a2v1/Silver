@@ -59,7 +59,10 @@ namespace SilverGold
 
         private void Master_Load(object sender, EventArgs e)
         {
-            this.Text = CommanHelper.CompName.ToString() + " (" + CommanHelper._FinancialYear.ToString().Substring(0, 4) + "-" + CommanHelper._FinancialYear.ToString().Substring(4, 4) + ")";
+            if (CommanHelper._FinancialYear.ToString().Trim() != "")
+            {
+                this.Text = CommanHelper.CompName.ToString() + " (" + CommanHelper._FinancialYear.ToString().Substring(0, 4) + "-" + CommanHelper._FinancialYear.ToString().Substring(4, 4) + ")";
+            }
             Master.objMaster = this;
             CommanHelper.FormX = this.Width;
             CommanHelper.FormY = this.Height;
@@ -86,58 +89,58 @@ namespace SilverGold
             //}
 
 
-            if (CommanHelper.CompName != "" && CommanHelper.UserId != "")
-            {
-                //using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
-                //{
-                //    try
-                //    {
-                //        con.Open();
-                //        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PriceList ADD BillNo Text(50)", con);
-                //        cmd.ExecuteNonQuery();
-                //        con.Close();
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        con.Close();
-                //    }
-                //    try
-                //    {
-                //        con.Open();
-                //        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD Hazir Decimal(14,6)", con);
-                //        cmd.ExecuteNonQuery();
-                //        con.Close();
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        con.Close();
-                //    }
+            //if (CommanHelper.CompName != "" && CommanHelper.UserId != "")
+            //{
+            //    using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            //    {
+            //        try
+            //        {
+            //            con.Open();
+            //            OleDbCommand cmd = new OleDbCommand("ALTER TABLE PriceList ADD BillNo Text(50)", con);
+            //            cmd.ExecuteNonQuery();
+            //            con.Close();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            con.Close();
+            //        }
+            //        try
+            //        {
+            //            con.Open();
+            //            OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD Hazir Decimal(14,6)", con);
+            //            cmd.ExecuteNonQuery();
+            //            con.Close();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            con.Close();
+            //        }
 
-                //    try
-                //    {
-                //        con.Open();
-                //        OleDbCommand cmd = new OleDbCommand("ALTER TABLE KFDetails ADD YN TEXT(50),KF_Sno INT,KF_DateR DateTime,KF_DateP DateTime", con);
-                //        cmd.ExecuteNonQuery();
-                //        con.Close();
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        con.Close();
-                //    }
+            //        try
+            //        {
+            //            con.Open();
+            //            OleDbCommand cmd = new OleDbCommand("ALTER TABLE KFDetails ADD YN TEXT(50),KF_Sno INT,KF_DateR DateTime,KF_DateP DateTime", con);
+            //            cmd.ExecuteNonQuery();
+            //            con.Close();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            con.Close();
+            //        }
 
-                //    try
-                //    {
-                //        con.Open();
-                //        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD KF_Sno INT", con);
-                //        cmd.ExecuteNonQuery();
-                //        con.Close();
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        con.Close();
-                //    }
-                //}
-            }
+            //        try
+            //        {
+            //            con.Open();
+            //            OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyTran ADD KF_Sno INT", con);
+            //            cmd.ExecuteNonQuery();
+            //            con.Close();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            con.Close();
+            //        }
+            //    }
+            //}
 
         }
 
