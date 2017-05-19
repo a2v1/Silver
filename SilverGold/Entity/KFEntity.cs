@@ -28,6 +28,21 @@ namespace SilverGold.Entity
         public DateTime KF_DateP { get; set; }
     }
 
+
+    class KFOpeningEntity
+    {
+        public string MetalCategory { get; set; }
+        public string MetalName { get; set; }
+        public string PaatNo { get; set; }
+        public decimal Weight { get; set; }
+        public decimal Tunch1 { get; set; }
+        public decimal Tunch2 { get; set; }
+        public decimal Fine { get; set; }
+        public int Sno { get; set; }
+     
+    }
+
+
     public static class KFFactory
     {
 
@@ -35,7 +50,7 @@ namespace SilverGold.Entity
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO KfDetails(MetalCategory,MetalName,Weight,Tunch1,Tunch2,Fine,TranType,YN,KF_DateR,Company,UserId)VALUES(@MetalCategory,@MetalName,@Weight,@Tunch1,@Tunch2,@Fine,@TranType,@YN,@KF_DateR,@Company,@UserId)";
+            strInsert = "INSERT INTO KfDetails(MetalCategory,MetalName,PaatNo,Weight,Tunch1,Tunch2,Fine,TranType,YN,KF_DateR,Company,UserId)VALUES(@MetalCategory,@MetalName,@PaatNo,@Weight,@Tunch1,@Tunch2,@Fine,@TranType,@YN,@KF_DateR,@Company,@UserId)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -46,6 +61,7 @@ namespace SilverGold.Entity
             cmdInsert.CommandType = CommandType.Text;
             cmdInsert.Parameters.AddWithValue("@MetalCategory", _MetalCategory);
             cmdInsert.Parameters.AddWithValue("@MetalName", _MetalName);
+            cmdInsert.Parameters.AddWithValue("@PaatNo", _PaatNo);
             cmdInsert.Parameters.AddWithValue("@Weight", _Weight);
             cmdInsert.Parameters.AddWithValue("@Tunch1", _Tunch1);
             cmdInsert.Parameters.AddWithValue("@Tunch2", _Tunch2);

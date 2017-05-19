@@ -260,7 +260,6 @@ namespace SilverGold.CompanyInfo
             this.dataGridView3.Size = new System.Drawing.Size(712, 117);
             this.dataGridView3.TabIndex = 39;
             this.dataGridView3.TabStop = false;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             this.dataGridView3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView3_KeyPress);
             this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
             // 
