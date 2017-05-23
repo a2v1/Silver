@@ -42,7 +42,6 @@ namespace SilverGold.Entity
      
     }
 
-
     public static class KFFactory
     {
 

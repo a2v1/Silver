@@ -87,7 +87,7 @@ namespace SilverGold.CompanyInfo
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(11, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(723, 290);
+            this.groupBox1.Size = new System.Drawing.Size(723, 332);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -99,13 +99,13 @@ namespace SilverGold.CompanyInfo
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(8, 85);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(707, 196);
+            this.dataGridView1.Size = new System.Drawing.Size(707, 238);
             this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
             this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
-            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
@@ -242,11 +242,11 @@ namespace SilverGold.CompanyInfo
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(26, 386);
+            this.label9.Location = new System.Drawing.Point(26, 437);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(157, 16);
             this.label9.TabIndex = 38;
-            this.label9.Text = "Company Details (F2)";
+            this.label9.Text = "Company Details (F1)";
             // 
             // dataGridView3
             // 
@@ -254,7 +254,7 @@ namespace SilverGold.CompanyInfo
             this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(22, 407);
+            this.dataGridView3.Location = new System.Drawing.Point(22, 458);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(712, 117);
@@ -274,7 +274,7 @@ namespace SilverGold.CompanyInfo
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(759, 386);
+            this.groupBox3.Location = new System.Drawing.Point(759, 437);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(306, 135);
             this.groupBox3.TabIndex = 40;
@@ -364,7 +364,7 @@ namespace SilverGold.CompanyInfo
             // btnrefresh
             // 
             this.btnrefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnrefresh.Location = new System.Drawing.Point(207, 349);
+            this.btnrefresh.Location = new System.Drawing.Point(199, 391);
             this.btnrefresh.Name = "btnrefresh";
             this.btnrefresh.Size = new System.Drawing.Size(80, 28);
             this.btnrefresh.TabIndex = 43;
@@ -375,7 +375,7 @@ namespace SilverGold.CompanyInfo
             // btnupdate
             // 
             this.btnupdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdate.Location = new System.Drawing.Point(117, 349);
+            this.btnupdate.Location = new System.Drawing.Point(109, 391);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(84, 28);
             this.btnupdate.TabIndex = 42;
@@ -387,7 +387,7 @@ namespace SilverGold.CompanyInfo
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(293, 349);
+            this.btnExit.Location = new System.Drawing.Point(285, 391);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(80, 28);
             this.btnExit.TabIndex = 44;
@@ -398,7 +398,7 @@ namespace SilverGold.CompanyInfo
             // btnCreate
             // 
             this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(30, 349);
+            this.btnCreate.Location = new System.Drawing.Point(22, 391);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(81, 28);
             this.btnCreate.TabIndex = 41;
@@ -471,7 +471,7 @@ namespace SilverGold.CompanyInfo
             // toolStripMenu_CompanyDetails
             // 
             this.toolStripMenu_CompanyDetails.Name = "toolStripMenu_CompanyDetails";
-            this.toolStripMenu_CompanyDetails.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.toolStripMenu_CompanyDetails.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.toolStripMenu_CompanyDetails.Size = new System.Drawing.Size(25, 20);
             this.toolStripMenu_CompanyDetails.Text = "  ";
             this.toolStripMenu_CompanyDetails.Click += new System.EventHandler(this.toolStripMenu_CompanyDetails_Click);
@@ -497,7 +497,7 @@ namespace SilverGold.CompanyInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 539);
+            this.ClientSize = new System.Drawing.Size(1277, 593);
             this.Controls.Add(this.lblKFName);
             this.Controls.Add(this.lblKFCate);
             this.Controls.Add(this.btnrefresh);

@@ -156,21 +156,23 @@ namespace SilverGold.Helper
             return sum_col;
         }
 
-        public static List<MetalEntity> GetMetalCate()
+        public static List<MetalEntity> GetMetalCate(int strFlage)
         {
             List<MetalEntity> MetalList = new List<MetalEntity>();
             ConnectionClass objCon = new ConnectionClass();
             try
             {
                 OleDbConnection con = new OleDbConnection();
-
-                if (CompName != "" && UserId != "")
+                if (strFlage == 0)
                 {
-                    con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
+                    con.ConnectionString = objCon._CONSTR();
                 }
                 else
                 {
-                    con.ConnectionString = objCon._CONSTR();
+                    if (CompName != "" && UserId != "")
+                    {
+                        con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
+                    }
                 }
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select MetalCategory,MetalName,WeightType,KachchiFine,Sno,CompanyName,UserId From Metal ORDER BY MetalCategory ASC", con);
@@ -267,7 +269,18 @@ namespace SilverGold.Helper
                         oMetal.WeightType = dr["WeightType"].ToString().Trim();
                         oMetal.KachchiFine = dr["KachchiFine"].ToString().Trim();
                         oMetal.DrCr = dr["DrCr"].ToString().Trim();
-                        oMetal.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
+                        if (dr["WeightType"].ToString().Trim() == "KG")
+                        {
+                            oMetal.Weight = System.Math.Round(Conversion.ConToDec6(dr["Weight"].ToString()), 3);
+                        }
+                        else if (dr["WeightType"].ToString().Trim() == "GRMS")
+                        {
+                            oMetal.Weight = System.Math.Round(Conversion.ConToDec6(dr["Weight"].ToString()), 6);
+                        }
+                        else
+                        {
+                            oMetal.Weight = System.Math.Round(Conversion.ConToDec6(dr["Weight"].ToString()), 0);
+                        }
                         oMetal.Sno = Conversion.ConToInt(dr["Sno"].ToString());
                         oMetal.CompanyName = dr["CompanyName"].ToString().Trim();
                         oMetal.UserId = dr["UserId"].ToString().Trim();
