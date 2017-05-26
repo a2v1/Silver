@@ -1958,11 +1958,14 @@ namespace SilverGold.Transaction
         {
             try
             {
-                PriceList_Clear();
-                grpPriceList.Visible = true;
-                CommanHelper.GetParty(cmbPartyName_PriseList, "PARTY");
-                CommanHelper.ComboBoxItem(cmbProduct_PriceList, "Product", "ProductName");
-                cmbPartyName_PriseList.Focus();
+                //PriceList_Clear();
+                //grpPriceList.Visible = true;
+                //CommanHelper.GetParty(cmbPartyName_PriseList, "PARTY");
+                //CommanHelper.ComboBoxItem(cmbProduct_PriceList, "Product", "ProductName");
+                //cmbPartyName_PriseList.Focus();
+                PriceList oPriceList = new PriceList();
+                oPriceList._TranType = "GG";
+                oPriceList.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -63,7 +63,6 @@
             this.grpPriceList.TabIndex = 34;
             this.grpPriceList.TabStop = false;
             this.grpPriceList.Text = "Price List";
-            this.grpPriceList.Visible = false;
             // 
             // btnClose
             // 
@@ -192,6 +191,7 @@
             this.Name = "PriceList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PriceList";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PriceList_FormClosed);
             this.Load += new System.EventHandler(this.PriceList_Load);
             this.grpPriceList.ResumeLayout(false);
             this.grpPriceList.PerformLayout();

@@ -127,7 +127,8 @@
             this.txtPremiumValueR = new System.Windows.Forms.TextBox();
             this.txtFineR = new System.Windows.Forms.TextBox();
             this.txtPremiumR = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpBoxPriceList = new System.Windows.Forms.GroupBox();
+            this.btnClosePriceL = new System.Windows.Forms.Button();
             this.btnpricelistclose = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
@@ -135,11 +136,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpgrp2To = new System.Windows.Forms.DateTimePicker();
-            this.dtpgrp2From = new System.Windows.Forms.DateTimePicker();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.cmbgrp2product = new System.Windows.Forms.ComboBox();
             this.cmbgrp2partyname = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.plnYN.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -158,7 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -829,6 +829,9 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 30;
+            this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker1_Enter);
+            this.dateTimePicker1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker1_KeyPress);
+            this.dateTimePicker1.Leave += new System.EventHandler(this.dateTimePicker1_Leave);
             // 
             // plnpopup
             // 
@@ -848,6 +851,9 @@
             this.cmbPopUp.Size = new System.Drawing.Size(91, 21);
             this.cmbPopUp.Sorted = true;
             this.cmbPopUp.TabIndex = 0;
+            this.cmbPopUp.Enter += new System.EventHandler(this.cmbPopUp_Enter);
+            this.cmbPopUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPopUp_KeyPress);
+            this.cmbPopUp.Leave += new System.EventHandler(this.cmbPopUp_Leave);
             // 
             // btnClose
             // 
@@ -923,6 +929,7 @@
             this.btnKfOK.TabIndex = 163;
             this.btnKfOK.Text = "OK (F8)";
             this.btnKfOK.UseVisualStyleBackColor = true;
+            this.btnKfOK.Click += new System.EventHandler(this.btnKfOK_Click);
             // 
             // lblfine
             // 
@@ -1048,12 +1055,13 @@
             // 
             this.btnReturnOK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReturnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturnOK.Location = new System.Drawing.Point(898, 627);
+            this.btnReturnOK.Location = new System.Drawing.Point(893, 625);
             this.btnReturnOK.Name = "btnReturnOK";
             this.btnReturnOK.Size = new System.Drawing.Size(33, 21);
             this.btnReturnOK.TabIndex = 178;
             this.btnReturnOK.Text = "OK";
             this.btnReturnOK.UseVisualStyleBackColor = true;
+            this.btnReturnOK.Click += new System.EventHandler(this.btnReturnOK_Click);
             // 
             // dataGridView4
             // 
@@ -1085,6 +1093,9 @@
             this.Rs.TabStop = true;
             this.Rs.Text = "Rs";
             this.Rs.UseVisualStyleBackColor = true;
+            this.Rs.Enter += new System.EventHandler(this.Rs_Enter);
+            this.Rs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rs_KeyPress);
+            this.Rs.Leave += new System.EventHandler(this.Rs_Leave);
             // 
             // Wt
             // 
@@ -1096,6 +1107,9 @@
             this.Wt.TabStop = true;
             this.Wt.Text = "Wt";
             this.Wt.UseVisualStyleBackColor = true;
+            this.Wt.Enter += new System.EventHandler(this.Wt_Enter);
+            this.Wt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Wt_KeyPress);
+            this.Wt.Leave += new System.EventHandler(this.Wt_Leave);
             // 
             // panel8
             // 
@@ -1117,6 +1131,9 @@
             this.Net.TabStop = true;
             this.Net.Text = "Net";
             this.Net.UseVisualStyleBackColor = true;
+            this.Net.Enter += new System.EventHandler(this.Net_Enter);
+            this.Net.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Net_KeyPress);
+            this.Net.Leave += new System.EventHandler(this.Net_Leave);
             // 
             // Gross
             // 
@@ -1128,6 +1145,9 @@
             this.Gross.TabStop = true;
             this.Gross.Text = "Gr";
             this.Gross.UseVisualStyleBackColor = true;
+            this.Gross.Enter += new System.EventHandler(this.Gross_Enter);
+            this.Gross.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Gross_KeyPress);
+            this.Gross.Leave += new System.EventHandler(this.Gross_Leave);
             // 
             // btnOKR
             // 
@@ -1139,6 +1159,7 @@
             this.btnOKR.TabIndex = 176;
             this.btnOKR.Text = "OK";
             this.btnOKR.UseVisualStyleBackColor = true;
+            this.btnOKR.Click += new System.EventHandler(this.btnOKR_Click);
             // 
             // cmbProductR
             // 
@@ -1149,6 +1170,9 @@
             this.cmbProductR.Size = new System.Drawing.Size(127, 21);
             this.cmbProductR.Sorted = true;
             this.cmbProductR.TabIndex = 169;
+            this.cmbProductR.Enter += new System.EventHandler(this.cmbProductR_Enter);
+            this.cmbProductR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProductR_KeyPress);
+            this.cmbProductR.Leave += new System.EventHandler(this.cmbProductR_Leave);
             // 
             // txtdiscription
             // 
@@ -1156,6 +1180,9 @@
             this.txtdiscription.Name = "txtdiscription";
             this.txtdiscription.Size = new System.Drawing.Size(100, 20);
             this.txtdiscription.TabIndex = 175;
+            this.txtdiscription.Enter += new System.EventHandler(this.txtdiscription_Enter);
+            this.txtdiscription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdiscription_KeyPress);
+            this.txtdiscription.Leave += new System.EventHandler(this.txtdiscription_Leave);
             // 
             // txtPremiumValueR
             // 
@@ -1174,6 +1201,9 @@
             this.txtFineR.Size = new System.Drawing.Size(62, 20);
             this.txtFineR.TabIndex = 170;
             this.txtFineR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFineR.Enter += new System.EventHandler(this.txtFineR_Enter);
+            this.txtFineR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFineR_KeyPress);
+            this.txtFineR.Leave += new System.EventHandler(this.txtFineR_Leave);
             // 
             // txtPremiumR
             // 
@@ -1182,27 +1212,41 @@
             this.txtPremiumR.Size = new System.Drawing.Size(63, 20);
             this.txtPremiumR.TabIndex = 173;
             this.txtPremiumR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPremiumR.Enter += new System.EventHandler(this.txtPremiumR_Enter);
+            this.txtPremiumR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPremiumR_KeyPress);
+            this.txtPremiumR.Leave += new System.EventHandler(this.txtPremiumR_Leave);
             // 
-            // groupBox1
+            // grpBoxPriceList
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnpricelistclose);
-            this.groupBox1.Controls.Add(this.dataGridView2);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dtpgrp2To);
-            this.groupBox1.Controls.Add(this.dtpgrp2From);
-            this.groupBox1.Controls.Add(this.cmbgrp2product);
-            this.groupBox1.Controls.Add(this.cmbgrp2partyname);
-            this.groupBox1.Location = new System.Drawing.Point(962, 315);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(273, 202);
-            this.groupBox1.TabIndex = 168;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Price List";
+            this.grpBoxPriceList.Controls.Add(this.btnClosePriceL);
+            this.grpBoxPriceList.Controls.Add(this.btnpricelistclose);
+            this.grpBoxPriceList.Controls.Add(this.dataGridView2);
+            this.grpBoxPriceList.Controls.Add(this.label8);
+            this.grpBoxPriceList.Controls.Add(this.label7);
+            this.grpBoxPriceList.Controls.Add(this.label6);
+            this.grpBoxPriceList.Controls.Add(this.label4);
+            this.grpBoxPriceList.Controls.Add(this.label1);
+            this.grpBoxPriceList.Controls.Add(this.dtpTo);
+            this.grpBoxPriceList.Controls.Add(this.dtpFrom);
+            this.grpBoxPriceList.Controls.Add(this.cmbgrp2product);
+            this.grpBoxPriceList.Controls.Add(this.cmbgrp2partyname);
+            this.grpBoxPriceList.Location = new System.Drawing.Point(962, 315);
+            this.grpBoxPriceList.Name = "grpBoxPriceList";
+            this.grpBoxPriceList.Size = new System.Drawing.Size(273, 202);
+            this.grpBoxPriceList.TabIndex = 168;
+            this.grpBoxPriceList.TabStop = false;
+            this.grpBoxPriceList.Text = "Price List";
+            // 
+            // btnClosePriceL
+            // 
+            this.btnClosePriceL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClosePriceL.Location = new System.Drawing.Point(188, 173);
+            this.btnClosePriceL.Name = "btnClosePriceL";
+            this.btnClosePriceL.Size = new System.Drawing.Size(75, 23);
+            this.btnClosePriceL.TabIndex = 41;
+            this.btnClosePriceL.Text = "Close";
+            this.btnClosePriceL.UseVisualStyleBackColor = true;
+            this.btnClosePriceL.Click += new System.EventHandler(this.btnClosePriceL_Click);
             // 
             // btnpricelistclose
             // 
@@ -1271,23 +1315,24 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Party Name:";
             // 
-            // dtpgrp2To
+            // dtpTo
             // 
-            this.dtpgrp2To.CustomFormat = "dd/MM/yyyy";
-            this.dtpgrp2To.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2To.Location = new System.Drawing.Point(175, 76);
-            this.dtpgrp2To.Name = "dtpgrp2To";
-            this.dtpgrp2To.Size = new System.Drawing.Size(87, 20);
-            this.dtpgrp2To.TabIndex = 3;
+            this.dtpTo.CustomFormat = "dd/MM/yyyy";
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(175, 76);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Size = new System.Drawing.Size(87, 20);
+            this.dtpTo.TabIndex = 3;
             // 
-            // dtpgrp2From
+            // dtpFrom
             // 
-            this.dtpgrp2From.CustomFormat = "dd/MM/yyyy";
-            this.dtpgrp2From.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2From.Location = new System.Drawing.Point(51, 77);
-            this.dtpgrp2From.Name = "dtpgrp2From";
-            this.dtpgrp2From.Size = new System.Drawing.Size(88, 20);
-            this.dtpgrp2From.TabIndex = 2;
+            this.dtpFrom.CustomFormat = "dd/MM/yyyy";
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(51, 77);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(88, 20);
+            this.dtpFrom.TabIndex = 2;
+            this.dtpFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpFrom_KeyPress);
             // 
             // cmbgrp2product
             // 
@@ -1296,6 +1341,9 @@
             this.cmbgrp2product.Name = "cmbgrp2product";
             this.cmbgrp2product.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2product.TabIndex = 1;
+            this.cmbgrp2product.Enter += new System.EventHandler(this.cmbgrp2product_Enter);
+            this.cmbgrp2product.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrp2product_KeyPress);
+            this.cmbgrp2product.Leave += new System.EventHandler(this.cmbgrp2product_Leave);
             // 
             // cmbgrp2partyname
             // 
@@ -1304,16 +1352,9 @@
             this.cmbgrp2partyname.Name = "cmbgrp2partyname";
             this.cmbgrp2partyname.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2partyname.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(188, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmbgrp2partyname.Enter += new System.EventHandler(this.cmbgrp2partyname_Enter);
+            this.cmbgrp2partyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrp2partyname_KeyPress);
+            this.cmbgrp2partyname.Leave += new System.EventHandler(this.cmbgrp2partyname_Leave);
             // 
             // CashSale
             // 
@@ -1337,7 +1378,7 @@
             this.Controls.Add(this.txtPremiumValueR);
             this.Controls.Add(this.txtFineR);
             this.Controls.Add(this.txtPremiumR);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpBoxPriceList);
             this.Controls.Add(this.btnKfOK);
             this.Controls.Add(this.lblfine);
             this.Controls.Add(this.lblsno);
@@ -1431,8 +1472,8 @@
             this.panel2.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpBoxPriceList.ResumeLayout(false);
+            this.grpBoxPriceList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1540,7 +1581,7 @@
         private System.Windows.Forms.TextBox txtPremiumValueR;
         private System.Windows.Forms.TextBox txtFineR;
         private System.Windows.Forms.TextBox txtPremiumR;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpBoxPriceList;
         private System.Windows.Forms.Button btnpricelistclose;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label8;
@@ -1548,10 +1589,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpgrp2To;
-        private System.Windows.Forms.DateTimePicker dtpgrp2From;
+        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.ComboBox cmbgrp2product;
         private System.Windows.Forms.ComboBox cmbgrp2partyname;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClosePriceL;
     }
 }

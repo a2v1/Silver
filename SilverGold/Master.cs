@@ -325,12 +325,16 @@ namespace SilverGold
 
         private void recieptVoucherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            RecieptVoucher oRecieptVoucher = new RecieptVoucher();
+            oRecieptVoucher.MdiParent = this;
+            oRecieptVoucher.Show();
         }
 
         private void paymentVoucherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            PaymentVoucher oPaymentVoucher = new PaymentVoucher();
+            oPaymentVoucher.MdiParent = this;
+            oPaymentVoucher.Show();
         }
     }
 }

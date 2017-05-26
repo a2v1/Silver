@@ -204,6 +204,16 @@ namespace SilverGold.Transaction
             lblTotalPcs.Text = "";
         }
 
+
+        private void PriceList_Clear()
+        {
+            cmbgrp2partyname.Text = "";
+            cmbgrp2product.Text = "";
+            dtpFrom.Text = DateTime.Now.ToString();
+            dtpTo.Text = DateTime.Now.ToString();
+            dataGridView2.DataSource = "";
+        }
+
         #endregion
 
         private void CashSale_Load(object sender, EventArgs e)
@@ -916,7 +926,7 @@ namespace SilverGold.Transaction
             }
 
         }
-         
+
         private void txtnarration_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -984,6 +994,592 @@ namespace SilverGold.Transaction
             }
         }
 
+        private void btnClosePriceL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                grpBoxPriceList.Visible = false;
+                PriceList_Clear();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
 
+        private void cmbProductR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductR.BackColor = Color.Aqua;
+                CommanHelper.BindMetalName(cmbProductR, cmbCategory.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbProductR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (cmbProductR.Text.Trim() != "")
+                    {
+                        if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProductR.Text.Trim().ToUpper()) == "YES")
+                        {
+
+                        }
+                        else
+                        {
+                            txtFineR.Focus();
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+
+        }
+
+        private void cmbProductR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductR.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtFineR.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                CommanHelper.IsNumericTextBox(txtFineR, e);
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFineR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProductR.Text.Trim());
+                txtFineR.BackColor = Color.White;
+                if (txtFineR.Text != "")
+                {
+                    Decimal finep = Conversion.ConToDec6(txtFineR.Text);
+                    if (_wt_type == "GRMS")
+                    {
+                        txtFineR.Text = String.Format("{0:0.000000}", finep);
+                    }
+                    else
+                    {
+                        txtFineR.Text = String.Format("{0:0.000}", finep);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPremiumR.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                CommanHelper.IsNumericTextBox(txtPremiumR, e);
+                if (e.KeyChar == 13)
+                {
+                    txtdiscription.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPremiumR_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string _wt_type = CommanHelper.GetColumnValue("WeightType", "Metal", "MetalName", cmbProductR.Text.Trim());
+                txtPremiumR.BackColor = Color.White;
+                if (txtPremiumR.Text != "")
+                {
+                    if (Wt.Checked == true)
+                    {
+                        decimal finep = Conversion.ConToDec6(txtPremiumR.Text);
+                        if (_wt_type == "GRMS")
+                        {
+                            txtPremiumR.Text = String.Format("{0:0.000000}", finep);
+                        }
+                        else
+                        {
+                            txtPremiumR.Text = String.Format("{0:0.000}", finep);
+                        }
+                    }
+                    else
+                    {
+                        Decimal finep = Conversion.ConToDec6(txtPremiumR.Text);
+                        txtPremiumR.Text = finep.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Gross.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Gross_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Gross.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Net.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (Wt.Checked == true)
+                    {
+                        Wt.Focus();
+                    }
+                    else if (Rs.Checked == true)
+                    {
+                        Rs.Focus();
+                    }
+                    else
+                    {
+                        Wt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Net_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Net.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Wt.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    txtPremiumR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Wt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Wt.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Rs.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    txtPremiumR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Rs_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Rs.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdiscription.BackColor = Color.Aqua;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                {
+                    btnOKR.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtdiscription_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtdiscription.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2partyname_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbgrp2partyname.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2partyname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                    cmbgrp2product.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2partyname_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbgrp2partyname.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2product_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbgrp2product.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2product_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                    dtpFrom.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbgrp2product_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbgrp2product.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dtpFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 13)
+                    dtpTo.Focus();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnOKR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnReturnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void btnKfOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                plnpopup.BackColor = Color.RosyBrown;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try { if (e.KeyChar == 13)dtp1.Focus(); }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void cmbPopUp_Leave(object sender, EventArgs e)
+        {
+            try { plnpopup.BackColor = Color.Transparent; }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_Enter(object sender, EventArgs e)
+        {
+            try { panel10.BackColor = Color.RosyBrown; }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try { if (e.KeyChar == 13) { listBox1.Visible = true; listBox1.Focus(); } }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dateTimePicker1_Leave(object sender, EventArgs e)
+        {
+            try { panel10.BackColor = Color.Transparent; }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
     }
 }

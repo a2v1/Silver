@@ -98,7 +98,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpBoxPriceList = new System.Windows.Forms.GroupBox();
+            this.btnClosePrice = new System.Windows.Forms.Button();
             this.btnpricelistclose = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
@@ -106,8 +107,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpgrp2To = new System.Windows.Forms.DateTimePicker();
-            this.dtpgrp2From = new System.Windows.Forms.DateTimePicker();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.cmbgrp2product = new System.Windows.Forms.ComboBox();
             this.cmbgrp2partyname = new System.Windows.Forms.ComboBox();
             this.txtbillno = new System.Windows.Forms.TextBox();
@@ -285,7 +286,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel10.SuspendLayout();
             this.plnpopup.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -923,7 +924,7 @@
             // lblTotalAmount
             // 
             this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmount.Location = new System.Drawing.Point(833, 317);
+            this.lblTotalAmount.Location = new System.Drawing.Point(816, 317);
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.Size = new System.Drawing.Size(80, 26);
             this.lblTotalAmount.TabIndex = 93;
@@ -946,6 +947,9 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 30;
+            this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker1_Enter);
+            this.dateTimePicker1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker1_KeyPress);
+            this.dateTimePicker1.Leave += new System.EventHandler(this.dateTimePicker1_Leave);
             // 
             // plnpopup
             // 
@@ -966,6 +970,9 @@
             this.cmbPopUp.Sorted = true;
             this.cmbPopUp.TabIndex = 0;
             this.cmbPopUp.SelectedIndexChanged += new System.EventHandler(this.cmbPopUp_SelectedIndexChanged);
+            this.cmbPopUp.Enter += new System.EventHandler(this.cmbPopUp_Enter);
+            this.cmbPopUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPopUp_KeyPress);
+            this.cmbPopUp.Leave += new System.EventHandler(this.cmbPopUp_Leave);
             // 
             // btnClose
             // 
@@ -1032,25 +1039,37 @@
             this.listBox1.TabIndex = 102;
             this.listBox1.Visible = false;
             // 
-            // groupBox1
+            // grpBoxPriceList
             // 
-            this.groupBox1.Controls.Add(this.btnpricelistclose);
-            this.groupBox1.Controls.Add(this.dataGridView2);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dtpgrp2To);
-            this.groupBox1.Controls.Add(this.dtpgrp2From);
-            this.groupBox1.Controls.Add(this.cmbgrp2product);
-            this.groupBox1.Controls.Add(this.cmbgrp2partyname);
-            this.groupBox1.Location = new System.Drawing.Point(495, 438);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(273, 181);
-            this.groupBox1.TabIndex = 103;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Price List";
+            this.grpBoxPriceList.Controls.Add(this.btnClosePrice);
+            this.grpBoxPriceList.Controls.Add(this.btnpricelistclose);
+            this.grpBoxPriceList.Controls.Add(this.dataGridView2);
+            this.grpBoxPriceList.Controls.Add(this.label8);
+            this.grpBoxPriceList.Controls.Add(this.label7);
+            this.grpBoxPriceList.Controls.Add(this.label6);
+            this.grpBoxPriceList.Controls.Add(this.label4);
+            this.grpBoxPriceList.Controls.Add(this.label1);
+            this.grpBoxPriceList.Controls.Add(this.dtpTo);
+            this.grpBoxPriceList.Controls.Add(this.dtpFrom);
+            this.grpBoxPriceList.Controls.Add(this.cmbgrp2product);
+            this.grpBoxPriceList.Controls.Add(this.cmbgrp2partyname);
+            this.grpBoxPriceList.Location = new System.Drawing.Point(495, 438);
+            this.grpBoxPriceList.Name = "grpBoxPriceList";
+            this.grpBoxPriceList.Size = new System.Drawing.Size(273, 206);
+            this.grpBoxPriceList.TabIndex = 103;
+            this.grpBoxPriceList.TabStop = false;
+            this.grpBoxPriceList.Text = "Price List";
+            // 
+            // btnClosePrice
+            // 
+            this.btnClosePrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClosePrice.Location = new System.Drawing.Point(188, 179);
+            this.btnClosePrice.Name = "btnClosePrice";
+            this.btnClosePrice.Size = new System.Drawing.Size(75, 23);
+            this.btnClosePrice.TabIndex = 42;
+            this.btnClosePrice.Text = "Close";
+            this.btnClosePrice.UseVisualStyleBackColor = true;
+            this.btnClosePrice.Click += new System.EventHandler(this.btnClosePrice_Click);
             // 
             // btnpricelistclose
             // 
@@ -1119,23 +1138,24 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Party Name:";
             // 
-            // dtpgrp2To
+            // dtpTo
             // 
-            this.dtpgrp2To.CustomFormat = "dd/MM/yyyy";
-            this.dtpgrp2To.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2To.Location = new System.Drawing.Point(175, 81);
-            this.dtpgrp2To.Name = "dtpgrp2To";
-            this.dtpgrp2To.Size = new System.Drawing.Size(87, 20);
-            this.dtpgrp2To.TabIndex = 3;
+            this.dtpTo.CustomFormat = "dd/MM/yyyy";
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(175, 81);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Size = new System.Drawing.Size(87, 20);
+            this.dtpTo.TabIndex = 3;
             // 
-            // dtpgrp2From
+            // dtpFrom
             // 
-            this.dtpgrp2From.CustomFormat = "dd/MM/yyyy";
-            this.dtpgrp2From.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2From.Location = new System.Drawing.Point(51, 82);
-            this.dtpgrp2From.Name = "dtpgrp2From";
-            this.dtpgrp2From.Size = new System.Drawing.Size(88, 20);
-            this.dtpgrp2From.TabIndex = 2;
+            this.dtpFrom.CustomFormat = "dd/MM/yyyy";
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(51, 82);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(88, 20);
+            this.dtpFrom.TabIndex = 2;
+            this.dtpFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpFrom_KeyPress);
             // 
             // cmbgrp2product
             // 
@@ -1144,6 +1164,9 @@
             this.cmbgrp2product.Name = "cmbgrp2product";
             this.cmbgrp2product.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2product.TabIndex = 1;
+            this.cmbgrp2product.Enter += new System.EventHandler(this.cmbgrp2product_Enter);
+            this.cmbgrp2product.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrp2product_KeyPress);
+            this.cmbgrp2product.Leave += new System.EventHandler(this.cmbgrp2product_Leave);
             // 
             // cmbgrp2partyname
             // 
@@ -1152,6 +1175,9 @@
             this.cmbgrp2partyname.Name = "cmbgrp2partyname";
             this.cmbgrp2partyname.Size = new System.Drawing.Size(163, 21);
             this.cmbgrp2partyname.TabIndex = 0;
+            this.cmbgrp2partyname.Enter += new System.EventHandler(this.cmbgrp2partyname_Enter);
+            this.cmbgrp2partyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbgrp2partyname_KeyPress);
+            this.cmbgrp2partyname.Leave += new System.EventHandler(this.cmbgrp2partyname_Leave);
             // 
             // txtbillno
             // 
@@ -1232,7 +1258,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.Rs);
             this.panel2.Controls.Add(this.Wt);
-            this.panel2.Location = new System.Drawing.Point(1043, 323);
+            this.panel2.Location = new System.Drawing.Point(1026, 323);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(93, 28);
             this.panel2.TabIndex = 115;
@@ -1270,7 +1296,7 @@
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel8.Controls.Add(this.Net);
             this.panel8.Controls.Add(this.Gross);
-            this.panel8.Location = new System.Drawing.Point(942, 323);
+            this.panel8.Location = new System.Drawing.Point(925, 323);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(95, 28);
             this.panel8.TabIndex = 114;
@@ -1307,7 +1333,7 @@
             // 
             this.btnOKR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOKR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOKR.Location = new System.Drawing.Point(1252, 358);
+            this.btnOKR.Location = new System.Drawing.Point(1235, 358);
             this.btnOKR.Name = "btnOKR";
             this.btnOKR.Size = new System.Drawing.Size(33, 21);
             this.btnOKR.TabIndex = 119;
@@ -1319,7 +1345,7 @@
             // 
             this.cmbProductR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductR.FormattingEnabled = true;
-            this.cmbProductR.Location = new System.Drawing.Point(815, 357);
+            this.cmbProductR.Location = new System.Drawing.Point(798, 357);
             this.cmbProductR.Name = "cmbProductR";
             this.cmbProductR.Size = new System.Drawing.Size(127, 21);
             this.cmbProductR.Sorted = true;
@@ -1331,7 +1357,7 @@
             // 
             // txtdiscription
             // 
-            this.txtdiscription.Location = new System.Drawing.Point(1150, 357);
+            this.txtdiscription.Location = new System.Drawing.Point(1133, 357);
             this.txtdiscription.Name = "txtdiscription";
             this.txtdiscription.Size = new System.Drawing.Size(100, 20);
             this.txtdiscription.TabIndex = 118;
@@ -1341,7 +1367,7 @@
             // 
             // txtPremiumValueR
             // 
-            this.txtPremiumValueR.Location = new System.Drawing.Point(1070, 357);
+            this.txtPremiumValueR.Location = new System.Drawing.Point(1053, 357);
             this.txtPremiumValueR.Name = "txtPremiumValueR";
             this.txtPremiumValueR.ReadOnly = true;
             this.txtPremiumValueR.Size = new System.Drawing.Size(79, 20);
@@ -1354,7 +1380,7 @@
             // 
             // txtFineR
             // 
-            this.txtFineR.Location = new System.Drawing.Point(943, 357);
+            this.txtFineR.Location = new System.Drawing.Point(926, 357);
             this.txtFineR.Name = "txtFineR";
             this.txtFineR.Size = new System.Drawing.Size(62, 20);
             this.txtFineR.TabIndex = 113;
@@ -1365,7 +1391,7 @@
             // 
             // txtPremiumR
             // 
-            this.txtPremiumR.Location = new System.Drawing.Point(1006, 357);
+            this.txtPremiumR.Location = new System.Drawing.Point(989, 357);
             this.txtPremiumR.Name = "txtPremiumR";
             this.txtPremiumR.Size = new System.Drawing.Size(63, 20);
             this.txtPremiumR.TabIndex = 116;
@@ -1380,7 +1406,7 @@
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(815, 382);
+            this.dataGridView4.Location = new System.Drawing.Point(798, 382);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(435, 106);
             this.dataGridView4.TabIndex = 120;
@@ -1388,7 +1414,7 @@
             // lblPreFineP
             // 
             this.lblPreFineP.Font = new System.Drawing.Font("Nina", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreFineP.Location = new System.Drawing.Point(968, 491);
+            this.lblPreFineP.Location = new System.Drawing.Point(951, 491);
             this.lblPreFineP.Name = "lblPreFineP";
             this.lblPreFineP.Size = new System.Drawing.Size(152, 14);
             this.lblPreFineP.TabIndex = 123;
@@ -1398,7 +1424,7 @@
             // lbltotFineP
             // 
             this.lbltotFineP.Font = new System.Drawing.Font("Nina", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotFineP.Location = new System.Drawing.Point(902, 490);
+            this.lbltotFineP.Location = new System.Drawing.Point(885, 490);
             this.lbltotFineP.Name = "lbltotFineP";
             this.lbltotFineP.Size = new System.Drawing.Size(64, 17);
             this.lbltotFineP.TabIndex = 122;
@@ -1409,7 +1435,7 @@
             // 
             this.btnReturnOK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReturnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturnOK.Location = new System.Drawing.Point(1222, 493);
+            this.btnReturnOK.Location = new System.Drawing.Point(1205, 493);
             this.btnReturnOK.Name = "btnReturnOK";
             this.btnReturnOK.Size = new System.Drawing.Size(33, 21);
             this.btnReturnOK.TabIndex = 121;
@@ -1420,7 +1446,7 @@
             // lblPreAmtP
             // 
             this.lblPreAmtP.Font = new System.Drawing.Font("Nina", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreAmtP.Location = new System.Drawing.Point(1152, 493);
+            this.lblPreAmtP.Location = new System.Drawing.Point(1135, 493);
             this.lblPreAmtP.Name = "lblPreAmtP";
             this.lblPreAmtP.Size = new System.Drawing.Size(39, 17);
             this.lblPreAmtP.TabIndex = 124;
@@ -1432,7 +1458,7 @@
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(815, 516);
+            this.dataGridView5.Location = new System.Drawing.Point(798, 516);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(326, 103);
             this.dataGridView5.TabIndex = 125;
@@ -1440,7 +1466,7 @@
             // lblkffine
             // 
             this.lblkffine.Font = new System.Drawing.Font("Nina", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblkffine.Location = new System.Drawing.Point(1036, 620);
+            this.lblkffine.Location = new System.Drawing.Point(1019, 620);
             this.lblkffine.Name = "lblkffine";
             this.lblkffine.Size = new System.Drawing.Size(64, 17);
             this.lblkffine.TabIndex = 128;
@@ -1450,7 +1476,7 @@
             // lblkfweight
             // 
             this.lblkfweight.Font = new System.Drawing.Font("Nina", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblkfweight.Location = new System.Drawing.Point(893, 622);
+            this.lblkfweight.Location = new System.Drawing.Point(876, 622);
             this.lblkfweight.Name = "lblkfweight";
             this.lblkfweight.Size = new System.Drawing.Size(66, 16);
             this.lblkfweight.TabIndex = 127;
@@ -1461,7 +1487,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1108, 620);
+            this.button2.Location = new System.Drawing.Point(1091, 620);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(33, 21);
             this.button2.TabIndex = 126;
@@ -2571,7 +2597,7 @@
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtbillno);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpBoxPriceList);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.plnpopup);
             this.Controls.Add(this.btnClose);
@@ -2648,8 +2674,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.plnpopup.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpBoxPriceList.ResumeLayout(false);
+            this.grpBoxPriceList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -2825,15 +2851,15 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpBoxPriceList;
         private System.Windows.Forms.Button btnpricelistclose;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpgrp2To;
-        private System.Windows.Forms.DateTimePicker dtpgrp2From;
+        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.ComboBox cmbgrp2product;
         private System.Windows.Forms.ComboBox cmbgrp2partyname;
         private System.Windows.Forms.Label label6;
@@ -2909,5 +2935,6 @@
         private System.Windows.Forms.Label lblkffine;
         private System.Windows.Forms.Label lblkfweight;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnClosePrice;
     }
 }

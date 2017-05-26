@@ -24,6 +24,7 @@ namespace SilverGold.Transaction
         List<OpeningOtherEntity> oOpeningOtherEntity = new List<OpeningOtherEntity>();
         List<TunchPendingEntity> TunchPendingList = new List<TunchPendingEntity>();
         DataGridView.HitTestInfo hti;
+       
         int Row_No = -1;
 
         Decimal _Old_westage = 0;
@@ -2075,11 +2076,16 @@ namespace SilverGold.Transaction
         {
             try
             {
-                PriceList_Clear();
-                grpPriceList.Visible = true;
-                CommanHelper.GetParty(cmbPartyName_PriseList, "PARTY");
-                CommanHelper.ComboBoxItem(cmbProduct_PriceList, "Product", "ProductName");
-                cmbPartyName_PriseList.Focus();
+                //PriceList_Clear();
+                //grpPriceList.Visible = true;
+                //CommanHelper.GetParty(cmbPartyName_PriseList, "PARTY");
+                //CommanHelper.ComboBoxItem(cmbProduct_PriceList, "Product", "ProductName");
+                
+                PriceList oPriceList = new PriceList();
+                oPriceList._TranType = "GR";
+                oPriceList.ShowDialog();
+
+                //cmbPartyName_PriseList.Focus();
             }
             catch (Exception ex)
             {

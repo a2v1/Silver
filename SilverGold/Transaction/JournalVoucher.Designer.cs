@@ -31,56 +31,56 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.cmbsubparty = new System.Windows.Forms.ComboBox();
+            this.cmbSubParty = new System.Windows.Forms.ComboBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.cmbparty = new System.Windows.Forms.ComboBox();
+            this.cmbParty = new System.Windows.Forms.ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.cmbcategory = new System.Windows.Forms.ComboBox();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbProduct2 = new System.Windows.Forms.ComboBox();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.cmbproduct = new System.Windows.Forms.ComboBox();
+            this.cmbProduct = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.cmbGroup11 = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtNarration2 = new System.Windows.Forms.TextBox();
+            this.txtTunch22 = new System.Windows.Forms.TextBox();
+            this.txtTunch12 = new System.Windows.Forms.TextBox();
+            this.txtPcs2 = new System.Windows.Forms.TextBox();
+            this.txtWeight2 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtAmount2 = new System.Windows.Forms.TextBox();
+            this.txtFine2 = new System.Windows.Forms.TextBox();
+            this.txtLabourrs2 = new System.Windows.Forms.TextBox();
+            this.txtWestage2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtnarration = new System.Windows.Forms.TextBox();
-            this.txtamount = new System.Windows.Forms.TextBox();
-            this.txtfine = new System.Windows.Forms.TextBox();
+            this.txtNarration = new System.Windows.Forms.TextBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.txtFine = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtlabourrs = new System.Windows.Forms.TextBox();
-            this.txtwestage = new System.Windows.Forms.TextBox();
-            this.txttunch2 = new System.Windows.Forms.TextBox();
-            this.txttunch1 = new System.Windows.Forms.TextBox();
-            this.txtpcs = new System.Windows.Forms.TextBox();
-            this.txtweight = new System.Windows.Forms.TextBox();
+            this.txtLabourrs = new System.Windows.Forms.TextBox();
+            this.txtWestage = new System.Windows.Forms.TextBox();
+            this.txtTunch2 = new System.Windows.Forms.TextBox();
+            this.txtTunch1 = new System.Windows.Forms.TextBox();
+            this.txtPcs = new System.Windows.Forms.TextBox();
+            this.txtWeight = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.cmbpopup = new System.Windows.Forms.ComboBox();
+            this.cmbPopUp = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lbl_amount = new System.Windows.Forms.Label();
@@ -91,18 +91,18 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnpricelistclose = new System.Windows.Forms.Button();
+            this.grpBoxPriceList = new System.Windows.Forms.GroupBox();
+            this.btnClosePriceL = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dtpgrp2To = new System.Windows.Forms.DateTimePicker();
-            this.dtpgrp2From = new System.Windows.Forms.DateTimePicker();
-            this.cmbgrp2product = new System.Windows.Forms.ComboBox();
-            this.cmbgrp2partyname = new System.Windows.Forms.ComboBox();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.cmbProduct_PriceList = new System.Windows.Forms.ComboBox();
+            this.cmbPartyName_PriseList = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -114,7 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel17.SuspendLayout();
             this.panel16.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpBoxPriceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,20 +142,23 @@
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.cmbsubparty);
+            this.panel12.Controls.Add(this.cmbSubParty);
             this.panel12.Location = new System.Drawing.Point(131, 78);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(170, 25);
             this.panel12.TabIndex = 33;
             // 
-            // cmbsubparty
+            // cmbSubParty
             // 
-            this.cmbsubparty.FormattingEnabled = true;
-            this.cmbsubparty.Location = new System.Drawing.Point(2, 2);
-            this.cmbsubparty.Name = "cmbsubparty";
-            this.cmbsubparty.Size = new System.Drawing.Size(166, 21);
-            this.cmbsubparty.Sorted = true;
-            this.cmbsubparty.TabIndex = 0;
+            this.cmbSubParty.FormattingEnabled = true;
+            this.cmbSubParty.Location = new System.Drawing.Point(2, 2);
+            this.cmbSubParty.Name = "cmbSubParty";
+            this.cmbSubParty.Size = new System.Drawing.Size(166, 21);
+            this.cmbSubParty.Sorted = true;
+            this.cmbSubParty.TabIndex = 0;
+            this.cmbSubParty.Enter += new System.EventHandler(this.cmbSubParty_Enter);
+            this.cmbSubParty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSubParty_KeyPress);
+            this.cmbSubParty.Leave += new System.EventHandler(this.cmbSubParty_Leave);
             // 
             // panel11
             // 
@@ -173,6 +176,9 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(107, 20);
             this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker1_Enter);
+            this.dateTimePicker1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker1_KeyPress);
+            this.dateTimePicker1.Leave += new System.EventHandler(this.dateTimePicker1_Leave);
             // 
             // label6
             // 
@@ -196,36 +202,42 @@
             // 
             // panel13
             // 
-            this.panel13.Controls.Add(this.cmbparty);
+            this.panel13.Controls.Add(this.cmbParty);
             this.panel13.Location = new System.Drawing.Point(628, 72);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(177, 27);
             this.panel13.TabIndex = 37;
             // 
-            // cmbparty
+            // cmbParty
             // 
-            this.cmbparty.FormattingEnabled = true;
-            this.cmbparty.Location = new System.Drawing.Point(2, 3);
-            this.cmbparty.Name = "cmbparty";
-            this.cmbparty.Size = new System.Drawing.Size(173, 21);
-            this.cmbparty.Sorted = true;
-            this.cmbparty.TabIndex = 3;
+            this.cmbParty.FormattingEnabled = true;
+            this.cmbParty.Location = new System.Drawing.Point(2, 3);
+            this.cmbParty.Name = "cmbParty";
+            this.cmbParty.Size = new System.Drawing.Size(173, 21);
+            this.cmbParty.Sorted = true;
+            this.cmbParty.TabIndex = 3;
+            this.cmbParty.Enter += new System.EventHandler(this.cmbParty_Enter);
+            this.cmbParty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbParty_KeyPress);
+            this.cmbParty.Leave += new System.EventHandler(this.cmbParty_Leave);
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.cmbcategory);
+            this.panel10.Controls.Add(this.cmbCategory);
             this.panel10.Location = new System.Drawing.Point(628, 39);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(121, 27);
             this.panel10.TabIndex = 36;
             // 
-            // cmbcategory
+            // cmbCategory
             // 
-            this.cmbcategory.FormattingEnabled = true;
-            this.cmbcategory.Location = new System.Drawing.Point(3, 3);
-            this.cmbcategory.Name = "cmbcategory";
-            this.cmbcategory.Size = new System.Drawing.Size(116, 21);
-            this.cmbcategory.TabIndex = 1;
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(3, 3);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(116, 21);
+            this.cmbCategory.TabIndex = 1;
+            this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
+            this.cmbCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCategory_KeyPress);
+            this.cmbCategory.Leave += new System.EventHandler(this.cmbCategory_Leave);
             // 
             // label4
             // 
@@ -249,40 +261,46 @@
             // 
             // panel15
             // 
-            this.panel15.Controls.Add(this.comboBox1);
+            this.panel15.Controls.Add(this.cmbProduct2);
             this.panel15.Location = new System.Drawing.Point(131, 158);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(141, 26);
             this.panel15.TabIndex = 126;
             // 
-            // comboBox1
+            // cmbProduct2
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(2, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(137, 21);
-            this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 35;
-            this.comboBox1.TabStop = false;
+            this.cmbProduct2.BackColor = System.Drawing.Color.White;
+            this.cmbProduct2.Enabled = false;
+            this.cmbProduct2.FormattingEnabled = true;
+            this.cmbProduct2.Location = new System.Drawing.Point(2, 3);
+            this.cmbProduct2.Name = "cmbProduct2";
+            this.cmbProduct2.Size = new System.Drawing.Size(137, 21);
+            this.cmbProduct2.Sorted = true;
+            this.cmbProduct2.TabIndex = 35;
+            this.cmbProduct2.TabStop = false;
+            this.cmbProduct2.Enter += new System.EventHandler(this.cmbProduct2_Enter);
+            this.cmbProduct2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProduct2_KeyPress);
+            this.cmbProduct2.Leave += new System.EventHandler(this.cmbProduct2_Leave);
             // 
             // panel14
             // 
-            this.panel14.Controls.Add(this.cmbproduct);
+            this.panel14.Controls.Add(this.cmbProduct);
             this.panel14.Location = new System.Drawing.Point(129, 119);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(142, 26);
             this.panel14.TabIndex = 97;
             // 
-            // cmbproduct
+            // cmbProduct
             // 
-            this.cmbproduct.FormattingEnabled = true;
-            this.cmbproduct.Location = new System.Drawing.Point(3, 3);
-            this.cmbproduct.Name = "cmbproduct";
-            this.cmbproduct.Size = new System.Drawing.Size(137, 21);
-            this.cmbproduct.Sorted = true;
-            this.cmbproduct.TabIndex = 5;
+            this.cmbProduct.FormattingEnabled = true;
+            this.cmbProduct.Location = new System.Drawing.Point(3, 3);
+            this.cmbProduct.Name = "cmbProduct";
+            this.cmbProduct.Size = new System.Drawing.Size(137, 21);
+            this.cmbProduct.Sorted = true;
+            this.cmbProduct.TabIndex = 5;
+            this.cmbProduct.Enter += new System.EventHandler(this.cmbProduct_Enter);
+            this.cmbProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProduct_KeyPress);
+            this.cmbProduct.Leave += new System.EventHandler(this.cmbProduct_Leave);
             // 
             // groupBox2
             // 
@@ -302,6 +320,9 @@
             this.cmbGroup.Size = new System.Drawing.Size(89, 21);
             this.cmbGroup.Sorted = true;
             this.cmbGroup.TabIndex = 64;
+            this.cmbGroup.Enter += new System.EventHandler(this.cmbGroup_Enter);
+            this.cmbGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbGroup_KeyPress);
+            this.cmbGroup.Leave += new System.EventHandler(this.cmbGroup_Leave);
             // 
             // cmbGroup11
             // 
@@ -312,63 +333,69 @@
             this.cmbGroup11.Size = new System.Drawing.Size(89, 21);
             this.cmbGroup11.Sorted = true;
             this.cmbGroup11.TabIndex = 125;
+            this.cmbGroup11.Enter += new System.EventHandler(this.cmbGroup11_Enter);
+            this.cmbGroup11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbGroup11_KeyPress);
+            this.cmbGroup11.Leave += new System.EventHandler(this.cmbGroup11_Leave);
             // 
-            // textBox9
+            // txtNarration2
             // 
-            this.textBox9.Location = new System.Drawing.Point(747, 161);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(125, 20);
-            this.textBox9.TabIndex = 111;
+            this.txtNarration2.Location = new System.Drawing.Point(747, 161);
+            this.txtNarration2.Name = "txtNarration2";
+            this.txtNarration2.Size = new System.Drawing.Size(125, 20);
+            this.txtNarration2.TabIndex = 111;
+            this.txtNarration2.Enter += new System.EventHandler(this.txtNarration2_Enter);
+            this.txtNarration2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNarration2_KeyPress);
+            this.txtNarration2.Leave += new System.EventHandler(this.txtNarration2_Leave);
             // 
-            // textBox5
+            // txtTunch22
             // 
-            this.textBox5.BackColor = System.Drawing.Color.White;
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(457, 161);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(59, 20);
-            this.textBox5.TabIndex = 124;
-            this.textBox5.TabStop = false;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch22.BackColor = System.Drawing.Color.White;
+            this.txtTunch22.Enabled = false;
+            this.txtTunch22.Location = new System.Drawing.Point(457, 161);
+            this.txtTunch22.Name = "txtTunch22";
+            this.txtTunch22.Size = new System.Drawing.Size(59, 20);
+            this.txtTunch22.TabIndex = 124;
+            this.txtTunch22.TabStop = false;
+            this.txtTunch22.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox6
+            // txtTunch12
             // 
-            this.textBox6.BackColor = System.Drawing.Color.White;
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(396, 161);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(61, 20);
-            this.textBox6.TabIndex = 123;
-            this.textBox6.TabStop = false;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch12.BackColor = System.Drawing.Color.White;
+            this.txtTunch12.Enabled = false;
+            this.txtTunch12.Location = new System.Drawing.Point(396, 161);
+            this.txtTunch12.Name = "txtTunch12";
+            this.txtTunch12.Size = new System.Drawing.Size(61, 20);
+            this.txtTunch12.TabIndex = 123;
+            this.txtTunch12.TabStop = false;
+            this.txtTunch12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox7
+            // txtPcs2
             // 
-            this.textBox7.BackColor = System.Drawing.Color.White;
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(338, 161);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(58, 20);
-            this.textBox7.TabIndex = 122;
-            this.textBox7.TabStop = false;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPcs2.BackColor = System.Drawing.Color.White;
+            this.txtPcs2.Enabled = false;
+            this.txtPcs2.Location = new System.Drawing.Point(338, 161);
+            this.txtPcs2.Name = "txtPcs2";
+            this.txtPcs2.Size = new System.Drawing.Size(58, 20);
+            this.txtPcs2.TabIndex = 122;
+            this.txtPcs2.TabStop = false;
+            this.txtPcs2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox8
+            // txtWeight2
             // 
-            this.textBox8.BackColor = System.Drawing.Color.White;
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(273, 161);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(64, 20);
-            this.textBox8.TabIndex = 121;
-            this.textBox8.TabStop = false;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWeight2.BackColor = System.Drawing.Color.White;
+            this.txtWeight2.Enabled = false;
+            this.txtWeight2.Location = new System.Drawing.Point(273, 161);
+            this.txtWeight2.Name = "txtWeight2";
+            this.txtWeight2.Size = new System.Drawing.Size(64, 20);
+            this.txtWeight2.TabIndex = 121;
+            this.txtWeight2.TabStop = false;
+            this.txtWeight2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(636, 144);
+            this.label16.Location = new System.Drawing.Point(636, 145);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 15);
             this.label16.TabIndex = 119;
@@ -378,7 +405,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(688, 143);
+            this.label17.Location = new System.Drawing.Point(688, 144);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(62, 15);
             this.label17.TabIndex = 120;
@@ -388,7 +415,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(585, 143);
+            this.label18.Location = new System.Drawing.Point(585, 144);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 15);
             this.label18.TabIndex = 118;
@@ -398,53 +425,59 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label19.Location = new System.Drawing.Point(523, 143);
+            this.label19.Location = new System.Drawing.Point(523, 144);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(30, 15);
             this.label19.TabIndex = 117;
             this.label19.Text = "R W";
             // 
-            // textBox1
+            // txtAmount2
             // 
-            this.textBox1.Location = new System.Drawing.Point(687, 161);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(60, 20);
-            this.textBox1.TabIndex = 110;
-            this.textBox1.TabStop = false;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount2.Location = new System.Drawing.Point(687, 161);
+            this.txtAmount2.Name = "txtAmount2";
+            this.txtAmount2.ReadOnly = true;
+            this.txtAmount2.Size = new System.Drawing.Size(60, 20);
+            this.txtAmount2.TabIndex = 110;
+            this.txtAmount2.TabStop = false;
+            this.txtAmount2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // txtFine2
             // 
-            this.textBox2.Location = new System.Drawing.Point(633, 161);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(54, 20);
-            this.textBox2.TabIndex = 109;
-            this.textBox2.TabStop = false;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFine2.Location = new System.Drawing.Point(633, 161);
+            this.txtFine2.Name = "txtFine2";
+            this.txtFine2.ReadOnly = true;
+            this.txtFine2.Size = new System.Drawing.Size(54, 20);
+            this.txtFine2.TabIndex = 109;
+            this.txtFine2.TabStop = false;
+            this.txtFine2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox3
+            // txtLabourrs2
             // 
-            this.textBox3.Location = new System.Drawing.Point(577, 161);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(56, 20);
-            this.textBox3.TabIndex = 108;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLabourrs2.Location = new System.Drawing.Point(577, 161);
+            this.txtLabourrs2.Name = "txtLabourrs2";
+            this.txtLabourrs2.Size = new System.Drawing.Size(56, 20);
+            this.txtLabourrs2.TabIndex = 108;
+            this.txtLabourrs2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLabourrs2.Enter += new System.EventHandler(this.txtLabourrs2_Enter);
+            this.txtLabourrs2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLabourrs2_KeyPress);
+            this.txtLabourrs2.Leave += new System.EventHandler(this.txtLabourrs2_Leave);
             // 
-            // textBox4
+            // txtWestage2
             // 
-            this.textBox4.Location = new System.Drawing.Point(516, 161);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(62, 20);
-            this.textBox4.TabIndex = 107;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWestage2.Location = new System.Drawing.Point(516, 161);
+            this.txtWestage2.Name = "txtWestage2";
+            this.txtWestage2.Size = new System.Drawing.Size(62, 20);
+            this.txtWestage2.TabIndex = 107;
+            this.txtWestage2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWestage2.Enter += new System.EventHandler(this.txtWestage2_Enter);
+            this.txtWestage2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWestage2_KeyPress);
+            this.txtWestage2.Leave += new System.EventHandler(this.txtWestage2_Leave);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(634, 103);
+            this.label15.Location = new System.Drawing.Point(634, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(36, 15);
             this.label15.TabIndex = 115;
@@ -454,7 +487,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(686, 103);
+            this.label14.Location = new System.Drawing.Point(686, 105);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(57, 15);
             this.label14.TabIndex = 116;
@@ -464,7 +497,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(581, 102);
+            this.label13.Location = new System.Drawing.Point(581, 104);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(39, 15);
             this.label13.TabIndex = 114;
@@ -474,38 +507,41 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(519, 102);
+            this.label12.Location = new System.Drawing.Point(519, 104);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(25, 15);
             this.label12.TabIndex = 113;
             this.label12.Text = "I W";
             // 
-            // txtnarration
+            // txtNarration
             // 
-            this.txtnarration.Location = new System.Drawing.Point(746, 120);
-            this.txtnarration.Name = "txtnarration";
-            this.txtnarration.Size = new System.Drawing.Size(125, 20);
-            this.txtnarration.TabIndex = 106;
+            this.txtNarration.Location = new System.Drawing.Point(746, 122);
+            this.txtNarration.Name = "txtNarration";
+            this.txtNarration.Size = new System.Drawing.Size(125, 20);
+            this.txtNarration.TabIndex = 106;
+            this.txtNarration.Enter += new System.EventHandler(this.txtNarration_Enter);
+            this.txtNarration.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNarration_KeyPress);
+            this.txtNarration.Leave += new System.EventHandler(this.txtNarration_Leave);
             // 
-            // txtamount
+            // txtAmount
             // 
-            this.txtamount.Location = new System.Drawing.Point(685, 120);
-            this.txtamount.Name = "txtamount";
-            this.txtamount.ReadOnly = true;
-            this.txtamount.Size = new System.Drawing.Size(60, 20);
-            this.txtamount.TabIndex = 105;
-            this.txtamount.TabStop = false;
-            this.txtamount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount.Location = new System.Drawing.Point(685, 122);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.ReadOnly = true;
+            this.txtAmount.Size = new System.Drawing.Size(60, 20);
+            this.txtAmount.TabIndex = 105;
+            this.txtAmount.TabStop = false;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtfine
+            // txtFine
             // 
-            this.txtfine.Location = new System.Drawing.Point(631, 120);
-            this.txtfine.Name = "txtfine";
-            this.txtfine.ReadOnly = true;
-            this.txtfine.Size = new System.Drawing.Size(54, 20);
-            this.txtfine.TabIndex = 104;
-            this.txtfine.TabStop = false;
-            this.txtfine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFine.Location = new System.Drawing.Point(631, 122);
+            this.txtFine.Name = "txtFine";
+            this.txtFine.ReadOnly = true;
+            this.txtFine.Size = new System.Drawing.Size(54, 20);
+            this.txtFine.TabIndex = 104;
+            this.txtFine.TabStop = false;
+            this.txtFine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnAdd
             // 
@@ -519,53 +555,71 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtlabourrs
+            // txtLabourrs
             // 
-            this.txtlabourrs.Location = new System.Drawing.Point(575, 120);
-            this.txtlabourrs.Name = "txtlabourrs";
-            this.txtlabourrs.Size = new System.Drawing.Size(56, 20);
-            this.txtlabourrs.TabIndex = 103;
-            this.txtlabourrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLabourrs.Location = new System.Drawing.Point(575, 122);
+            this.txtLabourrs.Name = "txtLabourrs";
+            this.txtLabourrs.Size = new System.Drawing.Size(56, 20);
+            this.txtLabourrs.TabIndex = 103;
+            this.txtLabourrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLabourrs.Enter += new System.EventHandler(this.txtLabourrs_Enter);
+            this.txtLabourrs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLabourrs_KeyPress);
+            this.txtLabourrs.Leave += new System.EventHandler(this.txtLabourrs_Leave);
             // 
-            // txtwestage
+            // txtWestage
             // 
-            this.txtwestage.Location = new System.Drawing.Point(516, 120);
-            this.txtwestage.Name = "txtwestage";
-            this.txtwestage.Size = new System.Drawing.Size(60, 20);
-            this.txtwestage.TabIndex = 102;
-            this.txtwestage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWestage.Location = new System.Drawing.Point(516, 122);
+            this.txtWestage.Name = "txtWestage";
+            this.txtWestage.Size = new System.Drawing.Size(60, 20);
+            this.txtWestage.TabIndex = 102;
+            this.txtWestage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWestage.Enter += new System.EventHandler(this.txtWestage_Enter);
+            this.txtWestage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWestage_KeyPress);
+            this.txtWestage.Leave += new System.EventHandler(this.txtWestage_Leave);
             // 
-            // txttunch2
+            // txtTunch2
             // 
-            this.txttunch2.Location = new System.Drawing.Point(457, 120);
-            this.txttunch2.Name = "txttunch2";
-            this.txttunch2.Size = new System.Drawing.Size(59, 20);
-            this.txttunch2.TabIndex = 101;
-            this.txttunch2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch2.Location = new System.Drawing.Point(457, 122);
+            this.txtTunch2.Name = "txtTunch2";
+            this.txtTunch2.Size = new System.Drawing.Size(59, 20);
+            this.txtTunch2.TabIndex = 101;
+            this.txtTunch2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch2.Enter += new System.EventHandler(this.txtTunch2_Enter);
+            this.txtTunch2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTunch2_KeyPress);
+            this.txtTunch2.Leave += new System.EventHandler(this.txtTunch2_Leave);
             // 
-            // txttunch1
+            // txtTunch1
             // 
-            this.txttunch1.Location = new System.Drawing.Point(396, 120);
-            this.txttunch1.Name = "txttunch1";
-            this.txttunch1.Size = new System.Drawing.Size(61, 20);
-            this.txttunch1.TabIndex = 100;
-            this.txttunch1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch1.Location = new System.Drawing.Point(396, 122);
+            this.txtTunch1.Name = "txtTunch1";
+            this.txtTunch1.Size = new System.Drawing.Size(61, 20);
+            this.txtTunch1.TabIndex = 100;
+            this.txtTunch1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTunch1.Enter += new System.EventHandler(this.txtTunch1_Enter);
+            this.txtTunch1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTunch1_KeyPress);
+            this.txtTunch1.Leave += new System.EventHandler(this.txtTunch1_Leave);
             // 
-            // txtpcs
+            // txtPcs
             // 
-            this.txtpcs.Location = new System.Drawing.Point(338, 120);
-            this.txtpcs.Name = "txtpcs";
-            this.txtpcs.Size = new System.Drawing.Size(58, 20);
-            this.txtpcs.TabIndex = 99;
-            this.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPcs.Location = new System.Drawing.Point(338, 122);
+            this.txtPcs.Name = "txtPcs";
+            this.txtPcs.Size = new System.Drawing.Size(58, 20);
+            this.txtPcs.TabIndex = 99;
+            this.txtPcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPcs.Enter += new System.EventHandler(this.txtPcs_Enter);
+            this.txtPcs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPcs_KeyPress);
+            this.txtPcs.Leave += new System.EventHandler(this.txtPcs_Leave);
             // 
-            // txtweight
+            // txtWeight
             // 
-            this.txtweight.Location = new System.Drawing.Point(273, 120);
-            this.txtweight.Name = "txtweight";
-            this.txtweight.Size = new System.Drawing.Size(64, 20);
-            this.txtweight.TabIndex = 98;
-            this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWeight.Location = new System.Drawing.Point(273, 122);
+            this.txtWeight.Name = "txtWeight";
+            this.txtWeight.Size = new System.Drawing.Size(64, 20);
+            this.txtWeight.TabIndex = 98;
+            this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWeight.Enter += new System.EventHandler(this.txtWeight_Enter);
+            this.txtWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWeight_KeyPress);
+            this.txtWeight.Leave += new System.EventHandler(this.txtWeight_Leave);
             // 
             // dataGridView1
             // 
@@ -591,23 +645,29 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(95, 20);
             this.dateTimePicker2.TabIndex = 27;
+            this.dateTimePicker2.Enter += new System.EventHandler(this.dateTimePicker2_Enter);
+            this.dateTimePicker2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePicker2_KeyPress);
+            this.dateTimePicker2.Leave += new System.EventHandler(this.dateTimePicker2_Leave);
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.cmbpopup);
+            this.panel16.Controls.Add(this.cmbPopUp);
             this.panel16.Location = new System.Drawing.Point(731, 508);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(102, 26);
             this.panel16.TabIndex = 133;
             // 
-            // cmbpopup
+            // cmbPopUp
             // 
-            this.cmbpopup.FormattingEnabled = true;
-            this.cmbpopup.Location = new System.Drawing.Point(3, 3);
-            this.cmbpopup.Name = "cmbpopup";
-            this.cmbpopup.Size = new System.Drawing.Size(97, 21);
-            this.cmbpopup.Sorted = true;
-            this.cmbpopup.TabIndex = 26;
+            this.cmbPopUp.FormattingEnabled = true;
+            this.cmbPopUp.Location = new System.Drawing.Point(3, 3);
+            this.cmbPopUp.Name = "cmbPopUp";
+            this.cmbPopUp.Size = new System.Drawing.Size(97, 21);
+            this.cmbPopUp.Sorted = true;
+            this.cmbPopUp.TabIndex = 26;
+            this.cmbPopUp.Enter += new System.EventHandler(this.cmbPopUp_Enter);
+            this.cmbPopUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPopUp_KeyPress);
+            this.cmbPopUp.Leave += new System.EventHandler(this.cmbPopUp_Leave);
             // 
             // label20
             // 
@@ -714,39 +774,40 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(962, 452);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(302, 82);
+            this.listBox1.Size = new System.Drawing.Size(286, 82);
             this.listBox1.TabIndex = 139;
             this.listBox1.Visible = false;
             // 
-            // groupBox1
+            // grpBoxPriceList
             // 
-            this.groupBox1.Controls.Add(this.btnpricelistclose);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dataGridView2);
-            this.groupBox1.Controls.Add(this.dtpgrp2To);
-            this.groupBox1.Controls.Add(this.dtpgrp2From);
-            this.groupBox1.Controls.Add(this.cmbgrp2product);
-            this.groupBox1.Controls.Add(this.cmbgrp2partyname);
-            this.groupBox1.Location = new System.Drawing.Point(966, 188);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 249);
-            this.groupBox1.TabIndex = 140;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Price List";
+            this.grpBoxPriceList.Controls.Add(this.btnClosePriceL);
+            this.grpBoxPriceList.Controls.Add(this.label11);
+            this.grpBoxPriceList.Controls.Add(this.label10);
+            this.grpBoxPriceList.Controls.Add(this.label9);
+            this.grpBoxPriceList.Controls.Add(this.label8);
+            this.grpBoxPriceList.Controls.Add(this.label5);
+            this.grpBoxPriceList.Controls.Add(this.dataGridView2);
+            this.grpBoxPriceList.Controls.Add(this.dtpTo);
+            this.grpBoxPriceList.Controls.Add(this.dtpFrom);
+            this.grpBoxPriceList.Controls.Add(this.cmbProduct_PriceList);
+            this.grpBoxPriceList.Controls.Add(this.cmbPartyName_PriseList);
+            this.grpBoxPriceList.Location = new System.Drawing.Point(966, 188);
+            this.grpBoxPriceList.Name = "grpBoxPriceList";
+            this.grpBoxPriceList.Size = new System.Drawing.Size(282, 249);
+            this.grpBoxPriceList.TabIndex = 140;
+            this.grpBoxPriceList.TabStop = false;
+            this.grpBoxPriceList.Text = "Price List";
             // 
-            // btnpricelistclose
+            // btnClosePriceL
             // 
-            this.btnpricelistclose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnpricelistclose.Location = new System.Drawing.Point(194, 217);
-            this.btnpricelistclose.Name = "btnpricelistclose";
-            this.btnpricelistclose.Size = new System.Drawing.Size(75, 23);
-            this.btnpricelistclose.TabIndex = 4;
-            this.btnpricelistclose.Text = "Close";
-            this.btnpricelistclose.UseVisualStyleBackColor = true;
+            this.btnClosePriceL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClosePriceL.Location = new System.Drawing.Point(194, 217);
+            this.btnClosePriceL.Name = "btnClosePriceL";
+            this.btnClosePriceL.Size = new System.Drawing.Size(75, 23);
+            this.btnClosePriceL.TabIndex = 4;
+            this.btnClosePriceL.Text = "Close";
+            this.btnClosePriceL.UseVisualStyleBackColor = true;
+            this.btnClosePriceL.Click += new System.EventHandler(this.btnClosePriceL_Click);
             // 
             // label11
             // 
@@ -804,46 +865,53 @@
             this.dataGridView2.Size = new System.Drawing.Size(253, 109);
             this.dataGridView2.TabIndex = 10;
             // 
-            // dtpgrp2To
+            // dtpTo
             // 
-            this.dtpgrp2To.CustomFormat = "dd/MM/yyyyy";
-            this.dtpgrp2To.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2To.Location = new System.Drawing.Point(181, 75);
-            this.dtpgrp2To.Name = "dtpgrp2To";
-            this.dtpgrp2To.Size = new System.Drawing.Size(88, 20);
-            this.dtpgrp2To.TabIndex = 3;
+            this.dtpTo.CustomFormat = "dd/MM/yyyyy";
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(181, 75);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Size = new System.Drawing.Size(88, 20);
+            this.dtpTo.TabIndex = 3;
             // 
-            // dtpgrp2From
+            // dtpFrom
             // 
-            this.dtpgrp2From.CustomFormat = "dd/MM/yyyy";
-            this.dtpgrp2From.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpgrp2From.Location = new System.Drawing.Point(57, 77);
-            this.dtpgrp2From.Name = "dtpgrp2From";
-            this.dtpgrp2From.Size = new System.Drawing.Size(88, 20);
-            this.dtpgrp2From.TabIndex = 2;
+            this.dtpFrom.CustomFormat = "dd/MM/yyyy";
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(57, 77);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(88, 20);
+            this.dtpFrom.TabIndex = 2;
+            this.dtpFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpFrom_KeyPress);
             // 
-            // cmbgrp2product
+            // cmbProduct_PriceList
             // 
-            this.cmbgrp2product.FormattingEnabled = true;
-            this.cmbgrp2product.Location = new System.Drawing.Point(105, 36);
-            this.cmbgrp2product.Name = "cmbgrp2product";
-            this.cmbgrp2product.Size = new System.Drawing.Size(161, 21);
-            this.cmbgrp2product.TabIndex = 1;
+            this.cmbProduct_PriceList.FormattingEnabled = true;
+            this.cmbProduct_PriceList.Location = new System.Drawing.Point(105, 36);
+            this.cmbProduct_PriceList.Name = "cmbProduct_PriceList";
+            this.cmbProduct_PriceList.Size = new System.Drawing.Size(161, 21);
+            this.cmbProduct_PriceList.TabIndex = 1;
+            this.cmbProduct_PriceList.Enter += new System.EventHandler(this.cmbProduct_PriceList_Enter);
+            this.cmbProduct_PriceList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProduct_PriceList_KeyPress);
+            this.cmbProduct_PriceList.Leave += new System.EventHandler(this.cmbProduct_PriceList_Leave);
             // 
-            // cmbgrp2partyname
+            // cmbPartyName_PriseList
             // 
-            this.cmbgrp2partyname.FormattingEnabled = true;
-            this.cmbgrp2partyname.Location = new System.Drawing.Point(105, 13);
-            this.cmbgrp2partyname.Name = "cmbgrp2partyname";
-            this.cmbgrp2partyname.Size = new System.Drawing.Size(161, 21);
-            this.cmbgrp2partyname.TabIndex = 0;
+            this.cmbPartyName_PriseList.FormattingEnabled = true;
+            this.cmbPartyName_PriseList.Location = new System.Drawing.Point(105, 13);
+            this.cmbPartyName_PriseList.Name = "cmbPartyName_PriseList";
+            this.cmbPartyName_PriseList.Size = new System.Drawing.Size(161, 21);
+            this.cmbPartyName_PriseList.TabIndex = 0;
+            this.cmbPartyName_PriseList.Enter += new System.EventHandler(this.cmbPartyName_PriseList_Enter);
+            this.cmbPartyName_PriseList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPartyName_PriseList_KeyPress);
+            this.cmbPartyName_PriseList.Leave += new System.EventHandler(this.cmbPartyName_PriseList_Leave);
             // 
             // JournalVoucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 727);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpBoxPriceList);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel16);
@@ -861,33 +929,33 @@
             this.Controls.Add(this.panel14);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cmbGroup11);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtNarration2);
+            this.Controls.Add(this.txtTunch22);
+            this.Controls.Add(this.txtTunch12);
+            this.Controls.Add(this.txtPcs2);
+            this.Controls.Add(this.txtWeight2);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtAmount2);
+            this.Controls.Add(this.txtFine2);
+            this.Controls.Add(this.txtLabourrs2);
+            this.Controls.Add(this.txtWestage2);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtnarration);
-            this.Controls.Add(this.txtamount);
-            this.Controls.Add(this.txtfine);
+            this.Controls.Add(this.txtNarration);
+            this.Controls.Add(this.txtAmount);
+            this.Controls.Add(this.txtFine);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtlabourrs);
-            this.Controls.Add(this.txtwestage);
-            this.Controls.Add(this.txttunch2);
-            this.Controls.Add(this.txttunch1);
-            this.Controls.Add(this.txtpcs);
-            this.Controls.Add(this.txtweight);
+            this.Controls.Add(this.txtLabourrs);
+            this.Controls.Add(this.txtWestage);
+            this.Controls.Add(this.txtTunch2);
+            this.Controls.Add(this.txtTunch1);
+            this.Controls.Add(this.txtPcs);
+            this.Controls.Add(this.txtWeight);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.label4);
@@ -913,8 +981,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpBoxPriceList.ResumeLayout(false);
+            this.grpBoxPriceList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -926,56 +994,56 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.ComboBox cmbsubparty;
+        private System.Windows.Forms.ComboBox cmbSubParty;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.ComboBox cmbparty;
+        private System.Windows.Forms.ComboBox cmbParty;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.ComboBox cmbcategory;
+        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbProduct2;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.ComboBox cmbproduct;
+        private System.Windows.Forms.ComboBox cmbProduct;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.ComboBox cmbGroup11;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtNarration2;
+        private System.Windows.Forms.TextBox txtTunch22;
+        private System.Windows.Forms.TextBox txtTunch12;
+        private System.Windows.Forms.TextBox txtPcs2;
+        private System.Windows.Forms.TextBox txtWeight2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtAmount2;
+        private System.Windows.Forms.TextBox txtFine2;
+        private System.Windows.Forms.TextBox txtLabourrs2;
+        private System.Windows.Forms.TextBox txtWestage2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtnarration;
-        private System.Windows.Forms.TextBox txtamount;
-        private System.Windows.Forms.TextBox txtfine;
+        private System.Windows.Forms.TextBox txtNarration;
+        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.TextBox txtFine;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtlabourrs;
-        private System.Windows.Forms.TextBox txtwestage;
-        private System.Windows.Forms.TextBox txttunch2;
-        private System.Windows.Forms.TextBox txttunch1;
-        private System.Windows.Forms.TextBox txtpcs;
-        private System.Windows.Forms.TextBox txtweight;
+        private System.Windows.Forms.TextBox txtLabourrs;
+        private System.Windows.Forms.TextBox txtWestage;
+        private System.Windows.Forms.TextBox txtTunch2;
+        private System.Windows.Forms.TextBox txtTunch1;
+        private System.Windows.Forms.TextBox txtPcs;
+        private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.ComboBox cmbpopup;
+        private System.Windows.Forms.ComboBox cmbPopUp;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label lbl_amount;
@@ -986,17 +1054,17 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnpricelistclose;
+        private System.Windows.Forms.GroupBox grpBoxPriceList;
+        private System.Windows.Forms.Button btnClosePriceL;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DateTimePicker dtpgrp2To;
-        private System.Windows.Forms.DateTimePicker dtpgrp2From;
-        private System.Windows.Forms.ComboBox cmbgrp2product;
-        private System.Windows.Forms.ComboBox cmbgrp2partyname;
+        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
+        private System.Windows.Forms.ComboBox cmbProduct_PriceList;
+        private System.Windows.Forms.ComboBox cmbPartyName_PriseList;
     }
 }
