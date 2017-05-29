@@ -53,6 +53,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.listBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
@@ -88,7 +89,7 @@
             this.MinimizeBox = false;
             this.Name = "ChangeCompany";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChangeCompany";
+            this.Text = "Change Company";
             this.Load += new System.EventHandler(this.ChangeCompany_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CMBPOPUP = new System.Windows.Forms.ComboBox();
             this.txtGroupHead = new System.Windows.Forms.TextBox();
@@ -57,7 +58,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.CMBPOPUP);
-            this.groupBox1.Location = new System.Drawing.Point(63, 321);
+            this.groupBox1.Location = new System.Drawing.Point(63, 298);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(307, 50);
             this.groupBox1.TabIndex = 17;
@@ -80,7 +81,7 @@
             // txtGroupHead
             // 
             this.txtGroupHead.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtGroupHead.Location = new System.Drawing.Point(63, 86);
+            this.txtGroupHead.Location = new System.Drawing.Point(63, 63);
             this.txtGroupHead.Name = "txtGroupHead";
             this.txtGroupHead.Size = new System.Drawing.Size(307, 20);
             this.txtGroupHead.TabIndex = 11;
@@ -94,7 +95,7 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 112);
+            this.dataGridView1.Location = new System.Drawing.Point(63, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(307, 202);
             this.dataGridView1.TabIndex = 12;
@@ -107,7 +108,7 @@
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Location = new System.Drawing.Point(377, 173);
+            this.btnExit.Location = new System.Drawing.Point(377, 150);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 16;
@@ -118,7 +119,7 @@
             // btnRefresh
             // 
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRefresh.Location = new System.Drawing.Point(377, 144);
+            this.btnRefresh.Location = new System.Drawing.Point(377, 121);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 15;
@@ -129,7 +130,7 @@
             // btnDelete
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDelete.Location = new System.Drawing.Point(377, 115);
+            this.btnDelete.Location = new System.Drawing.Point(377, 92);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 14;
@@ -140,7 +141,7 @@
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Location = new System.Drawing.Point(377, 86);
+            this.btnSave.Location = new System.Drawing.Point(377, 63);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
@@ -151,7 +152,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 70);
+            this.label1.Location = new System.Drawing.Point(66, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 18;
@@ -228,6 +229,9 @@
             this.dataGridView2.AllowUserToOrderColumns = true;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -243,7 +247,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(479, 70);
+            this.groupBox2.Location = new System.Drawing.Point(479, 47);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(481, 473);
             this.groupBox2.TabIndex = 22;

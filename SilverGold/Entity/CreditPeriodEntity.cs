@@ -41,22 +41,23 @@ namespace SilverGold.Entity
             UserId = _UserId;
         }
 
-       public DataGridViewComboBoxColumn col_RateRevise_CreditPeriod = new DataGridViewComboBoxColumn();
-       public DataGridViewComboBoxColumn col_Matltype_CreditPeriod = new DataGridViewComboBoxColumn();
-       public DataGridViewComboBoxColumn col_Product_CreditPeriod = new DataGridViewComboBoxColumn();
-       public DataGridViewColumn col_Westage_CreditPeriod = new DataGridViewTextBoxColumn();
-       public DataGridViewColumn col_Amount_CreditPeriod = new DataGridViewTextBoxColumn();
-       public DataGridViewColumn col_Days_CreditPeriod = new DataGridViewTextBoxColumn();
-       public DataGridViewComboBoxColumn col_TranType_CreditPeriod = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_RateRevise_CreditPeriod = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_Matltype_CreditPeriod = new DataGridViewComboBoxColumn();
+        public DataGridViewComboBoxColumn col_Product_CreditPeriod = new DataGridViewComboBoxColumn();
+        public DataGridViewColumn col_Westage_CreditPeriod = new DataGridViewTextBoxColumn();
+        public DataGridViewColumn col_Amount_CreditPeriod = new DataGridViewTextBoxColumn();
+        public DataGridViewColumn col_Days_CreditPeriod = new DataGridViewTextBoxColumn();
+        public DataGridViewComboBoxColumn col_TranType_CreditPeriod = new DataGridViewComboBoxColumn();
 
         CalendarColumn dtpDateFrom = new CalendarColumn();
         CalendarColumn dtpDateTo = new CalendarColumn();
 
         public void BindCreditPeriod(DataGridView dgv)
         {
+
             dtpDateFrom.DataPropertyName = "DateFrom";
             dtpDateFrom.HeaderText = "DateFrom";
-            dtpDateFrom.Name = "DateFrom";
+            dtpDateFrom.Name = "DateFrom";            
             dgv.Columns.Add(dtpDateFrom);
 
             dtpDateTo.DataPropertyName = "DateTo";
@@ -110,6 +111,8 @@ namespace SilverGold.Entity
             col_Days_CreditPeriod.HeaderText = "Days";
             col_Days_CreditPeriod.Name = "Days";
             dgv.Columns.Add(col_Days_CreditPeriod);
+
+
         }
     }
 

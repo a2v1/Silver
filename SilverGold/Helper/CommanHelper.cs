@@ -733,7 +733,10 @@ namespace SilverGold.Helper
                 {
                     CreditLimitOpeningEntity oCreditLimitOpeningEntity = new CreditLimitOpeningEntity();
                     oCreditLimitOpeningEntity.Name = dr["ItemName"].ToString();
-                    oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString());
+                    if (dr["ItemName"].ToString().Trim() == "CASH")
+                        oCreditLimitOpeningEntity.Limit = Conversion.ConToDec(dr["ItemLimit"].ToString());
+                    else
+                        oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString());
                     CreditLimitOpening.Add(oCreditLimitOpeningEntity);
                 }
                 con.Close();
@@ -837,8 +840,20 @@ namespace SilverGold.Helper
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
+                string _strcheck1 = "";
+                string _strcheck2 = "";
+
+                if (_Type != "CASH PURCHAGE")
+                {
+                    _strcheck1 = "  and PartyName <>'CASH PURCHASE'";
+                }
+                if (_Type != "CASH SALE")
+                {
+                    _strcheck2 = "  and  PartyName <>'CASH SALE'";
+                }
+
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where Type = '" + _Type + "' ORDER BY PartyName ASC", con);
+                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where Type = '" + _Type + "' " + _strcheck1 + "  " + _strcheck2 + " ORDER BY PartyName ASC", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmb.Items.Clear();
                 while (dr.Read())

@@ -103,9 +103,10 @@ namespace SilverGold.CompanyInfo
                     CommanHelper._Com_DB_PATH_ChangeComapny = result.DataBasePath.ToString();
                     CommanHelper._Com_DB_NAME_ChangeComapny = result.DataBaseName.ToString();
 
+                    this.Hide();
                     Login oLogin = new Login();
                     oLogin.ShowDialog();
-                    this.Hide();
+                    
                 }
             }
         }
@@ -140,7 +141,11 @@ namespace SilverGold.CompanyInfo
         {
             try
             {
-                Fun_ChangeCompany();
+             
+                if (e.KeyChar == 13)
+                {
+                    Fun_ChangeCompany();
+                }
             }
             catch (Exception ex)
             {

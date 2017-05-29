@@ -9,6 +9,7 @@ namespace SilverGold.Comman
 {
     class CalendarColumn : DataGridViewColumn
     {
+
         public CalendarColumn()
             : base(new CalendarCell())
         {
@@ -31,6 +32,11 @@ namespace SilverGold.Comman
                 base.CellTemplate = value;
             }
         }
+
+        private void InitializeComponent()
+        {
+
+        }
     }
 
     public class CalendarCell : DataGridViewTextBoxCell
@@ -38,9 +44,9 @@ namespace SilverGold.Comman
 
         public CalendarCell()
             : base()
-        {            
+        {
             // Use the short date format.
-         //   this.Style.Format = "d";
+            //   this.Style.Format = "d";
             this.Style.Format = "dd/MM/yyyy";
         }
 
@@ -101,6 +107,7 @@ namespace SilverGold.Comman
         public CalendarEditingControl()
         {
             this.Format = DateTimePickerFormat.Custom;
+
         }
 
         // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 

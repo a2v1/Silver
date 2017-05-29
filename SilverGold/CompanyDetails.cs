@@ -31,7 +31,7 @@ namespace SilverGold
         {
             try
             {
-               
+                this.CancelButton = btnClose;  
                 var directoryInfo = new System.IO.DirectoryInfo(Application.StartupPath);
                 var dirName = directoryInfo.GetDirectories();
 
@@ -134,6 +134,11 @@ namespace SilverGold
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
     }

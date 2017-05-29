@@ -35,7 +35,7 @@ namespace SilverGold.MasterInfo
         public PartyInformation()
         {
             InitializeComponent();
-            CommanHelper.ChangeGridFormate2(dataGridView1);           
+            CommanHelper.ChangeGridFormate2(dataGridView1);
             CommanHelper.ChangeGridFormate(dataGridViewCreditPeriod);
             CommanHelper.ChangeGridFormate(dataGridView_LabourRate);
             CommanHelper.ChangeGridFormate(dataGridView_GhattakList);
@@ -896,6 +896,7 @@ namespace SilverGold.MasterInfo
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
                 BindOpeningOtherColumn();
+
                 if (cmbtype.Text.Trim() == "PARTY")
                 {
                     cmbBullion.Visible = true;
@@ -916,6 +917,7 @@ namespace SilverGold.MasterInfo
                     cmbDays.Text = "";
                     cmbBullion.Visible = false;
                     cmbShowtrail.Text = "YES";
+                    groupBox_BrokerageSetting.Visible = false;
                     grpBoxWithCreditLimit.Visible = false;
                     groBoxCreditPeriod.Visible = false;
                     lblLot.Visible = true;
@@ -943,6 +945,7 @@ namespace SilverGold.MasterInfo
                     OpeningMCXList = CommanHelper.BindMCXDefaultOpening();
                     dataGridView1.DataSource = OpeningMCXList.ToList();
                     groupBox_BrokerageSetting.Visible = true;
+                    this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 34);
                 }
                 else
                 {
@@ -1935,18 +1938,7 @@ namespace SilverGold.MasterInfo
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
-        private void dataGridViewCreditPeriod_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            try
-            {
-                dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = Conversion.ConToDT(CommanHelper.FDate);
-                dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
-            }
-            catch (Exception ex)
-            {
-                // ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
+
 
         private void dataGridViewCreditPeriod_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -2405,5 +2397,277 @@ namespace SilverGold.MasterInfo
                 ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
             }
         }
+
+        private void dataGridViewCreditPeriod_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                //dataGridViewCreditPeriod.Rows[0].Cells["DateFrom"].Value = Conversion.ConToDT(CommanHelper.FDate);
+                //dataGridViewCreditPeriod.Rows[0].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridViewCreditPeriod_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridViewCreditPeriod.Rows.Count == 1)
+                    {
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridViewCreditPeriod_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridViewCreditPeriod.Rows.Count == 1)
+                    {
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_LabourRate_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_LabourRate.Rows.Count == 1)
+                    {
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_LabourRate_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_LabourRate.Rows.Count == 1)
+                    {
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_GhattakList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_GhattakList.Rows.Count == 1)
+                    {
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_GhattakList.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_GhattakList_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_GhattakList.Rows.Count == 1)
+                    {
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_GhattakList.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_BrokerageSetting_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_BrokerageSetting.Rows.Count == 1)
+                    {
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_BrokerageSetting.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_BrokerageSetting_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_BrokerageSetting.Rows.Count == 1)
+                    {
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_BrokerageSetting.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_Commission_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_Commission.Rows.Count == 1)
+                    {
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_Commission.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_Commission_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    if (dataGridView_Commission.Rows.Count == 1)
+                    {
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                    }
+                }
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_Commission.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
     }
 }

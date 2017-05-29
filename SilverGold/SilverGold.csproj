@@ -210,6 +210,9 @@
     <Compile Include="Utilities\UserManagement.Designer.cs">
       <DependentUpon>UserManagement.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Comman\CalendarColumn.resx">
+      <DependentUpon>CalendarColumn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comman\GRIDVIEWCUSTOM1.resx">
       <DependentUpon>GRIDVIEWCUSTOM1.cs</DependentUpon>
     </EmbeddedResource>

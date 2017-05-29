@@ -100,11 +100,14 @@ namespace SilverGold
                             CommanHelper._FinancialYear = CommanHelper._FinancialYear_ChangeComapny.ToString();
                             CommanHelper.Com_DB_PATH = CommanHelper._Com_DB_PATH_ChangeComapny.ToString();
                             CommanHelper.Com_DB_NAME = CommanHelper._Com_DB_NAME_ChangeComapny.ToString();
+                           
                         }
                         if ((CommanHelper.CompName == dr["CompanyName"].ToString().Trim()) || (CommanHelper._FinancialYear == dr["FinancialYear"].ToString()) || (CommanHelper.Com_DB_PATH == dr["DatabasePath"].ToString()) || (CommanHelper.Com_DB_NAME == dr["DataBaseName"].ToString()))
                         {
                             _CheckValidateLogin = true;
                         }
+                        CommanHelper.FDate = dr["DateFrom"].ToString();
+                        CommanHelper.TDate = dr["DateTo"].ToString();
                     }
 
                     dr.Close();
