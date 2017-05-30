@@ -110,6 +110,7 @@ namespace SilverGold.CompanyInfo
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            this.dataGridView1.Leave += new System.EventHandler(this.dataGridView1_Leave);
             // 
             // txtFinancialYear
             // 
@@ -118,6 +119,7 @@ namespace SilverGold.CompanyInfo
             this.txtFinancialYear.Name = "txtFinancialYear";
             this.txtFinancialYear.Size = new System.Drawing.Size(220, 20);
             this.txtFinancialYear.TabIndex = 8;
+            this.txtFinancialYear.Enter += new System.EventHandler(this.txtFinancialYear_Enter);
             this.txtFinancialYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFinancialYear_KeyPress);
             this.txtFinancialYear.Leave += new System.EventHandler(this.txtFinancialYear_Leave);
             // 
@@ -127,8 +129,9 @@ namespace SilverGold.CompanyInfo
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(221, 20);
             this.txtCompanyName.TabIndex = 7;
-            this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
+            this.txtCompanyName.Enter += new System.EventHandler(this.txtCompanyName_Enter);
             this.txtCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCompanyName_KeyPress);
+            this.txtCompanyName.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
             // label6
             // 
@@ -261,6 +264,7 @@ namespace SilverGold.CompanyInfo
             this.dataGridView3.TabIndex = 39;
             this.dataGridView3.TabStop = false;
             this.dataGridView3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView3_KeyPress);
+            this.dataGridView3.Leave += new System.EventHandler(this.dataGridView3_Leave);
             this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
             // 
             // groupBox3
@@ -304,7 +308,9 @@ namespace SilverGold.CompanyInfo
             this.txtRePassword.PasswordChar = '*';
             this.txtRePassword.Size = new System.Drawing.Size(163, 21);
             this.txtRePassword.TabIndex = 2;
+            this.txtRePassword.Enter += new System.EventHandler(this.txtRePassword_Enter);
             this.txtRePassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRePassword_KeyPress);
+            this.txtRePassword.Leave += new System.EventHandler(this.txtRePassword_Leave);
             // 
             // txtPassword
             // 
@@ -314,7 +320,9 @@ namespace SilverGold.CompanyInfo
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(163, 21);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
+            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // txtUserId
             // 
@@ -323,7 +331,9 @@ namespace SilverGold.CompanyInfo
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(163, 21);
             this.txtUserId.TabIndex = 0;
+            this.txtUserId.Enter += new System.EventHandler(this.txtUserId_Enter);
             this.txtUserId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserId_KeyPress);
+            this.txtUserId.Leave += new System.EventHandler(this.txtUserId_Leave);
             // 
             // label7
             // 

@@ -197,7 +197,7 @@ namespace SilverGold.CompanyInfo
             try
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("SELECT CompanyName,DateFrom,DateTo,FinancialYear,DatabasePath,DataBaseName FROM Company", con);
+                OleDbCommand cmd = new OleDbCommand("SELECT CompanyName,Format(DateFrom,'dd/MM/yyyy') AS DateFrom,Format(DateTo,'dd/MM/yyyy') AS DateTo,FinancialYear,DatabasePath,DataBaseName FROM Company", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
@@ -296,8 +296,10 @@ namespace SilverGold.CompanyInfo
                 cmbWeigth.Dispose();
                 cmbWeigth.DataSource = MetalList.Where(x => x.MetalCategory == Convert.ToString(item.MetalCategory).Trim() && x.MetalName == Convert.ToString(item.MetalName)).Select(r => r.WeightType).Distinct().ToList();
                 dataGridView1.Rows[Snu].Cells[2].Value = Convert.ToString(item.WeightType);
-
-                dataGridView1.Rows[Snu].Cells[3].Value = Convert.ToString(item.KachchiFine);
+                if (Convert.ToString(item.MetalCategory).Trim() != "CASH")
+                {
+                    dataGridView1.Rows[Snu].Cells[3].Value = Convert.ToString(item.KachchiFine);
+                }
                 dataGridView1.Rows[Snu].Cells[4].Value = Convert.ToString(item.Weight);
                 dataGridView1.Rows[Snu].Cells[5].Value = Convert.ToString(item.DrCr);
                 Snu++;
@@ -828,9 +830,11 @@ namespace SilverGold.CompanyInfo
                 if (_CheckCashExist == false)
                 {
                     this.dataGridView1.Rows.Add("CASH", "CASH", "", "", "", "JAMA");
+
                 }
                 dataGridView1.Focus();
                 this.dataGridView1.CurrentCell = this.dataGridView1.Rows[0].Cells[4];
+                this.dataGridView1.CurrentCell.Value = "0";
                 dataGridView1.CurrentCell.Selected = true;
             }
         }
@@ -879,8 +883,10 @@ namespace SilverGold.CompanyInfo
                         year_add = year_add + 1;
                         txtFinancialYear.Text = txtFinancialYear.Text + year_add.ToString();
                         DefaultCashOpening();
+
                     }
                 }
+                txtFinancialYear.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1024,6 +1030,12 @@ namespace SilverGold.CompanyInfo
 
                 if (e.KeyCode == Keys.Delete)
                 {
+                    foreach (var item in MetalList.ToList())
+                    {
+                        if (item.MetalCategory == (dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString() && item.MetalName == (dataGridView1.CurrentRow.Cells[1].Value ?? (object)"").ToString() && item.CompanyName != "")
+                            MetalList.Remove(item);
+                    }
+
                     //----------Check KF Exist Than Delete Opening Data From KF Table              
                     foreach (var item in KFOpeningList.ToList())
                     {
@@ -1042,9 +1054,12 @@ namespace SilverGold.CompanyInfo
                             if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString() == "" && (dataGridView1.CurrentRow.Cells[1].Value ?? (object)"").ToString() == "")
                             {
                                 if (F_Update == 1)
+                                {
                                     btnupdate.Focus();
+                                }
                                 else
-                                    btnCreate.Focus();
+                                { btnCreate.Focus(); }
+                                dataGridView1.ClearSelection();
                             }
                         }
                     }
@@ -1099,9 +1114,12 @@ namespace SilverGold.CompanyInfo
 
         private void txtUserId_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             if (e.KeyChar == 13)
             {
-                txtPassword.Focus();
+                if (txtUserId.Text.Trim() == "")
+                { txtUserId.Focus(); return; }
+                else { txtPassword.Focus(); }
             }
         }
 
@@ -1220,7 +1238,7 @@ namespace SilverGold.CompanyInfo
                     {
                         DataGridViewComboBoxCell tWeight = (DataGridViewComboBoxCell)dataGridView1.CurrentRow.Cells[2];
                         tWeight.DataSource = MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().ToList();
-                        dataGridView1.CurrentRow.Cells[2].Value = (MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().FirstOrDefault()??(object)"").ToString();
+                        dataGridView1.CurrentRow.Cells[2].Value = (MetalList.Where(x => x.MetalCategory == e.FormattedValue.ToString()).Select(r => r.WeightType).Distinct().FirstOrDefault() ?? (object)"").ToString();
 
                     }
                     if (e.FormattedValue.ToString().ToUpper() == "CASH")
@@ -1617,21 +1635,7 @@ namespace SilverGold.CompanyInfo
         }
 
 
-        private void txtCompanyName_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (CommanHelper.CompName == txtCompanyName.Text.Trim())
-                //{
-                //    MessageBox.Show("Sorry! We Can Not Change Company Name", "Company", MessageBoxButtons.OK, MessageBoxIcon.Stop);                    
-                //    return;
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
+     
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -1654,19 +1658,6 @@ namespace SilverGold.CompanyInfo
             }
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            //if ((dataGridView1.CurrentRow.Cells[0].Value ?? (object)"").ToString().Trim().ToUpper() == "CASH")
-            //{
-            //    if (e.RowIndex == 1)
-            //    {
-            //        dataGridView1.Focus();
-            //        this.dataGridView1.CurrentCell = this.dataGridView1.Rows[e.RowIndex].Cells[4];
-            //        this.dataGridView1.CurrentCell.Selected = true;
-            //    }
-            //}
-        }
-
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0)
@@ -1674,5 +1665,144 @@ namespace SilverGold.CompanyInfo
 
             }
         }
+
+        private void txtUserId_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUserId.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtUserId_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtUserId.Text.Trim() == "")
+                {
+                      txtUserId.Focus();
+                }
+                txtUserId.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassword.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassword.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtRePassword_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRePassword.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtRePassword_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRePassword.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtCompanyName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCompanyName.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtCompanyName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCompanyName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void txtFinancialYear_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtFinancialYear.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView1.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView3_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView3.ClearSelection();
+                dataGridView3.CurrentCell = null;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+      
     }
 }

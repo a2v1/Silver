@@ -13,15 +13,16 @@ namespace SilverGold.Entity
     {
         public string Name { get; set; }
         public decimal Limit { get; set; }
+        public string JN { get; set; }
     }
 
     public static class CreditLimitFactory
     {
-        public static void Insert(String _PartyName, String _CreditPeriod, String _RateUpdate, String _ItemName, Decimal _ItemLimit, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _PartyName, String _ItemName, Decimal _ItemLimit, String _JN, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
-            strInsert = "INSERT INTO CreditLimit(PartyName,CreditPeriod,RateUpdate,ItemName,ItemLimit,Company,UserId)VALUES(@PartyName,@CreditPeriod,@RateUpdate,@ItemName,@ItemLimit,@Company,@UserId)";
+            strInsert = "INSERT INTO CreditLimit(PartyName,ItemName,ItemLimit,JN,Company,UserId)VALUES(@PartyName,@ItemName,@ItemLimit,@JN,@Company,@UserId)";
             if (_Con.State == ConnectionState.Closed)
             {
                 _Con.Open();
@@ -31,10 +32,9 @@ namespace SilverGold.Entity
             cmdInsert = new OleDbCommand(strInsert, _Con, _Tran);
             cmdInsert.CommandType = CommandType.Text;
             cmdInsert.Parameters.AddWithValue("@PartyName", _PartyName);
-            cmdInsert.Parameters.AddWithValue("@CreditPeriod", _CreditPeriod);
-            cmdInsert.Parameters.AddWithValue("@RateUpdate", _RateUpdate);
             cmdInsert.Parameters.AddWithValue("@ItemName", _ItemName);
             cmdInsert.Parameters.AddWithValue("@ItemLimit", _ItemLimit);
+            cmdInsert.Parameters.AddWithValue("@JN", _JN);
             cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
             cmdInsert.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
             cmdInsert.ExecuteNonQuery();

@@ -64,6 +64,8 @@
             this.cmbcategory = new System.Windows.Forms.ComboBox();
             this.cmbsubgroup = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cmbGroupRawDefine = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnRawDefineSave = new System.Windows.Forms.Button();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.chkSelective = new System.Windows.Forms.CheckBox();
@@ -82,8 +84,6 @@
             this.toolStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu_Report = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu_Pop = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmbGroupRawDefine = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -482,7 +482,6 @@
             this.cmbcategory.Location = new System.Drawing.Point(127, 15);
             this.cmbcategory.Name = "cmbcategory";
             this.cmbcategory.Size = new System.Drawing.Size(149, 21);
-            this.cmbcategory.Sorted = true;
             this.cmbcategory.TabIndex = 0;
             this.cmbcategory.SelectedIndexChanged += new System.EventHandler(this.cmbcategory_SelectedIndexChanged);
             this.cmbcategory.Enter += new System.EventHandler(this.cmbcategory_Enter);
@@ -516,6 +515,28 @@
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Raw Define";
+            // 
+            // cmbGroupRawDefine
+            // 
+            this.cmbGroupRawDefine.FormattingEnabled = true;
+            this.cmbGroupRawDefine.Location = new System.Drawing.Point(56, 18);
+            this.cmbGroupRawDefine.Name = "cmbGroupRawDefine";
+            this.cmbGroupRawDefine.Size = new System.Drawing.Size(56, 21);
+            this.cmbGroupRawDefine.Sorted = true;
+            this.cmbGroupRawDefine.TabIndex = 0;
+            this.cmbGroupRawDefine.SelectedIndexChanged += new System.EventHandler(this.cmbGroupRawDefine_SelectedIndexChanged);
+            this.cmbGroupRawDefine.Enter += new System.EventHandler(this.cmbGroupRawDefine_Enter);
+            this.cmbGroupRawDefine.Leave += new System.EventHandler(this.cmbGroupRawDefine_Leave);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(11, 20);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(44, 15);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "Group:";
             // 
             // btnRawDefineSave
             // 
@@ -699,28 +720,6 @@
             this.toolStripMenu_Pop.Size = new System.Drawing.Size(25, 20);
             this.toolStripMenu_Pop.Text = "  ";
             this.toolStripMenu_Pop.Click += new System.EventHandler(this.toolStripMenu_Pop_Click);
-            // 
-            // cmbGroupRawDefine
-            // 
-            this.cmbGroupRawDefine.FormattingEnabled = true;
-            this.cmbGroupRawDefine.Location = new System.Drawing.Point(56, 18);
-            this.cmbGroupRawDefine.Name = "cmbGroupRawDefine";
-            this.cmbGroupRawDefine.Size = new System.Drawing.Size(56, 21);
-            this.cmbGroupRawDefine.Sorted = true;
-            this.cmbGroupRawDefine.TabIndex = 0;
-            this.cmbGroupRawDefine.SelectedIndexChanged += new System.EventHandler(this.cmbGroupRawDefine_SelectedIndexChanged);
-            this.cmbGroupRawDefine.Enter += new System.EventHandler(this.cmbGroupRawDefine_Enter);
-            this.cmbGroupRawDefine.Leave += new System.EventHandler(this.cmbGroupRawDefine_Leave);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(11, 20);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(44, 15);
-            this.label18.TabIndex = 22;
-            this.label18.Text = "Group:";
             // 
             // ProductDetails
             // 

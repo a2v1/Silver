@@ -58,9 +58,12 @@ namespace SilverGold.CompanyInfo
                                 {
                                     Sno = CompanyDetailsList.Max(x => x.Sno) + 1;
                                 }
-                                CompanyDetailsEntity oCompanyDetailsEntity = new CompanyDetailsEntity();
-                                oCompanyDetailsEntity.AddCompanyDetails(_DisplayName, dirName[i].ToString(), Path.GetFileNameWithoutExtension(file.Name), mainDir[j].ToString(), dirName[i].ToString() + "\\" + d.ToString().Split('\\').Last(), Sno);
-                                CompanyDetailsList.Add(oCompanyDetailsEntity);
+                                if (CommanHelper.CompName != dirName[i].ToString() && CommanHelper._FinancialYear != mainDir[j].ToString())
+                                {
+                                    CompanyDetailsEntity oCompanyDetailsEntity = new CompanyDetailsEntity();
+                                    oCompanyDetailsEntity.AddCompanyDetails(_DisplayName, dirName[i].ToString(), Path.GetFileNameWithoutExtension(file.Name), mainDir[j].ToString(), dirName[i].ToString() + "\\" + d.ToString().Split('\\').Last(), Sno);
+                                    CompanyDetailsList.Add(oCompanyDetailsEntity);
+                                }
                             }
                         } j++;
                     }

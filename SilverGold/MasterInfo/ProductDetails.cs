@@ -46,11 +46,14 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
 
             CommanHelper.BindMetalCategory(cmbcategory);
+            cmbcategory.Items.Add("COMMON");
 
             CommanHelper.ComboBoxItem(cmbPopUp, "Product", "Distinct(ProductName)");
             CommanHelper.ComboBoxItem(cmbsubgroup, "Product", "Distinct(SubGroup)");
             CommanHelper.ComboBoxItem(cmbgroup, "Product", "Distinct(PGroup)");
             CommanHelper.ComboBoxItem(cmbGroupRawDefine, "Product", "Distinct(PGroup)");
+           
+            cmbunit.Text = "WEIGHT";
         }
 
         private void btnsave_Click(object sender, EventArgs e)

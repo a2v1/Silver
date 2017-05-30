@@ -433,6 +433,7 @@ namespace SilverGold.Helper
                         CreditLimitOpeningEntity oCreditLimitOpeningEntity = new CreditLimitOpeningEntity();
                         oCreditLimitOpeningEntity.Name = dr[0].ToString();
                         oCreditLimitOpeningEntity.Limit = 0;
+                        oCreditLimitOpeningEntity.JN = "JAMA";
                         CreditLimitOpeningList.Add(oCreditLimitOpeningEntity);
                     }
                     gdv.DataSource = CreditLimitOpeningList.ToList();
@@ -453,7 +454,7 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalName),MetalCategory from Metal  Where MetalCategory <> 'CASH'", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(CompanyOpening.MetalName),MetalCategory from CompanyOpening LEFT OUTER JOIN Metal  ON CompanyOpening.MetalName   =  Metal.MetalName  Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -727,16 +728,19 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select ItemName,ItemLimit from CreditLimit Where PartyName = '" + strPartyName + "'", con);
+                OleDbCommand cmd = new OleDbCommand("Select ItemName,ItemLimit,JN from CreditLimit Where PartyName = '" + strPartyName + "'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     CreditLimitOpeningEntity oCreditLimitOpeningEntity = new CreditLimitOpeningEntity();
                     oCreditLimitOpeningEntity.Name = dr["ItemName"].ToString();
                     if (dr["ItemName"].ToString().Trim() == "CASH")
+                    {
                         oCreditLimitOpeningEntity.Limit = Conversion.ConToDec(dr["ItemLimit"].ToString());
+                    }
                     else
-                        oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString());
+                    { oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString()); }
+                    oCreditLimitOpeningEntity.JN = dr["JN"].ToString();
                     CreditLimitOpening.Add(oCreditLimitOpeningEntity);
                 }
                 con.Close();
