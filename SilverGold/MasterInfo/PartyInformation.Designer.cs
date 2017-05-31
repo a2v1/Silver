@@ -124,6 +124,7 @@ namespace SilverGold.MasterInfo
             this.rbtnwithopbal = new System.Windows.Forms.RadioButton();
             this.rbtnwithoutopbal = new System.Windows.Forms.RadioButton();
             this.btnshow = new System.Windows.Forms.Button();
+            this.panel_Type = new System.Windows.Forms.Panel();
             this.dataGridView_BrokerageSetting = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView_Commission = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView_GhattakList = new SilverGold.Comman.GRIDVIEWCUSTOM1();
@@ -152,6 +153,7 @@ namespace SilverGold.MasterInfo
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.panel_Type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).BeginInit();
@@ -162,6 +164,7 @@ namespace SilverGold.MasterInfo
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel_Type);
             this.groupBox1.Controls.Add(this.grpPartyCrditL);
             this.groupBox1.Controls.Add(this.panel_ShowInTrail);
             this.groupBox1.Controls.Add(this.Panel_McxBullion);
@@ -183,7 +186,6 @@ namespace SilverGold.MasterInfo
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.lblLot);
-            this.groupBox1.Controls.Add(this.cmbtype);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label16);
@@ -278,7 +280,7 @@ namespace SilverGold.MasterInfo
             this.cmbShowtrail.Location = new System.Drawing.Point(3, 4);
             this.cmbShowtrail.Name = "cmbShowtrail";
             this.cmbShowtrail.Size = new System.Drawing.Size(67, 21);
-            this.cmbShowtrail.TabIndex = 1;
+            this.cmbShowtrail.TabIndex = 0;
             this.cmbShowtrail.Enter += new System.EventHandler(this.cmbShowtrail_Enter);
             this.cmbShowtrail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShowtrail_KeyPress);
             this.cmbShowtrail.Leave += new System.EventHandler(this.cmbShowtrail_Leave);
@@ -644,7 +646,7 @@ namespace SilverGold.MasterInfo
             "PARTY",
             "WORKER",
             "OTHER"});
-            this.cmbtype.Location = new System.Drawing.Point(53, 20);
+            this.cmbtype.Location = new System.Drawing.Point(3, 3);
             this.cmbtype.Margin = new System.Windows.Forms.Padding(4);
             this.cmbtype.Name = "cmbtype";
             this.cmbtype.Size = new System.Drawing.Size(97, 21);
@@ -1128,6 +1130,14 @@ namespace SilverGold.MasterInfo
             this.btnshow.Text = "Show (F10)";
             this.btnshow.UseVisualStyleBackColor = true;
             // 
+            // panel_Type
+            // 
+            this.panel_Type.Controls.Add(this.cmbtype);
+            this.panel_Type.Location = new System.Drawing.Point(54, 16);
+            this.panel_Type.Name = "panel_Type";
+            this.panel_Type.Size = new System.Drawing.Size(103, 26);
+            this.panel_Type.TabIndex = 0;
+            // 
             // dataGridView_BrokerageSetting
             // 
             this.dataGridView_BrokerageSetting.AllowUserToResizeColumns = false;
@@ -1322,7 +1332,6 @@ namespace SilverGold.MasterInfo
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AllowUserToResizeColumns = false;
@@ -1360,6 +1369,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
+            this.dataGridView1.Leave += new System.EventHandler(this.dataGridView1_Leave);
             // 
             // PartyInformation
             // 
@@ -1412,6 +1422,7 @@ namespace SilverGold.MasterInfo
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.panel_Type.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).EndInit();
@@ -1508,5 +1519,6 @@ namespace SilverGold.MasterInfo
         private System.Windows.Forms.Button btnshow;
         private System.Windows.Forms.ComboBox cmbShowtrail;
         private System.Windows.Forms.GroupBox grpPartyCrditL;
+        private System.Windows.Forms.Panel panel_Type;
     }
 }

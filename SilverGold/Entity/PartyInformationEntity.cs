@@ -15,7 +15,7 @@ namespace SilverGold.Entity
 
     public static class PartyInformationFactory
     {
-        public static void Insert(String _Type, String _Category, String _PartyName, String _PartyType, String _Address, String _Email, String _ContactNo, String _GroupHead, String _SubGroup, String _IntroducerName, String _ShowInTrail, String _WithCreditPeriod, String _CreditPeriod, String _RateUpdate, String _Lot, String _LotGenerate, Decimal _BankCredit, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _Type, String _Category, String _PartyName, String _PartyType, String _Address, String _Email, String _ContactNo, String _GroupHead, String _SubGroup, String _IntroducerName, String _ShowInTrail, String _WithCreditPeriod, int _CreditPeriod, String _RateUpdate, String _Lot, String _LotGenerate, Decimal _BankCredit, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();

@@ -105,7 +105,7 @@
     <Compile Include="Entity\PartyOpeningEntity.cs" />
     <Compile Include="Entity\PartyTranEntity.cs" />
     <Compile Include="Entity\PriceListEntity.cs" />
-    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\ProductEntity.cs" />
     <Compile Include="Entity\RecieptPaymentVoucherEntity.cs" />
     <Compile Include="Entity\ReturnMetalEntity.cs" />
     <Compile Include="Entity\TunchPendingEntity.cs" />

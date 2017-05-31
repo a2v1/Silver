@@ -464,6 +464,7 @@ namespace SilverGold.Helper
                         oOpeningOtherEntity.Name = dr[0].ToString();
                         oOpeningOtherEntity.Weight = 0;
                         oOpeningOtherEntity.DrCr = "";
+                        oOpeningOtherEntity.Narration = "";
                         OpeningOtherList.Add(oOpeningOtherEntity);
                     }
                     con.Close();
@@ -749,20 +750,22 @@ namespace SilverGold.Helper
             return CreditLimitOpening;
         }
 
-        public static List<Product> GetProduct()
+        public static List<ProductEntity> GetProduct()
         {
-            List<Product> ProductList = new List<Product>();
+            List<ProductEntity> ProductList = new List<ProductEntity>();
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId From Product", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
+                ProductEntity oProduct = new ProductEntity();
                 while (dr.Read())
                 {
-                    Product oProduct = new Product(dr["Category"].ToString(), dr["Unit"].ToString(), Conversion.ConToDec6(dr["Weight_Packet"].ToString()), dr["ProductName"].ToString(), dr["SubGroup"].ToString(), dr["PGroup"].ToString(), Conversion.ConToDec6(dr["Opening"].ToString()), Conversion.ConToDec6(dr["Pcs"].ToString()), Conversion.ConToDec6(dr["Tunch"].ToString()), Conversion.ConToDec6(dr["Westage"].ToString()), Conversion.ConToDec6(dr["LabourRate"].ToString()), Conversion.ConToDec6(dr["Fine"].ToString()), Conversion.ConToDec6(dr["Amount"].ToString()), dr["RawDefine"].ToString(), Conversion.ConToDT(dr["OpenDate"].ToString()), dr["Narration"].ToString(), dr["Company"].ToString(), dr["UserId"].ToString());
+                    oProduct.AddProductEntity(dr["Category"].ToString(), dr["Unit"].ToString(), Conversion.ConToDec6(dr["Weight_Packet"].ToString()), dr["ProductName"].ToString(), dr["SubGroup"].ToString(), dr["PGroup"].ToString(), Conversion.ConToDec6(dr["Opening"].ToString()), Conversion.ConToDec6(dr["Pcs"].ToString()), Conversion.ConToDec6(dr["Tunch"].ToString()), Conversion.ConToDec6(dr["Westage"].ToString()), Conversion.ConToDec6(dr["LabourRate"].ToString()), Conversion.ConToDec6(dr["Fine"].ToString()), Conversion.ConToDec6(dr["Amount"].ToString()), dr["RawDefine"].ToString(), Conversion.ConToDT(dr["OpenDate"].ToString()), dr["Narration"].ToString(), dr["Company"].ToString(), dr["UserId"].ToString());
                     ProductList.Add(oProduct);
                 }
-                Product _Product = new Product("", "", 0, "ALL PRODUCT", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
+                ProductEntity _Product = new ProductEntity();
+                _Product.AddProductEntity("", "", 0, "ALL PRODUCT", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
                 ProductList.Insert(0, _Product);
 
                 con.Close();
@@ -847,17 +850,31 @@ namespace SilverGold.Helper
                 string _strcheck1 = "";
                 string _strcheck2 = "";
 
-                if (_Type != "CASH PURCHAGE")
+                if (_Type != "")
                 {
-                    _strcheck1 = "  and PartyName <>'CASH PURCHASE'";
+                    _Type = " Type =  '" + _Type + "'";
+                    if (_Type != "CASH PURCHAGE")
+                    {
+                        _strcheck1 = "  and PartyName <>'CASH PURCHASE'";
+                    }
+
+                }
+                else
+                {
+                    if (_Type != "CASH PURCHAGE")
+                    {
+                        _strcheck1 = " PartyName <>'CASH PURCHASE'";
+                    }
                 }
                 if (_Type != "CASH SALE")
                 {
                     _strcheck2 = "  and  PartyName <>'CASH SALE'";
                 }
 
+
+
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where Type = '" + _Type + "' " + _strcheck1 + "  " + _strcheck2 + " ORDER BY PartyName ASC", con);
+                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails Where " + _Type + " " + _strcheck1 + "  " + _strcheck2 + " ORDER BY PartyName ASC", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmb.Items.Clear();
                 while (dr.Read())
@@ -942,6 +959,8 @@ namespace SilverGold.Helper
             }
             return CreditPeriodList;
         }
+
+
 
 
         public static Boolean CheckGram_Metal(String _Str)
