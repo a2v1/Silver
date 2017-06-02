@@ -358,32 +358,32 @@ namespace SilverGold.Helper
                 OpeningMCXList.Clear();
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
-                    OpeningDate = DateTime.Now,
-                    Name = "SILVER",
+                    OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    Item = "SILVER",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
-                    OpeningDate = DateTime.Now,
-                    Name = "SILVERM",
+                    OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    Item = "SILVERM",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
-                    OpeningDate = DateTime.Now,
-                    Name = "GOLD",
+                    OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    Item = "GOLD",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
                 });
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
-                    OpeningDate = DateTime.Now,
-                    Name = "GOLDM",
+                    OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    Item = "GOLDM",
                     Weight = 0,
                     Closing = 0,
                     DrCr = ""
@@ -415,17 +415,20 @@ namespace SilverGold.Helper
             {
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
-                    String str = "";
+                    String _Query = "";
                     if (_str != "")
                     {
-                        str = "Select Distinct(MetalCategory) from Metal Where MetalCategory IN ('" + _str + "','CASH')";
+                        if (_str == "COMMON")
+                            _Query = "Select Distinct(MetalCategory) from Metal";
+                        else
+                            _Query = "Select Distinct(MetalCategory) from Metal Where MetalCategory IN ('" + _str + "','CASH')";
                     }
                     else
                     {
-                        str = "Select Distinct(MetalCategory) from Metal";
+                        _Query = "Select Distinct(MetalCategory) from Metal Where MetalCategory=''";
                     }
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand(str, con);
+                    OleDbCommand cmd = new OleDbCommand(_Query, con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     List<CreditLimitOpeningEntity> CreditLimitOpeningList = new List<CreditLimitOpeningEntity>();
                     while (dr.Read())
@@ -454,14 +457,13 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(CompanyOpening.MetalName),MetalCategory from CompanyOpening LEFT OUTER JOIN Metal  ON CompanyOpening.MetalName   =  Metal.MetalName  Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from CompanyOpening LEFT OUTER JOIN Metal  ON CompanyOpening.MetalName   =  Metal.MetalName  Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
-                        oOpeningOtherEntity.OpeningDate = DateTime.Now;
-                        oOpeningOtherEntity.Category = dr[1].ToString();
-                        oOpeningOtherEntity.Name = dr[0].ToString();
+                        oOpeningOtherEntity.OpeningDate = DateTime.Now.ToString("dd/MM/yyyy");                        
+                        oOpeningOtherEntity.Item = dr[0].ToString();
                         oOpeningOtherEntity.Weight = 0;
                         oOpeningOtherEntity.DrCr = "";
                         oOpeningOtherEntity.Narration = "";
@@ -680,13 +682,13 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select OpeningDate,ItemName,Weight,ClosingRate,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,ClosingRate,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningMCXEntity oOpeningMCXEntity = new OpeningMCXEntity();
-                    oOpeningMCXEntity.OpeningDate = Conversion.ConToDT(dr["OpeningDate"].ToString());
-                    oOpeningMCXEntity.Name = dr["ItemName"].ToString();
+                    oOpeningMCXEntity.OpeningDate = dr["OpeningDate"].ToString();
+                    oOpeningMCXEntity.Item = dr["ItemName"].ToString();
                     oOpeningMCXEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
                     oOpeningMCXEntity.Closing = Conversion.ConToDec(dr["ClosingRate"].ToString());
                     oOpeningMCXEntity.DrCr = dr["DrCr"].ToString();
@@ -705,16 +707,16 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select OpeningDate,ItemName,Weight,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
-                    oOpeningOtherEntity.OpeningDate = Conversion.ConToDT(dr["OpeningDate"].ToString());
-                    oOpeningOtherEntity.Name = dr["ItemName"].ToString();
+                    oOpeningOtherEntity.OpeningDate = dr["OpeningDate"].ToString();
+                    oOpeningOtherEntity.Item = dr["ItemName"].ToString();
                     oOpeningOtherEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
-                    oOpeningOtherEntity.Narration = dr["Narration"].ToString();
                     oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
+                    oOpeningOtherEntity.Narration = dr["Narration"].ToString();
                     OpeningOther.Add(oOpeningOtherEntity);
                 }
                 con.Close();
@@ -765,7 +767,7 @@ namespace SilverGold.Helper
                     ProductList.Add(oProduct);
                 }
                 ProductEntity _Product = new ProductEntity();
-                _Product.AddProductEntity("", "", 0, "ALL PRODUCT", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
+                _Product.AddProductEntity("", "", 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
                 ProductList.Insert(0, _Product);
 
                 con.Close();
@@ -783,7 +785,6 @@ namespace SilverGold.Helper
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmb.DataSource = null;
                 cmb.Items.Clear();
-                cmb.Items.Add("ALL PRODUCT");
                 while (dr.Read())
                 {
                     cmb.Items.Add(dr["ProductName"].ToString().Trim());

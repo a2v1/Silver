@@ -1635,7 +1635,7 @@ namespace SilverGold.CompanyInfo
         }
 
 
-     
+
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -1684,7 +1684,7 @@ namespace SilverGold.CompanyInfo
             {
                 if (txtUserId.Text.Trim() == "")
                 {
-                      txtUserId.Focus();
+                    txtUserId.Focus();
                 }
                 txtUserId.BackColor = Color.White;
             }
@@ -1710,6 +1710,8 @@ namespace SilverGold.CompanyInfo
         {
             try
             {
+                if (txtPassword.Text.Trim() == "")
+                { txtPassword.Focus(); }
                 txtPassword.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -1734,6 +1736,8 @@ namespace SilverGold.CompanyInfo
         {
             try
             {
+                if (txtRePassword.Text.Trim() == "")
+                { txtRePassword.Focus(); }
                 txtRePassword.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -1803,6 +1807,6 @@ namespace SilverGold.CompanyInfo
             }
         }
 
-      
+
     }
 }

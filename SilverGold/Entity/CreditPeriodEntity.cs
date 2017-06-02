@@ -52,9 +52,10 @@ namespace SilverGold.Entity
         CalendarColumn dtpDateFrom = new CalendarColumn();
         CalendarColumn dtpDateTo = new CalendarColumn();
 
-        public void BindCreditPeriod(DataGridView dgv)
+        public void BindCreditPeriod(DataGridView dgv, String _Category)
         {
-
+            dgv.DataSource = null;
+            dgv.Columns.Clear();
             dtpDateFrom.DataPropertyName = "DateFrom";
             dtpDateFrom.HeaderText = "DateFrom";
             dtpDateFrom.Name = "DateFrom";            
@@ -77,7 +78,14 @@ namespace SilverGold.Entity
             col_Matltype_CreditPeriod.DataPropertyName = "Category";
             col_Matltype_CreditPeriod.HeaderText = "Category";
             col_Matltype_CreditPeriod.Name = "Category";
-            col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            if (_Category == "" || _Category == "COMMON")
+            {
+                col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            }
+            else
+            {
+                col_Matltype_CreditPeriod.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.Category).Distinct().ToList();
+            }
             col_Matltype_CreditPeriod.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Matltype_CreditPeriod);
 

@@ -509,7 +509,7 @@ namespace SilverGold.Transaction
                 cmbProduct.BackColor = Color.White;
                 if (CommanHelper.GetColumnValue("KachchiFine", "Metal", "MetalName", cmbProduct.Text.Trim().ToUpper()) == "YES")
                 {
-                    OleDbDataAdapter da = new OleDbDataAdapter("Select PaatNo,Weight,Tunch1,Tunch2,Fine,Sno from KfDetails Where  BillNo='" + txtbillno.Text + "' And  TranType = 'RCF'", con);
+                    OleDbDataAdapter da = new OleDbDataAdapter("Select PaatNo,Weight,Tunch1,Tunch2,Fine,Sno from KfDetails Where  BillNo='" + this.txtbillno.Text + "' And  TranType = 'RCF'", con);
                     DataSet ds = new DataSet();
                     da.Fill(ds);
                     if (ds.Tables[0].Rows.Count > 0)

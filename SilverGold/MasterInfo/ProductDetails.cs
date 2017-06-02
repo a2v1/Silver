@@ -46,24 +46,37 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
 
             CommanHelper.BindMetalCategory(cmbcategory);
-            cmbcategory.Items.Add("COMMON");
 
             CommanHelper.ComboBoxItem(cmbPopUp, "Product", "Distinct(ProductName)");
             CommanHelper.ComboBoxItem(cmbsubgroup, "Product", "Distinct(SubGroup)");
             CommanHelper.ComboBoxItem(cmbgroup, "Product", "Distinct(PGroup)");
             CommanHelper.ComboBoxItem(cmbGroupRawDefine, "Product", "Distinct(PGroup)");
-           
+
             cmbunit.Text = "WEIGHT";
+            PartyInformation._ProductName = "";
+            if (PartyInformation._ProductFlage == 1)
+            {
+                if (PartyInformation._Category == "COMMON")
+                {
+                    cmbcategory.Focus();
+                }
+                else
+                {
+                    cmbcategory.Text = PartyInformation._Category;
+                    this.txtProductName.Focus();
+                    return;
+                }
+            }
         }
 
         private void btnsave_Click(object sender, EventArgs e)
         {
             try
             {
-               Decimal _Weight = Conversion.ConToDec6(txtopening.Text);
-               Decimal _Labouramount = Conversion.ConToDec6(Txtamount.Text);
-               Decimal _Labourrate = Conversion.ConToDec6(Txtlabour.Text);
-               Decimal _Fine = Conversion.ConToDec6(Txtfine.Text);
+                Decimal _Weight = Conversion.ConToDec6(txtopening.Text);
+                Decimal _Labouramount = Conversion.ConToDec6(Txtamount.Text);
+                Decimal _Labourrate = Conversion.ConToDec6(Txtlabour.Text);
+                Decimal _Fine = Conversion.ConToDec6(Txtfine.Text);
 
                 if (cmbcategory.Text.Trim() == "")
                 {
@@ -109,7 +122,7 @@ namespace SilverGold.MasterInfo
                 cmd.ExecuteNonQuery();
 
                 cmd.Parameters.Clear();
-                cmd.CommandText = "INSERT INTO Product(Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId)VALUES(@Category,@Unit,@Weight_Packet,@ProductName,@SubGroup,@PGroup,@Opening,@Pcs,@Tunch,@Westage,@LabourRate,@Fine,@Amount,@RawDefine,@OpenDate,@Narration,@Company,@UserId)";                
+                cmd.CommandText = "INSERT INTO Product(Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId)VALUES(@Category,@Unit,@Weight_Packet,@ProductName,@SubGroup,@PGroup,@Opening,@Pcs,@Tunch,@Westage,@LabourRate,@Fine,@Amount,@RawDefine,@OpenDate,@Narration,@Company,@UserId)";
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@Category", cmbcategory.Text.Trim());
                 cmd.Parameters.AddWithValue("@Unit", cmbunit.Text.Trim());
@@ -127,7 +140,7 @@ namespace SilverGold.MasterInfo
                 cmd.Parameters.AddWithValue("@RawDefine", cmbRawDefine.Text.Trim());
                 cmd.Parameters.AddWithValue("@OpenDate", Conversion.ConToDT(dtpOpeningDate.Text.Trim()));
                 cmd.Parameters.AddWithValue("@Narration", txtNarration.Text.Trim());
-                cmd.Parameters.AddWithValue("@Company",CommanHelper.CompName.Trim());
+                cmd.Parameters.AddWithValue("@Company", CommanHelper.CompName.Trim());
                 cmd.Parameters.AddWithValue("@UserId", CommanHelper.UserId.Trim());
                 cmd.ExecuteNonQuery();
 
@@ -147,7 +160,16 @@ namespace SilverGold.MasterInfo
                 Tran.Commit();
                 con.Close();
                 MessageBox.Show("Data SuccessFully Updated", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PartyInformation._ProductName = txtProductName.Text.Trim();
                 ClearControls();
+
+                if (PartyInformation._ProductFlage == 1)
+                {
+                    PartyInformation._Category = "";
+                    PartyInformation._ProductFlage = 0;
+
+                    this.Close();
+                }
 
 
             }
@@ -159,7 +181,7 @@ namespace SilverGold.MasterInfo
             }
         }
 
-        
+
 
         #region Helper
 
@@ -305,11 +327,11 @@ namespace SilverGold.MasterInfo
         {
             Decimal Tunch = 0;
             Decimal Opening = 0;
-            Decimal Westage =0;
+            Decimal Westage = 0;
             Decimal Fine = 0;
             Tunch = Conversion.ConToDec6(txttunch.Text);
             Opening = Conversion.ConToDec6(txtopening.Text);
-            Westage = Conversion.ConToDec6(Txtwestage.Text) ;
+            Westage = Conversion.ConToDec6(Txtwestage.Text);
             Fine = System.Math.Round(((Opening * (Westage + Tunch)) / 100), 6);
             if (Fine == 0)
             {
@@ -553,10 +575,10 @@ namespace SilverGold.MasterInfo
 
         private void cmbunit_Leave(object sender, EventArgs e)
         {
-             try
-             {
-                 cmbunit.BackColor = Color.White;
-           
+            try
+            {
+                cmbunit.BackColor = Color.White;
+
                 if (cmbunit.Text.Trim().ToUpper() == "WEIGHT")
                 {
                     txtwpkt.Enabled = false;
@@ -1063,7 +1085,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-               
+
             }
             catch (Exception ex)
             {
@@ -1159,6 +1181,13 @@ namespace SilverGold.MasterInfo
         private void cmbGroupRawDefine_Leave(object sender, EventArgs e)
         {
             cmbGroupRawDefine.BackColor = Color.White;
+        }
+
+        private void ProductDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            { PartyInformation._Category = ""; PartyInformation._ProductFlage = 0; }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
 

@@ -45,7 +45,8 @@ namespace SilverGold.Entity
             col_Cate_GhattakList.DataPropertyName = "Category";
             col_Cate_GhattakList.HeaderText = "Category";
             col_Cate_GhattakList.Name = "Category";
-            col_Cate_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+                col_Cate_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+           
             col_Cate_GhattakList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Cate_GhattakList);
 

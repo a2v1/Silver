@@ -52,34 +52,37 @@ namespace SilverGold.Utilities
         {
             try
             {
-                if (con.State == ConnectionState.Closed)
+                if (_StrTunchPending != "")
                 {
-                    con.Open();
-                }
-                OleDbCommand cmd = new OleDbCommand(_StrTunchPending, con);
-                OleDbDataReader dr = cmd.ExecuteReader();
-                TunchPendingList.Clear();
-                while (dr.Read())
-                {
-                    oTunchPendingEntity = new TunchPendingEntity();
-                    oTunchPendingEntity.AddTunchPending(dr["BillNo"].ToString(), Conversion.ConToDT(dr["TrDate"].ToString()), dr["PartyCate"].ToString(), dr["PartyName"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec(dr["Weight"].ToString()), Conversion.ConToDec(dr["TunchValue1"].ToString()), Conversion.ConToDec(dr["TunchValue1"].ToString()), dr["Tunch1"].ToString(), dr["Tunch2"].ToString(), dr["InvoiceType"].ToString(), Conversion.ConToInt(dr["TunchSno"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
-                    TunchPendingList.Add(oTunchPendingEntity);
-                }
-                dataGridView1.DataSource = TunchPendingList.Select(x => new
-                {
-                    x.BillNo,
-                    x.TrDate,
-                    x.PartyName,
-                    x.Category,
-                    x.Product,
-                    x.Weight,
-                    x.TunchValue1,
-                    x.TunchValue2,
-                    x.InvoiceType,
-                    x.TunchSno
-                }).ToList();
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
+                    OleDbCommand cmd = new OleDbCommand(_StrTunchPending, con);
+                    OleDbDataReader dr = cmd.ExecuteReader();
+                    TunchPendingList.Clear();
+                    while (dr.Read())
+                    {
+                        oTunchPendingEntity = new TunchPendingEntity();
+                        oTunchPendingEntity.AddTunchPending(dr["BillNo"].ToString(), Conversion.ConToDT(dr["TrDate"].ToString()), dr["PartyCate"].ToString(), dr["PartyName"].ToString(), dr["Category"].ToString(), dr["Product"].ToString(), Conversion.ConToDec(dr["Weight"].ToString()), Conversion.ConToDec(dr["TunchValue1"].ToString()), Conversion.ConToDec(dr["TunchValue1"].ToString()), dr["Tunch1"].ToString(), dr["Tunch2"].ToString(), dr["InvoiceType"].ToString(), Conversion.ConToInt(dr["TunchSno"].ToString()), dr["Company"].ToString(), dr["UserId"].ToString());
+                        TunchPendingList.Add(oTunchPendingEntity);
+                    }
+                    dataGridView1.DataSource = TunchPendingList.Select(x => new
+                    {
+                        x.BillNo,
+                        x.TrDate,
+                        x.PartyName,
+                        x.Category,
+                        x.Product,
+                        x.Weight,
+                        x.TunchValue1,
+                        x.TunchValue2,
+                        x.InvoiceType,
+                        x.TunchSno
+                    }).ToList();
 
-                con.Close();
+                    con.Close();
+                }
             }
             catch (Exception ex)
             {

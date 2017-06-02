@@ -9,8 +9,8 @@ namespace SilverGold.Entity
 {
     class OpeningMCXEntity
     {
-        public DateTime OpeningDate { get; set; }
-        public string Name { get; set; }
+        public string OpeningDate { get; set; }
+        public string Item { get; set; }
         public decimal Weight { get; set; }
         public decimal Closing { get; set; }
         public string DrCr { get; set; }
@@ -19,12 +19,11 @@ namespace SilverGold.Entity
 
     class OpeningOtherEntity
     {
-        public DateTime OpeningDate { get; set; }
-        public string Name { get; set; }
+        public string OpeningDate { get; set; }
+        public string Item { get; set; }
         public decimal Weight { get; set; }
         public string DrCr { get; set; }
         public string Narration { get; set; }
-        public string Category { get; set; }
     }
 
     public static class CompnayOpeningFactory
