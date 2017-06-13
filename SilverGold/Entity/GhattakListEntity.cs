@@ -22,8 +22,10 @@ namespace SilverGold.Entity
         CalendarColumn dtpDateFrom = new CalendarColumn();
         CalendarColumn dtpDateTo = new CalendarColumn();
 
-        public void BindGhattakList(DataGridView dgv)
+        public void BindGhattakList(DataGridView dgv, String _Category)
         {
+            dgv.Columns.Clear();
+
             dtpDateFrom.DataPropertyName = "DateFrom";
             dtpDateFrom.HeaderText = "DateFrom";
             dtpDateFrom.Name = "DateFrom";
@@ -37,6 +39,7 @@ namespace SilverGold.Entity
             col_WtPcs_GhattakList.DataPropertyName = "WeightPcs";
             col_WtPcs_GhattakList.HeaderText = "WT/PCS";
             col_WtPcs_GhattakList.Name = "WeightPcs";
+            col_WtPcs_GhattakList.Items.Clear();
             col_WtPcs_GhattakList.Items.Add("WEIGHT");
             col_WtPcs_GhattakList.Items.Add("PCS");
             col_WtPcs_GhattakList.FlatStyle = FlatStyle.Popup;
@@ -45,15 +48,28 @@ namespace SilverGold.Entity
             col_Cate_GhattakList.DataPropertyName = "Category";
             col_Cate_GhattakList.HeaderText = "Category";
             col_Cate_GhattakList.Name = "Category";
+            if (_Category == "" || _Category == "COMMON")
+            {
                 col_Cate_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
-           
+            }
+            else
+            {
+                col_Cate_GhattakList.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.Category).Distinct().ToList();
+            }
             col_Cate_GhattakList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Cate_GhattakList);
 
             col_Product_GhattakList.DataPropertyName = "Product";
             col_Product_GhattakList.HeaderText = "Product";
             col_Product_GhattakList.Name = "Product";
-            col_Product_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            if (_Category == "" || _Category == "COMMON")
+            {
+                col_Product_GhattakList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            }
+            else
+            {
+                col_Product_GhattakList.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.ProductName).Distinct().ToList();
+            }
             col_Product_GhattakList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Product_GhattakList);
 
@@ -65,6 +81,7 @@ namespace SilverGold.Entity
             col_PType_GhattakList.DataPropertyName = "PayType";
             col_PType_GhattakList.HeaderText = "PayType";
             col_PType_GhattakList.Name = "PayType";
+            col_PType_GhattakList.Items.Clear();
             col_PType_GhattakList.Items.Add("GIVING");
             col_PType_GhattakList.Items.Add("RECIEVING");
             col_PType_GhattakList.Items.Add("COMMON");
@@ -74,6 +91,7 @@ namespace SilverGold.Entity
             col_JN_GhattakList.DataPropertyName = "Jama_Naam";
             col_JN_GhattakList.HeaderText = "J/N";
             col_JN_GhattakList.Name = "Jama_Naam";
+            col_JN_GhattakList.Items.Clear();
             col_JN_GhattakList.Items.Add("JAMA");
             col_JN_GhattakList.Items.Add("NAAM");
             col_JN_GhattakList.FlatStyle = FlatStyle.Popup;

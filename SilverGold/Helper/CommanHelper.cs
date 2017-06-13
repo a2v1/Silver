@@ -760,15 +760,16 @@ namespace SilverGold.Helper
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("Select Category,Unit,Weight_Packet,ProductName,SubGroup,PGroup,Opening,Pcs,Tunch,Westage,LabourRate,Fine,Amount,RawDefine,OpenDate,Narration,Company,UserId From Product", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
-                ProductEntity oProduct = new ProductEntity();
+                ProductEntity oProduct;
                 while (dr.Read())
                 {
+                    oProduct = new ProductEntity();
                     oProduct.AddProductEntity(dr["Category"].ToString(), dr["Unit"].ToString(), Conversion.ConToDec6(dr["Weight_Packet"].ToString()), dr["ProductName"].ToString(), dr["SubGroup"].ToString(), dr["PGroup"].ToString(), Conversion.ConToDec6(dr["Opening"].ToString()), Conversion.ConToDec6(dr["Pcs"].ToString()), Conversion.ConToDec6(dr["Tunch"].ToString()), Conversion.ConToDec6(dr["Westage"].ToString()), Conversion.ConToDec6(dr["LabourRate"].ToString()), Conversion.ConToDec6(dr["Fine"].ToString()), Conversion.ConToDec6(dr["Amount"].ToString()), dr["RawDefine"].ToString(), Conversion.ConToDT(dr["OpenDate"].ToString()), dr["Narration"].ToString(), dr["Company"].ToString(), dr["UserId"].ToString());
                     ProductList.Add(oProduct);
                 }
-                ProductEntity _Product = new ProductEntity();
-                _Product.AddProductEntity("", "", 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
-                ProductList.Insert(0, _Product);
+                oProduct = new ProductEntity();
+                oProduct.AddProductEntity("", "", 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", Conversion.ConToDT(""), "", "", "");
+                ProductList.Insert(0, oProduct);
 
                 con.Close();
             }
