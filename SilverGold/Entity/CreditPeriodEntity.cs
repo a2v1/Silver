@@ -69,6 +69,7 @@ namespace SilverGold.Entity
             col_RateRevise_CreditPeriod.DataPropertyName = "RateRevised";
             col_RateRevise_CreditPeriod.HeaderText = "Rate Revised";
             col_RateRevise_CreditPeriod.Name = "RateRevised";
+            col_RateRevise_CreditPeriod.Items.Clear();
             col_RateRevise_CreditPeriod.Items.Add("AMOUNT");
             col_RateRevise_CreditPeriod.Items.Add("WESTAGE");
             col_RateRevise_CreditPeriod.Items.Add("BOTH");
@@ -109,6 +110,7 @@ namespace SilverGold.Entity
             col_TranType_CreditPeriod.DataPropertyName = "Tran_Type";
             col_TranType_CreditPeriod.HeaderText = "TranType";
             col_TranType_CreditPeriod.Name = "Tran_Type";
+            col_TranType_CreditPeriod.Items.Clear();
             col_TranType_CreditPeriod.Items.Add("JAMA");
             col_TranType_CreditPeriod.Items.Add("NAAM");
             col_TranType_CreditPeriod.Items.Add("BOTH");

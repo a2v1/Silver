@@ -1058,7 +1058,7 @@ namespace SilverGold.MasterInfo
             this.groupBox4.Controls.Add(this.btnshow);
             this.groupBox4.Location = new System.Drawing.Point(8, 399);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(678, 73);
+            this.groupBox4.Size = new System.Drawing.Size(678, 64);
             this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Report";
@@ -1071,14 +1071,14 @@ namespace SilverGold.MasterInfo
             this.groupBox6.Controls.Add(this.ckworker);
             this.groupBox6.Location = new System.Drawing.Point(8, 13);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(294, 49);
+            this.groupBox6.Size = new System.Drawing.Size(294, 40);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             // 
             // ckall
             // 
             this.ckall.AutoSize = true;
-            this.ckall.Location = new System.Drawing.Point(17, 20);
+            this.ckall.Location = new System.Drawing.Point(17, 16);
             this.ckall.Name = "ckall";
             this.ckall.Size = new System.Drawing.Size(58, 17);
             this.ckall.TabIndex = 0;
@@ -1088,7 +1088,7 @@ namespace SilverGold.MasterInfo
             // ckparty
             // 
             this.ckparty.AutoSize = true;
-            this.ckparty.Location = new System.Drawing.Point(95, 20);
+            this.ckparty.Location = new System.Drawing.Point(95, 16);
             this.ckparty.Name = "ckparty";
             this.ckparty.Size = new System.Drawing.Size(71, 17);
             this.ckparty.TabIndex = 1;
@@ -1098,7 +1098,7 @@ namespace SilverGold.MasterInfo
             // ckworker
             // 
             this.ckworker.AutoSize = true;
-            this.ckworker.Location = new System.Drawing.Point(198, 20);
+            this.ckworker.Location = new System.Drawing.Point(198, 16);
             this.ckworker.Name = "ckworker";
             this.ckworker.Size = new System.Drawing.Size(82, 17);
             this.ckworker.TabIndex = 2;
@@ -1111,14 +1111,14 @@ namespace SilverGold.MasterInfo
             this.groupBox5.Controls.Add(this.rbtnwithoutopbal);
             this.groupBox5.Location = new System.Drawing.Point(304, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(266, 50);
+            this.groupBox5.Size = new System.Drawing.Size(266, 41);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             // 
             // rbtnwithopbal
             // 
             this.rbtnwithopbal.AutoSize = true;
-            this.rbtnwithopbal.Location = new System.Drawing.Point(12, 18);
+            this.rbtnwithopbal.Location = new System.Drawing.Point(12, 15);
             this.rbtnwithopbal.Name = "rbtnwithopbal";
             this.rbtnwithopbal.Size = new System.Drawing.Size(111, 17);
             this.rbtnwithopbal.TabIndex = 3;
@@ -1129,7 +1129,7 @@ namespace SilverGold.MasterInfo
             // rbtnwithoutopbal
             // 
             this.rbtnwithoutopbal.AutoSize = true;
-            this.rbtnwithoutopbal.Location = new System.Drawing.Point(129, 19);
+            this.rbtnwithoutopbal.Location = new System.Drawing.Point(129, 16);
             this.rbtnwithoutopbal.Name = "rbtnwithoutopbal";
             this.rbtnwithoutopbal.Size = new System.Drawing.Size(126, 17);
             this.rbtnwithoutopbal.TabIndex = 4;
@@ -1142,7 +1142,7 @@ namespace SilverGold.MasterInfo
             this.btnshow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnshow.Location = new System.Drawing.Point(579, 19);
             this.btnshow.Name = "btnshow";
-            this.btnshow.Size = new System.Drawing.Size(79, 42);
+            this.btnshow.Size = new System.Drawing.Size(79, 32);
             this.btnshow.TabIndex = 5;
             this.btnshow.Text = "Show (F10)";
             this.btnshow.UseVisualStyleBackColor = true;
@@ -1329,10 +1329,10 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.AllowUserToResizeRows = false;
             this.dataGridViewCreditPeriod.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCreditPeriod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCreditPeriod.Location = new System.Drawing.Point(8, 485);
+            this.dataGridViewCreditPeriod.Location = new System.Drawing.Point(8, 476);
             this.dataGridViewCreditPeriod.Name = "dataGridViewCreditPeriod";
             this.dataGridViewCreditPeriod.RowHeadersWidth = 20;
-            this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(679, 143);
+            this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(679, 147);
             this.dataGridViewCreditPeriod.TabIndex = 3;
             this.dataGridViewCreditPeriod.Visible = false;
             this.dataGridViewCreditPeriod.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCreditPeriod_CellClick);

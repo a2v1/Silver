@@ -887,6 +887,31 @@ namespace SilverGold.Helper
             }
         }
 
+        public static void GetIntroducer(ComboBox cmb,String _StrPartyName)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                String _Str = "";
+                if (_StrPartyName != "")
+                {
+                    _StrPartyName = " ,'" + _StrPartyName + "'"; 
+                }
+                _Str = " Where PartyName NOT IN('CASH PURCHASE','CASH SALE' " + _StrPartyName + ")";
+               
+
+
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select PartyName From PartyDetails " + _Str + " ORDER BY PartyName ASC", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["PartyName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
         public static void GetCashParty(ComboBox cmb, String _CashType)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))

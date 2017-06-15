@@ -63,7 +63,9 @@ namespace SilverGold.MasterInfo
                 else
                 {
                     cmbcategory.Text = PartyInformation._Category;
+                    this.txtProductName.TabIndex = 0;
                     this.txtProductName.Focus();
+                    this.txtProductName.Clear();
                     return;
                 }
             }

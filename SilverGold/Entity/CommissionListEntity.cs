@@ -22,8 +22,9 @@ namespace SilverGold.Entity
         public DataGridViewComboBoxColumn col_PType_CommList = new DataGridViewComboBoxColumn();
         public DataGridViewComboBoxColumn col_JN_CommList = new DataGridViewComboBoxColumn();
 
-        public void BindCommissionList(DataGridView dgv)
+        public void BindCommissionList(DataGridView dgv, String _Category)
         {
+            dgv.Columns.Clear();
             dtpDateFrom_CommList.DataPropertyName = "DateFrom";
             dtpDateFrom_CommList.HeaderText = "DateFrom";
             dtpDateFrom_CommList.Name = "DateFrom";
@@ -37,6 +38,7 @@ namespace SilverGold.Entity
             col_WtPcs_CommList.DataPropertyName = "WeightPcs";
             col_WtPcs_CommList.HeaderText = "WT/PCS";
             col_WtPcs_CommList.Name = "WeightPcs";
+            col_WtPcs_CommList.Items.Clear();
             col_WtPcs_CommList.Items.Add("WEIGHT");
             col_WtPcs_CommList.Items.Add("PCS");
             col_WtPcs_CommList.FlatStyle = FlatStyle.Popup;
@@ -45,14 +47,28 @@ namespace SilverGold.Entity
             col_Cate_CommList.DataPropertyName = "Category";
             col_Cate_CommList.HeaderText = "Category";
             col_Cate_CommList.Name = "Category";
-            col_Cate_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            if (_Category == "" || _Category == "COMMON")
+            {
+                col_Cate_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.Category).Distinct().ToList();
+            }
+            else
+            {
+                col_Cate_CommList.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.Category).Distinct().ToList();
+            }
             col_Cate_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Cate_CommList);
 
             col_Product_CommList.DataPropertyName = "Product";
             col_Product_CommList.HeaderText = "Product";
             col_Product_CommList.Name = "Product";
-            col_Product_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            if (_Category == "" || _Category == "COMMON")
+            {
+                col_Product_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            }
+            else
+            {
+                col_Product_CommList.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.ProductName).Distinct().ToList();
+            }
             col_Product_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Product_CommList);
 
@@ -60,6 +76,7 @@ namespace SilverGold.Entity
             col_FineAmt_CommList.DataPropertyName = "Fine_Amount";
             col_FineAmt_CommList.HeaderText = "FINE/AMT";
             col_FineAmt_CommList.Name = "Fine_Amount";
+            col_FineAmt_CommList.Items.Clear();
             col_FineAmt_CommList.Items.Add("AMOUNT");
             col_FineAmt_CommList.Items.Add("FINE");
             col_FineAmt_CommList.FlatStyle = FlatStyle.Popup;
@@ -73,6 +90,7 @@ namespace SilverGold.Entity
             col_PType_CommList.DataPropertyName = "PayType";
             col_PType_CommList.HeaderText = "PayType";
             col_PType_CommList.Name = "PayType";
+            col_PType_CommList.Items.Clear();
             col_PType_CommList.Items.Add("GIVING");
             col_PType_CommList.Items.Add("RECIEVING");
             col_PType_CommList.Items.Add("COMMON");
@@ -82,6 +100,7 @@ namespace SilverGold.Entity
             col_JN_CommList.DataPropertyName = "JamaNaam";
             col_JN_CommList.HeaderText = "J/N";
             col_JN_CommList.Name = "JamaNaam";
+            col_JN_CommList.Items.Clear();
             col_JN_CommList.Items.Add("JAMA");
             col_JN_CommList.Items.Add("NAAM");
             col_JN_CommList.FlatStyle = FlatStyle.Popup;
@@ -92,7 +111,7 @@ namespace SilverGold.Entity
 
     public static class CommissionListFactory
     {
-        public static void Insert(String _PartyName,DateTime _DateFrom,DateTime _DateTo,String _WeightPcs,String _Category,String _Product,String _Fine_Amount,Decimal _BrokerageRate,String _PayType,String _JamaNaam,OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _PartyName, DateTime _DateFrom, DateTime _DateTo, String _WeightPcs, String _Category, String _Product, String _Fine_Amount, Decimal _BrokerageRate, String _PayType, String _JamaNaam, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();
@@ -113,7 +132,7 @@ namespace SilverGold.Entity
             cmdInsert.Parameters.AddWithValue("@Product", _Product);
             cmdInsert.Parameters.AddWithValue("@Fine_Amount", _Fine_Amount);
             cmdInsert.Parameters.AddWithValue("@BrokerageRate", _BrokerageRate);
-            cmdInsert.Parameters.AddWithValue("@PayType", _PartyName);
+            cmdInsert.Parameters.AddWithValue("@PayType", _PayType);
             cmdInsert.Parameters.AddWithValue("@JamaNaam", _JamaNaam);
             cmdInsert.Parameters.AddWithValue("@Company", CommanHelper.CompName.ToString());
             cmdInsert.Parameters.AddWithValue("@UserId", CommanHelper.UserId.ToString());
