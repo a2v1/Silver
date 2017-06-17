@@ -8,6 +8,7 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SilverGold.Helper
@@ -44,6 +45,10 @@ namespace SilverGold.Helper
             {
                 e.Handled = true;
             }
+        }
+        public static string UpperCaseFirstCharacter(this string input)
+        {
+            return Regex.Replace(input.ToLower(), @"(?<=\b(?:mc|mac)?)[a-zA-Z](?<!'s\b)", m => m.Value.ToUpper()); ;
         }
 
         public static void ChangeGridFormate(DataGridView grd)
@@ -359,6 +364,14 @@ namespace SilverGold.Helper
                 OpeningMCXList.Add(new OpeningMCXEntity
                 {
                     OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    Item = "CASH",
+                    Weight = 0,
+                    Closing = 0,
+                    DrCr = ""
+                });
+                OpeningMCXList.Add(new OpeningMCXEntity
+                {
+                    OpeningDate = DateTime.Now.ToString("dd/MM/yyyy"),
                     Item = "SILVER",
                     Weight = 0,
                     Closing = 0,
@@ -457,12 +470,12 @@ namespace SilverGold.Helper
                 using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
                 {
                     con.Open();
-                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from CompanyOpening LEFT OUTER JOIN Metal  ON CompanyOpening.MetalName   =  Metal.MetalName  Where MetalCategory <> 'CASH' ORDER BY MetalCategory ASC", con);
+                    OleDbCommand cmd = new OleDbCommand("Select Distinct(MetalCategory) from CompanyOpening LEFT OUTER JOIN Metal  ON CompanyOpening.MetalName   =  Metal.MetalName  ORDER BY MetalCategory ASC", con);
                     OleDbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
-                        oOpeningOtherEntity.OpeningDate = DateTime.Now.ToString("dd/MM/yyyy");                        
+                        oOpeningOtherEntity.OpeningDate = DateTime.Now.ToString("dd/MM/yyyy");
                         oOpeningOtherEntity.Item = dr[0].ToString();
                         oOpeningOtherEntity.Weight = 0;
                         oOpeningOtherEntity.DrCr = "";
@@ -682,7 +695,7 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,ClosingRate,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "' And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,ClosingRate,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "'  ORDER BY ItemName ASC", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -707,14 +720,18 @@ namespace SilverGold.Helper
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "'  And ItemName <> 'CASH'", con);
+                OleDbCommand cmd = new OleDbCommand("Select FORMAT(OpeningDate,'dd/MM/yyyy') AS OpeningDate,ItemName,Weight,DrCr,Narration From PartyOpening Where PartyName = '" + strPartyName + "' ORDER BY ItemName ASC", con);
                 OleDbDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     OpeningOtherEntity oOpeningOtherEntity = new OpeningOtherEntity();
                     oOpeningOtherEntity.OpeningDate = dr["OpeningDate"].ToString();
                     oOpeningOtherEntity.Item = dr["ItemName"].ToString();
-                    oOpeningOtherEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
+                    if (dr["ItemName"].ToString().Trim() == "CASH") { oOpeningOtherEntity.Weight = Conversion.ConToDec(dr["Weight"].ToString()); }
+                    else
+                    {
+                        oOpeningOtherEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
+                    }
                     oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
                     oOpeningOtherEntity.Narration = dr["Narration"].ToString();
                     OpeningOther.Add(oOpeningOtherEntity);
@@ -790,7 +807,6 @@ namespace SilverGold.Helper
                 {
                     cmb.Items.Add(dr["ProductName"].ToString().Trim());
                 }
-
                 con.Close();
             }
         }
@@ -804,6 +820,78 @@ namespace SilverGold.Helper
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmb.DataSource = null;
                 cmb.Items.Clear();
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetProduct_Worker(DataGridViewComboBoxColumn cmb)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                cmb.Items.Add("CASH");
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetProductCategoryWise_Worker(DataGridViewComboBoxColumn cmb, String _Category)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                cmb.Items.Add("CASH");
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetProduct_Worker(DataGridViewComboBoxCell cmb)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                cmb.Items.Add("CASH");
+                while (dr.Read())
+                {
+                    cmb.Items.Add(dr["ProductName"].ToString().Trim());
+                }
+                con.Close();
+            }
+        }
+
+        public static void GetProductCategoryWise_Worker(DataGridViewComboBoxCell cmb, String _Category)
+        {
+            using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("Select ProductName From Product Where Category = '" + _Category + "'", con);
+                OleDbDataReader dr = cmd.ExecuteReader();
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                cmb.Items.Add("CASH");
                 while (dr.Read())
                 {
                     cmb.Items.Add(dr["ProductName"].ToString().Trim());
@@ -887,17 +975,17 @@ namespace SilverGold.Helper
             }
         }
 
-        public static void GetIntroducer(ComboBox cmb,String _StrPartyName)
+        public static void GetIntroducer(ComboBox cmb, String _StrPartyName)
         {
             using (OleDbConnection con = new OleDbConnection(ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb")))
             {
                 String _Str = "";
                 if (_StrPartyName != "")
                 {
-                    _StrPartyName = " ,'" + _StrPartyName + "'"; 
+                    _StrPartyName = " ,'" + _StrPartyName + "'";
                 }
                 _Str = " Where PartyName NOT IN('CASH PURCHASE','CASH SALE' " + _StrPartyName + ")";
-               
+
 
 
                 con.Open();

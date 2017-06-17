@@ -70,13 +70,16 @@ namespace SilverGold.CompanyInfo
                 }
                 if (CompanyDetailsList.Count > 0)
                 {
-
                     listBox1.DataSource = CompanyDetailsList;
                     listBox1.DisplayMember = "DisplayName";
                     listBox1.ValueMember = "Sno";
                 }
-
+             
                 listBox1.Focus();
+                if (CompanyDetailsList.Count == 0)
+                {
+                    listBox1.Items.Add("No Company Available");
+                }
             }
             catch (Exception ex)
             {
@@ -98,18 +101,19 @@ namespace SilverGold.CompanyInfo
             {
                 _CompanyName = listBox1.Text.ToString();
                 var result = CompanyDetailsList.Where(x => x.Sno == Conversion.ConToInt(listBox1.SelectedValue.ToString())).SingleOrDefault();
-
-                if ((MessageBox.Show("Do U Want To Access Company " + _CompanyName + " ?", "Change Company", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes))
+                if (result != null)
                 {
-                    CommanHelper._CompName_ChangeComapny = result.CompanyName;
-                    CommanHelper._FinancialYear_ChangeComapny = result.FinancialYear.ToString();
-                    CommanHelper._Com_DB_PATH_ChangeComapny = result.DataBasePath.ToString();
-                    CommanHelper._Com_DB_NAME_ChangeComapny = result.DataBaseName.ToString();
+                    if ((MessageBox.Show("Do U Want To Access Company " + _CompanyName + " ?", "Change Company", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes))
+                    {
+                        CommanHelper._CompName_ChangeComapny = result.CompanyName;
+                        CommanHelper._FinancialYear_ChangeComapny = result.FinancialYear.ToString();
+                        CommanHelper._Com_DB_PATH_ChangeComapny = result.DataBasePath.ToString();
+                        CommanHelper._Com_DB_NAME_ChangeComapny = result.DataBaseName.ToString();
 
-                    this.Hide();
-                    Login oLogin = new Login();
-                    oLogin.ShowDialog();
-                    
+                        this.Hide();
+                        Login oLogin = new Login();
+                        oLogin.ShowDialog();
+                    }
                 }
             }
         }

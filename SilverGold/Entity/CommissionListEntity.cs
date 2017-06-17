@@ -83,7 +83,7 @@ namespace SilverGold.Entity
             dgv.Columns.Add(col_FineAmt_CommList);
 
             col_Com_CommList.DataPropertyName = "BrokerageRate";
-            col_Com_CommList.HeaderText = "Com Rate";
+            col_Com_CommList.HeaderText = "Rate";
             col_Com_CommList.Name = "BrokerageRate";
             dgv.Columns.Add(col_Com_CommList);
 
