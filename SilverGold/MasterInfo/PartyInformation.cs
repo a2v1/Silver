@@ -429,12 +429,18 @@ namespace SilverGold.MasterInfo
 
         private void TabSetting()
         {
+            panel_Type.TabIndex = 0;
             cmbtype.TabIndex = 0;
+            Panel_ShowInTrail.TabIndex = 1;
             cmbShowtrail.TabIndex = 1;
+            Panel_lot.TabIndex = 2;
             cmbLot.TabIndex = 2;
+            Panel_LotGenerate.TabIndex = 3;
             cmb_gen_type.TabIndex = 3;
+            Panel_Category.TabIndex = 4;
             cmbCategory.TabIndex = 4;
             txtpartyname.TabIndex = 5;
+            Panel_McxBullion.TabIndex = 6;
             cmbBullion.TabIndex = 6;
             txtaddress.TabIndex = 7;
             txtcontactno.TabIndex = 8;
@@ -443,21 +449,27 @@ namespace SilverGold.MasterInfo
             cmbsubhead.TabIndex = 11;
             cmbIntroducer.TabIndex = 12;
             dataGridView2.TabIndex = 13;
+            groupBox_CommissionList.TabIndex = 13;
             dataGridView_Commission.TabIndex = 13;
+            groupBox_LabourRate.TabIndex = 14;
             dataGridView_LabourRate.TabIndex = 14;
+            groupBox_GhattakList.TabIndex = 15;
             dataGridView_GhattakList.TabIndex = 15;
             dataGridView1.TabIndex = 16;
+            groupBox_BrokerageSetting.TabIndex = 17;
             dataGridView_BrokerageSetting.TabIndex = 17;
+            grpBoxWithCreditLimit.TabIndex = 18;
             chkWithCreditLimit.TabIndex = 18;
+            groBoxCreditPeriod.TabIndex = 19;
             cmbDays.TabIndex = 19;
             rateupdate_radio.TabIndex = 20;
             rateupdate_radio_N.TabIndex = 21;
             dataGridViewCreditPeriod.TabIndex = 22;
-            btnsave.TabIndex = 23;
-            btndelete.TabIndex = 24;
-            btnrefresh.TabIndex = 25;
+            btnSave.TabIndex = 23;
+            btnDelete.TabIndex = 24;
+            btnRefresh.TabIndex = 25;
             btnReport.TabIndex = 26;
-            btnexit.TabIndex = 27;
+            btnExit.TabIndex = 27;
             cmbPopUp.TabIndex = 28;
             ckall.TabIndex = 29;
             ckparty.TabIndex = 30;
@@ -468,6 +480,47 @@ namespace SilverGold.MasterInfo
         }
 
 
+        private void TabRefresh()
+        {
+            cmbtype.TabStop = false;
+            cmbShowtrail.TabStop = false;
+            cmbLot.TabStop = false;
+            cmb_gen_type.TabStop = false;
+            cmbCategory.TabStop = false;
+            txtpartyname.TabStop = false;
+            cmbBullion.TabStop = false;
+            txtaddress.TabStop = false;
+            txtcontactno.TabStop = false;
+            txtemailid.TabStop = false;
+            cmbgrouphead.TabStop = false;
+            cmbsubhead.TabStop = false;
+            cmbIntroducer.TabStop = false;
+            dataGridView2.TabStop = false;
+            dataGridView_Commission.TabStop = false;
+            dataGridView_LabourRate.TabStop = false;
+            dataGridView_GhattakList.TabStop = false;
+            dataGridView1.TabStop = false;
+            dataGridView_BrokerageSetting.TabStop = false;
+            chkWithCreditLimit.TabStop = false;
+            cmbDays.TabStop = false;
+            rateupdate_radio.TabStop = false;
+            rateupdate_radio_N.TabStop = false;
+            dataGridViewCreditPeriod.TabStop = false;
+            btnSave.TabStop = false;
+            btnDelete.TabStop = false;
+            btnRefresh.TabStop = false;
+            btnReport.TabStop = false;
+            btnExit.TabStop = false;
+            cmbPopUp.TabStop = false;
+            ckall.TabStop = false;
+            ckparty.TabStop = false;
+            ckworker.TabStop = false;
+            rbtnwithopbal.TabStop = false;
+            rbtnwithoutopbal.TabStop = false; ;
+            btnshow.TabStop = false;
+        }
+
+
         #endregion
 
 
@@ -475,7 +528,7 @@ namespace SilverGold.MasterInfo
         private void PartyInformation_Load(object sender, EventArgs e)
         {
             TabSetting();
-            this.CancelButton = btnexit;
+            this.CancelButton = btnExit;
             this.Width = CommanHelper.FormX;
             this.Height = CommanHelper.FormY;
             this.toolStripMenu_Save.Click += new EventHandler(btnsave_Click);
@@ -1320,7 +1373,7 @@ namespace SilverGold.MasterInfo
             try
             {
                 cmbLot.BackColor = Color.Cyan;
-                plnlot.BackColor = Color.Red;
+                Panel_lot.BackColor = Color.Red;
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -1333,7 +1386,7 @@ namespace SilverGold.MasterInfo
 
                 //Control Back Color
                 cmbLot.BackColor = Color.White;
-                plnlot.BackColor = Color.Transparent;
+                Panel_lot.BackColor = Color.Transparent;
 
                 //Tab Setting
                 if (cmbLot.Text.Trim() == "YES" || cmb_gen_type.Visible == true)
@@ -1426,23 +1479,6 @@ namespace SilverGold.MasterInfo
                 //Set Control Backcolor
                 cmbCategory.BackColor = Color.White;
                 Panel_Category.BackColor = Color.Transparent;
-
-                //Set Tab Setting
-                //if (cmbtype.Text.Trim() == "WORKER")
-                //{
-                //    if (cmbLot.Text.Trim() == "YES")
-                //    {
-                //        txtpartyname.TabIndex = 5;
-                //    }
-                //    else
-                //    {
-                //        txtpartyname.TabIndex = 4;
-                //    }
-                //}
-                //else
-                //{
-                //    txtpartyname.TabIndex = 3;
-                //}
             }
             catch (Exception ex)
             {
@@ -1599,7 +1635,32 @@ namespace SilverGold.MasterInfo
             try
             {
                 CommanHelper.GetIntroducer(cmbIntroducer, cmbPopUp.Text.Trim());
+
+                //Set Control Back Color
                 cmbIntroducer.BackColor = Color.Cyan;
+
+                //Set Tab Setting
+                dataGridView1.TabStop = true;
+                btnSave.TabStop = false;
+                btnRefresh.TabStop = false;
+                btnReport.TabStop = false;
+                btnDelete.TabStop = false;
+                btnExit.TabStop = false;
+                cmbPopUp.TabStop = false;
+                dataGridView_LabourRate.TabStop = false;
+                dataGridView_GhattakList.TabStop = false;
+
+                if (cmbIntroducer.Text.Trim() == "")
+                {
+                    dataGridView2.TabStop = true;
+                    dataGridView_Commission.TabStop = false;
+                }
+                else
+                {
+                    dataGridView_Commission.TabStop = true;
+                    dataGridView2.TabStop = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -1625,19 +1686,7 @@ namespace SilverGold.MasterInfo
                 //Set Control Backcolor
                 cmbIntroducer.BackColor = Color.White;
 
-                //Set Tab Setting
-                if (cmbIntroducer.Text.Trim() == "")
-                {
-                    dataGridView_Commission.TabStop = false;
-                    dataGridView2.TabStop = true;
 
-                }
-                else
-                {
-                    dataGridView2.TabStop = false;
-                    dataGridView_Commission.TabStop = true;
-
-                }
             }
             catch (Exception ex)
             {
@@ -1647,20 +1696,32 @@ namespace SilverGold.MasterInfo
 
         private void txtBankCredit_Enter(object sender, EventArgs e)
         {
-            txtBankCredit.BackColor = Color.Cyan;
+            try
+            {
+                txtBankCredit.BackColor = Color.Cyan;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void txtBankCredit_Leave(object sender, EventArgs e)
         {
-            txtBankCredit.BackColor = Color.White;
+            try
+            {
+                txtBankCredit.BackColor = Color.White;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbtype_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                cmbShowtrail.Focus();
+                if (e.KeyChar == 13)
+                {
+                    cmbShowtrail.Focus();
+                }
             }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbLot_KeyPress(object sender, KeyPressEventArgs e)
@@ -1706,10 +1767,14 @@ namespace SilverGold.MasterInfo
 
         private void cmbCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                txtpartyname.Focus();
+                if (e.KeyChar == 13)
+                {
+                    txtpartyname.Focus();
+                }
             }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void txtpartyname_KeyPress(object sender, KeyPressEventArgs e)
@@ -1858,11 +1923,12 @@ namespace SilverGold.MasterInfo
                     {
                         if (cmbtype.Text.Trim() == "WORKER")
                         {
-                            if (this.dataGridView_LabourRate.RowCount > 0)
+                            if (this.dataGridView1.RowCount > 0)
                             {
-                                this.dataGridView_LabourRate.CurrentCell = this.dataGridView_LabourRate[1, 0];
-                                this.dataGridView_LabourRate.Focus();
+                                this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
+                                this.dataGridView1.Focus();
                             }
+
                         }
                         else
                         {
@@ -1918,7 +1984,7 @@ namespace SilverGold.MasterInfo
                     else if (txtBankCredit.Visible == true)
                         txtBankCredit.Focus();
                     else
-                        btnsave.Focus();
+                        btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -1962,15 +2028,26 @@ namespace SilverGold.MasterInfo
 
                 }
             }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbPopUp_Enter(object sender, EventArgs e)
         {
-            cmbPopUp.BackColor = Color.Cyan;
+            try
+            {
+                //Set Control Backcolor
+                cmbPopUp.BackColor = Color.Cyan;
+
+                //Set Tab Setting
+                dataGridView1.TabStop = false;
+                dataGridView2.TabStop = false;
+                dataGridView_BrokerageSetting.TabStop = false;
+                dataGridView_Commission.TabStop = false;
+                dataGridView_GhattakList.TabStop = false;
+                dataGridView_LabourRate.TabStop = false;
+
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbPopUp_Leave(object sender, EventArgs e)
@@ -1981,7 +2058,7 @@ namespace SilverGold.MasterInfo
                 {
                     if (!cmbPopUp.Items.Contains(cmbPopUp.Text.Trim()))
                     { cmbPopUp.Focus(); return; }
-                    // cmbPopUp_SelectedIndexChanged(null, null);
+
                 }
                 cmbPopUp.BackColor = Color.White;
             }
@@ -2369,14 +2446,14 @@ namespace SilverGold.MasterInfo
         private void cmbShowtrail_Enter(object sender, EventArgs e)
         {
             cmbShowtrail.BackColor = Color.Cyan;
-            panel_ShowInTrail.BackColor = Color.Red;
+            Panel_ShowInTrail.BackColor = Color.Red;
         }
 
         private void cmbShowtrail_Leave(object sender, EventArgs e)
         {
             //Control Back Color
             cmbShowtrail.BackColor = Color.White;
-            panel_ShowInTrail.BackColor = Color.Transparent;
+            Panel_ShowInTrail.BackColor = Color.Transparent;
 
             //Tab Setting 
             if (cmbtype.Text.Trim() == "WORKER")
@@ -2448,10 +2525,10 @@ namespace SilverGold.MasterInfo
                 {
                     if ((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "")
                     {
-                        if (txtBankCredit.Visible == true) 
+                        if (txtBankCredit.Visible == true)
                             txtBankCredit.Focus();
                         else
-                            btnsave.Focus();
+                            btnSave.Focus();
                     }
                 }
             }
@@ -2616,9 +2693,14 @@ namespace SilverGold.MasterInfo
                 //    }
                 //}
                 if (e.ColumnIndex == 8)
-                    if (e.FormattedValue.ToString() == "")
-                        e.Cancel = true;
-
+                    if ((dataGridView_LabourRate.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" &&
+                        (dataGridView_LabourRate.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() != "" &&
+                        Conversion.ConToDec((dataGridView_LabourRate.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 &&
+                        (dataGridView_LabourRate.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
+                    {
+                        if (e.FormattedValue.ToString() == "")
+                            e.Cancel = true;
+                    }
 
                 if (e.ColumnIndex == 4)
                 {
@@ -2730,11 +2812,8 @@ namespace SilverGold.MasterInfo
                 {
                     if ((dataGridView_GhattakList.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() == "")
                     {
-                        if (this.dataGridView1.RowCount > 0)
-                        {
-                            this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
-                        }
-                        this.dataGridView1.Focus();
+                        this.dataGridView_GhattakList.ClearSelection();
+                        this.btnSave.Focus();
                     }
                 }
             }
@@ -2918,7 +2997,7 @@ namespace SilverGold.MasterInfo
                     }
                     else
                     {
-                        btnsave.Focus();
+                        btnSave.Focus();
                     }
                 }
             }
@@ -2999,7 +3078,11 @@ namespace SilverGold.MasterInfo
                         if (Conversion.ConToDec((dataGridView1.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString()) == 0)
                         {
                             this.dataGridView1.ClearSelection();
-                            btnsave.Focus();
+                            if (this.dataGridView_LabourRate.RowCount > 0)
+                            {
+                                this.dataGridView_LabourRate.CurrentCell = this.dataGridView_LabourRate[1, 0];
+                            }
+                            this.dataGridView_LabourRate.Focus();
                         }
                     }
                 }
@@ -3585,7 +3668,48 @@ namespace SilverGold.MasterInfo
 
         private void txtBankCredit_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try { if (e.KeyChar == 13)btnsave.Focus(); }
+            try { if (e.KeyChar == 13)btnSave.Focus(); }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_GhattakList_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.TabStop = true;
+                btnRefresh.TabStop = true;
+                btnDelete.TabStop = true;
+                btnReport.TabStop = true;
+                btnExit.TabStop = true;
+                cmbPopUp.TabStop = true;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_LabourRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView_GhattakList.TabStop = true;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    dataGridView_LabourRate.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                }
+                else
+                {
+                    dataGridView_LabourRate.TabStop = false;
+                    dataGridView_GhattakList.TabStop = false;
+                }
+            }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
     }
