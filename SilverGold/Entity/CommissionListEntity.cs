@@ -105,6 +105,9 @@ namespace SilverGold.Entity
             col_JN_CommList.Items.Add("NAAM");
             col_JN_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_JN_CommList);
+
+            dgv.Rows[0].Cells[0].Value = CommanHelper.FDate;
+            dgv.Rows[0].Cells[1].Value = CommanHelper.TDate;
         }
 
     }

@@ -81,6 +81,9 @@ namespace SilverGold.Entity
             col_PType_Brok.Items.Add("BOTH");
             col_PType_Brok.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_PType_Brok);
+
+            dgv.Rows[0].Cells[0].Value = CommanHelper.FDate;
+            dgv.Rows[0].Cells[1].Value = CommanHelper.TDate;
         }
 
     }

@@ -9,10 +9,12 @@ namespace SilverGold.Comman
 {
     class CalendarColumn : DataGridViewColumn
     {
-
+       
         public CalendarColumn()
             : base(new CalendarCell())
         {
+            //CalendarCell oCalendarCell = new CalendarCell();
+            //if (_Date != String.Empty) { oCalendarCell.Value = _Date; }
         }
 
         public override DataGridViewCell CellTemplate
@@ -33,6 +35,7 @@ namespace SilverGold.Comman
             }
         }
 
+
         private void InitializeComponent()
         {
 
@@ -40,15 +43,14 @@ namespace SilverGold.Comman
     }
 
     public class CalendarCell : DataGridViewTextBoxCell
-    {
-
+    { 
         public CalendarCell()
             : base()
         {
             // Use the short date format.
-            //   this.Style.Format = "d";
             this.Style.Format = "dd/MM/yyyy";
         }
+
 
         public override void InitializeEditingControl(int rowIndex, object
             initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
@@ -56,8 +58,8 @@ namespace SilverGold.Comman
             // Set the value of the editing control to the current cell value.
             base.InitializeEditingControl(rowIndex, initialFormattedValue,
                 dataGridViewCellStyle);
-            CalendarEditingControl ctl =
-                DataGridView.EditingControl as CalendarEditingControl;
+
+            CalendarEditingControl ctl = DataGridView.EditingControl as CalendarEditingControl;
             // Use the default row value when Value property is null.
             if (this.Value == null)
             {
@@ -68,6 +70,21 @@ namespace SilverGold.Comman
                 ctl.Value = (DateTime)this.Value;
             }
         }
+
+        //public string _Date = String.Empty;
+        //public string SetDateValue
+        //{
+        //    get
+        //    {
+        //        return _Date;
+        //    }
+        //    set
+        //    {
+        //        _Date = value;
+        //        this.Value = _Date;
+
+        //    }
+        //}
 
         public override Type EditType
         {
@@ -83,7 +100,6 @@ namespace SilverGold.Comman
             get
             {
                 // Return the type of the value that CalendarCell contains.
-
                 return typeof(DateTime);
             }
         }
@@ -107,8 +123,9 @@ namespace SilverGold.Comman
         public CalendarEditingControl()
         {
             this.Format = DateTimePickerFormat.Custom;
-
+            this.CustomFormat = "dd/MM/yyyy";
         }
+
 
         // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 
         // property.

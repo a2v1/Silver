@@ -96,6 +96,9 @@ namespace SilverGold.Entity
             col_JN_GhattakList.Items.Add("NAAM");
             col_JN_GhattakList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_JN_GhattakList);
+
+            dgv.Rows[0].Cells[0].Value = CommanHelper.FDate;
+            dgv.Rows[0].Cells[1].Value = CommanHelper.TDate;
         }
 
 

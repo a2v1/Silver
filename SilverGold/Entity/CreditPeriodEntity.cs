@@ -122,6 +122,9 @@ namespace SilverGold.Entity
             col_Days_CreditPeriod.Name = "Days";
             dgv.Columns.Add(col_Days_CreditPeriod);
 
+            dgv.Rows[0].Cells[0].Value = CommanHelper.FDate;
+            dgv.Rows[0].Cells[1].Value = CommanHelper.TDate;
+
 
         }
     }

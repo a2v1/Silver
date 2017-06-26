@@ -438,7 +438,7 @@ namespace SilverGold.Helper
                     }
                     else
                     {
-                        _Query = "Select Distinct(MetalCategory) from Metal Where MetalCategory=''";
+                        _Query = "Select Distinct(MetalCategory) from Metal Where MetalCategory='CASH'";
                     }
                     con.Open();
                     OleDbCommand cmd = new OleDbCommand(_Query, con);

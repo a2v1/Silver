@@ -39,6 +39,9 @@ namespace SilverGold.MasterInfo
         public static String _ProductName = "";
         int _ProductCreate_GridFlage = 0;
 
+        DateTime _From = Conversion.ConToDT(CommanHelper.FDate);
+        DateTime _To = Conversion.ConToDT(CommanHelper.TDate);
+
         #endregion
 
         public PartyInformation()
@@ -287,7 +290,7 @@ namespace SilverGold.MasterInfo
 
         private void SetWorkerGridView_ColumnWith()
         {
-            dataGridView1.Columns["OpeningDate"].Width = 70;
+            dataGridView1.Columns["OpeningDate"].Width = 80;
             dataGridView1.Columns["Item"].Width = 100;
             dataGridView1.Columns["Weight"].Width = 70;
             dataGridView1.Columns["DrCr"].Width = 40;
@@ -427,67 +430,81 @@ namespace SilverGold.MasterInfo
             }
         }
 
-        private void TabSetting()
+        private void TabIndex_Default()
         {
             panel_Type.TabIndex = 0;
-            cmbtype.TabIndex = 0;
-            Panel_ShowInTrail.TabIndex = 1;
-            cmbShowtrail.TabIndex = 1;
-            Panel_lot.TabIndex = 2;
-            cmbLot.TabIndex = 2;
-            Panel_LotGenerate.TabIndex = 3;
-            cmb_gen_type.TabIndex = 3;
-            Panel_Category.TabIndex = 4;
-            cmbCategory.TabIndex = 4;
-            txtpartyname.TabIndex = 5;
-            Panel_McxBullion.TabIndex = 6;
-            cmbBullion.TabIndex = 6;
-            txtaddress.TabIndex = 7;
-            txtcontactno.TabIndex = 8;
-            txtemailid.TabIndex = 9;
-            cmbgrouphead.TabIndex = 10;
-            cmbsubhead.TabIndex = 11;
-            cmbIntroducer.TabIndex = 12;
-            dataGridView2.TabIndex = 13;
-            groupBox_CommissionList.TabIndex = 13;
-            dataGridView_Commission.TabIndex = 13;
-            groupBox_LabourRate.TabIndex = 14;
-            dataGridView_LabourRate.TabIndex = 14;
-            groupBox_GhattakList.TabIndex = 15;
-            dataGridView_GhattakList.TabIndex = 15;
-            dataGridView1.TabIndex = 16;
-            groupBox_BrokerageSetting.TabIndex = 17;
-            dataGridView_BrokerageSetting.TabIndex = 17;
-            grpBoxWithCreditLimit.TabIndex = 18;
-            chkWithCreditLimit.TabIndex = 18;
-            groBoxCreditPeriod.TabIndex = 19;
-            cmbDays.TabIndex = 19;
-            rateupdate_radio.TabIndex = 20;
-            rateupdate_radio_N.TabIndex = 21;
-            dataGridViewCreditPeriod.TabIndex = 22;
-            btnSave.TabIndex = 23;
-            btnDelete.TabIndex = 24;
-            btnRefresh.TabIndex = 25;
-            btnReport.TabIndex = 26;
-            btnExit.TabIndex = 27;
-            cmbPopUp.TabIndex = 28;
-            ckall.TabIndex = 29;
-            ckparty.TabIndex = 30;
-            ckworker.TabIndex = 31;
-            rbtnwithopbal.TabIndex = 32;
-            rbtnwithoutopbal.TabIndex = 33;
-            btnshow.TabIndex = 34;
+            cmbtype.TabIndex = 1;
+            Panel_ShowInTrail.TabIndex = 503;
+            cmbShowtrail.TabIndex = 504;
+            Panel_lot.TabIndex = 505;
+            cmbLot.TabIndex = 506;
+            Panel_LotGenerate.TabIndex = 507;
+            cmb_gen_type.TabIndex = 508;
+            Panel_Category.TabIndex = 509;
+            cmbCategory.TabIndex = 510;
+            txtpartyname.TabIndex = 511;
+            Panel_McxBullion.TabIndex = 512;
+            cmbBullion.TabIndex = 513;
+            txtaddress.TabIndex = 514;
+            txtcontactno.TabIndex = 515;
+            txtemailid.TabIndex = 516;
+            cmbgrouphead.TabIndex = 517;
+            cmbsubhead.TabIndex = 518;
+            cmbIntroducer.TabIndex = 519;
+            dataGridView1.TabIndex = 520;
+            groupBox_CommissionList.TabIndex = 521;
+            dataGridView_Commission.TabIndex = 522;
+            groupBox_LabourRate.TabIndex = 523;
+            dataGridView_LabourRate.TabIndex = 524;
+            groupBox_GhattakList.TabIndex = 525;
+            dataGridView_GhattakList.TabIndex = 526;
+            groupBox_BrokerageSetting.TabIndex = 527;
+            dataGridView_BrokerageSetting.TabIndex = 528;
+            grpPartyCrditL.TabIndex = 529;
+            dataGridView2.TabIndex = 530;
+            grpBoxWithCreditLimit.TabIndex = 531;
+            chkWithCreditLimit.TabIndex = 532;
+            groBoxCreditPeriod.TabIndex = 533;
+            cmbDays.TabIndex = 534;
+            rateupdate_radio.TabIndex = 535;
+            rateupdate_radio_N.TabIndex = 536;
+            dataGridViewCreditPeriod.TabIndex = 537;
+            groupBox2.TabIndex = 538;
+            btnSave.TabIndex = 539;
+            btnDelete.TabIndex = 540;
+            btnRefresh.TabIndex = 541;
+            btnReport.TabIndex = 542;
+            btnExit.TabIndex = 543;
+            groupBox3.TabIndex = 544;
+            cmbPopUp.TabIndex = 545;
+            groupBox4.TabIndex = 546;
+            groupBox6.TabIndex = 547;
+            ckall.TabIndex = 548;
+            ckparty.TabIndex = 549;
+            ckworker.TabIndex = 550;
+            groupBox5.TabIndex = 551;
+            rbtnwithopbal.TabIndex = 552;
+            rbtnwithoutopbal.TabIndex = 553;
+            btnShow.TabIndex = 554;
+
+
         }
 
 
-        private void TabRefresh()
+        private void TabStopSetting_False()
         {
-            cmbtype.TabStop = false;
+            panel_Type.TabStop = true;
+            cmbtype.TabStop = true;
+            Panel_ShowInTrail.TabStop = false;
             cmbShowtrail.TabStop = false;
+            Panel_lot.TabStop = false;
             cmbLot.TabStop = false;
+            Panel_LotGenerate.TabStop = false;
             cmb_gen_type.TabStop = false;
+            Panel_Category.TabStop = false;
             cmbCategory.TabStop = false;
             txtpartyname.TabStop = false;
+            Panel_McxBullion.TabStop = false;
             cmbBullion.TabStop = false;
             txtaddress.TabStop = false;
             txtcontactno.TabStop = false;
@@ -495,30 +512,43 @@ namespace SilverGold.MasterInfo
             cmbgrouphead.TabStop = false;
             cmbsubhead.TabStop = false;
             cmbIntroducer.TabStop = false;
-            dataGridView2.TabStop = false;
-            dataGridView_Commission.TabStop = false;
-            dataGridView_LabourRate.TabStop = false;
-            dataGridView_GhattakList.TabStop = false;
             dataGridView1.TabStop = false;
+            groupBox_CommissionList.TabStop = false;
+            dataGridView_Commission.TabStop = false;
+            groupBox_LabourRate.TabStop = false;
+            dataGridView_LabourRate.TabStop = false;
+            groupBox_GhattakList.TabStop = false;
+            dataGridView_GhattakList.TabStop = false;
+            groupBox_BrokerageSetting.TabStop = false;
             dataGridView_BrokerageSetting.TabStop = false;
+            grpPartyCrditL.TabStop = false;
+            dataGridView2.TabStop = false;
+            grpBoxWithCreditLimit.TabStop = false;
             chkWithCreditLimit.TabStop = false;
+            groBoxCreditPeriod.TabStop = false;
             cmbDays.TabStop = false;
             rateupdate_radio.TabStop = false;
             rateupdate_radio_N.TabStop = false;
             dataGridViewCreditPeriod.TabStop = false;
+            groupBox2.TabStop = false;
             btnSave.TabStop = false;
             btnDelete.TabStop = false;
             btnRefresh.TabStop = false;
             btnReport.TabStop = false;
             btnExit.TabStop = false;
+            groupBox3.TabStop = false;
             cmbPopUp.TabStop = false;
+            groupBox4.TabStop = false;
+            groupBox6.TabStop = false;
             ckall.TabStop = false;
             ckparty.TabStop = false;
             ckworker.TabStop = false;
+            groupBox5.TabStop = false;
             rbtnwithopbal.TabStop = false;
-            rbtnwithoutopbal.TabStop = false; ;
-            btnshow.TabStop = false;
+            rbtnwithoutopbal.TabStop = false;
+            btnShow.TabStop = false;
         }
+
 
 
         #endregion
@@ -527,7 +557,8 @@ namespace SilverGold.MasterInfo
 
         private void PartyInformation_Load(object sender, EventArgs e)
         {
-            TabSetting();
+            TabIndex_Default();
+            TabStopSetting_False();
             this.CancelButton = btnExit;
             this.Width = CommanHelper.FormX;
             this.Height = CommanHelper.FormY;
@@ -537,9 +568,8 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
 
             con = new OleDbConnection();
-
-
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
+
             BindOpeningOtherColumn();
             BindCreditLimitOpeningColumn();
             AdjustCreditLimitColumnOrder();
@@ -1079,6 +1109,46 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                }
+                else
+                {
+                    Panel_Category.TabStop = true;
+                    cmbCategory.TabStop = true;
+                }
+                #endregion
+
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
                 cmbBullion.Items.Clear();
@@ -1236,6 +1306,187 @@ namespace SilverGold.MasterInfo
                     dataGridViewCreditPeriod.Visible = false;
                     groBoxCreditPeriod.Visible = false;
                 }
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -1253,6 +1504,187 @@ namespace SilverGold.MasterInfo
                     rateupdate_radio.Visible = true;
                     rateupdate_radio_N.Visible = true;
                 }
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -1264,6 +1696,8 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+
+
                 if (cmbBullion.Text.Trim() != "MCX")
                 {
                     oCommissionListEntity.BindCommissionList(dataGridView_Commission, cmbCategory.Text.Trim());
@@ -1353,17 +1787,6 @@ namespace SilverGold.MasterInfo
                 panel_Type.BackColor = Color.Transparent;
                 cmbtype.BackColor = Color.White;
 
-                //Tab Setting
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    cmbLot.TabStop = true;
-                    cmb_gen_type.TabStop = true;
-                }
-                else
-                {
-                    cmbLot.TabStop = false;
-                    cmb_gen_type.TabStop = false;
-                }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -1388,23 +1811,54 @@ namespace SilverGold.MasterInfo
                 cmbLot.BackColor = Color.White;
                 Panel_lot.BackColor = Color.Transparent;
 
-                //Tab Setting
-                if (cmbLot.Text.Trim() == "YES" || cmb_gen_type.Visible == true)
-                {
-                    cmb_gen_type.TabStop = true;
-                }
-                else
-                {
-                    cmb_gen_type.TabStop = false;
-                }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmb_gen_type_Enter(object sender, EventArgs e)
         {
-            cmb_gen_type.BackColor = Color.Cyan;
-            Panel_LotGenerate.BackColor = Color.Red;
+            try
+            {
+                //Set Tab Setting
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                Panel_lot.TabIndex = 4;
+                cmbLot.TabIndex = 5;
+                Panel_LotGenerate.TabIndex = 6;
+                cmb_gen_type.TabIndex = 7;
+                if (cmb_gen_type.Text.Trim() != "")
+                {
+                    Panel_Category.TabIndex = 8;
+                    cmbCategory.TabIndex = 9;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_lot.TabStop = true;
+                cmbLot.TabStop = true;
+                Panel_LotGenerate.TabStop = true;
+                cmb_gen_type.TabStop = true;
+
+                if (cmb_gen_type.Text.Trim() != "")
+                {
+                    Panel_Category.TabStop = true;
+                    cmbCategory.TabStop = true;
+                }
+
+                #endregion
+
+                cmb_gen_type.BackColor = Color.Cyan;
+                Panel_LotGenerate.BackColor = Color.Red;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmb_gen_type_Leave(object sender, EventArgs e)
@@ -1417,15 +1871,198 @@ namespace SilverGold.MasterInfo
                 cmb_gen_type.BackColor = Color.White;
                 Panel_LotGenerate.BackColor = Color.Transparent;
 
-                //Set Tab Setting
-
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbDays_Enter(object sender, EventArgs e)
         {
-            cmbDays.BackColor = Color.Cyan;
+            try
+            {
+                cmbDays.BackColor = Color.Cyan;
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                }
+
+                #endregion
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
         private void cmbDays_Leave(object sender, EventArgs e)
@@ -1439,6 +2076,65 @@ namespace SilverGold.MasterInfo
             {
                 cmbCategory.BackColor = Color.Cyan;
                 Panel_Category.BackColor = Color.Red;
+
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+
+                #region Tab Index Setting
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+
+
+                txtpartyname.TabStop = true;
+                Panel_McxBullion.TabStop = true;
+                cmbBullion.TabStop = true;
+                #endregion
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -1488,7 +2184,100 @@ namespace SilverGold.MasterInfo
 
         private void txtpartyname_Enter(object sender, EventArgs e)
         {
-            txtpartyname.BackColor = Color.Cyan;
+            try
+            {
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                else
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                #endregion
+
+
+                //Set Control BackColor
+                txtpartyname.BackColor = Color.Cyan;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void txtpartyname_Leave(object sender, EventArgs e)
@@ -1500,16 +2289,6 @@ namespace SilverGold.MasterInfo
 
                 //Set Control Backcolor
                 txtpartyname.BackColor = Color.White;
-
-                //Set Tab Setting
-                if (cmbtype.Text.Trim() != "WORKER")
-                {
-                    cmbBullion.TabStop = true;
-                }
-                else
-                {
-                    cmbBullion.TabStop = false;
-                }
             }
             catch (Exception ex)
             {
@@ -1518,8 +2297,15 @@ namespace SilverGold.MasterInfo
         }
         private void cmbBullion_Enter(object sender, EventArgs e)
         {
-            cmbBullion.BackColor = Color.Cyan;
-            Panel_McxBullion.BackColor = Color.Red;
+            try
+            {
+                cmbBullion.BackColor = Color.Cyan;
+                Panel_McxBullion.BackColor = Color.Red;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
 
         private void cmbBullion_Leave(object sender, EventArgs e)
@@ -1571,13 +2357,6 @@ namespace SilverGold.MasterInfo
         {
             //Set BackColor
             txtaddress.BackColor = Color.White;
-
-            //Set TabSetting
-            if (cmbBullion.Visible == true)
-            {
-                cmbBullion.TabStop = true;
-            }
-            else { cmbBullion.TabStop = false; }
         }
 
         private void txtcontactno_Enter(object sender, EventArgs e)
@@ -1639,28 +2418,161 @@ namespace SilverGold.MasterInfo
                 //Set Control Back Color
                 cmbIntroducer.BackColor = Color.Cyan;
 
-                //Set Tab Setting
-                dataGridView1.TabStop = true;
-                btnSave.TabStop = false;
-                btnRefresh.TabStop = false;
-                btnReport.TabStop = false;
-                btnDelete.TabStop = false;
-                btnExit.TabStop = false;
-                cmbPopUp.TabStop = false;
-                dataGridView_LabourRate.TabStop = false;
-                dataGridView_GhattakList.TabStop = false;
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
 
-                if (cmbIntroducer.Text.Trim() == "")
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    dataGridView2.TabStop = true;
-                    dataGridView_Commission.TabStop = false;
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
                 }
                 else
                 {
-                    dataGridView_Commission.TabStop = true;
-                    dataGridView2.TabStop = false;
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
                 }
 
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1;
+                    }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                else
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -1675,8 +2587,21 @@ namespace SilverGold.MasterInfo
                 if (cmbIntroducer.Text.Trim() != "")
                 {
                     groupBox_CommissionList.Visible = true;
-                    this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 175);
-                    //  this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 320);
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 320);
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 340);
+                        }
+                        else
+                        {
+                            this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 175);
+                        }
+                    }
                 }
                 if (cmbBullion.Text.Trim() != "MCX")
                 {
@@ -1915,18 +2840,22 @@ namespace SilverGold.MasterInfo
                 {
                     if (cmbIntroducer.Text != "")
                     {
-                        this.dataGridView_Commission.CurrentCell = this.dataGridView_Commission[0, 0];
                         groupBox_CommissionList.Visible = true;
+                        if (this.dataGridView_Commission.RowCount > 0)
+                        {
+                            this.dataGridView_Commission.CurrentCell = this.dataGridView_Commission[0, 0];
+                        }
                         dataGridView_Commission.Focus();
                     }
                     else
                     {
                         if (cmbtype.Text.Trim() == "WORKER")
                         {
-                            if (this.dataGridView1.RowCount > 0)
+                            groupBox_LabourRate.Visible = true;
+                            if (this.dataGridView_LabourRate.RowCount > 0)
                             {
-                                this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
-                                this.dataGridView1.Focus();
+                                this.dataGridView_LabourRate.CurrentCell = this.dataGridView_LabourRate[1, 0];
+                                this.dataGridView_LabourRate.Focus();
                             }
 
                         }
@@ -1947,6 +2876,14 @@ namespace SilverGold.MasterInfo
                                     this.dataGridView2.CurrentCell = this.dataGridView2[1, 0];
                                     this.dataGridView2.Focus();
                                 }
+                                else
+                                {
+                                    if (this.dataGridView1.RowCount > 0)
+                                    {
+                                        this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
+                                    }
+                                    this.dataGridView1.Focus();
+                                }
                             }
                         }
                     }
@@ -1958,20 +2895,6 @@ namespace SilverGold.MasterInfo
             }
         }
 
-        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == 13)
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
 
         private void chkWithCreditLimit_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -2019,18 +2942,6 @@ namespace SilverGold.MasterInfo
             }
         }
 
-        private void dataGridView2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == 13)
-                {
-
-                }
-            }
-            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
-        }
-
         private void cmbPopUp_Enter(object sender, EventArgs e)
         {
             try
@@ -2038,13 +2949,6 @@ namespace SilverGold.MasterInfo
                 //Set Control Backcolor
                 cmbPopUp.BackColor = Color.Cyan;
 
-                //Set Tab Setting
-                dataGridView1.TabStop = false;
-                dataGridView2.TabStop = false;
-                dataGridView_BrokerageSetting.TabStop = false;
-                dataGridView_Commission.TabStop = false;
-                dataGridView_GhattakList.TabStop = false;
-                dataGridView_LabourRate.TabStop = false;
 
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
@@ -2118,20 +3022,10 @@ namespace SilverGold.MasterInfo
                         dataGridView1.DataSource = null;
                         BindOpeningMCXColumn();
                         dataGridView1.DataSource = CommanHelper.GetPartyOpeningMCX(cmbPopUp.Text.Trim());
-                        if (cmbBullion.Text.Trim().ToUpper() == "MCX")
-                        {
-                            groupBox_BrokerageSetting.Visible = true;
-                            if (cmbIntroducer.Text.Trim() == "")
-                            {
-                                this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 185);
-                            }
-                            else
-                            {
-                                this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 320);
-                            }
-                            GetBrokerage(cmbPopUp.Text.Trim());
-                        }
 
+                        groupBox_BrokerageSetting.Visible = true;
+                        this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 175);
+                        GetBrokerage(cmbPopUp.Text.Trim());
                     }
                     else if (cmbtype.Text.Trim().ToUpper() == "WORKER")
                     {
@@ -2173,8 +3067,19 @@ namespace SilverGold.MasterInfo
                     if (cmbIntroducer.Text.Trim() != "")
                     {
                         groupBox_CommissionList.Visible = true;
-                        this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 185);
-                        GetCommission(cmbPopUp.Text.Trim());
+                        if (cmbtype.Text.Trim() == "WORKER")
+                        {
+                            this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 320);
+                        }
+                        else
+                        {
+                            if (cmbBullion.Text.Trim() == "MCX")
+                            {
+                                this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 340);
+                            }
+                            else
+                            { this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 175); }
+                        } GetCommission(cmbPopUp.Text.Trim());
                     }
 
                     dataGridView2.DataSource = null;
@@ -2419,6 +3324,51 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                //Set Tab Setting
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                Panel_lot.TabIndex = 4;
+                cmbLot.TabIndex = 5;
+                if (cmbLot.Text.Trim() == "YES")
+                {
+                    Panel_LotGenerate.TabIndex = 6;
+                    cmb_gen_type.TabIndex = 7;
+                }
+                if (cmbLot.Text.Trim() == "NO")
+                {
+
+                    Panel_Category.TabIndex = 6;
+                    cmbCategory.TabIndex = 7;
+                }
+
+
+                #endregion
+
+                #region Set Tab StopValue
+
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_lot.TabStop = true;
+                cmbLot.TabStop = true;
+                if (cmbLot.Text.Trim() == "YES")
+                {
+                    Panel_LotGenerate.TabStop = true;
+                    cmb_gen_type.TabStop = true;
+                }
+                if (cmbLot.Text.Trim() == "NO")
+                {
+                    Panel_Category.TabStop = true;
+                    cmbCategory.TabStop = true;
+                }
+                #endregion
+
+
                 if (cmbLot.Text.Trim().ToUpper() == "NO")
                 {
                     lblLotGenerateIn.Visible = false;
@@ -2454,16 +3404,6 @@ namespace SilverGold.MasterInfo
             //Control Back Color
             cmbShowtrail.BackColor = Color.White;
             Panel_ShowInTrail.BackColor = Color.Transparent;
-
-            //Tab Setting 
-            if (cmbtype.Text.Trim() == "WORKER")
-            {
-                cmbLot.TabStop = true;
-            }
-            else
-            {
-                cmbLot.TabStop = false;
-            }
         }
 
         private void cmbShowtrail_KeyPress(object sender, KeyPressEventArgs e)
@@ -2521,16 +3461,7 @@ namespace SilverGold.MasterInfo
                     if (e.FormattedValue.ToString() == "")
                         e.Cancel = true;
                 }
-                if (e.ColumnIndex == 4)
-                {
-                    if ((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "")
-                    {
-                        if (txtBankCredit.Visible == true)
-                            txtBankCredit.Focus();
-                        else
-                            btnSave.Focus();
-                    }
-                }
+
             }
             catch (Exception ex)
             {
@@ -2594,6 +3525,194 @@ namespace SilverGold.MasterInfo
                     rateupdate_radio_N.Checked = false;
                     dataGridViewCreditPeriod.Visible = true;
                 }
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                    if (rateupdate_radio.Checked == true)
+                    {
+                        dataGridViewCreditPeriod.TabIndex = rateupdate_radio_N.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                    if (rateupdate_radio.Checked == true)
+                    {
+                        dataGridViewCreditPeriod.TabStop = true;
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -2626,6 +3745,160 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    else
+                    {
+                        grpPartyCrditL.TabStop = true;
+                        dataGridView2.TabStop = true;
+                    }
+                }
+
+                #endregion
+
                 if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_WtPcs_LabourRate.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbFineAmt = (DataGridViewComboBoxCell)dataGridView_LabourRate.CurrentRow.Cells[5];
@@ -2680,18 +3953,6 @@ namespace SilverGold.MasterInfo
                         }
                     }
                 }
-                //if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_Cate_LabourRate.DisplayIndex)
-                //{
-                //    DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridView_LabourRate.CurrentRow.Cells[4];
-                //    if (e.FormattedValue.ToString() != "")
-                //    {
-                //        CommanHelper.GetProductCategoryWise(cmbProduct, e.FormattedValue.ToString());
-                //    }
-                //    else
-                //    {
-                //        CommanHelper.GetProduct(cmbProduct);
-                //    }
-                //}
                 if (e.ColumnIndex == 8)
                     if ((dataGridView_LabourRate.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" &&
                         (dataGridView_LabourRate.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() != "" &&
@@ -2702,17 +3963,7 @@ namespace SilverGold.MasterInfo
                             e.Cancel = true;
                     }
 
-                if (e.ColumnIndex == 4)
-                {
-                    if ((dataGridView_LabourRate.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_LabourRate.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "" && (dataGridView_LabourRate.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() == "")
-                    {
-                        groupBox_GhattakList.Visible = true;
-                        dataGridView_GhattakList.Visible = true;
-                        this.dataGridView_LabourRate.ClearSelection();
-                        this.dataGridView_GhattakList.CurrentCell = this.dataGridView_GhattakList[0, 0];
-                        dataGridView_GhattakList.Focus();
-                    }
-                }
+
             }
             catch (Exception ex)
             {
@@ -2761,6 +4012,167 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1;
+                    }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        } dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                        groupBox_GhattakList.TabStop = true;
+                        dataGridView_GhattakList.TabStop = true;
+                        dataGridView1.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                    }
+                }
+
+                #endregion
+
 
                 if (dataGridView_GhattakList.CurrentCellAddress.X == oGhattakListEntity.col_WtPcs_GhattakList.DisplayIndex)
                 {
@@ -2808,14 +4220,7 @@ namespace SilverGold.MasterInfo
                         }
                     }
                 }
-                if (e.ColumnIndex == 4)
-                {
-                    if ((dataGridView_GhattakList.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() == "")
-                    {
-                        this.dataGridView_GhattakList.ClearSelection();
-                        this.btnSave.Focus();
-                    }
-                }
+
             }
             catch (Exception ex)
             {
@@ -2894,31 +4299,6 @@ namespace SilverGold.MasterInfo
                         e.Cancel = true;
                     }
                 }
-
-                if (e.ColumnIndex == 3)
-                {
-                    if ((dataGridView_Commission.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_Commission.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "")
-                    {
-                        this.dataGridView_Commission.ClearSelection();
-                        if (cmbBullion.Text.Trim() == "MCX")
-                        {
-                            if (this.dataGridView_BrokerageSetting.RowCount > 0)
-                            {
-                                this.dataGridView_BrokerageSetting.CurrentCell = this.dataGridView_BrokerageSetting[1, 0];
-                            }
-                            this.dataGridView_BrokerageSetting.Focus();
-                        }
-                        else
-                        {
-                            if (this.dataGridView2.RowCount > 0)
-                            {
-                                this.dataGridView2.CurrentCell = this.dataGridView2[1, 0];
-                            }
-                            dataGridView2.Focus();
-                        }
-                    }
-                }
-
             }
             catch (Exception ex)
             {
@@ -2964,26 +4344,6 @@ namespace SilverGold.MasterInfo
             }
         }
 
-
-
-        private void dataGridView_BrokerageSetting_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            try
-            {
-                if (e.ColumnIndex == 3)
-                {
-                    if ((dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "")
-                    {
-                        if (this.dataGridView2.RowCount > 0) { this.dataGridView2.CurrentCell = this.dataGridView2[1, 0]; }
-                        this.dataGridView2.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
 
         private void txtopnarr_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -3031,12 +4391,17 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.RowIndex == this.dataGridView2.Rows.Count - 1 && e.ColumnIndex == 1)
-                {
-                    dataGridView2.ClearSelection();
-                    this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
-                    dataGridView1.Focus();
-                }
+                string headerText =
+                    dataGridView2.Columns[e.ColumnIndex].HeaderText;
+                //if (e.RowIndex == this.dataGridView2.Rows.Count - 1 && e.ColumnIndex == 2)
+                //{
+                //    dataGridView2.ClearSelection();
+                //    this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
+                //    dataGridView1.Focus();
+                //    //dataGridView2.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
+                //}
+
+
             }
             catch (Exception ex)
             {
@@ -3058,6 +4423,7 @@ namespace SilverGold.MasterInfo
                             CommanHelper.GetProduct_Worker(cmbProduct);
                         else
                             CommanHelper.GetProductCategoryWise_Worker(cmbProduct, cmbCategory.Text.Trim());
+                        dataGridView1.CurrentRow.Cells[1].Value = e.FormattedValue.ToString();
                     }
 
                     // Check Duplicate Entry
@@ -3068,46 +4434,20 @@ namespace SilverGold.MasterInfo
                             if (dataGridView1.Rows[row].Cells[1].Value != null && row != e.RowIndex && dataGridView1.Rows[row].Cells[1].Value.Equals(e.FormattedValue))
                             {
                                 MessageBox.Show(e.FormattedValue + " Already in the grid !", "Worker Opening", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                //dataGridView1.Rows[e.RowIndex].ErrorText = "Company Name must not be empty";
                                 e.Cancel = true;
                             }
                         }
                     }
-                    if (e.ColumnIndex == 4)
+                    if (e.ColumnIndex == 3)
                     {
-                        if (Conversion.ConToDec((dataGridView1.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString()) == 0)
+                        if ((dataGridView1.Rows[e.RowIndex].Cells[1].Value ?? (object)"").ToString() == "" && Conversion.ConToDec((dataGridView1.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString()) == 0 && (dataGridView1.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString() == "")
                         {
                             this.dataGridView1.ClearSelection();
-                            if (this.dataGridView_LabourRate.RowCount > 0)
-                            {
-                                this.dataGridView_LabourRate.CurrentCell = this.dataGridView_LabourRate[1, 0];
-                            }
-                            this.dataGridView_LabourRate.Focus();
+                            btnSave.Focus();
                         }
                     }
                 }
-                else
-                {
-                    if (cmbBullion.Text.Trim() == "MCX")
-                    {
-                        if (e.RowIndex == this.dataGridView1.RowCount - 1 && e.ColumnIndex == 4)
-                        {
-                            if (Conversion.ConToDec((dataGridView1.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString()) == 0 && Conversion.ConToDec((dataGridView1.Rows[e.RowIndex].Cells[3].Value ?? (object)"").ToString()) == 0)
-                            {
-                                this.dataGridView1.ClearSelection();
-                                chkWithCreditLimit.Focus();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (e.RowIndex == this.dataGridView1.RowCount - 1 && e.ColumnIndex == 3)
-                        {
-                            this.dataGridView1.ClearSelection();
-                            chkWithCreditLimit.Focus();
-                        }
-                    }
-                }
+
             }
             catch (Exception ex)
             {
@@ -3149,8 +4489,198 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                //dataGridViewCreditPeriod.Rows[0].Cells["DateFrom"].Value = Conversion.ConToDT(CommanHelper.FDate);
-                //dataGridViewCreditPeriod.Rows[0].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                    if (rateupdate_radio.Checked == true)
+                    {
+                        dataGridViewCreditPeriod.TabIndex = rateupdate_radio_N.TabIndex + 1;
+                    }
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                        groupBox_GhattakList.TabStop = true;
+                        dataGridView_GhattakList.TabStop = true;
+                        dataGridView1.TabStop = true;
+                        btnSave.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                        }
+                        grpPartyCrditL.TabStop = true;
+                        dataGridView2.TabStop = true;
+                        dataGridView1.TabStop = true;
+                        grpBoxWithCreditLimit.TabStop = true;
+                        chkWithCreditLimit.TabStop = true;
+                        if (chkWithCreditLimit.Checked == true)
+                        {
+                            groBoxCreditPeriod.TabStop = true;
+                            cmbDays.TabStop = true;
+                            rateupdate_radio.TabStop = true;
+                            rateupdate_radio_N.TabStop = true;
+                        }
+                        if (rateupdate_radio.Checked == true)
+                        {
+                            dataGridViewCreditPeriod.TabStop = true;
+                        }
+                        btnSave.TabStop = true;
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -3162,22 +4692,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridViewCreditPeriod.Rows.Count == 1)
-                    {
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_LabourRate.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridViewCreditPeriod.Rows.Count == 1)
+                //    {
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_LabourRate.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3189,22 +4719,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridViewCreditPeriod.Rows.Count == 1)
-                    {
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_LabourRate.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridViewCreditPeriod.Rows.Count == 1)
+                //    {
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_LabourRate.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3216,22 +4746,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_LabourRate.Rows.Count == 1)
-                    {
-                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_LabourRate.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_LabourRate.Rows.Count == 1)
+                //    {
+                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_LabourRate.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3243,14 +4773,14 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_LabourRate.Rows.Count == 1)
-                    {
-                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_LabourRate.Rows.Count == 1)
+                //    {
+                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3262,22 +4792,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_GhattakList.Rows.Count == 1)
-                    {
-                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_GhattakList.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_GhattakList.Rows.Count == 1)
+                //    {
+                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_GhattakList.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3289,14 +4819,14 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_GhattakList.Rows.Count == 1)
-                    {
-                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_GhattakList.Rows.Count == 1)
+                //    {
+                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
                 //if (e.ColumnIndex == 1)
                 //{
                 //    if (e.RowIndex > 0)
@@ -3316,22 +4846,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_BrokerageSetting.Rows.Count == 1)
-                    {
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_BrokerageSetting.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_BrokerageSetting.Rows.Count == 1)
+                //    {
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_BrokerageSetting.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3340,22 +4870,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_BrokerageSetting.Rows.Count == 1)
-                    {
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_BrokerageSetting.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_BrokerageSetting.Rows.Count == 1)
+                //    {
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_BrokerageSetting.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3364,22 +4894,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_Commission.Rows.Count == 1)
-                    {
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_Commission.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_Commission.Rows.Count == 1)
+                //    {
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_Commission.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3388,22 +4918,22 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (e.ColumnIndex == 0)
-                {
-                    if (dataGridView_Commission.Rows.Count == 1)
-                    {
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                    }
-                }
-                if (e.ColumnIndex == 1)
-                {
-                    if (dataGridView_Commission.Rows.Count > 1)
-                    {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                    }
-                }
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (dataGridView_Commission.Rows.Count == 1)
+                //    {
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;`
+                //    }
+                //}
+                //if (e.ColumnIndex == 1)
+                //{
+                //    if (dataGridView_Commission.Rows.Count > 1)
+                //    {
+                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                //    }
+                //}
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3413,6 +4943,189 @@ namespace SilverGold.MasterInfo
             try
             {
                 chkWithCreditLimit.BackColor = Color.Red;
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                    btnSave.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                    btnSave.TabStop = true;
+                }
+
+                #endregion
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3433,14 +5146,7 @@ namespace SilverGold.MasterInfo
                 if (cmbBullion.Text.Trim().ToUpper() == "MCX")
                 {
                     groupBox_BrokerageSetting.Visible = true;
-                    if (cmbIntroducer.Text.Trim() == "")
-                    {
-                        this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 185);
-                    }
-                    else
-                    {
-                        this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 320);
-                    }
+                    this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 175);
                 }
                 else
                 {
@@ -3451,7 +5157,6 @@ namespace SilverGold.MasterInfo
                     dataGridView1.ClearSelection();
                     groupBox_LabourRate.Visible = true;
                     dataGridView_LabourRate.Visible = true;
-                    dataGridView_LabourRate.Focus();
                 }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
@@ -3582,50 +5287,6 @@ namespace SilverGold.MasterInfo
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
-        private void dataGridView_LabourRate_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_WtPcs_LabourRate.DisplayIndex)
-            {
-
-            }
-        }
-
-        private void dataGridView_LabourRate_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            try
-            {
-                //if (dataGridView_LabourRate.RowCount <= 1)
-                //{
-                //    dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //    dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //}
-
-                //if (dataGridView_LabourRate.Rows.Count == 0)
-                //{
-                //    if (e.RowIndex > 0)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_LabourRate_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            //if (dataGridView_LabourRate.Rows.Count > 1)
-            //{
-            //    if (e.RowIndex > 0)
-            //    {
-            //        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-            //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-            //    }
-            //}
-        }
 
         private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -3634,7 +5295,9 @@ namespace SilverGold.MasterInfo
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     if (dataGridView1.IsCurrentCellDirty)
-                    { }
+                    {
+                        dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    }
                     dataGridView1.BeginEdit(true);
                 }
             }
@@ -3668,7 +5331,10 @@ namespace SilverGold.MasterInfo
 
         private void txtBankCredit_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try { if (e.KeyChar == 13)btnSave.Focus(); }
+            try
+            {
+                if (e.KeyChar == 13) btnSave.Focus();
+            }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
@@ -3676,12 +5342,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                btnSave.TabStop = true;
-                btnRefresh.TabStop = true;
-                btnDelete.TabStop = true;
-                btnReport.TabStop = true;
-                btnExit.TabStop = true;
-                cmbPopUp.TabStop = true;
+                groupBox_GhattakList.BackColor = Color.Silver;
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3690,7 +5351,766 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                dataGridView_GhattakList.TabStop = true;
+                if (dataGridView_LabourRate.RowCount == 1)
+                {
+                    //dataGridView_LabourRate.Rows[0].Cells["DateFrom"].Value = _From;
+                    //dataGridView_LabourRate.Rows[0].Cells["DateTo"].Value = _To;
+                }
+                groupBox_LabourRate.BackColor = Color.Silver;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+
+        private void cmb_gen_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Set Tab Setting
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                Panel_lot.TabIndex = 4;
+                cmbLot.TabIndex = 5;
+                Panel_LotGenerate.TabIndex = 6;
+                cmb_gen_type.TabIndex = 7;
+                if (cmb_gen_type.Text.Trim() != "")
+                {
+                    Panel_Category.TabIndex = 8;
+                    cmbCategory.TabIndex = 9;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_lot.TabStop = true;
+                cmbLot.TabStop = true;
+                Panel_LotGenerate.TabStop = true;
+                cmb_gen_type.TabStop = true;
+
+                if (cmb_gen_type.Text.Trim() != "")
+                {
+                    Panel_Category.TabStop = true;
+                    cmbCategory.TabStop = true;
+                }
+
+                #endregion
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void cmbIntroducer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                        dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1;
+                    }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                            dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                            groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                            dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    else
+                    {
+                        grpPartyCrditL.TabStop = true;
+                        dataGridView2.TabStop = true;
+                    }
+                }
+
+                #endregion
+
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_LabourRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_LabourRate.BackColor = Color.Transparent;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_GhattakList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_GhattakList.BackColor = Color.Transparent;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_Commission_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_CommissionList.BackColor = Color.Silver;
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                    }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                        groupBox_GhattakList.TabStop = true;
+                        dataGridView_GhattakList.TabStop = true;
+                        dataGridView1.TabStop = true;
+                        btnSave.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                    }
+                }
+
+                #endregion
+
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_Commission_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_CommissionList.BackColor = Color.Transparent;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_BrokerageSetting_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_BrokerageSetting.BackColor = Color.Silver;
+
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbBullion.Text.Trim() == "MCX")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                    }
+                    else
+                    {
+                        grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    else
+                    {
+                        grpPartyCrditL.TabStop = true;
+                        dataGridView2.TabStop = true;
+                    }
+                }
+
+                #endregion
+
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_BrokerageSetting_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                groupBox_BrokerageSetting.BackColor = Color.Transparent;
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                grpPartyCrditL.BackColor = Color.Silver;
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                        dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                        groupBox_GhattakList.TabStop = true;
+                        dataGridView_GhattakList.TabStop = true;
+                        dataGridView1.TabStop = true;
+                        btnSave.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                    }
+                }
+
+                #endregion
+
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                grpPartyCrditL.BackColor = Color.Transparent;
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3699,15 +6119,571 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    dataGridView_LabourRate.TabStop = true;
-                    dataGridView_GhattakList.TabStop = true;
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
                 }
                 else
                 {
-                    dataGridView_LabourRate.TabStop = false;
-                    dataGridView_GhattakList.TabStop = false;
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                }
+
+                #endregion
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void btnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                //Set Tab Setting 
+
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtpartyname.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                    btnSave.TabIndex = dataGridView1.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            groupBox_BrokerageSetting.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                        grpPartyCrditL.TabIndex = dataGridView_BrokerageSetting.TabIndex + 1;
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                    dataGridView1.TabIndex = dataGridView2.TabIndex + 1;
+                    grpBoxWithCreditLimit.TabIndex = dataGridView1.TabIndex + 1;
+                    chkWithCreditLimit.TabIndex = grpBoxWithCreditLimit.TabIndex + 1;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                        cmbDays.TabIndex = groBoxCreditPeriod.TabIndex + 1;
+                        rateupdate_radio.TabIndex = cmbDays.TabIndex + 1;
+                        rateupdate_radio_N.TabIndex = rateupdate_radio.TabIndex + 1;
+                    }
+                    btnSave.TabIndex = chkWithCreditLimit.TabIndex + 1;
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtpartyname.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    btnSave.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    grpPartyCrditL.TabStop = true;
+                    dataGridView2.TabStop = true;
+                    dataGridView1.TabStop = true;
+                    grpBoxWithCreditLimit.TabStop = true;
+                    chkWithCreditLimit.TabStop = true;
+                    if (chkWithCreditLimit.Checked == true)
+                    {
+                        groBoxCreditPeriod.TabStop = true;
+                        cmbDays.TabStop = true;
+                        rateupdate_radio.TabStop = true;
+                        rateupdate_radio_N.TabStop = true;
+                    }
+                    btnSave.TabStop = true;
+                }
+
+                #endregion
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    int iColumn = dataGridView2.CurrentCell.ColumnIndex;
+                    int iRow = dataGridView2.CurrentCell.RowIndex;
+                    if (iColumn == dataGridView2.ColumnCount - 1)
+                    {
+                        if (dataGridView2.RowCount > (iRow + 1))
+                        {
+                            dataGridView2.CurrentCell = dataGridView2[1, iRow + 1];
+                        }
+                        else
+                        {
+                            if (this.dataGridView1.RowCount > 0)
+                            {
+                                this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
+                            }
+                            this.dataGridView1.Focus();
+                        }
+                    }
+                    else
+                        dataGridView2.CurrentCell = dataGridView2[iColumn + 1, iRow];
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbtype.Text.Trim() != "WORKER")
+                    {
+                        e.SuppressKeyPress = true;
+                        int iColumn = dataGridView1.CurrentCell.ColumnIndex;
+                        int iRow = dataGridView1.CurrentCell.RowIndex;
+                        if (iColumn == dataGridView1.ColumnCount - 1)
+                        {
+                            if (dataGridView1.RowCount > (iRow + 1))
+                            {
+                                dataGridView1.CurrentCell = dataGridView1[1, iRow + 1];
+                            }
+                            else
+                            {
+                                this.dataGridView1.ClearSelection();
+                                chkWithCreditLimit.Focus();
+                            }
+                        }
+                        else
+                            dataGridView1.CurrentCell = dataGridView1[iColumn + 1, iRow];
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_BrokerageSetting_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (dataGridView_BrokerageSetting.CurrentCell.ColumnIndex == 4)
+                    {
+                        if ((dataGridView_BrokerageSetting.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_BrokerageSetting.CurrentRow.Cells[3].Value ?? (object)"").ToString() == "")
+                        {
+                            this.dataGridView_BrokerageSetting.ClearSelection();
+                            if (this.dataGridView2.RowCount > 0)
+                            {
+                                this.dataGridView2.CurrentCell = this.dataGridView2[1, 0];
+                            }
+                            this.dataGridView2.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+
+        }
+
+        private void dataGridView_LabourRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (this.dataGridView_LabourRate.CurrentCell.ColumnIndex == 4)
+                    {
+                        if ((dataGridView_LabourRate.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_LabourRate.CurrentRow.Cells[3].Value ?? (object)"").ToString() == "" && (dataGridView_LabourRate.CurrentRow.Cells[4].Value ?? (object)"").ToString() == "")
+                        {
+                            groupBox_GhattakList.Visible = true;
+                            dataGridView_GhattakList.Visible = true;
+                            this.dataGridView_LabourRate.ClearSelection();
+                            this.dataGridView_GhattakList.CurrentCell = this.dataGridView_GhattakList[0, 0];
+                            dataGridView_GhattakList.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_GhattakList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (this.dataGridView_GhattakList.CurrentCell.ColumnIndex == 4)
+                    {
+                        if ((dataGridView_GhattakList.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.CurrentRow.Cells[3].Value ?? (object)"").ToString() == "" && (dataGridView_GhattakList.CurrentRow.Cells[4].Value ?? (object)"").ToString() == "")
+                        {
+                            this.dataGridView_GhattakList.ClearSelection();
+                            if (this.dataGridView1.RowCount > 0)
+                            {
+                                this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
+                            }
+
+                            this.dataGridView1.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_Commission_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (this.dataGridView_Commission.CurrentCell.ColumnIndex == 3)
+                    {
+                        if ((dataGridView_Commission.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "" && (dataGridView_Commission.CurrentRow.Cells[3].Value ?? (object)"").ToString() == "")
+                        {
+                            this.dataGridView_Commission.ClearSelection();
+                            if (cmbtype.Text.Trim() == "WORKER")
+                            {
+                                groupBox_LabourRate.Visible = true;
+                                if (this.dataGridView_LabourRate.RowCount > 0)
+                                {
+                                    this.dataGridView_LabourRate.CurrentCell = this.dataGridView_LabourRate[0, 0];
+                                }
+                                this.dataGridView_LabourRate.Focus();
+                            }
+                            else
+                            {
+                                if (cmbBullion.Text.Trim() == "MCX")
+                                {
+                                    if (this.dataGridView_BrokerageSetting.RowCount > 0)
+                                    {
+                                        this.dataGridView_BrokerageSetting.CurrentCell = this.dataGridView_BrokerageSetting[1, 0];
+                                    }
+                                    this.dataGridView_BrokerageSetting.Focus();
+                                }
+                                else
+                                {
+                                    if (this.dataGridView2.RowCount > 0)
+                                    {
+                                        this.dataGridView2.CurrentCell = this.dataGridView2[1, 0];
+                                    }
+                                    dataGridView2.Focus();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridViewCreditPeriod_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (this.dataGridViewCreditPeriod.CurrentCell.ColumnIndex == 4)
+                    {
+                        if ((dataGridViewCreditPeriod.CurrentRow.Cells[2].Value ?? (object)"").ToString() == "" && (dataGridViewCreditPeriod.CurrentRow.Cells[3].Value ?? (object)"").ToString() == "")
+                        {
+                            if (txtBankCredit.Visible == true)
+                                txtBankCredit.Focus();
+                            else
+                                btnSave.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_LabourRate_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                if (dataGridView_LabourRate.Rows.Count > 1)
+                {
+                    var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                    dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
                 }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
