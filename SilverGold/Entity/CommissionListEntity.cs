@@ -106,8 +106,11 @@ namespace SilverGold.Entity
             col_JN_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_JN_CommList);
 
-            dgv.Rows[0].Cells[0].Value = CommanHelper.FDate;
-            dgv.Rows[0].Cells[1].Value = CommanHelper.TDate;
+            var _FDate = Conversion.ConToDT(CommanHelper.FDate);
+            var _TDate = Conversion.ConToDT(CommanHelper.TDate);
+
+            dgv.Rows[0].Cells[0].Value = _FDate;
+            dgv.Rows[0].Cells[1].Value = _TDate;
         }
 
     }

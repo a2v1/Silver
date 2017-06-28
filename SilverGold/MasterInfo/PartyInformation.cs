@@ -303,7 +303,7 @@ namespace SilverGold.MasterInfo
             cmbtype.Text = "";
             cmbCategory.SelectedIndex = -1;
             cmbCategory.Text = "";
-            txtpartyname.Clear();
+            txtPartyName.Clear();
             cmbBullion.SelectedIndex = -1;
             txtaddress.Clear();
             txtemailid.Clear();
@@ -311,6 +311,7 @@ namespace SilverGold.MasterInfo
             cmbgrouphead.SelectedIndex = -1;
             cmbsubhead.SelectedIndex = -1;
             cmbIntroducer.SelectedIndex = -1;
+            cmbIntroducer.Text = "";
             cmbShowtrail.Text = "YES";
             chkWithCreditLimit.Checked = false;
             cmbLot.SelectedIndex = -1;
@@ -369,7 +370,7 @@ namespace SilverGold.MasterInfo
                 OleDbDataReader dr = cmd.ExecuteReader();
                 cmbtype.Text = "";
                 cmbCategory.SelectedIndex = -1;
-                txtpartyname.Clear();
+                txtPartyName.Clear();
                 cmbBullion.SelectedIndex = -1;
                 txtaddress.Clear();
                 txtemailid.Clear();
@@ -389,7 +390,7 @@ namespace SilverGold.MasterInfo
                 {
                     cmbtype.Text = dr["Type"].ToString();
                     cmbCategory.Text = dr["Category"].ToString();
-                    txtpartyname.Text = dr["PartyName"].ToString();
+                    txtPartyName.Text = dr["PartyName"].ToString();
                     cmbBullion.Text = dr["PartyType"].ToString();
                     txtaddress.Text = dr["Address"].ToString();
                     txtemailid.Text = dr["Email"].ToString();
@@ -442,7 +443,7 @@ namespace SilverGold.MasterInfo
             cmb_gen_type.TabIndex = 508;
             Panel_Category.TabIndex = 509;
             cmbCategory.TabIndex = 510;
-            txtpartyname.TabIndex = 511;
+            txtPartyName.TabIndex = 511;
             Panel_McxBullion.TabIndex = 512;
             cmbBullion.TabIndex = 513;
             txtaddress.TabIndex = 514;
@@ -503,7 +504,7 @@ namespace SilverGold.MasterInfo
             cmb_gen_type.TabStop = false;
             Panel_Category.TabStop = false;
             cmbCategory.TabStop = false;
-            txtpartyname.TabStop = false;
+            txtPartyName.TabStop = false;
             Panel_McxBullion.TabStop = false;
             cmbBullion.TabStop = false;
             txtaddress.TabStop = false;
@@ -548,8 +549,6 @@ namespace SilverGold.MasterInfo
             rbtnwithoutopbal.TabStop = false;
             btnShow.TabStop = false;
         }
-
-
 
         #endregion
 
@@ -638,10 +637,10 @@ namespace SilverGold.MasterInfo
                     cmbsubhead.Focus();
                     return;
                 }
-                if (txtpartyname.Text.Trim() == "")
+                if (txtPartyName.Text.Trim() == "")
                 {
                     MessageBox.Show("Please Enter The PartyName", "Party Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtpartyname.Focus();
+                    txtPartyName.Focus();
                     return;
                 }
 
@@ -658,10 +657,10 @@ namespace SilverGold.MasterInfo
 
                 if (cmbPopUp.Text.Trim() == "")
                 {
-                    if (CommanHelper.AlreadyExistParty(txtpartyname.Text.Trim()) == true)
+                    if (CommanHelper.AlreadyExistParty(txtPartyName.Text.Trim()) == true)
                     {
                         MessageBox.Show("Party Already Exist.", "Party Details", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        txtpartyname.Focus();
+                        txtPartyName.Focus();
                         return;
                     }
                 } DateTime _OpeningDate = Conversion.ConToDT(DateTime.Now.ToString("MM/dd/yyyy"));
@@ -677,7 +676,7 @@ namespace SilverGold.MasterInfo
 
                 if (cmbPopUp.Text.Trim() == "")
                 {
-                    _PartyName = txtpartyname.Text.Trim();
+                    _PartyName = txtPartyName.Text.Trim();
                 }
                 else
                 {
@@ -715,16 +714,10 @@ namespace SilverGold.MasterInfo
                 {
                     rate_revised = "NO";
                 }
-                PartyInformationFactory.Insert(cmbtype.Text.Trim(), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), cmbBullion.Text.Trim(), txtaddress.Text.Trim(), txtemailid.Text.Trim(), txtcontactno.Text.Trim(), cmbgrouphead.Text.Trim(), cmbsubhead.Text.Trim(), cmbIntroducer.Text.Trim(), cmbShowtrail.Text.Trim(), strWithCreditLimit, _CreditPeriod, rate_revised.Trim(), cmbLot.Text.Trim(), cmb_gen_type.Text.Trim(), Conversion.ConToDec(txtBankCredit.Text.Trim()), con, Tran);
+                PartyInformationFactory.Insert(cmbtype.Text.Trim(), cmbCategory.Text.Trim(), txtPartyName.Text.Trim(), cmbBullion.Text.Trim(), txtaddress.Text.Trim(), txtemailid.Text.Trim(), txtcontactno.Text.Trim(), cmbgrouphead.Text.Trim(), cmbsubhead.Text.Trim(), cmbIntroducer.Text.Trim(), cmbShowtrail.Text.Trim(), strWithCreditLimit, _CreditPeriod, rate_revised.Trim(), cmbLot.Text.Trim(), cmb_gen_type.Text.Trim(), Conversion.ConToDec(txtBankCredit.Text.Trim()), con, Tran);
 
                 #endregion
 
-                #region Insert Cash Opening
-
-                ///---------------Insert Cash Opening
-                //PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, "CASH", Conversion.ConToDec6(txtoprs.Text.ToString().Trim()), 0, cmbrs.Text.ToString().Trim(), "", con, Tran);
-
-                #endregion
 
 
                 if (cmbtype.Text.Trim().ToUpper() == "PARTY")
@@ -732,12 +725,13 @@ namespace SilverGold.MasterInfo
                     #region Insert Credit Limit
                     foreach (DataGridViewRow dr in dataGridView2.Rows)
                     {
-                        CreditLimitFactory.Insert(txtpartyname.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), Conversion.ConToDec6((dr.Cells[1].Value ?? (object)"").ToString().Trim()), (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
+                        CreditLimitFactory.Insert(txtPartyName.Text.Trim(), dr.Cells[0].Value.ToString().Trim(), Conversion.ConToDec6((dr.Cells[1].Value ?? (object)"").ToString().Trim()), (dr.Cells[2].Value ?? (object)"").ToString().Trim(), con, Tran);
                     }
 
-                    //--------Insert Credit Limit And Credit Period
+                    //--------Insert Credit Limit And Credit Period                    
                     if (chkWithCreditLimit.Checked == true)
                     {
+                        if(rateupdate_radio.Checked==true){
                         foreach (DataGridViewRow dr in dataGridViewCreditPeriod.Rows)
                         {
                             DateTime _DateFrom = DateTime.Now;
@@ -750,8 +744,8 @@ namespace SilverGold.MasterInfo
                             String _Tran_Type = "";
                             Int32 _Days = 0;
 
-                            _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
-                            _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
+                            _DateFrom = Conversion.GetDateStr((dr.Cells[0].Value ?? (object)"").ToString().Trim());
+                            _DateTo = Conversion.GetDateStr((dr.Cells[1].Value ?? (object)"").ToString().Trim());
                             _RateRevised = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
                             _Category = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
                             _Product = (dr.Cells[4].Value ?? (object)"").ToString().Trim();
@@ -762,9 +756,10 @@ namespace SilverGold.MasterInfo
 
                             if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
                             {
-                                CreditPeriodFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);
+                                CreditPeriodFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);
                             }
                         }
+                            }
                     }
                     #endregion
 
@@ -787,8 +782,8 @@ namespace SilverGold.MasterInfo
                             Decimal _LotSet = 0;
                             String _PType = "";
 
-                            _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
-                            _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
+                            _DateFrom = Conversion.GetDateStr((dr.Cells[0].Value ?? (object)"").ToString().Trim());
+                            _DateTo = Conversion.GetDateStr((dr.Cells[1].Value ?? (object)"").ToString().Trim());
                             _BrokType = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
                             _Product = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
                             _BrokRate = Conversion.ConToDec6((dr.Cells[4].Value ?? (object)"").ToString().Trim());
@@ -798,7 +793,7 @@ namespace SilverGold.MasterInfo
 
                             if (_BrokType != "" && _Product != "" && _BrokRate != 0 && _TranType != "" && _LotSet != 0 && _PType != "")
                             {
-                                BrokerageSettingFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _BrokType, "", _Product, _BrokRate, _TranType, _LotSet, _PType, con, Tran);
+                                BrokerageSettingFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _BrokType, "", _Product, _BrokRate, _TranType, _LotSet, _PType, con, Tran);
                             }
                         }
                     }
@@ -824,6 +819,8 @@ namespace SilverGold.MasterInfo
                         String _PayType = "";
                         String _JN = "";
 
+                        var _date = (dr.Cells[0].Value ?? (object)"");
+                        _DateFrom = Conversion.ConToDT(_date);
                         _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
                         _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
                         _WeightPcs = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
@@ -836,7 +833,7 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Fine_Amount != "" && _LaboursRate != 0 && _PayType != "" && _JN != "")
                         {
-                            LaboursRateFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _LaboursRate, _PayType, _JN, con, Tran);
+                            LaboursRateFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _LaboursRate, _PayType, _JN, con, Tran);
                         }
                     }
                     #endregion
@@ -868,12 +865,11 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Ghattak != 0 && _Jama_Naam != "" && _PayType != "")
                         {
-                            GhattakListFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Ghattak, _PayType, _Jama_Naam, con, Tran);
+                            GhattakListFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Ghattak, _PayType, _Jama_Naam, con, Tran);
                         }
                     }
 
                     #endregion
-
                 }
 
                 if (cmbIntroducer.Text.Trim() != "")
@@ -907,7 +903,7 @@ namespace SilverGold.MasterInfo
 
                         if (_WeightPcs != "" && _Product != "" && _Fine_Amount != "" && _BrokerageRate != 0 && _JN != "" && _PayType != "")
                         {
-                            CommissionListFactory.Insert(txtpartyname.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _BrokerageRate, _PayType, _JN, con, Tran);
+                            CommissionListFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _WeightPcs, _Category, _Product, _Fine_Amount, _BrokerageRate, _PayType, _JN, con, Tran);
                         }
                     }
 
@@ -953,10 +949,10 @@ namespace SilverGold.MasterInfo
 
                         //-----------Insert Opening In PartyTran
 
-                        PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, _MetalCategory, _OpeningWeight, _MCXRate, _JN, _Narration, con, Tran);
+                        PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _OpeningWeight, _MCXRate, _JN, _Narration, con, Tran);
                         if ((dr.Cells[3].Value ?? (object)"").ToString().Trim() != "")
                         {
-                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), _MetalCategory, _MetalCategory, _Sell, _Purchase, _Weight, _MCXRate, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
+                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtPartyName.Text.Trim(), _MetalCategory, _MetalCategory, _Sell, _Purchase, _Weight, _MCXRate, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
                         }
                     }
                     else
@@ -978,21 +974,21 @@ namespace SilverGold.MasterInfo
                         }
 
                         //-----------Insert Opening In PartyTran
-                        if (cmbtype.Text.Trim() == "WORKER")
+                        if (_MetalCategory != "" && _Weight > 0 && _JN != "")
                         {
-                            if (_MetalCategory != "" && _Weight > 0 && _JN != "")
+                            if (cmbtype.Text.Trim() == "WORKER")
                             {
-                                PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
+                                PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
                             }
-                        }
-                        else
-                        {
-                            PartyOpeningFactory.Insert(txtpartyname.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
+                            else
+                            {
+                                PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
+                            }
                         }
 
                         if (_MetalCategory != "" && _Weight > 0)
                         {
-                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtpartyname.Text.Trim(), _MetalCategory, _MetalCategory, _Debit, _Credit, 0, 0, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
+                            PartyTranFactory.InsertPartyInformation(DateTime.Now.ToString("MM/dd/yyy"), cmbCategory.Text.Trim(), txtPartyName.Text.Trim(), _MetalCategory, _MetalCategory, _Debit, _Credit, 0, 0, "O", CommanHelper.CompName.ToString(), "PARTY OPENING", con, Tran);
                         }
                     }
                 }
@@ -1156,6 +1152,7 @@ namespace SilverGold.MasterInfo
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     groupBox_LabourRate.Visible = true;
+                    dataGridView_LabourRate.Visible = true;
                     cmbBullion.Visible = false;
                     BindWorkerColumn("");
                     AdjustWorkerColumnOrder();
@@ -1176,6 +1173,7 @@ namespace SilverGold.MasterInfo
                 else
                 {
                     groupBox_LabourRate.Visible = false;
+                    dataGridView_LabourRate.Visible = false;
                     groupBox_GhattakList.Visible = false;
                     cmbBullion.Visible = true;
                     grpPartyCrditL.Visible = true;
@@ -1235,18 +1233,28 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_BrokerageSetting.Visible = false;
+                    dataGridView_BrokerageSetting.Visible = false;
+                }
                 if (cmbtype.Text.Trim() != "WORKER")
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Rows.Clear();
                     if (cmbBullion.Text.Trim().ToUpper() == "MCX")
                     {
+                        this.groupBox_BrokerageSetting.Location = new System.Drawing.Point(692, 175);
+                        groupBox_BrokerageSetting.Visible = true;
+                        dataGridView_BrokerageSetting.Visible = true;
                         BindOpeningMCXColumn();
                         OpeningMCXList = CommanHelper.BindMCXDefaultOpening();
                         dataGridView1.DataSource = OpeningMCXList.ToList();
                     }
                     else
                     {
+                        groupBox_BrokerageSetting.Visible = false;
+                        dataGridView_BrokerageSetting.Visible = false;
 
                         BindOpeningOtherColumn();
                         SetWorkerGridView_ColumnWith();
@@ -1340,14 +1348,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -1437,7 +1445,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -1538,14 +1546,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -1635,7 +1643,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -1914,14 +1922,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -2011,7 +2019,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -2109,7 +2117,7 @@ namespace SilverGold.MasterInfo
                     cmbCategory.TabIndex = 5;
                 }
 
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
 
                 #endregion
 
@@ -2131,7 +2139,7 @@ namespace SilverGold.MasterInfo
                 }
 
 
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 Panel_McxBullion.TabStop = true;
                 cmbBullion.TabStop = true;
                 #endregion
@@ -2219,14 +2227,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -2245,7 +2253,7 @@ namespace SilverGold.MasterInfo
                 cmbShowtrail.TabStop = true;
                 Panel_Category.TabStop = true;
                 cmbCategory.TabStop = true;
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_lot.TabStop = true;
@@ -2272,7 +2280,7 @@ namespace SilverGold.MasterInfo
 
 
                 //Set Control BackColor
-                txtpartyname.BackColor = Color.Cyan;
+                txtPartyName.BackColor = Color.Cyan;
             }
             catch (Exception ex)
             {
@@ -2284,11 +2292,11 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (txtpartyname.Text.Trim() == "") { txtpartyname.Focus(); return; }
-                txtpartyname.Text = CommanHelper.UpperCaseFirstCharacter(txtpartyname.Text.Trim());
+                if (txtPartyName.Text.Trim() == "") { txtPartyName.Focus(); return; }
+                txtPartyName.Text = CommanHelper.UpperCaseFirstCharacter(txtPartyName.Text.Trim());
 
                 //Set Control Backcolor
-                txtpartyname.BackColor = Color.White;
+                txtPartyName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -2450,14 +2458,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex;
+                txtPartyName.TabIndex = cmbCategory.TabIndex;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -2523,7 +2531,7 @@ namespace SilverGold.MasterInfo
                 cmbShowtrail.TabStop = true;
                 Panel_Category.TabStop = true;
                 cmbCategory.TabStop = true;
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_lot.TabStop = true;
@@ -2584,8 +2592,12 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                
                 if (cmbIntroducer.Text.Trim() != "")
                 {
+                    if (!cmbIntroducer.Items.Contains(cmbIntroducer.Text.Trim()))
+                    { cmbIntroducer.Focus(); return; }
+
                     groupBox_CommissionList.Visible = true;
                     if (cmbtype.Text.Trim() == "WORKER")
                     {
@@ -2696,7 +2708,7 @@ namespace SilverGold.MasterInfo
             {
                 if (e.KeyChar == 13)
                 {
-                    txtpartyname.Focus();
+                    txtPartyName.Focus();
                 }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
@@ -2710,10 +2722,10 @@ namespace SilverGold.MasterInfo
                 {
                     if (cmbPopUp.Text.Trim() == "")
                     {
-                        if (CommanHelper.AlreadyExistParty(txtpartyname.Text.Trim()) == true)
+                        if (CommanHelper.AlreadyExistParty(txtPartyName.Text.Trim()) == true)
                         {
                             MessageBox.Show("Party Already Exist.", "Party Details", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            txtpartyname.Focus();
+                            txtPartyName.Focus();
                             return;
                         }
                     }
@@ -2834,7 +2846,7 @@ namespace SilverGold.MasterInfo
         private void cmbIntroducer_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {
+            {   
                 groupBox_CommissionList.Visible = false;
                 if (e.KeyChar == 13)
                 {
@@ -2948,8 +2960,6 @@ namespace SilverGold.MasterInfo
             {
                 //Set Control Backcolor
                 cmbPopUp.BackColor = Color.Cyan;
-
-
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -3079,7 +3089,8 @@ namespace SilverGold.MasterInfo
                             }
                             else
                             { this.groupBox_CommissionList.Location = new System.Drawing.Point(692, 175); }
-                        } GetCommission(cmbPopUp.Text.Trim());
+                        }
+                        GetCommission(cmbPopUp.Text.Trim());
                     }
 
                     dataGridView2.DataSource = null;
@@ -3105,16 +3116,15 @@ namespace SilverGold.MasterInfo
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'DD/MM/YYYY') AS DateFrom,Format(DateTo,'DD/MM/YYYY') AS DateTo,WeightPcs,Category,Product,Fine_Amount,ROUND(LaboursRate,2) AS LaboursRate,PayType,JamaNaam From LaboursRate Where PartyName = '" + _StrPartyName + "'", con);
+            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'MM/dd/yyyy') AS DateFrom,Format(DateTo,'MM/dd/YYYY') AS DateTo,WeightPcs,Category,Product,Fine_Amount,ROUND(LaboursRate,2) AS LaboursRate,PayType,JamaNaam From LaboursRate Where PartyName = '" + _StrPartyName + "'", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
-            // dataGridView_LabourRate.Rows.Clear();
             dataGridView_LabourRate.Visible = true;
             while (dr.Read())
             {
                 dataGridView_LabourRate.Rows.Add();
-                dataGridView_LabourRate.Rows[_Sno].Cells[0].Value = dr["DateFrom"].ToString();
-                dataGridView_LabourRate.Rows[_Sno].Cells[1].Value = dr["DateTo"].ToString();
+                dataGridView_LabourRate.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
+                dataGridView_LabourRate.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridView_LabourRate.Rows[_Sno].Cells[2].Value = dr["WeightPcs"].ToString();
                 DataGridViewComboBoxCell cmbCat = (DataGridViewComboBoxCell)dataGridView_LabourRate.Rows[_Sno].Cells[3];
                 cmbCat.Dispose();
@@ -3160,7 +3170,7 @@ namespace SilverGold.MasterInfo
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'DD/MM/YYYY') AS DateFrom,Format(DateTo,'DD/MM/YYYY') AS DateTo,WeightPcs,Category,Product,ROUND(Ghattak,2) AS Ghattak,PayType,Jama_Naam From GhattakList Where PartyName = '" + _StrPartyName + "'", con);
+            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'MM/dd/yyyy') AS DateFrom,Format(DateTo,'MM/dd/yyyy') AS DateTo,WeightPcs,Category,Product,ROUND(Ghattak,2) AS Ghattak,PayType,Jama_Naam From GhattakList Where PartyName = '" + _StrPartyName + "'", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridView_GhattakList.Rows.Clear();
@@ -3168,8 +3178,8 @@ namespace SilverGold.MasterInfo
             while (dr.Read())
             {
                 dataGridView_GhattakList.Rows.Add();
-                dataGridView_GhattakList.Rows[_Sno].Cells[0].Value = dr["DateFrom"].ToString();
-                dataGridView_GhattakList.Rows[_Sno].Cells[1].Value = dr["DateTo"].ToString();
+                dataGridView_GhattakList.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
+                dataGridView_GhattakList.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridView_GhattakList.Rows[_Sno].Cells[2].Value = dr["WeightPcs"].ToString();
                 DataGridViewComboBoxCell cmbCat = (DataGridViewComboBoxCell)dataGridView_GhattakList.Rows[_Sno].Cells[3];
                 cmbCat.Dispose();
@@ -3215,7 +3225,7 @@ namespace SilverGold.MasterInfo
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'DD/MM/YYYY') AS DateFrom,Format(DateTo,'DD/MM/YYYY') AS DateTo,RateRevised,Category,Product,Round(Westage,3) AS Westage,Round(Amount,3) AS Amount,Tran_Type,Days From CreditPeriod Where PartyName = '" + _StrPartyName + "'", con);
+            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'MM/dd/yyyy') AS DateFrom,Format(DateTo,'MM/dd/yyyy') AS DateTo,RateRevised,Category,Product,Round(Westage,3) AS Westage,Round(Amount,3) AS Amount,Tran_Type,Days From CreditPeriod Where PartyName = '" + _StrPartyName + "'", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridViewCreditPeriod.Rows.Clear();
@@ -3223,8 +3233,8 @@ namespace SilverGold.MasterInfo
             while (dr.Read())
             {
                 dataGridViewCreditPeriod.Rows.Add();
-                dataGridViewCreditPeriod.Rows[_Sno].Cells[0].Value = dr["DateFrom"].ToString();
-                dataGridViewCreditPeriod.Rows[_Sno].Cells[1].Value = dr["DateTo"].ToString();
+                dataGridViewCreditPeriod.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
+                dataGridViewCreditPeriod.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[2].Value = dr["RateRevised"].ToString();
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[3].Value = dr["Category"].ToString();
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[4].Value = dr["Product"].ToString();
@@ -3244,15 +3254,15 @@ namespace SilverGold.MasterInfo
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'DD/MM/YYYY') AS DateFrom,Format(DateTo,'DD/MM/YYYY') AS DateTo,BrokerageType,Category,Product,BrokerageRate,TranType,LotSet,PayType,Company,UserId From BrokerageSetting Where PartyName = '" + _StrPartyName + "'", con);
+            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'MM/dd/yyyy') AS DateFrom,Format(DateTo,'MM/dd/yyyy') AS DateTo,BrokerageType,Category,Product,BrokerageRate,TranType,LotSet,PayType,Company,UserId From BrokerageSetting Where PartyName = '" + _StrPartyName + "'", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridView_BrokerageSetting.Rows.Clear();
             while (dr.Read())
             {
                 dataGridView_BrokerageSetting.Rows.Add();
-                dataGridView_BrokerageSetting.Rows[_Sno].Cells[0].Value = dr["DateFrom"].ToString();
-                dataGridView_BrokerageSetting.Rows[_Sno].Cells[1].Value = dr["DateTo"].ToString();
+                dataGridView_BrokerageSetting.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
+                dataGridView_BrokerageSetting.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridView_BrokerageSetting.Rows[_Sno].Cells[2].Value = dr["BrokerageType"].ToString();
                 dataGridView_BrokerageSetting.Rows[_Sno].Cells[3].Value = dr["Product"].ToString();
                 dataGridView_BrokerageSetting.Rows[_Sno].Cells[4].Value = dr["BrokerageRate"].ToString();
@@ -3271,15 +3281,17 @@ namespace SilverGold.MasterInfo
             {
                 con.Open();
             }
-            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'DD/MM/YYYY') AS DateFrom,Format(DateTo,'DD/MM/YYYY') AS DateTo,WeightPcs,Category,Product,Fine_Amount,ROUND(BrokerageRate,2) AS BrokerageRate,PayType,JamaNaam,Company,UserId From CommissionList Where PartyName = '" + _StrPartyName + "'", con);
+            OleDbCommand cmd = new OleDbCommand("Select Format(DateFrom,'MM/dd/yyyy') AS DateFrom,Format(DateTo,'MM/dd/yyyy') AS DateTo,WeightPcs,Category,Product,Fine_Amount,ROUND(BrokerageRate,2) AS BrokerageRate,PayType,JamaNaam,Company,UserId From CommissionList Where PartyName = '" + _StrPartyName + "'", con);
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridView_Commission.Rows.Clear();
+            dataGridView_Commission.Rows[0].Cells[0].Value = Conversion.ConToDT(CommanHelper.FDate);
+            dataGridView_Commission.Rows[0].Cells[1].Value = Conversion.ConToDT(CommanHelper.TDate);
             while (dr.Read())
             {
                 dataGridView_Commission.Rows.Add();
-                dataGridView_Commission.Rows[_Sno].Cells[0].Value = dr["DateFrom"].ToString();
-                dataGridView_Commission.Rows[_Sno].Cells[1].Value = dr["DateTo"].ToString();
+                dataGridView_Commission.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
+                dataGridView_Commission.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridView_Commission.Rows[_Sno].Cells[2].Value = dr["WeightPcs"].ToString();
 
                 DataGridViewComboBoxCell cmbCat = (DataGridViewComboBoxCell)dataGridView_Commission.Rows[_Sno].Cells[3];
@@ -3558,14 +3570,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -3659,7 +3671,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -3745,160 +3757,6 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                //Set Tab Setting 
-                TabIndex_Default();
-                TabStopSetting_False();
-
-                #region Tab Index Setting
-
-                Panel_ShowInTrail.TabIndex = 2;
-                cmbShowtrail.TabIndex = 3;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_lot.TabIndex = 4;
-                    cmbLot.TabIndex = 5;
-                    if (cmbLot.Text.Trim() == "YES")
-                    {
-                        Panel_LotGenerate.TabIndex = 6;
-                        cmb_gen_type.TabIndex = 7;
-
-                        Panel_Category.TabIndex = 8;
-                        cmbCategory.TabIndex = 9;
-                    }
-                    if (cmbLot.Text.Trim() == "NO")
-                    {
-                        Panel_Category.TabIndex = 6;
-                        cmbCategory.TabIndex = 7;
-                    }
-                }
-                else
-                {
-                    Panel_Category.TabIndex = 4;
-                    cmbCategory.TabIndex = 5;
-                }
-
-                int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    _TabIndex = txtpartyname.TabIndex + 1;
-                }
-                else
-                {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
-                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
-                    _TabIndex = cmbBullion.TabIndex + 1;
-                }
-                txtaddress.TabIndex = _TabIndex;
-                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
-                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
-                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
-                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
-                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
-                if (cmbIntroducer.Text != "")
-                {
-                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
-                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
-                }
-
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    if (cmbIntroducer.Text != "")
-                    { groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1; }
-                    else
-                    {
-                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
-                    }
-                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
-
-                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
-                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
-                }
-                else
-                {
-                    if (cmbBullion.Text.Trim() == "MCX")
-                    {
-                        if (cmbIntroducer.Text != "")
-                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
-                        else
-                        {
-                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
-                        }
-                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
-                    }
-                    else
-                    {
-                        if (cmbIntroducer.Text != "")
-                        { grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1; }
-                        else
-                        {
-                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
-                        }
-                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
-                    }
-                }
-
-                #endregion
-
-                #region Set Tab StopValue
-
-                Panel_ShowInTrail.TabStop = true;
-                cmbShowtrail.TabStop = true;
-                Panel_Category.TabStop = true;
-                cmbCategory.TabStop = true;
-
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_lot.TabStop = true;
-                    cmbLot.TabStop = true;
-                    if (cmbLot.Text.Trim() == "YES")
-                    {
-                        Panel_LotGenerate.TabStop = true;
-                        cmb_gen_type.TabStop = true;
-                    }
-                }
-                txtpartyname.TabStop = true;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_McxBullion.TabStop = true;
-                    cmbBullion.TabStop = true;
-                }
-                txtaddress.TabStop = true;
-                txtcontactno.TabStop = true;
-                txtemailid.TabStop = true;
-                cmbgrouphead.TabStop = true;
-                cmbsubhead.TabStop = true;
-                cmbIntroducer.TabStop = true;
-
-                if (cmbIntroducer.Text != "")
-                {
-                    groupBox_CommissionList.TabStop = true;
-                    dataGridView_Commission.TabStop = true;
-                }
-
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    groupBox_LabourRate.TabStop = true;
-                    dataGridView_LabourRate.TabStop = true;
-                    groupBox_GhattakList.TabStop = true;
-                    dataGridView_GhattakList.TabStop = true;
-                }
-                else
-                {
-                    if (cmbBullion.Text.Trim() == "MCX")
-                    {
-                        groupBox_BrokerageSetting.TabStop = true;
-                        dataGridView_BrokerageSetting.TabStop = true;
-                    }
-                    else
-                    {
-                        grpPartyCrditL.TabStop = true;
-                        dataGridView2.TabStop = true;
-                    }
-                }
-
-                #endregion
-
                 if (dataGridView_LabourRate.CurrentCellAddress.X == oLaboursRateEntity.col_WtPcs_LabourRate.DisplayIndex)
                 {
                     DataGridViewComboBoxCell cmbFineAmt = (DataGridViewComboBoxCell)dataGridView_LabourRate.CurrentRow.Cells[5];
@@ -4012,168 +3870,6 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                //Set Tab Setting 
-                TabIndex_Default();
-                TabStopSetting_False();
-
-                #region Tab Index Setting
-
-                Panel_ShowInTrail.TabIndex = 2;
-                cmbShowtrail.TabIndex = 3;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_lot.TabIndex = 4;
-                    cmbLot.TabIndex = 5;
-                    if (cmbLot.Text.Trim() == "YES")
-                    {
-                        Panel_LotGenerate.TabIndex = 6;
-                        cmb_gen_type.TabIndex = 7;
-
-                        Panel_Category.TabIndex = 8;
-                        cmbCategory.TabIndex = 9;
-                    }
-                    if (cmbLot.Text.Trim() == "NO")
-                    {
-                        Panel_Category.TabIndex = 6;
-                        cmbCategory.TabIndex = 7;
-                    }
-                }
-                else
-                {
-                    Panel_Category.TabIndex = 4;
-                    cmbCategory.TabIndex = 5;
-                }
-
-                int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    _TabIndex = txtpartyname.TabIndex + 1;
-                }
-                else
-                {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
-                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
-                    _TabIndex = cmbBullion.TabIndex + 1;
-                }
-                txtaddress.TabIndex = _TabIndex;
-                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
-                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
-                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
-                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
-                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
-                if (cmbIntroducer.Text != "")
-                {
-                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
-                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
-                }
-
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    if (cmbIntroducer.Text != "")
-                    {
-                        groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1;
-                    }
-                    else
-                    {
-                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
-                    }
-                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
-                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
-                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
-
-                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
-                }
-                else
-                {
-                    if (cmbBullion.Text.Trim() == "MCX")
-                    {
-                        if (cmbIntroducer.Text != "")
-                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
-                        else
-                        {
-                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
-                        }
-                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
-                    }
-                    else
-                    {
-                        if (cmbIntroducer.Text != "")
-                        {
-                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
-                        }
-                        else
-                        {
-                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
-                        } dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
-                    }
-                }
-
-                #endregion
-
-                #region Set Tab StopValue
-
-                Panel_ShowInTrail.TabStop = true;
-                cmbShowtrail.TabStop = true;
-                Panel_Category.TabStop = true;
-                cmbCategory.TabStop = true;
-
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_lot.TabStop = true;
-                    cmbLot.TabStop = true;
-                    if (cmbLot.Text.Trim() == "YES")
-                    {
-                        Panel_LotGenerate.TabStop = true;
-                        cmb_gen_type.TabStop = true;
-                    }
-                }
-                txtpartyname.TabStop = true;
-                if (cmbtype.Text.Trim() == "WORKER")
-                {
-                    Panel_McxBullion.TabStop = true;
-                    cmbBullion.TabStop = true;
-                }
-                txtaddress.TabStop = true;
-                txtcontactno.TabStop = true;
-                txtemailid.TabStop = true;
-                cmbgrouphead.TabStop = true;
-                cmbsubhead.TabStop = true;
-                cmbIntroducer.TabStop = true;
-
-                if (cmbIntroducer.Text != "")
-                {
-                    groupBox_CommissionList.TabStop = true;
-                    dataGridView_Commission.TabStop = true;
-                }
-                else
-                {
-                    if (cmbtype.Text.Trim() == "WORKER")
-                    {
-                        groupBox_LabourRate.TabStop = true;
-                        dataGridView_LabourRate.TabStop = true;
-                        groupBox_GhattakList.TabStop = true;
-                        dataGridView_GhattakList.TabStop = true;
-                        dataGridView1.TabStop = true;
-                    }
-                    else
-                    {
-                        if (cmbBullion.Text.Trim() == "MCX")
-                        {
-                            groupBox_BrokerageSetting.TabStop = true;
-                            dataGridView_BrokerageSetting.TabStop = true;
-                        }
-                        else
-                        {
-                            grpPartyCrditL.TabStop = true;
-                            dataGridView2.TabStop = true;
-                        }
-                    }
-                }
-
-                #endregion
-
-
                 if (dataGridView_GhattakList.CurrentCellAddress.X == oGhattakListEntity.col_WtPcs_GhattakList.DisplayIndex)
                 {
                     int _RowIndex = dataGridView_GhattakList.CurrentCell.RowIndex;
@@ -4294,9 +3990,14 @@ namespace SilverGold.MasterInfo
                 }
                 if (e.ColumnIndex == 8)
                 {
-                    if (e.FormattedValue.ToString() == "")
+                    if ((dataGridView_Commission.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" &&
+                          Conversion.ConToDec((dataGridView_Commission.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 &&
+                          (dataGridView_Commission.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
                     {
-                        e.Cancel = true;
+                        if (e.FormattedValue.ToString() == "")
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
             }
@@ -4478,6 +4179,10 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                if (rateupdate_radio_N.Checked == true)
+                {
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -4522,14 +4227,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -4624,7 +4329,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -4688,256 +4393,6 @@ namespace SilverGold.MasterInfo
             }
         }
 
-        private void dataGridViewCreditPeriod_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridViewCreditPeriod.Rows.Count == 1)
-                //    {
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_LabourRate.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridViewCreditPeriod_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridViewCreditPeriod.Rows.Count == 1)
-                //    {
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_LabourRate.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_LabourRate_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_LabourRate.Rows.Count == 1)
-                //    {
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_LabourRate.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_LabourRate_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_LabourRate.Rows.Count == 1)
-                //    {
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_GhattakList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_GhattakList.Rows.Count == 1)
-                //    {
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_GhattakList.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_GhattakList_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_GhattakList.Rows.Count == 1)
-                //    {
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (e.RowIndex > 0)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
-            }
-        }
-
-        private void dataGridView_BrokerageSetting_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_BrokerageSetting.Rows.Count == 1)
-                //    {
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_BrokerageSetting.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
-        }
-
-        private void dataGridView_BrokerageSetting_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_BrokerageSetting.Rows.Count == 1)
-                //    {
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_BrokerageSetting.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
-        }
-
-        private void dataGridView_Commission_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_Commission.Rows.Count == 1)
-                //    {
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_Commission.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
-        }
-
-        private void dataGridView_Commission_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (dataGridView_Commission.Rows.Count == 1)
-                //    {
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = CommanHelper.FDate;
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value = CommanHelper.TDate;`
-                //    }
-                //}
-                //if (e.ColumnIndex == 1)
-                //{
-                //    if (dataGridView_Commission.Rows.Count > 1)
-                //    {
-                //        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                //        dataGridView_Commission.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
-                //    }
-                //}
-            }
-            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
-        }
-
         private void chkWithCreditLimit_Enter(object sender, EventArgs e)
         {
             try
@@ -4977,14 +4432,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -5075,7 +4530,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -5343,6 +4798,168 @@ namespace SilverGold.MasterInfo
             try
             {
                 groupBox_GhattakList.BackColor = Color.Silver;
+
+
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtPartyName.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    {
+                        groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1;
+                    }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+
+                    dataGridView1.TabIndex = dataGridView_GhattakList.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        {
+                            grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        } dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtPartyName.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+                else
+                {
+                    if (cmbtype.Text.Trim() == "WORKER")
+                    {
+                        groupBox_LabourRate.TabStop = true;
+                        dataGridView_LabourRate.TabStop = true;
+                        groupBox_GhattakList.TabStop = true;
+                        dataGridView_GhattakList.TabStop = true;
+                        dataGridView1.TabStop = true;
+                    }
+                    else
+                    {
+                        if (cmbBullion.Text.Trim() == "MCX")
+                        {
+                            groupBox_BrokerageSetting.TabStop = true;
+                            dataGridView_BrokerageSetting.TabStop = true;
+                        }
+                        else
+                        {
+                            grpPartyCrditL.TabStop = true;
+                            dataGridView2.TabStop = true;
+                        }
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -5351,12 +4968,161 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                if (dataGridView_LabourRate.RowCount == 1)
-                {
-                    //dataGridView_LabourRate.Rows[0].Cells["DateFrom"].Value = _From;
-                    //dataGridView_LabourRate.Rows[0].Cells["DateTo"].Value = _To;
-                }
                 groupBox_LabourRate.BackColor = Color.Silver;
+
+                //Set Tab Setting 
+                TabIndex_Default();
+                TabStopSetting_False();
+
+                #region Tab Index Setting
+
+                Panel_ShowInTrail.TabIndex = 2;
+                cmbShowtrail.TabIndex = 3;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabIndex = 4;
+                    cmbLot.TabIndex = 5;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabIndex = 6;
+                        cmb_gen_type.TabIndex = 7;
+
+                        Panel_Category.TabIndex = 8;
+                        cmbCategory.TabIndex = 9;
+                    }
+                    if (cmbLot.Text.Trim() == "NO")
+                    {
+                        Panel_Category.TabIndex = 6;
+                        cmbCategory.TabIndex = 7;
+                    }
+                }
+                else
+                {
+                    Panel_Category.TabIndex = 4;
+                    cmbCategory.TabIndex = 5;
+                }
+
+                int _TabIndex = 0;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    _TabIndex = txtPartyName.TabIndex + 1;
+                }
+                else
+                {
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
+                    cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
+                    _TabIndex = cmbBullion.TabIndex + 1;
+                }
+                txtaddress.TabIndex = _TabIndex;
+                txtcontactno.TabIndex = txtaddress.TabIndex + 1;
+                txtemailid.TabIndex = txtcontactno.TabIndex + 1;
+                cmbgrouphead.TabIndex = txtemailid.TabIndex + 1;
+                cmbsubhead.TabIndex = cmbgrouphead.TabIndex + 1;
+                cmbIntroducer.TabIndex = cmbsubhead.TabIndex + 1;
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabIndex = cmbIntroducer.TabIndex + 1;
+                    dataGridView_Commission.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    if (cmbIntroducer.Text != "")
+                    { groupBox_LabourRate.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                    else
+                    {
+                        groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
+                    }
+                    dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
+
+                    groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
+                    dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { groupBox_BrokerageSetting.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            groupBox_BrokerageSetting.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView_BrokerageSetting.TabIndex = groupBox_BrokerageSetting.TabIndex + 1;
+                    }
+                    else
+                    {
+                        if (cmbIntroducer.Text != "")
+                        { grpPartyCrditL.TabIndex = dataGridView_Commission.TabIndex + 1; }
+                        else
+                        {
+                            grpPartyCrditL.TabIndex = cmbIntroducer.TabIndex + 1;
+                        }
+                        dataGridView2.TabIndex = grpPartyCrditL.TabIndex + 1;
+                    }
+                }
+
+                #endregion
+
+                #region Set Tab StopValue
+
+                Panel_ShowInTrail.TabStop = true;
+                cmbShowtrail.TabStop = true;
+                Panel_Category.TabStop = true;
+                cmbCategory.TabStop = true;
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_lot.TabStop = true;
+                    cmbLot.TabStop = true;
+                    if (cmbLot.Text.Trim() == "YES")
+                    {
+                        Panel_LotGenerate.TabStop = true;
+                        cmb_gen_type.TabStop = true;
+                    }
+                }
+                txtPartyName.TabStop = true;
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    Panel_McxBullion.TabStop = true;
+                    cmbBullion.TabStop = true;
+                }
+                txtaddress.TabStop = true;
+                txtcontactno.TabStop = true;
+                txtemailid.TabStop = true;
+                cmbgrouphead.TabStop = true;
+                cmbsubhead.TabStop = true;
+                cmbIntroducer.TabStop = true;
+
+                if (cmbIntroducer.Text != "")
+                {
+                    groupBox_CommissionList.TabStop = true;
+                    dataGridView_Commission.TabStop = true;
+                }
+
+                if (cmbtype.Text.Trim() == "WORKER")
+                {
+                    groupBox_LabourRate.TabStop = true;
+                    dataGridView_LabourRate.TabStop = true;
+                    groupBox_GhattakList.TabStop = true;
+                    dataGridView_GhattakList.TabStop = true;
+                }
+                else
+                {
+                    if (cmbBullion.Text.Trim() == "MCX")
+                    {
+                        groupBox_BrokerageSetting.TabStop = true;
+                        dataGridView_BrokerageSetting.TabStop = true;
+                    }
+                    else
+                    {
+                        grpPartyCrditL.TabStop = true;
+                        dataGridView2.TabStop = true;
+                    }
+                }
+
+                #endregion
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
@@ -5443,14 +5209,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -5527,7 +5293,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -5628,14 +5394,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -5720,7 +5486,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -5820,14 +5586,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -5886,7 +5652,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -5972,14 +5738,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -6056,7 +5822,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -6152,14 +5918,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -6177,13 +5943,14 @@ namespace SilverGold.MasterInfo
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     if (cmbIntroducer.Text != "")
-                    { groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1; }
+                    {
+                        groupBox_LabourRate.TabIndex = groupBox_CommissionList.TabIndex + 1;
+                    }
                     else
                     {
                         groupBox_LabourRate.TabIndex = cmbIntroducer.TabIndex + 1;
                     }
                     dataGridView_LabourRate.TabIndex = groupBox_LabourRate.TabIndex + 1;
-
                     groupBox_GhattakList.TabIndex = dataGridView_LabourRate.TabIndex + 1;
                     dataGridView_GhattakList.TabIndex = groupBox_GhattakList.TabIndex + 1;
 
@@ -6242,7 +6009,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -6325,14 +6092,14 @@ namespace SilverGold.MasterInfo
                 }
 
                 int _TabIndex = 0;
-                txtpartyname.TabIndex = cmbCategory.TabIndex + 1;
+                txtPartyName.TabIndex = cmbCategory.TabIndex + 1;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
-                    _TabIndex = txtpartyname.TabIndex + 1;
+                    _TabIndex = txtPartyName.TabIndex + 1;
                 }
                 else
                 {
-                    Panel_McxBullion.TabIndex = txtpartyname.TabIndex + 1;
+                    Panel_McxBullion.TabIndex = txtPartyName.TabIndex + 1;
                     cmbBullion.TabIndex = Panel_McxBullion.TabIndex + 1;
                     _TabIndex = cmbBullion.TabIndex + 1;
                 }
@@ -6423,7 +6190,7 @@ namespace SilverGold.MasterInfo
                         cmb_gen_type.TabStop = true;
                     }
                 }
-                txtpartyname.TabStop = true;
+                txtPartyName.TabStop = true;
                 if (cmbtype.Text.Trim() == "WORKER")
                 {
                     Panel_McxBullion.TabStop = true;
@@ -6676,17 +6443,98 @@ namespace SilverGold.MasterInfo
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
         }
 
-        private void dataGridView_LabourRate_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void dataGridView_LabourRate_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (dataGridView_LabourRate.Rows.Count > 1)
+                if (e.ColumnIndex == 1)
                 {
-                    var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
-                    dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateFrom"].Value = _NextDateFrom;
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_LabourRate.Rows[e.RowIndex].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_LabourRate.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
+                        dataGridView_LabourRate.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_GhattakList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    if (e.RowIndex > 0)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_GhattakList.Rows[e.RowIndex].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_GhattakList.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
+                        dataGridView_GhattakList.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_Commission_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_Commission.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_Commission.Rows[e.RowIndex].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_Commission.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
+                        dataGridView_Commission.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                    }
                 }
             }
             catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridView_BrokerageSetting_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_BrokerageSetting.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridView_BrokerageSetting.Rows[e.RowIndex].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
+                        dataGridView_BrokerageSetting.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                    }
+                }
+            }
+            catch (Exception ex) { ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name); }
+        }
+
+        private void dataGridViewCreditPeriod_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    {
+                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        dataGridViewCreditPeriod.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
+                        dataGridViewCreditPeriod.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
         }
     }
 }

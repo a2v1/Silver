@@ -76,7 +76,7 @@ namespace SilverGold.MasterInfo
             this.label2 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtpartyname = new System.Windows.Forms.TextBox();
+            this.txtPartyName = new System.Windows.Forms.TextBox();
             this.txtaddress = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -531,16 +531,16 @@ namespace SilverGold.MasterInfo
             this.label16.TabIndex = 19;
             this.label16.Text = "Sub Head:";
             // 
-            // txtpartyname
+            // txtPartyName
             // 
-            this.txtpartyname.Location = new System.Drawing.Point(337, 77);
-            this.txtpartyname.Margin = new System.Windows.Forms.Padding(4);
-            this.txtpartyname.Name = "txtpartyname";
-            this.txtpartyname.Size = new System.Drawing.Size(259, 20);
-            this.txtpartyname.TabIndex = 5;
-            this.txtpartyname.Enter += new System.EventHandler(this.txtpartyname_Enter);
-            this.txtpartyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpartyname_KeyPress);
-            this.txtpartyname.Leave += new System.EventHandler(this.txtpartyname_Leave);
+            this.txtPartyName.Location = new System.Drawing.Point(337, 77);
+            this.txtPartyName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPartyName.Name = "txtPartyName";
+            this.txtPartyName.Size = new System.Drawing.Size(259, 20);
+            this.txtPartyName.TabIndex = 5;
+            this.txtPartyName.Enter += new System.EventHandler(this.txtpartyname_Enter);
+            this.txtPartyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpartyname_KeyPress);
+            this.txtPartyName.Leave += new System.EventHandler(this.txtpartyname_Leave);
             // 
             // txtaddress
             // 
@@ -1061,8 +1061,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView_BrokerageSetting.RowHeadersWidth = 15;
             this.dataGridView_BrokerageSetting.Size = new System.Drawing.Size(560, 139);
             this.dataGridView_BrokerageSetting.TabIndex = 0;
-            this.dataGridView_BrokerageSetting.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_BrokerageSetting_CellClick);
-            this.dataGridView_BrokerageSetting.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_BrokerageSetting_CellLeave);
+            this.dataGridView_BrokerageSetting.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_BrokerageSetting_CellEndEdit);
             this.dataGridView_BrokerageSetting.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_BrokerageSetting_DataError);
             this.dataGridView_BrokerageSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_BrokerageSetting_EditingControlShowing);
             this.dataGridView_BrokerageSetting.Enter += new System.EventHandler(this.dataGridView_BrokerageSetting_Enter);
@@ -1151,8 +1150,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView_Commission.RowHeadersWidth = 15;
             this.dataGridView_Commission.Size = new System.Drawing.Size(560, 121);
             this.dataGridView_Commission.TabIndex = 0;
-            this.dataGridView_Commission.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Commission_CellClick);
-            this.dataGridView_Commission.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Commission_CellLeave);
+            this.dataGridView_Commission.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Commission_CellEndEdit);
             this.dataGridView_Commission.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_Commission_CellValidating);
             this.dataGridView_Commission.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_Commission_DataError);
             this.dataGridView_Commission.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_Commission_EditingControlShowing);
@@ -1198,8 +1196,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView_GhattakList.RowHeadersWidth = 15;
             this.dataGridView_GhattakList.Size = new System.Drawing.Size(560, 115);
             this.dataGridView_GhattakList.TabIndex = 0;
-            this.dataGridView_GhattakList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GhattakList_CellClick);
-            this.dataGridView_GhattakList.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GhattakList_CellLeave);
+            this.dataGridView_GhattakList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GhattakList_CellEndEdit);
             this.dataGridView_GhattakList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_GhattakList_CellValidating);
             this.dataGridView_GhattakList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_GhattakList_DataError);
             this.dataGridView_GhattakList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_GhattakList_EditingControlShowing);
@@ -1245,12 +1242,10 @@ namespace SilverGold.MasterInfo
             this.dataGridView_LabourRate.RowHeadersWidth = 15;
             this.dataGridView_LabourRate.Size = new System.Drawing.Size(560, 126);
             this.dataGridView_LabourRate.TabIndex = 0;
-            this.dataGridView_LabourRate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_LabourRate_CellClick);
-            this.dataGridView_LabourRate.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_LabourRate_CellLeave);
+            this.dataGridView_LabourRate.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_LabourRate_CellEndEdit);
             this.dataGridView_LabourRate.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_LabourRate_CellValidating);
             this.dataGridView_LabourRate.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_LabourRate_DataError);
             this.dataGridView_LabourRate.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_LabourRate_EditingControlShowing);
-            this.dataGridView_LabourRate.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_LabourRate_RowsAdded);
             this.dataGridView_LabourRate.Enter += new System.EventHandler(this.dataGridView_LabourRate_Enter);
             this.dataGridView_LabourRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_LabourRate_KeyDown);
             this.dataGridView_LabourRate.Leave += new System.EventHandler(this.dataGridView_LabourRate_Leave);
@@ -1268,8 +1263,7 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.Size = new System.Drawing.Size(679, 147);
             this.dataGridViewCreditPeriod.TabIndex = 9;
             this.dataGridViewCreditPeriod.Visible = false;
-            this.dataGridViewCreditPeriod.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCreditPeriod_CellClick);
-            this.dataGridViewCreditPeriod.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCreditPeriod_CellLeave);
+            this.dataGridViewCreditPeriod.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCreditPeriod_CellEndEdit);
             this.dataGridViewCreditPeriod.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCreditPeriod_CellValidating);
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
             this.dataGridViewCreditPeriod.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewCreditPeriod_EditingControlShowing);
@@ -1322,7 +1316,7 @@ namespace SilverGold.MasterInfo
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtpartyname);
+            this.Controls.Add(this.txtPartyName);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PartyInformation";
             this.Text = "PartyInformation";
@@ -1394,7 +1388,7 @@ namespace SilverGold.MasterInfo
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtpartyname;
+        private System.Windows.Forms.TextBox txtPartyName;
         private System.Windows.Forms.TextBox txtaddress;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label5;
