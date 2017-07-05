@@ -35,15 +35,6 @@ namespace SilverGold.Entity
             dtpDateTo_CommList.Name = "DateTo";
             dgv.Columns.Add(dtpDateTo_CommList);
 
-            col_WtPcs_CommList.DataPropertyName = "WeightPcs";
-            col_WtPcs_CommList.HeaderText = "WT/PCS";
-            col_WtPcs_CommList.Name = "WeightPcs";
-            col_WtPcs_CommList.Items.Clear();
-            col_WtPcs_CommList.Items.Add("WEIGHT");
-            col_WtPcs_CommList.Items.Add("PCS");
-            col_WtPcs_CommList.FlatStyle = FlatStyle.Popup;
-            dgv.Columns.Add(col_WtPcs_CommList);
-
             col_Cate_CommList.DataPropertyName = "Category";
             col_Cate_CommList.HeaderText = "Category";
             col_Cate_CommList.Name = "Category";
@@ -58,17 +49,54 @@ namespace SilverGold.Entity
             col_Cate_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Cate_CommList);
 
+            col_WtPcs_CommList.DataPropertyName = "WeightPcs";
+            col_WtPcs_CommList.HeaderText = "WT/PCS";
+            col_WtPcs_CommList.Name = "WeightPcs";
+            col_WtPcs_CommList.Items.Clear();
+            col_WtPcs_CommList.Items.Add("WEIGHT");
+            col_WtPcs_CommList.Items.Add("PCS");
+            col_WtPcs_CommList.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_WtPcs_CommList);
+
             col_Product_CommList.DataPropertyName = "Product";
             col_Product_CommList.HeaderText = "Product";
             col_Product_CommList.Name = "Product";
+
+            List<MetalEntity> MetalList = new List<MetalEntity>();
+            MetalList = CommanHelper.GetCompanyMetal().ToList();
+
             if (_Category == "" || _Category == "COMMON")
             {
-                col_Product_CommList.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+               foreach (var list in CommanHelper.GetProduct().Distinct().ToList())
+                {
+                    col_Product_CommList.Items.Add(list.ProductName.ToString());
+                }
+
+                foreach (var list in MetalList)
+                {
+                    if (list.UserId.ToString() != "" && list.MetalName != "CASH")
+                    {
+                        col_Product_CommList.Items.Add(list.MetalName.ToString());
+                    }
+                }
             }
             else
             {
-                col_Product_CommList.DataSource = CommanHelper.GetProduct().Where(r => r.Category == _Category).Select(x => x.ProductName).Distinct().ToList();
+                foreach (var list in CommanHelper.GetProduct().Where(r => r.Category == _Category).Distinct().ToList())
+                {
+                    col_Product_CommList.Items.Add(list.ProductName.ToString());
+                }
+                foreach (var list in MetalList)
+                {
+                    if (list.UserId.ToString() != "" && list.MetalName != "CASH" && list.MetalCategory.ToString().Trim() == _Category.Trim())
+                    {
+                        col_Product_CommList.Items.Add(list.MetalName.ToString());
+                    }
+                }
             }
+
+
+
             col_Product_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Product_CommList);
 
@@ -93,7 +121,7 @@ namespace SilverGold.Entity
             col_PType_CommList.Items.Clear();
             col_PType_CommList.Items.Add("GIVING");
             col_PType_CommList.Items.Add("RECIEVING");
-            col_PType_CommList.Items.Add("COMMON");
+            col_PType_CommList.Items.Add("BOTH");
             col_PType_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_PType_CommList);
 

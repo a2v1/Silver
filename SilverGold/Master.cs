@@ -105,6 +105,18 @@ namespace SilverGold
                     {
                         con.Close();
                     }
+                    try
+                    {
+                        con.Open();
+                        OleDbCommand cmd = new OleDbCommand("ALTER TABLE PartyDetails ADD Deleted int Default 0", con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                    }
+
                     //try
                     //{
                     //    con.Open();

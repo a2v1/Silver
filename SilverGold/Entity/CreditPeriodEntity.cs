@@ -113,12 +113,11 @@ namespace SilverGold.Entity
             col_TranType_CreditPeriod.Items.Clear();
             col_TranType_CreditPeriod.Items.Add("JAMA");
             col_TranType_CreditPeriod.Items.Add("NAAM");
-            col_TranType_CreditPeriod.Items.Add("BOTH");
             col_TranType_CreditPeriod.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_TranType_CreditPeriod);
 
             col_Days_CreditPeriod.DataPropertyName = "Days";
-            col_Days_CreditPeriod.HeaderText = "Days";
+            col_Days_CreditPeriod.HeaderText = "Credit Days";
             col_Days_CreditPeriod.Name = "Days";
             dgv.Columns.Add(col_Days_CreditPeriod);
 

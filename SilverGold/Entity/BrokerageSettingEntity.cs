@@ -37,6 +37,7 @@ namespace SilverGold.Entity
             col_BrokType_Brok.DataPropertyName = "BrokerageType";
             col_BrokType_Brok.HeaderText = "BrokType";
             col_BrokType_Brok.Name = "BrokerageType";
+            col_BrokType_Brok.Items.Clear();
             col_BrokType_Brok.Items.Add("LotWise");
             col_BrokType_Brok.Items.Add("Turnover");
             col_BrokType_Brok.FlatStyle = FlatStyle.Popup;
@@ -45,6 +46,7 @@ namespace SilverGold.Entity
             col_Product_Brok.DataPropertyName = "Product";
             col_Product_Brok.HeaderText = "Product";
             col_Product_Brok.Name = "Product";
+            col_Product_Brok.Items.Clear();
             col_Product_Brok.Items.Add("SILVER");
             col_Product_Brok.Items.Add("SILVERM");
             col_Product_Brok.Items.Add("GOLD");
@@ -60,6 +62,7 @@ namespace SilverGold.Entity
             col_TranType_Brok.DataPropertyName = "TranType";
             col_TranType_Brok.HeaderText = "TranType";
             col_TranType_Brok.Name = "TranType";
+            col_TranType_Brok.Items.Clear();
             col_TranType_Brok.Items.Add("JAMA");
             col_TranType_Brok.Items.Add("NAAM");
             col_TranType_Brok.FlatStyle = FlatStyle.Popup;
@@ -68,6 +71,7 @@ namespace SilverGold.Entity
             col_LotSet_Brok.DataPropertyName = "LotSet";
             col_LotSet_Brok.HeaderText = "LotSet";
             col_LotSet_Brok.Name = "LotSet";
+            col_LotSet_Brok.Items.Clear();
             col_LotSet_Brok.Items.Add("30");
             col_LotSet_Brok.Items.Add(".100");
             col_LotSet_Brok.Items.Add("1.000");
@@ -77,6 +81,7 @@ namespace SilverGold.Entity
             col_PType_Brok.DataPropertyName = "PayType";
             col_PType_Brok.HeaderText = "P Type";
             col_PType_Brok.Name = "PayType";
+            col_PType_Brok.Items.Clear();
             col_PType_Brok.Items.Add("PURCHASE");
             col_PType_Brok.Items.Add("SELL");
             col_PType_Brok.Items.Add("BOTH");

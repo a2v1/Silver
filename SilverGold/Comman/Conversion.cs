@@ -103,6 +103,20 @@ namespace SilverGold.Comman
             }
         }
 
+        public static System.Decimal ConToDec3(string strvalue)
+        {
+            try
+            {
+                System.Decimal decVal = 0;
+                decVal = Convert.ToDecimal(strvalue.Trim());
+                return Math.Round(decVal, 3);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         public static System.Decimal ConToDec5(string strvalue)
         {
             try

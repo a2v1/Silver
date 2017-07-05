@@ -728,9 +728,13 @@ namespace SilverGold.Helper
                     oOpeningOtherEntity.OpeningDate = dr["OpeningDate"].ToString();
                     oOpeningOtherEntity.Item = dr["ItemName"].ToString();
                     if (dr["ItemName"].ToString().Trim() == "CASH") { oOpeningOtherEntity.Weight = Conversion.ConToDec(dr["Weight"].ToString()); }
-                    else
+                    else if (dr["ItemName"].ToString().Trim() == "GOLD")
                     {
                         oOpeningOtherEntity.Weight = Conversion.ConToDec6(dr["Weight"].ToString());
+                    }
+                    else
+                    {
+                        oOpeningOtherEntity.Weight = Conversion.ConToDec3(dr["Weight"].ToString());
                     }
                     oOpeningOtherEntity.DrCr = dr["DrCr"].ToString();
                     oOpeningOtherEntity.Narration = dr["Narration"].ToString();
@@ -758,8 +762,14 @@ namespace SilverGold.Helper
                     {
                         oCreditLimitOpeningEntity.Limit = Conversion.ConToDec(dr["ItemLimit"].ToString());
                     }
+                    else if (dr["ItemName"].ToString().Trim() == "GOLD")
+                    {
+                        oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString());
+                    }
                     else
-                    { oCreditLimitOpeningEntity.Limit = Conversion.ConToDec6(dr["ItemLimit"].ToString()); }
+                    {
+                        oCreditLimitOpeningEntity.Limit = Conversion.ConToDec3(dr["ItemLimit"].ToString());
+                    }
                     oCreditLimitOpeningEntity.JN = dr["JN"].ToString();
                     CreditLimitOpening.Add(oCreditLimitOpeningEntity);
                 }
