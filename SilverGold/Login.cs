@@ -17,9 +17,7 @@ namespace SilverGold
     public partial class Login : Form
     {
 
-        #region Declare Variable
-
-        Boolean CheckCompanyDir = false;
+        #region Declare Variable        
         int _LoginCount = 0;
         #endregion
         public Login()

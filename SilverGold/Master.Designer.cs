@@ -295,6 +295,7 @@
             this.setPasswordToolStripMenuItem.Name = "setPasswordToolStripMenuItem";
             this.setPasswordToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.setPasswordToolStripMenuItem.Text = "Set Password";
+            this.setPasswordToolStripMenuItem.Click += new System.EventHandler(this.setPasswordToolStripMenuItem_Click);
             // 
             // removePasswordToolStripMenuItem
             // 

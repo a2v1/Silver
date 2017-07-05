@@ -1137,7 +1137,7 @@ namespace SilverGold.MasterInfo
                     {
                         con.Open();
                     }
-                    OleDbCommand cmd1 = new OleDbCommand("Update Productdetails Set Row='Y'", con);
+                    OleDbCommand cmd1 = new OleDbCommand("Update Product Set Row='Y'", con);
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }

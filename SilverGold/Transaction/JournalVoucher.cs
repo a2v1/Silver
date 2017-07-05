@@ -17,8 +17,8 @@ namespace SilverGold.Transaction
         #region Declare Variables
         OleDbConnection con;
         ConnectionClass objCon;
-        OleDbTransaction Tran = null;
-        DataGridView.HitTestInfo hti;
+        //OleDbTransaction Tran = null;
+        //DataGridView.HitTestInfo hti;
 
 
         #endregion

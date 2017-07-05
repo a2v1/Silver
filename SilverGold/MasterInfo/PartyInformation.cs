@@ -355,6 +355,12 @@ namespace SilverGold.MasterInfo
             groupBox_CommissionList.Visible = false;
             lblBankCredit.Visible = false;
             txtBankCredit.Visible = false;
+            cmbtype.Text = "PARTY";
+            groupBox_Report.Visible = false;
+            Chk_Party.Checked = false;
+            Chk_Worker.Checked = false;
+            Chk_All.Checked = true;
+            rbtn_WithoutOpBal.Checked = false;
             cmbtype.Focus();
         }
 
@@ -478,14 +484,14 @@ namespace SilverGold.MasterInfo
             btnExit.TabIndex = 543;
             groupBox3.TabIndex = 544;
             cmbPopUp.TabIndex = 545;
-            groupBox4.TabIndex = 546;
+            groupBox_Report.TabIndex = 546;
             groupBox6.TabIndex = 547;
-            ckall.TabIndex = 548;
-            ckparty.TabIndex = 549;
-            ckworker.TabIndex = 550;
+            Chk_All.TabIndex = 548;
+            Chk_Party.TabIndex = 549;
+            Chk_Worker.TabIndex = 550;
             groupBox5.TabIndex = 551;
-            rbtnwithopbal.TabIndex = 552;
-            rbtnwithoutopbal.TabIndex = 553;
+            rbtn_WithOpBal.TabIndex = 552;
+            rbtn_WithoutOpBal.TabIndex = 553;
             btnShow.TabIndex = 554;
 
 
@@ -539,14 +545,14 @@ namespace SilverGold.MasterInfo
             btnExit.TabStop = false;
             groupBox3.TabStop = false;
             cmbPopUp.TabStop = false;
-            groupBox4.TabStop = false;
+            groupBox_Report.TabStop = false;
             groupBox6.TabStop = false;
-            ckall.TabStop = false;
-            ckparty.TabStop = false;
-            ckworker.TabStop = false;
+            Chk_All.TabStop = false;
+            Chk_Party.TabStop = false;
+            Chk_Worker.TabStop = false;
             groupBox5.TabStop = false;
-            rbtnwithopbal.TabStop = false;
-            rbtnwithoutopbal.TabStop = false;
+            rbtn_WithOpBal.TabStop = false;
+            rbtn_WithoutOpBal.TabStop = false;
             btnShow.TabStop = false;
         }
 
@@ -565,6 +571,7 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Delete.Click += new EventHandler(btndelete_Click);
             this.toolStripMenu_Refersh.Click += new EventHandler(btnrefresh_Click);
             this.toolStripMenu_Report.Click += new EventHandler(btnReport_Click);
+            this.toolStripMenuItem_ReportShow.Click += new EventHandler(btnShow_Click);
 
             con = new OleDbConnection();
             con.ConnectionString = ConnectionClass.LoginConString(CommanHelper.Com_DB_PATH, CommanHelper.Com_DB_NAME + ".mdb");
@@ -601,10 +608,11 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewCreditPeriod.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            cmbtype.Focus();
 
             dataGridView1.ClearSelection();
             dataGridView2.ClearSelection();
+            cmbtype.Text = "PARTY";
+            cmbtype.Focus();
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -731,35 +739,36 @@ namespace SilverGold.MasterInfo
                     //--------Insert Credit Limit And Credit Period                    
                     if (chkWithCreditLimit.Checked == true)
                     {
-                        if(rateupdate_radio.Checked==true){
-                        foreach (DataGridViewRow dr in dataGridViewCreditPeriod.Rows)
+                        if (rateupdate_radio.Checked == true)
                         {
-                            DateTime _DateFrom = DateTime.Now;
-                            DateTime _DateTo = DateTime.Now;
-                            String _RateRevised = "";
-                            String _Category = "";
-                            String _Product = "";
-                            Decimal _Westage = 0;
-                            Decimal _Amount = 0;
-                            String _Tran_Type = "";
-                            Int32 _Days = 0;
-
-                            _DateFrom = Conversion.GetDateStr((dr.Cells[0].Value ?? (object)"").ToString().Trim());
-                            _DateTo = Conversion.GetDateStr((dr.Cells[1].Value ?? (object)"").ToString().Trim());
-                            _RateRevised = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
-                            _Category = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
-                            _Product = (dr.Cells[4].Value ?? (object)"").ToString().Trim();
-                            _Westage = Conversion.ConToDec6((dr.Cells[5].Value ?? (object)"").ToString().Trim());
-                            _Amount = Conversion.ConToDec6((dr.Cells[6].Value ?? (object)"").ToString().Trim());
-                            _Tran_Type = (dr.Cells[7].Value ?? (object)"").ToString().Trim();
-                            _Days = Conversion.ConToInt((dr.Cells[8].Value ?? (object)"").ToString().Trim());
-
-                            if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
+                            foreach (DataGridViewRow dr in dataGridViewCreditPeriod.Rows)
                             {
-                                CreditPeriodFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);
+                                DateTime _DateFrom = DateTime.Now;
+                                DateTime _DateTo = DateTime.Now;
+                                String _RateRevised = "";
+                                String _Category = "";
+                                String _Product = "";
+                                Decimal _Westage = 0;
+                                Decimal _Amount = 0;
+                                String _Tran_Type = "";
+                                Int32 _Days = 0;
+
+                                _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
+                                _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
+                                _RateRevised = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
+                                _Category = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
+                                _Product = (dr.Cells[4].Value ?? (object)"").ToString().Trim();
+                                _Westage = Conversion.ConToDec6((dr.Cells[5].Value ?? (object)"").ToString().Trim());
+                                _Amount = Conversion.ConToDec6((dr.Cells[6].Value ?? (object)"").ToString().Trim());
+                                _Tran_Type = (dr.Cells[7].Value ?? (object)"").ToString().Trim();
+                                _Days = Conversion.ConToInt((dr.Cells[8].Value ?? (object)"").ToString().Trim());
+
+                                if (_RateRevised != "" && _Product != "" && _Westage != 0 && _Amount != 0 && _Tran_Type != "" && _Days != 0)
+                                {
+                                    CreditPeriodFactory.Insert(txtPartyName.Text.Trim(), _DateFrom, _DateTo, _RateRevised, _Category, _Product, _Westage, _Amount, _Tran_Type, _Days, con, Tran);
+                                }
                             }
                         }
-                            }
                     }
                     #endregion
 
@@ -782,8 +791,8 @@ namespace SilverGold.MasterInfo
                             Decimal _LotSet = 0;
                             String _PType = "";
 
-                            _DateFrom = Conversion.GetDateStr((dr.Cells[0].Value ?? (object)"").ToString().Trim());
-                            _DateTo = Conversion.GetDateStr((dr.Cells[1].Value ?? (object)"").ToString().Trim());
+                            _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
+                            _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
                             _BrokType = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
                             _Product = (dr.Cells[3].Value ?? (object)"").ToString().Trim();
                             _BrokRate = Conversion.ConToDec6((dr.Cells[4].Value ?? (object)"").ToString().Trim());
@@ -819,8 +828,6 @@ namespace SilverGold.MasterInfo
                         String _PayType = "";
                         String _JN = "";
 
-                        var _date = (dr.Cells[0].Value ?? (object)"");
-                        _DateFrom = Conversion.ConToDT(_date);
                         _DateFrom = Conversion.ConToDT((dr.Cells[0].Value ?? (object)"").ToString().Trim());
                         _DateTo = Conversion.ConToDT((dr.Cells[1].Value ?? (object)"").ToString().Trim());
                         _WeightPcs = (dr.Cells[2].Value ?? (object)"").ToString().Trim();
@@ -974,16 +981,17 @@ namespace SilverGold.MasterInfo
                         }
 
                         //-----------Insert Opening In PartyTran
-                        if (_MetalCategory != "" && _Weight > 0 && _JN != "")
+
+                        if (cmbtype.Text.Trim() == "WORKER")
                         {
-                            if (cmbtype.Text.Trim() == "WORKER")
+                            if (_MetalCategory != "" && _Weight > 0 && _JN != "")
                             {
                                 PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
                             }
-                            else
-                            {
-                                PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
-                            }
+                        }
+                        else
+                        {
+                            PartyOpeningFactory.Insert(txtPartyName.Text.Trim(), _OpeningDate, _MetalCategory, _Weight, 0, _JN.Trim(), _Narration, con, Tran);
                         }
 
                         if (_MetalCategory != "" && _Weight > 0)
@@ -1032,7 +1040,7 @@ namespace SilverGold.MasterInfo
                     dr.Close();
                     if (_ValidParty == true)
                     {
-                        MessageBox.Show("U Can't Delete The Party. Transaction Exist.", "Party Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("You can't delete this party. Transaction Exist.", "Party Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         Tran.Commit();
                         con.Close();
                         return;
@@ -1088,7 +1096,8 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-
+                groupBox_Report.Visible = true;
+                Chk_All.Checked = true;
             }
             catch (Exception ex)
             {
@@ -2320,6 +2329,11 @@ namespace SilverGold.MasterInfo
         {
             try
             {
+                if (cmbBullion.Text.Trim() == "")
+                {
+                    groupBox_BrokerageSetting.Visible = false;
+                    dataGridView_BrokerageSetting.Visible = false;
+                }
                 if (cmbBullion.Text.Trim() != "")
                 {
                     if (!cmbBullion.Items.Contains(cmbBullion.Text.Trim()))
@@ -2592,7 +2606,7 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                
+
                 if (cmbIntroducer.Text.Trim() != "")
                 {
                     if (!cmbIntroducer.Items.Contains(cmbIntroducer.Text.Trim()))
@@ -2846,7 +2860,7 @@ namespace SilverGold.MasterInfo
         private void cmbIntroducer_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {   
+            {
                 groupBox_CommissionList.Visible = false;
                 if (e.KeyChar == 13)
                 {
@@ -3236,6 +3250,16 @@ namespace SilverGold.MasterInfo
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[0].Value = Conversion.ConToDT(dr["DateFrom"].ToString());
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[1].Value = Conversion.ConToDT(dr["DateTo"].ToString());
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[2].Value = dr["RateRevised"].ToString();
+                DataGridViewComboBoxCell cmbCat = (DataGridViewComboBoxCell)dataGridViewCreditPeriod.Rows[_Sno].Cells[3];
+                DataGridViewComboBoxCell cmbProduct = (DataGridViewComboBoxCell)dataGridViewCreditPeriod.Rows[_Sno].Cells[4];
+                if (dr["Category"].ToString().Trim() == "")
+                {
+                    cmbProduct.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+                }
+                else
+                {
+                    cmbProduct.DataSource = CommanHelper.GetProduct().Where(r => r.Category == dr["Category"].ToString().Trim()).Select(x => x.ProductName).Distinct().ToList();
+                }
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[3].Value = dr["Category"].ToString();
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[4].Value = dr["Product"].ToString();
                 dataGridViewCreditPeriod.Rows[_Sno].Cells[5].Value = dr["Westage"].ToString();
@@ -3258,6 +3282,7 @@ namespace SilverGold.MasterInfo
             OleDbDataReader dr = cmd.ExecuteReader();
             int _Sno = 0;
             dataGridView_BrokerageSetting.Rows.Clear();
+            oBrokerageSettingEntity.BindBrokerageList(dataGridView_BrokerageSetting);
             while (dr.Read())
             {
                 dataGridView_BrokerageSetting.Rows.Add();
@@ -3470,8 +3495,11 @@ namespace SilverGold.MasterInfo
                 }
                 if (e.ColumnIndex == 8)
                 {
-                    if (e.FormattedValue.ToString() == "")
-                        e.Cancel = true;
+                    if ((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" && (dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() != "" && Conversion.ConToDec((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[5].Value ?? (object)"").ToString()) != 0 && Conversion.ConToDec((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 && (dataGridViewCreditPeriod.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
+                    {
+                        if (e.FormattedValue.ToString() == "")
+                            e.Cancel = true;
+                    }
                 }
 
             }
@@ -3531,13 +3559,7 @@ namespace SilverGold.MasterInfo
         private void rateupdate_radio_CheckedChanged(object sender, EventArgs e)
         {
             try
-            {
-                if (rateupdate_radio.Checked == true)
-                {
-                    rateupdate_radio_N.Checked = false;
-                    dataGridViewCreditPeriod.Visible = true;
-                }
-                //Set Tab Setting 
+            { //Set Tab Setting 
 
                 TabIndex_Default();
                 TabStopSetting_False();
@@ -3725,6 +3747,16 @@ namespace SilverGold.MasterInfo
                 }
 
                 #endregion
+
+                if (rateupdate_radio.Checked == true)
+                {
+                    rateupdate_radio_N.Checked = false;
+                    dataGridViewCreditPeriod.Visible = true;
+                    if (cmbPopUp.Text.Trim() == "")
+                    {
+                        oCreditPeriodEntity.BindCreditPeriod(dataGridViewCreditPeriod, cmbCategory.Text.Trim());
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3812,10 +3844,7 @@ namespace SilverGold.MasterInfo
                     }
                 }
                 if (e.ColumnIndex == 8)
-                    if ((dataGridView_LabourRate.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" &&
-                        (dataGridView_LabourRate.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() != "" &&
-                        Conversion.ConToDec((dataGridView_LabourRate.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 &&
-                        (dataGridView_LabourRate.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
+                    if ((dataGridView_LabourRate.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" && (dataGridView_LabourRate.Rows[e.RowIndex].Cells[4].Value ?? (object)"").ToString() != "" && Conversion.ConToDec((dataGridView_LabourRate.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 && (dataGridView_LabourRate.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
                     {
                         if (e.FormattedValue.ToString() == "")
                             e.Cancel = true;
@@ -3990,9 +4019,7 @@ namespace SilverGold.MasterInfo
                 }
                 if (e.ColumnIndex == 8)
                 {
-                    if ((dataGridView_Commission.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" &&
-                          Conversion.ConToDec((dataGridView_Commission.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 &&
-                          (dataGridView_Commission.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
+                    if ((dataGridView_Commission.Rows[e.RowIndex].Cells[2].Value ?? (object)"").ToString() != "" && Conversion.ConToDec((dataGridView_Commission.Rows[e.RowIndex].Cells[6].Value ?? (object)"").ToString()) != 0 && (dataGridView_Commission.Rows[e.RowIndex].Cells[7].Value ?? (object)"").ToString() != "")
                     {
                         if (e.FormattedValue.ToString() == "")
                         {
@@ -4092,16 +4119,6 @@ namespace SilverGold.MasterInfo
         {
             try
             {
-                string headerText =
-                    dataGridView2.Columns[e.ColumnIndex].HeaderText;
-                //if (e.RowIndex == this.dataGridView2.Rows.Count - 1 && e.ColumnIndex == 2)
-                //{
-                //    dataGridView2.ClearSelection();
-                //    this.dataGridView1.CurrentCell = this.dataGridView1[1, 0];
-                //    dataGridView1.Focus();
-                //    //dataGridView2.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
-                //}
-
 
             }
             catch (Exception ex)
@@ -6523,12 +6540,133 @@ namespace SilverGold.MasterInfo
             {
                 if (e.ColumnIndex == 1)
                 {
-                    if (dataGridView_LabourRate.Rows.Count > 1)
+                    if (dataGridViewCreditPeriod.Rows.Count > 1)
                     {
-                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex - 1].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
+                        var _NextDateFrom = Conversion.ConToDT((dataGridViewCreditPeriod.Rows[e.RowIndex].Cells["DateTo"].Value ?? (object)DateTime.Now).ToString()).AddDays(1);
                         dataGridViewCreditPeriod.Rows[e.RowIndex + 1].Cells["DateFrom"].Value = _NextDateFrom;
                         dataGridViewCreditPeriod.Rows[e.RowIndex + 1].Cells["DateTo"].Value = Conversion.ConToDT(CommanHelper.TDate);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void dataGridView_LabourRate_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete this record?", "Confirm Record Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+
+        private void dataGridView_GhattakList_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete this record?", "Confirm Record Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void dataGridView_Commission_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete this record?", "Confirm Record Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void dataGridView_BrokerageSetting_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete this record?", "Confirm Record Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void dataGridViewCreditPeriod_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete this record?", "Confirm Record Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("No Report Found !!", "Under Development", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Chk_All_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Chk_All.Checked == true)
+                {
+                    Chk_Party.Checked = false;
+                    Chk_Worker.Checked = false;
+                    rbtn_WithOpBal.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Chk_Party_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Chk_Party.Checked == true)
+                {
+                    Chk_All.Checked = false;
+                    Chk_Worker.Checked = false;
+                    rbtn_WithoutOpBal.Checked = false;
+                    rbtn_WithOpBal.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void Chk_Worker_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Chk_Worker.Checked == true)
+                {
+                    Chk_Party.Checked = false;
+                    rbtn_WithoutOpBal.Checked = false;
+                    rbtn_WithOpBal.Checked = false;
+                    Chk_All.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.LogFile(ex.Message, e.ToString(), ((Control)sender).Name, ex.LineNumber(), this.FindForm().Name);
+            }
+        }
+
+        private void PartyInformation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    this.Close();
                 }
             }
             catch (Exception ex)

@@ -18,7 +18,7 @@ namespace SilverGold.Transaction
         #region Declare variable
         OleDbConnection con;
         ConnectionClass objCon;
-        OleDbTransaction Tran = null;
+      //  OleDbTransaction Tran = null;
         RecieptPaymentVoucherEntity oRecieptPaymentVoucherEntity = new RecieptPaymentVoucherEntity();
         #endregion
 

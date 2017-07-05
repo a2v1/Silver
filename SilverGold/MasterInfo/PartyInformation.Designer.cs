@@ -30,21 +30,21 @@ namespace SilverGold.MasterInfo
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_Type = new System.Windows.Forms.Panel();
             this.cmbtype = new System.Windows.Forms.ComboBox();
             this.Panel_ShowInTrail = new System.Windows.Forms.Panel();
@@ -87,6 +87,7 @@ namespace SilverGold.MasterInfo
             this.txtemailid = new System.Windows.Forms.TextBox();
             this.cmbsubhead = new System.Windows.Forms.ComboBox();
             this.grpPartyCrditL = new System.Windows.Forms.GroupBox();
+            this.dataGridView2 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -104,25 +105,25 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Report = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu_PopUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Product = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_ReportShow = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox_GhattakList = new System.Windows.Forms.GroupBox();
+            this.dataGridView_GhattakList = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox_CommissionList = new System.Windows.Forms.GroupBox();
+            this.dataGridView_Commission = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.groupBox_BrokerageSetting = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dataGridView_BrokerageSetting = new SilverGold.Comman.GRIDVIEWCUSTOM1();
+            this.groupBox_Report = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.ckall = new System.Windows.Forms.CheckBox();
-            this.ckparty = new System.Windows.Forms.CheckBox();
-            this.ckworker = new System.Windows.Forms.CheckBox();
+            this.Chk_All = new System.Windows.Forms.CheckBox();
+            this.Chk_Party = new System.Windows.Forms.CheckBox();
+            this.Chk_Worker = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.rbtnwithopbal = new System.Windows.Forms.RadioButton();
-            this.rbtnwithoutopbal = new System.Windows.Forms.RadioButton();
+            this.rbtn_WithOpBal = new System.Windows.Forms.RadioButton();
+            this.rbtn_WithoutOpBal = new System.Windows.Forms.RadioButton();
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox_LabourRate = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
-            this.dataGridView_BrokerageSetting = new SilverGold.Comman.GRIDVIEWCUSTOM1();
-            this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
-            this.dataGridView_Commission = new SilverGold.Comman.GRIDVIEWCUSTOM1();
-            this.dataGridView_GhattakList = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridView_LabourRate = new SilverGold.Comman.GRIDVIEWCUSTOM1();
+            this.dataGridView1 = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.dataGridViewCreditPeriod = new SilverGold.Comman.GRIDVIEWCUSTOM1();
             this.panel_Type.SuspendLayout();
             this.Panel_ShowInTrail.SuspendLayout();
@@ -133,23 +134,23 @@ namespace SilverGold.MasterInfo
             this.Panel_LotGenerate.SuspendLayout();
             this.Panel_lot.SuspendLayout();
             this.grpPartyCrditL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox_GhattakList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).BeginInit();
             this.groupBox_CommissionList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).BeginInit();
             this.groupBox_BrokerageSetting.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).BeginInit();
+            this.groupBox_Report.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox_LabourRate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LabourRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -659,6 +660,35 @@ namespace SilverGold.MasterInfo
             this.grpPartyCrditL.Text = "Party Credit Limit ";
             this.grpPartyCrditL.Visible = false;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView2.Location = new System.Drawing.Point(7, 16);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(189, 30);
+            this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView2_CellValidating);
+            this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
+            this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView2_EditingControlShowing);
+            this.dataGridView2.Enter += new System.EventHandler(this.dataGridView2_Enter);
+            this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView2_KeyDown);
+            this.dataGridView2.Leave += new System.EventHandler(this.dataGridView2_Leave);
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -794,7 +824,8 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Refersh,
             this.toolStripMenu_Report,
             this.toolStripMenu_PopUp,
-            this.toolStripMenuItem_Product});
+            this.toolStripMenuItem_Product,
+            this.toolStripMenuItem_ReportShow});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1276, 24);
@@ -845,6 +876,12 @@ namespace SilverGold.MasterInfo
             this.toolStripMenuItem_Product.Text = "  ";
             this.toolStripMenuItem_Product.Click += new System.EventHandler(this.toolStripMenuItem_Product_Click);
             // 
+            // toolStripMenuItem_ReportShow
+            // 
+            this.toolStripMenuItem_ReportShow.Name = "toolStripMenuItem_ReportShow";
+            this.toolStripMenuItem_ReportShow.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.toolStripMenuItem_ReportShow.Size = new System.Drawing.Size(12, 20);
+            // 
             // groupBox_GhattakList
             // 
             this.groupBox_GhattakList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -857,6 +894,53 @@ namespace SilverGold.MasterInfo
             this.groupBox_GhattakList.TabStop = false;
             this.groupBox_GhattakList.Text = "Ghattak List (Alt+G)";
             this.groupBox_GhattakList.Visible = false;
+            // 
+            // dataGridView_GhattakList
+            // 
+            this.dataGridView_GhattakList.AllowUserToResizeColumns = false;
+            this.dataGridView_GhattakList.AllowUserToResizeRows = false;
+            this.dataGridView_GhattakList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_GhattakList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_GhattakList.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_GhattakList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_GhattakList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_GhattakList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView_GhattakList.Location = new System.Drawing.Point(6, 14);
+            this.dataGridView_GhattakList.Name = "dataGridView_GhattakList";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_GhattakList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView_GhattakList.RowHeadersWidth = 15;
+            this.dataGridView_GhattakList.Size = new System.Drawing.Size(560, 115);
+            this.dataGridView_GhattakList.TabIndex = 0;
+            this.dataGridView_GhattakList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GhattakList_CellEndEdit);
+            this.dataGridView_GhattakList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_GhattakList_CellValidating);
+            this.dataGridView_GhattakList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_GhattakList_DataError);
+            this.dataGridView_GhattakList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_GhattakList_EditingControlShowing);
+            this.dataGridView_GhattakList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_GhattakList_UserDeletingRow);
+            this.dataGridView_GhattakList.Enter += new System.EventHandler(this.dataGridView_GhattakList_Enter);
+            this.dataGridView_GhattakList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_GhattakList_KeyDown);
+            this.dataGridView_GhattakList.Leave += new System.EventHandler(this.dataGridView_GhattakList_Leave);
             // 
             // groupBox_CommissionList
             // 
@@ -871,6 +955,53 @@ namespace SilverGold.MasterInfo
             this.groupBox_CommissionList.Text = "Commission List (Alt+M)";
             this.groupBox_CommissionList.Visible = false;
             // 
+            // dataGridView_Commission
+            // 
+            this.dataGridView_Commission.AllowUserToResizeColumns = false;
+            this.dataGridView_Commission.AllowUserToResizeRows = false;
+            this.dataGridView_Commission.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Commission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_Commission.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Commission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView_Commission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_Commission.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView_Commission.Location = new System.Drawing.Point(6, 15);
+            this.dataGridView_Commission.Name = "dataGridView_Commission";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Commission.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView_Commission.RowHeadersWidth = 15;
+            this.dataGridView_Commission.Size = new System.Drawing.Size(560, 121);
+            this.dataGridView_Commission.TabIndex = 0;
+            this.dataGridView_Commission.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Commission_CellEndEdit);
+            this.dataGridView_Commission.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_Commission_CellValidating);
+            this.dataGridView_Commission.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_Commission_DataError);
+            this.dataGridView_Commission.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_Commission_EditingControlShowing);
+            this.dataGridView_Commission.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_Commission_UserDeletingRow);
+            this.dataGridView_Commission.Enter += new System.EventHandler(this.dataGridView_Commission_Enter);
+            this.dataGridView_Commission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_Commission_KeyDown);
+            this.dataGridView_Commission.Leave += new System.EventHandler(this.dataGridView_Commission_Leave);
+            // 
             // groupBox_BrokerageSetting
             // 
             this.groupBox_BrokerageSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -883,145 +1014,6 @@ namespace SilverGold.MasterInfo
             this.groupBox_BrokerageSetting.TabStop = false;
             this.groupBox_BrokerageSetting.Text = "Brokerage Setting";
             this.groupBox_BrokerageSetting.Visible = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.groupBox6);
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Controls.Add(this.btnShow);
-            this.groupBox4.Location = new System.Drawing.Point(8, 346);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(678, 64);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Report";
-            this.groupBox4.Visible = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.ckall);
-            this.groupBox6.Controls.Add(this.ckparty);
-            this.groupBox6.Controls.Add(this.ckworker);
-            this.groupBox6.Location = new System.Drawing.Point(8, 13);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(294, 40);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            // 
-            // ckall
-            // 
-            this.ckall.AutoSize = true;
-            this.ckall.Location = new System.Drawing.Point(17, 16);
-            this.ckall.Name = "ckall";
-            this.ckall.Size = new System.Drawing.Size(58, 17);
-            this.ckall.TabIndex = 0;
-            this.ckall.Text = "All (F2)";
-            this.ckall.UseVisualStyleBackColor = true;
-            // 
-            // ckparty
-            // 
-            this.ckparty.AutoSize = true;
-            this.ckparty.Location = new System.Drawing.Point(95, 16);
-            this.ckparty.Name = "ckparty";
-            this.ckparty.Size = new System.Drawing.Size(71, 17);
-            this.ckparty.TabIndex = 1;
-            this.ckparty.Text = "Party (F3)";
-            this.ckparty.UseVisualStyleBackColor = true;
-            // 
-            // ckworker
-            // 
-            this.ckworker.AutoSize = true;
-            this.ckworker.Location = new System.Drawing.Point(198, 16);
-            this.ckworker.Name = "ckworker";
-            this.ckworker.Size = new System.Drawing.Size(82, 17);
-            this.ckworker.TabIndex = 2;
-            this.ckworker.Text = "Worker (F4)";
-            this.ckworker.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.rbtnwithopbal);
-            this.groupBox5.Controls.Add(this.rbtnwithoutopbal);
-            this.groupBox5.Location = new System.Drawing.Point(304, 12);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(266, 41);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            // 
-            // rbtnwithopbal
-            // 
-            this.rbtnwithopbal.AutoSize = true;
-            this.rbtnwithopbal.Location = new System.Drawing.Point(12, 15);
-            this.rbtnwithopbal.Name = "rbtnwithopbal";
-            this.rbtnwithopbal.Size = new System.Drawing.Size(111, 17);
-            this.rbtnwithopbal.TabIndex = 0;
-            this.rbtnwithopbal.TabStop = true;
-            this.rbtnwithopbal.Text = "With Opening (F6)";
-            this.rbtnwithopbal.UseVisualStyleBackColor = true;
-            // 
-            // rbtnwithoutopbal
-            // 
-            this.rbtnwithoutopbal.AutoSize = true;
-            this.rbtnwithoutopbal.Location = new System.Drawing.Point(129, 16);
-            this.rbtnwithoutopbal.Name = "rbtnwithoutopbal";
-            this.rbtnwithoutopbal.Size = new System.Drawing.Size(126, 17);
-            this.rbtnwithoutopbal.TabIndex = 1;
-            this.rbtnwithoutopbal.TabStop = true;
-            this.rbtnwithoutopbal.Text = "Without Opening (F7)";
-            this.rbtnwithoutopbal.UseVisualStyleBackColor = true;
-            // 
-            // btnShow
-            // 
-            this.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShow.Location = new System.Drawing.Point(579, 19);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(79, 32);
-            this.btnShow.TabIndex = 2;
-            this.btnShow.Text = "Show (F10)";
-            this.btnShow.UseVisualStyleBackColor = true;
-            // 
-            // groupBox_LabourRate
-            // 
-            this.groupBox_LabourRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox_LabourRate.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox_LabourRate.Controls.Add(this.dataGridView_LabourRate);
-            this.groupBox_LabourRate.Location = new System.Drawing.Point(692, 34);
-            this.groupBox_LabourRate.Name = "groupBox_LabourRate";
-            this.groupBox_LabourRate.Size = new System.Drawing.Size(572, 149);
-            this.groupBox_LabourRate.TabIndex = 5;
-            this.groupBox_LabourRate.TabStop = false;
-            this.groupBox_LabourRate.Text = "Labour Rate (Alt+R)";
-            this.groupBox_LabourRate.Visible = false;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView2.Location = new System.Drawing.Point(7, 16);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(189, 30);
-            this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView2_CellValidating);
-            this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
-            this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView2_EditingControlShowing);
-            this.dataGridView2.Enter += new System.EventHandler(this.dataGridView2_Enter);
-            this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView2_KeyDown);
-            this.dataGridView2.Leave += new System.EventHandler(this.dataGridView2_Leave);
             // 
             // dataGridView_BrokerageSetting
             // 
@@ -1064,9 +1056,171 @@ namespace SilverGold.MasterInfo
             this.dataGridView_BrokerageSetting.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_BrokerageSetting_CellEndEdit);
             this.dataGridView_BrokerageSetting.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_BrokerageSetting_DataError);
             this.dataGridView_BrokerageSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_BrokerageSetting_EditingControlShowing);
+            this.dataGridView_BrokerageSetting.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_BrokerageSetting_UserDeletingRow);
             this.dataGridView_BrokerageSetting.Enter += new System.EventHandler(this.dataGridView_BrokerageSetting_Enter);
             this.dataGridView_BrokerageSetting.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_BrokerageSetting_KeyDown);
             this.dataGridView_BrokerageSetting.Leave += new System.EventHandler(this.dataGridView_BrokerageSetting_Leave);
+            // 
+            // groupBox_Report
+            // 
+            this.groupBox_Report.Controls.Add(this.groupBox6);
+            this.groupBox_Report.Controls.Add(this.groupBox5);
+            this.groupBox_Report.Controls.Add(this.btnShow);
+            this.groupBox_Report.Location = new System.Drawing.Point(8, 346);
+            this.groupBox_Report.Name = "groupBox_Report";
+            this.groupBox_Report.Size = new System.Drawing.Size(678, 64);
+            this.groupBox_Report.TabIndex = 8;
+            this.groupBox_Report.TabStop = false;
+            this.groupBox_Report.Text = "Report";
+            this.groupBox_Report.Visible = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.Chk_All);
+            this.groupBox6.Controls.Add(this.Chk_Party);
+            this.groupBox6.Controls.Add(this.Chk_Worker);
+            this.groupBox6.Location = new System.Drawing.Point(8, 13);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(294, 40);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            // 
+            // Chk_All
+            // 
+            this.Chk_All.AutoSize = true;
+            this.Chk_All.Location = new System.Drawing.Point(17, 16);
+            this.Chk_All.Name = "Chk_All";
+            this.Chk_All.Size = new System.Drawing.Size(58, 17);
+            this.Chk_All.TabIndex = 0;
+            this.Chk_All.Text = "All (F2)";
+            this.Chk_All.UseVisualStyleBackColor = true;
+            this.Chk_All.CheckedChanged += new System.EventHandler(this.Chk_All_CheckedChanged);
+            // 
+            // Chk_Party
+            // 
+            this.Chk_Party.AutoSize = true;
+            this.Chk_Party.Location = new System.Drawing.Point(95, 16);
+            this.Chk_Party.Name = "Chk_Party";
+            this.Chk_Party.Size = new System.Drawing.Size(71, 17);
+            this.Chk_Party.TabIndex = 1;
+            this.Chk_Party.Text = "Party (F3)";
+            this.Chk_Party.UseVisualStyleBackColor = true;
+            this.Chk_Party.CheckedChanged += new System.EventHandler(this.Chk_Party_CheckedChanged);
+            // 
+            // Chk_Worker
+            // 
+            this.Chk_Worker.AutoSize = true;
+            this.Chk_Worker.Location = new System.Drawing.Point(198, 16);
+            this.Chk_Worker.Name = "Chk_Worker";
+            this.Chk_Worker.Size = new System.Drawing.Size(82, 17);
+            this.Chk_Worker.TabIndex = 2;
+            this.Chk_Worker.Text = "Worker (F4)";
+            this.Chk_Worker.UseVisualStyleBackColor = true;
+            this.Chk_Worker.CheckedChanged += new System.EventHandler(this.Chk_Worker_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.rbtn_WithOpBal);
+            this.groupBox5.Controls.Add(this.rbtn_WithoutOpBal);
+            this.groupBox5.Location = new System.Drawing.Point(304, 12);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(266, 41);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            // 
+            // rbtn_WithOpBal
+            // 
+            this.rbtn_WithOpBal.AutoSize = true;
+            this.rbtn_WithOpBal.Checked = true;
+            this.rbtn_WithOpBal.Location = new System.Drawing.Point(12, 15);
+            this.rbtn_WithOpBal.Name = "rbtn_WithOpBal";
+            this.rbtn_WithOpBal.Size = new System.Drawing.Size(111, 17);
+            this.rbtn_WithOpBal.TabIndex = 0;
+            this.rbtn_WithOpBal.TabStop = true;
+            this.rbtn_WithOpBal.Text = "With Opening (F6)";
+            this.rbtn_WithOpBal.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_WithoutOpBal
+            // 
+            this.rbtn_WithoutOpBal.AutoSize = true;
+            this.rbtn_WithoutOpBal.Location = new System.Drawing.Point(129, 16);
+            this.rbtn_WithoutOpBal.Name = "rbtn_WithoutOpBal";
+            this.rbtn_WithoutOpBal.Size = new System.Drawing.Size(126, 17);
+            this.rbtn_WithoutOpBal.TabIndex = 1;
+            this.rbtn_WithoutOpBal.Text = "Without Opening (F7)";
+            this.rbtn_WithoutOpBal.UseVisualStyleBackColor = true;
+            // 
+            // btnShow
+            // 
+            this.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnShow.Location = new System.Drawing.Point(579, 19);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(79, 32);
+            this.btnShow.TabIndex = 2;
+            this.btnShow.Text = "Show (F10)";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // groupBox_LabourRate
+            // 
+            this.groupBox_LabourRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_LabourRate.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox_LabourRate.Controls.Add(this.dataGridView_LabourRate);
+            this.groupBox_LabourRate.Location = new System.Drawing.Point(692, 34);
+            this.groupBox_LabourRate.Name = "groupBox_LabourRate";
+            this.groupBox_LabourRate.Size = new System.Drawing.Size(572, 149);
+            this.groupBox_LabourRate.TabIndex = 5;
+            this.groupBox_LabourRate.TabStop = false;
+            this.groupBox_LabourRate.Text = "Labour Rate (Alt+R)";
+            this.groupBox_LabourRate.Visible = false;
+            // 
+            // dataGridView_LabourRate
+            // 
+            this.dataGridView_LabourRate.AllowUserToResizeColumns = false;
+            this.dataGridView_LabourRate.AllowUserToResizeRows = false;
+            this.dataGridView_LabourRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_LabourRate.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_LabourRate.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_LabourRate.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridView_LabourRate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_LabourRate.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView_LabourRate.Location = new System.Drawing.Point(6, 17);
+            this.dataGridView_LabourRate.Name = "dataGridView_LabourRate";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_LabourRate.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridView_LabourRate.RowHeadersWidth = 15;
+            this.dataGridView_LabourRate.Size = new System.Drawing.Size(560, 126);
+            this.dataGridView_LabourRate.TabIndex = 0;
+            this.dataGridView_LabourRate.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_LabourRate_CellEndEdit);
+            this.dataGridView_LabourRate.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_LabourRate_CellValidating);
+            this.dataGridView_LabourRate.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_LabourRate_DataError);
+            this.dataGridView_LabourRate.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_LabourRate_EditingControlShowing);
+            this.dataGridView_LabourRate.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_LabourRate_UserDeletingRow);
+            this.dataGridView_LabourRate.Enter += new System.EventHandler(this.dataGridView_LabourRate_Enter);
+            this.dataGridView_LabourRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_LabourRate_KeyDown);
+            this.dataGridView_LabourRate.Leave += new System.EventHandler(this.dataGridView_LabourRate_Leave);
             // 
             // dataGridView1
             // 
@@ -1112,144 +1266,6 @@ namespace SilverGold.MasterInfo
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             this.dataGridView1.Leave += new System.EventHandler(this.dataGridView1_Leave);
             // 
-            // dataGridView_Commission
-            // 
-            this.dataGridView_Commission.AllowUserToResizeColumns = false;
-            this.dataGridView_Commission.AllowUserToResizeRows = false;
-            this.dataGridView_Commission.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_Commission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_Commission.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Commission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView_Commission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_Commission.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView_Commission.Location = new System.Drawing.Point(6, 15);
-            this.dataGridView_Commission.Name = "dataGridView_Commission";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Commission.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridView_Commission.RowHeadersWidth = 15;
-            this.dataGridView_Commission.Size = new System.Drawing.Size(560, 121);
-            this.dataGridView_Commission.TabIndex = 0;
-            this.dataGridView_Commission.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Commission_CellEndEdit);
-            this.dataGridView_Commission.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_Commission_CellValidating);
-            this.dataGridView_Commission.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_Commission_DataError);
-            this.dataGridView_Commission.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_Commission_EditingControlShowing);
-            this.dataGridView_Commission.Enter += new System.EventHandler(this.dataGridView_Commission_Enter);
-            this.dataGridView_Commission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_Commission_KeyDown);
-            this.dataGridView_Commission.Leave += new System.EventHandler(this.dataGridView_Commission_Leave);
-            // 
-            // dataGridView_GhattakList
-            // 
-            this.dataGridView_GhattakList.AllowUserToResizeColumns = false;
-            this.dataGridView_GhattakList.AllowUserToResizeRows = false;
-            this.dataGridView_GhattakList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_GhattakList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_GhattakList.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_GhattakList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView_GhattakList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_GhattakList.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_GhattakList.Location = new System.Drawing.Point(6, 14);
-            this.dataGridView_GhattakList.Name = "dataGridView_GhattakList";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_GhattakList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView_GhattakList.RowHeadersWidth = 15;
-            this.dataGridView_GhattakList.Size = new System.Drawing.Size(560, 115);
-            this.dataGridView_GhattakList.TabIndex = 0;
-            this.dataGridView_GhattakList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GhattakList_CellEndEdit);
-            this.dataGridView_GhattakList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_GhattakList_CellValidating);
-            this.dataGridView_GhattakList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_GhattakList_DataError);
-            this.dataGridView_GhattakList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_GhattakList_EditingControlShowing);
-            this.dataGridView_GhattakList.Enter += new System.EventHandler(this.dataGridView_GhattakList_Enter);
-            this.dataGridView_GhattakList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_GhattakList_KeyDown);
-            this.dataGridView_GhattakList.Leave += new System.EventHandler(this.dataGridView_GhattakList_Leave);
-            // 
-            // dataGridView_LabourRate
-            // 
-            this.dataGridView_LabourRate.AllowUserToResizeColumns = false;
-            this.dataGridView_LabourRate.AllowUserToResizeRows = false;
-            this.dataGridView_LabourRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_LabourRate.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_LabourRate.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_LabourRate.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView_LabourRate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_LabourRate.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView_LabourRate.Location = new System.Drawing.Point(6, 17);
-            this.dataGridView_LabourRate.Name = "dataGridView_LabourRate";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_LabourRate.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridView_LabourRate.RowHeadersWidth = 15;
-            this.dataGridView_LabourRate.Size = new System.Drawing.Size(560, 126);
-            this.dataGridView_LabourRate.TabIndex = 0;
-            this.dataGridView_LabourRate.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_LabourRate_CellEndEdit);
-            this.dataGridView_LabourRate.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_LabourRate_CellValidating);
-            this.dataGridView_LabourRate.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_LabourRate_DataError);
-            this.dataGridView_LabourRate.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_LabourRate_EditingControlShowing);
-            this.dataGridView_LabourRate.Enter += new System.EventHandler(this.dataGridView_LabourRate_Enter);
-            this.dataGridView_LabourRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_LabourRate_KeyDown);
-            this.dataGridView_LabourRate.Leave += new System.EventHandler(this.dataGridView_LabourRate_Leave);
-            // 
             // dataGridViewCreditPeriod
             // 
             this.dataGridViewCreditPeriod.AllowUserToOrderColumns = true;
@@ -1267,6 +1283,7 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCreditPeriod_CellValidating);
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
             this.dataGridViewCreditPeriod.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewCreditPeriod_EditingControlShowing);
+            this.dataGridViewCreditPeriod.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewCreditPeriod_UserDeletingRow);
             this.dataGridViewCreditPeriod.Enter += new System.EventHandler(this.dataGridViewCreditPeriod_Enter);
             this.dataGridViewCreditPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewCreditPeriod_KeyDown);
             // 
@@ -1282,7 +1299,7 @@ namespace SilverGold.MasterInfo
             this.Controls.Add(this.grpBoxWithCreditLimit);
             this.Controls.Add(this.cmbIntroducer);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox_Report);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Panel_ShowInTrail);
             this.Controls.Add(this.label15);
@@ -1323,6 +1340,7 @@ namespace SilverGold.MasterInfo
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.PartyInformation_Activated);
             this.Load += new System.EventHandler(this.PartyInformation_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PartyInformation_KeyDown);
             this.panel_Type.ResumeLayout(false);
             this.Panel_ShowInTrail.ResumeLayout(false);
             this.Panel_McxBullion.ResumeLayout(false);
@@ -1334,6 +1352,7 @@ namespace SilverGold.MasterInfo
             this.Panel_LotGenerate.ResumeLayout(false);
             this.Panel_lot.ResumeLayout(false);
             this.grpPartyCrditL.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1341,20 +1360,19 @@ namespace SilverGold.MasterInfo
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox_GhattakList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).EndInit();
             this.groupBox_CommissionList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).EndInit();
             this.groupBox_BrokerageSetting.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).EndInit();
+            this.groupBox_Report.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox_LabourRate.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_BrokerageSetting)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Commission)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GhattakList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LabourRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCreditPeriod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1426,14 +1444,14 @@ namespace SilverGold.MasterInfo
         private GRIDVIEWCUSTOM1 dataGridView_Commission;
         private System.Windows.Forms.GroupBox groupBox_BrokerageSetting;
         private GRIDVIEWCUSTOM1 dataGridView_BrokerageSetting;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox_Report;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.CheckBox ckall;
-        private System.Windows.Forms.CheckBox ckparty;
-        private System.Windows.Forms.CheckBox ckworker;
+        private System.Windows.Forms.CheckBox Chk_All;
+        private System.Windows.Forms.CheckBox Chk_Party;
+        private System.Windows.Forms.CheckBox Chk_Worker;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton rbtnwithopbal;
-        private System.Windows.Forms.RadioButton rbtnwithoutopbal;
+        private System.Windows.Forms.RadioButton rbtn_WithOpBal;
+        private System.Windows.Forms.RadioButton rbtn_WithoutOpBal;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.ComboBox cmbShowtrail;
         private System.Windows.Forms.GroupBox grpPartyCrditL;
@@ -1442,5 +1460,6 @@ namespace SilverGold.MasterInfo
         private System.Windows.Forms.ComboBox cmbtype;
         private GRIDVIEWCUSTOM1 dataGridView2;
         private System.Windows.Forms.GroupBox groupBox_LabourRate;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ReportShow;
     }
 }

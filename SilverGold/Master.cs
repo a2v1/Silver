@@ -2,6 +2,7 @@
 using SilverGold.CompanyInfo;
 using SilverGold.Helper;
 using SilverGold.MasterInfo;
+using SilverGold.SecuritySystem;
 using SilverGold.Transaction;
 using SilverGold.Utilities;
 using System;
@@ -335,6 +336,13 @@ namespace SilverGold
             PaymentVoucher oPaymentVoucher = new PaymentVoucher();
             oPaymentVoucher.MdiParent = this;
             oPaymentVoucher.Show();
+        }
+
+        private void setPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePassword oChangePassword = new ChangePassword();
+            oChangePassword.MdiParent = this;
+            oChangePassword.Show();
         }
     }
 }

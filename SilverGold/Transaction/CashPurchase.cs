@@ -21,12 +21,12 @@ namespace SilverGold.Transaction
         List<ReturnMetalEntity> ReturnMetalList = new List<ReturnMetalEntity>();
         OleDbConnection con;
         ConnectionClass objCon;
-        OleDbTransaction Tran = null;
-        DataGridView.HitTestInfo hti;
+        //OleDbTransaction Tran = null;
+        //DataGridView.HitTestInfo hti;
         int Row_No = -1;
         int Row_No_Return = -1;
-        Decimal _Old_westage = 0;
-        Decimal _Old_labour = 0;
+        //Decimal _Old_westage = 0;
+        //Decimal _Old_labour = 0;
         String _Tunch_pending_YN = "";
         String _Tunch_Update = "";
         int _TunchSno = -1;

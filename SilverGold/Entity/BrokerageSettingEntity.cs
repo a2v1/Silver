@@ -23,6 +23,7 @@ namespace SilverGold.Entity
 
         public void BindBrokerageList(DataGridView dgv)
         {
+            dgv.Columns.Clear();
             dtpDateFrom_Brok.DataPropertyName = "DateFrom";
             dtpDateFrom_Brok.HeaderText = "DateFrom";
             dtpDateFrom_Brok.Name = "DateFrom";

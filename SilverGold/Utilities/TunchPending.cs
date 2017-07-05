@@ -19,7 +19,7 @@ namespace SilverGold.Utilities
 
         #region Declare Variable
         OleDbConnection con;
-        OleDbTransaction Tran = null;
+      //  OleDbTransaction Tran = null;
         DataGridView.HitTestInfo ht1;
         public int _Showtunch = 0;
         string _StrTunchPending = "";
