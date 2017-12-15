@@ -310,9 +310,9 @@ namespace SilverGold
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserManagement oUserManagement = new UserManagement();
-            oUserManagement.MdiParent = this;
-            oUserManagement.Show();
+            //UserManagement oUserManagement = new UserManagement();
+            //oUserManagement.MdiParent = this;
+            //oUserManagement.Show();
         }
 
         private void cashPurchaseToolStripMenuItem_Click(object sender, EventArgs e)
