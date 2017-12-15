@@ -94,7 +94,6 @@ namespace SilverGold.Utilities
 
         private void TunchPending_Load(object sender, EventArgs e)
         {
-
             dataGridView1.Columns["TrDate"].Width = 100;
             dataGridView1.Columns["PartyName"].Width = 185;
             dataGridView1.Columns["Category"].Width = 60;
