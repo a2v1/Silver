@@ -6,8 +6,15 @@ using System.Windows.Forms;
 
 namespace SilverGold.Comman
 {
+    public delegate void MyEventHandler(object source, KeyEventArgs keyData);
     public partial class GRIDVIEWCUSTOM1 : DataGridView
     {
+        public event MyEventHandler EnterPress;
+        public GRIDVIEWCUSTOM1()
+        {
+            this.EnterPress += new MyEventHandler(MyEvent);
+        }
+        
         [System.Security.Permissions.UIPermission(
             System.Security.Permissions.SecurityAction.LinkDemand,
             Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
@@ -19,9 +26,19 @@ namespace SilverGold.Comman
             // Handle the ENTER key as if it were a RIGHT ARROW key. 
             if (key == Keys.Enter)
             {
+                KeyEventArgs e1 = new KeyEventArgs(keyData);
+                this.EnterPress(this, e1);
                 return this.ProcessTabKey(keyData);
             }
             return base.ProcessDialogKey(keyData);
+        }
+
+        void MyEvent(object source, KeyEventArgs keyData)
+        {
+            if (this.EnterPress != null)
+            {
+                //do something
+            }
         }
 
         [System.Security.Permissions.SecurityPermission(
@@ -32,6 +49,7 @@ namespace SilverGold.Comman
             // Handle the ENTER key as if it were a RIGHT ARROW key. 
             if (e.KeyCode == Keys.Enter)
             {
+                this.EnterPress(this, e);
                 return this.ProcessTabKey(e.KeyData);
             }
             return base.ProcessDataGridViewKey(e);

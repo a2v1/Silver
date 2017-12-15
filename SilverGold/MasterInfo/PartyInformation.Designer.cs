@@ -105,6 +105,11 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_PopUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Product = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ReportShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_LabourRate = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_GhattakList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Commission = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_CreditLimit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Opening = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox_GhattakList = new System.Windows.Forms.GroupBox();
             this.groupBox_CommissionList = new System.Windows.Forms.GroupBox();
             this.groupBox_BrokerageSetting = new System.Windows.Forms.GroupBox();
@@ -164,6 +169,8 @@ namespace SilverGold.MasterInfo
             // 
             // cmbtype
             // 
+            this.cmbtype.AllowDrop = true;
+            this.cmbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbtype.FormattingEnabled = true;
             this.cmbtype.Items.AddRange(new object[] {
             "PARTY",
@@ -239,6 +246,7 @@ namespace SilverGold.MasterInfo
             // 
             // cmbCategory
             // 
+            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.Location = new System.Drawing.Point(4, 3);
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
@@ -358,10 +366,10 @@ namespace SilverGold.MasterInfo
             // 
             // txtBankCredit
             // 
-            this.txtBankCredit.Location = new System.Drawing.Point(570, 263);
+            this.txtBankCredit.Location = new System.Drawing.Point(596, 260);
             this.txtBankCredit.Margin = new System.Windows.Forms.Padding(4);
             this.txtBankCredit.Name = "txtBankCredit";
-            this.txtBankCredit.Size = new System.Drawing.Size(75, 20);
+            this.txtBankCredit.Size = new System.Drawing.Size(92, 20);
             this.txtBankCredit.TabIndex = 16;
             this.txtBankCredit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBankCredit.Visible = false;
@@ -373,12 +381,12 @@ namespace SilverGold.MasterInfo
             // 
             this.lblBankCredit.AutoSize = true;
             this.lblBankCredit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBankCredit.Location = new System.Drawing.Point(494, 265);
+            this.lblBankCredit.Location = new System.Drawing.Point(494, 263);
             this.lblBankCredit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBankCredit.Name = "lblBankCredit";
-            this.lblBankCredit.Size = new System.Drawing.Size(71, 15);
+            this.lblBankCredit.Size = new System.Drawing.Size(101, 15);
             this.lblBankCredit.TabIndex = 17;
-            this.lblBankCredit.Text = "Bank Credit";
+            this.lblBankCredit.Text = "Bank Credit Limit";
             this.lblBankCredit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBankCredit.Visible = false;
             // 
@@ -407,8 +415,8 @@ namespace SilverGold.MasterInfo
             this.cmb_gen_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_gen_type.FormattingEnabled = true;
             this.cmb_gen_type.Items.AddRange(new object[] {
-            "RECIVING",
-            "GIVING"});
+            "GIVING",
+            "RECIVING"});
             this.cmb_gen_type.Location = new System.Drawing.Point(3, 3);
             this.cmb_gen_type.Name = "cmb_gen_type";
             this.cmb_gen_type.Size = new System.Drawing.Size(88, 21);
@@ -798,7 +806,12 @@ namespace SilverGold.MasterInfo
             this.toolStripMenu_Report,
             this.toolStripMenu_PopUp,
             this.toolStripMenuItem_Product,
-            this.toolStripMenuItem_ReportShow});
+            this.toolStripMenuItem_ReportShow,
+            this.toolStripMenuItem_LabourRate,
+            this.toolStripMenuItem_GhattakList,
+            this.toolStripMenuItem_Commission,
+            this.toolStripMenuItem_CreditLimit,
+            this.toolStripMenuItem_Opening});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1276, 24);
@@ -854,6 +867,36 @@ namespace SilverGold.MasterInfo
             this.toolStripMenuItem_ReportShow.Name = "toolStripMenuItem_ReportShow";
             this.toolStripMenuItem_ReportShow.ShortcutKeys = System.Windows.Forms.Keys.F10;
             this.toolStripMenuItem_ReportShow.Size = new System.Drawing.Size(12, 20);
+            // 
+            // toolStripMenuItem_LabourRate
+            // 
+            this.toolStripMenuItem_LabourRate.Name = "toolStripMenuItem_LabourRate";
+            this.toolStripMenuItem_LabourRate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.toolStripMenuItem_LabourRate.Size = new System.Drawing.Size(12, 20);
+            // 
+            // toolStripMenuItem_GhattakList
+            // 
+            this.toolStripMenuItem_GhattakList.Name = "toolStripMenuItem_GhattakList";
+            this.toolStripMenuItem_GhattakList.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.G)));
+            this.toolStripMenuItem_GhattakList.Size = new System.Drawing.Size(12, 20);
+            // 
+            // toolStripMenuItem_Commission
+            // 
+            this.toolStripMenuItem_Commission.Name = "toolStripMenuItem_Commission";
+            this.toolStripMenuItem_Commission.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.toolStripMenuItem_Commission.Size = new System.Drawing.Size(12, 20);
+            // 
+            // toolStripMenuItem_CreditLimit
+            // 
+            this.toolStripMenuItem_CreditLimit.Name = "toolStripMenuItem_CreditLimit";
+            this.toolStripMenuItem_CreditLimit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
+            this.toolStripMenuItem_CreditLimit.Size = new System.Drawing.Size(12, 20);
+            // 
+            // toolStripMenuItem_Opening
+            // 
+            this.toolStripMenuItem_Opening.Name = "toolStripMenuItem_Opening";
+            this.toolStripMenuItem_Opening.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.O)));
+            this.toolStripMenuItem_Opening.Size = new System.Drawing.Size(12, 20);
             // 
             // groupBox_GhattakList
             // 
@@ -1030,6 +1073,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.Size = new System.Drawing.Size(189, 30);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.EnterPress += new SilverGold.Comman.MyEventHandler(this.dataGridView2_EnterPress);
             this.dataGridView2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView2_CellValidating);
             this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
             this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView2_EditingControlShowing);
@@ -1076,6 +1120,7 @@ namespace SilverGold.MasterInfo
             this.dataGridView_BrokerageSetting.Size = new System.Drawing.Size(560, 139);
             this.dataGridView_BrokerageSetting.TabIndex = 0;
             this.dataGridView_BrokerageSetting.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_BrokerageSetting_CellEndEdit);
+            this.dataGridView_BrokerageSetting.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_BrokerageSetting_CellValidating);
             this.dataGridView_BrokerageSetting.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView_BrokerageSetting_DataError);
             this.dataGridView_BrokerageSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_BrokerageSetting_EditingControlShowing);
             this.dataGridView_BrokerageSetting.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_BrokerageSetting_RowsAdded);
@@ -1120,11 +1165,15 @@ namespace SilverGold.MasterInfo
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.Size = new System.Drawing.Size(394, 141);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.EnterPress += new SilverGold.Comman.MyEventHandler(this.dataGridView1_EnterPress);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            this.dataGridView1.CellStateChanged += new System.Windows.Forms.DataGridViewCellStateChangedEventHandler(this.dataGridView1_CellStateChanged);
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.dataGridView1.Enter += new System.EventHandler(this.dataGridView1_Enter);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             this.dataGridView1.Leave += new System.EventHandler(this.dataGridView1_Leave);
@@ -1287,6 +1336,7 @@ namespace SilverGold.MasterInfo
             this.dataGridViewCreditPeriod.TabIndex = 9;
             this.dataGridViewCreditPeriod.Visible = false;
             this.dataGridViewCreditPeriod.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCreditPeriod_CellEndEdit);
+            this.dataGridViewCreditPeriod.CellStateChanged += new System.Windows.Forms.DataGridViewCellStateChangedEventHandler(this.dataGridViewCreditPeriod_CellStateChanged);
             this.dataGridViewCreditPeriod.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCreditPeriod_CellValidating);
             this.dataGridViewCreditPeriod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewCreditPeriod_DataError);
             this.dataGridViewCreditPeriod.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewCreditPeriod_EditingControlShowing);
@@ -1344,7 +1394,7 @@ namespace SilverGold.MasterInfo
             this.Controls.Add(this.txtPartyName);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PartyInformation";
-            this.Text = "PartyInformation";
+            this.Text = "  ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.PartyInformation_Activated);
             this.Load += new System.EventHandler(this.PartyInformation_Load);
@@ -1469,5 +1519,10 @@ namespace SilverGold.MasterInfo
         private GRIDVIEWCUSTOM1 dataGridView2;
         private System.Windows.Forms.GroupBox groupBox_LabourRate;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ReportShow;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_LabourRate;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_GhattakList;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Commission;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_CreditLimit;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Opening;
     }
 }

@@ -16,9 +16,9 @@ namespace SilverGold.Entity
         CalendarColumn dtpDateTo_Brok = new CalendarColumn();
         public DataGridViewComboBoxColumn col_BrokType_Brok = new DataGridViewComboBoxColumn();
         public DataGridViewComboBoxColumn col_Product_Brok = new DataGridViewComboBoxColumn();
-        public DataGridViewColumn col_BrokRate_Brok = new DataGridViewTextBoxColumn();
+        public DataGridViewTextBoxColumn col_BrokRate_Brok = new DataGridViewTextBoxColumn();
         public DataGridViewComboBoxColumn col_TranType_Brok = new DataGridViewComboBoxColumn();
-        public DataGridViewComboBoxColumn col_LotSet_Brok = new DataGridViewComboBoxColumn();
+        public DataGridViewTextBoxColumn col_LotSet_Brok = new DataGridViewTextBoxColumn();
         public DataGridViewComboBoxColumn col_PType_Brok = new DataGridViewComboBoxColumn();
 
         public void BindBrokerageList(DataGridView dgv)
@@ -54,40 +54,36 @@ namespace SilverGold.Entity
             col_Product_Brok.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Product_Brok);
 
+            col_LotSet_Brok.DataPropertyName = "LotSet";
+            col_LotSet_Brok.HeaderText = "LotSet";
+            col_LotSet_Brok.Name = "LotSet";
+            col_LotSet_Brok.ReadOnly = true;
+            dgv.Columns.Add(col_LotSet_Brok);
+
             col_BrokRate_Brok.DataPropertyName = "BrokerageRate";
             col_BrokRate_Brok.HeaderText = "BrokRate";
             col_BrokRate_Brok.Name = "BrokerageRate";
             dgv.Columns.Add(col_BrokRate_Brok);
 
-            col_TranType_Brok.DataPropertyName = "TranType";
-            col_TranType_Brok.HeaderText = "TranType";
-            col_TranType_Brok.Name = "TranType";
-            col_TranType_Brok.Items.Clear();
-            col_TranType_Brok.Items.Add("JAMA");
-            col_TranType_Brok.Items.Add("NAAM");
-            col_TranType_Brok.FlatStyle = FlatStyle.Popup;
-            dgv.Columns.Add(col_TranType_Brok);
-
-            col_LotSet_Brok.DataPropertyName = "LotSet";
-            col_LotSet_Brok.HeaderText = "LotSet";
-            col_LotSet_Brok.Name = "LotSet";
-            col_LotSet_Brok.Items.Clear();
-            col_LotSet_Brok.Items.Add("30");
-            col_LotSet_Brok.Items.Add(".100");
-            col_LotSet_Brok.Items.Add("1.000");
-            col_LotSet_Brok.FlatStyle = FlatStyle.Popup;
-            dgv.Columns.Add(col_LotSet_Brok);
-
             col_PType_Brok.DataPropertyName = "PayType";
             col_PType_Brok.HeaderText = "P Type";
             col_PType_Brok.Name = "PayType";
             col_PType_Brok.Items.Clear();
-            col_PType_Brok.Items.Add("PURCHASE");
             col_PType_Brok.Items.Add("SELL");
+            col_PType_Brok.Items.Add("PURCHASE");
             col_PType_Brok.Items.Add("BOTH");
             col_PType_Brok.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_PType_Brok);
 
+            col_TranType_Brok.DataPropertyName = "TranType";
+            col_TranType_Brok.HeaderText = "J/N";
+            col_TranType_Brok.Name = "TranType";
+            col_TranType_Brok.Items.Clear();
+            col_TranType_Brok.Items.Add("J");
+            col_TranType_Brok.Items.Add("N");
+            col_TranType_Brok.FlatStyle = FlatStyle.Popup;
+            dgv.Columns.Add(col_TranType_Brok);
+            
             var _FDate = Conversion.ConToDT(CommanHelper.FDate);
             var _TDate = Conversion.ConToDT(CommanHelper.TDate);
 
@@ -99,7 +95,7 @@ namespace SilverGold.Entity
 
     public static class BrokerageSettingFactory
     {
-        public static void Insert(String _PartyName, DateTime _DateFrom, DateTime _DateTo, String _BrokerageType, String _Category, String _Product, Decimal _BrokerageRate, String _TranType, Decimal _LotSet, String _PayType, OleDbConnection _Con, OleDbTransaction _Tran)
+        public static void Insert(String _PartyName, DateTime _DateFrom, DateTime _DateTo, String _BrokerageType, String _Category, String _Product, Decimal _BrokerageRate, String _TranType, String _LotSet, String _PayType, OleDbConnection _Con, OleDbTransaction _Tran)
         {
             string strInsert = null;
             OleDbCommand cmdInsert = new OleDbCommand();

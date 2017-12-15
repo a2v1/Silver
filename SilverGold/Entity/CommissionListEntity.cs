@@ -65,9 +65,9 @@ namespace SilverGold.Entity
             List<MetalEntity> MetalList = new List<MetalEntity>();
             MetalList = CommanHelper.GetCompanyMetal().ToList();
 
-            if (_Category == "" || _Category == "COMMON")
+            if (_Category == "" || _Category == "COMMON" || _Category == "MIX METAL")
             {
-               foreach (var list in CommanHelper.GetProduct().Distinct().ToList())
+                foreach (var list in CommanHelper.GetProduct().Distinct().ToList())
                 {
                     col_Product_CommList.Items.Add(list.ProductName.ToString());
                 }
@@ -129,8 +129,8 @@ namespace SilverGold.Entity
             col_JN_CommList.HeaderText = "J/N";
             col_JN_CommList.Name = "JamaNaam";
             col_JN_CommList.Items.Clear();
-            col_JN_CommList.Items.Add("JAMA");
-            col_JN_CommList.Items.Add("NAAM");
+            col_JN_CommList.Items.Add("J");
+            col_JN_CommList.Items.Add("N");
             col_JN_CommList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_JN_CommList);
 

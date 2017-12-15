@@ -58,7 +58,7 @@ namespace SilverGold.Entity
             dgv.Columns.Clear();
             dtpDateFrom.DataPropertyName = "DateFrom";
             dtpDateFrom.HeaderText = "DateFrom";
-            dtpDateFrom.Name = "DateFrom";            
+            dtpDateFrom.Name = "DateFrom";
             dgv.Columns.Add(dtpDateFrom);
 
             dtpDateTo.DataPropertyName = "DateTo";
@@ -93,7 +93,39 @@ namespace SilverGold.Entity
             col_Product_CreditPeriod.DataPropertyName = "Product";
             col_Product_CreditPeriod.HeaderText = "Product";
             col_Product_CreditPeriod.Name = "Product";
-            col_Product_CreditPeriod.DataSource = CommanHelper.GetProduct().Select(x => x.ProductName).Distinct().ToList();
+            col_Product_CreditPeriod.Items.Clear();
+            List<MetalEntity> MetalList = new List<MetalEntity>();
+            MetalList = CommanHelper.GetCompanyMetal().ToList();
+
+            if (_Category == "" || _Category == "COMMON" || _Category == "MIX METAL")
+            {
+                foreach (var list in CommanHelper.GetProduct().Distinct().ToList())
+                {
+                    col_Product_CreditPeriod.Items.Add(list.ProductName.ToString());
+                }
+
+                foreach (var list in MetalList)
+                {
+                    if (list.UserId.ToString() != "" && list.MetalName != "CASH")
+                    {
+                        col_Product_CreditPeriod.Items.Add(list.MetalName.ToString());
+                    }
+                }
+            }
+            else
+            {
+                foreach (var list in CommanHelper.GetProduct().Where(r => r.Category == _Category).Distinct().ToList())
+                {
+                    col_Product_CreditPeriod.Items.Add(list.ProductName.ToString());
+                }
+                foreach (var list in MetalList)
+                {
+                    if (list.UserId.ToString() != "" && list.MetalName != "CASH" && list.MetalCategory.ToString().Trim() == _Category.Trim())
+                    {
+                        col_Product_CreditPeriod.Items.Add(list.MetalName.ToString());
+                    }
+                }
+            }
             col_Product_CreditPeriod.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_Product_CreditPeriod);
 
@@ -108,11 +140,11 @@ namespace SilverGold.Entity
             dgv.Columns.Add(col_Amount_CreditPeriod);
 
             col_TranType_CreditPeriod.DataPropertyName = "Tran_Type";
-            col_TranType_CreditPeriod.HeaderText = "TranType";
+            col_TranType_CreditPeriod.HeaderText = "J/N";
             col_TranType_CreditPeriod.Name = "Tran_Type";
             col_TranType_CreditPeriod.Items.Clear();
-            col_TranType_CreditPeriod.Items.Add("JAMA");
-            col_TranType_CreditPeriod.Items.Add("NAAM");
+            col_TranType_CreditPeriod.Items.Add("J");
+            col_TranType_CreditPeriod.Items.Add("N");
             col_TranType_CreditPeriod.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_TranType_CreditPeriod);
 

@@ -56,7 +56,7 @@ namespace SilverGold.MasterInfo
             PartyInformation._ProductName = "";
             if (PartyInformation._ProductFlage == 1)
             {
-                if (PartyInformation._Category == "COMMON")
+                if (PartyInformation._Category == "OTHER")
                 {
                     cmbcategory.Focus();
                 }

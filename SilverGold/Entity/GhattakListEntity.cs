@@ -92,8 +92,8 @@ namespace SilverGold.Entity
             col_JN_GhattakList.HeaderText = "J/N";
             col_JN_GhattakList.Name = "Jama_Naam";
             col_JN_GhattakList.Items.Clear();
-            col_JN_GhattakList.Items.Add("JAMA");
-            col_JN_GhattakList.Items.Add("NAAM");
+            col_JN_GhattakList.Items.Add("J");
+            col_JN_GhattakList.Items.Add("N");
             col_JN_GhattakList.FlatStyle = FlatStyle.Popup;
             dgv.Columns.Add(col_JN_GhattakList);
 

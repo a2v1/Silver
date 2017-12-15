@@ -88,6 +88,20 @@ namespace SilverGold.Comman
                 return 0;
             }
         }
+        public static System.Decimal ConToDec0(string strvalue)
+        {
+            try
+            {
+                System.Decimal decVal = 0;
+                decVal = Convert.ToDecimal(strvalue.Trim());
+                return Math.Round(decVal, 0);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
 
         public static System.Decimal ConToDec(string strvalue)
         {
